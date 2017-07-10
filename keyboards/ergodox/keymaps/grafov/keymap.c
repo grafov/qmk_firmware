@@ -63,7 +63,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 			 KC_ESCAPE,KC_GRAVE,KC_EXLM,KC_QUES,KC_COLN,KC_PLUS,_____,
 			 KC_LALT,TD(TD_QU),KC_B,KC_P,KC_F,ALGR_T(KC_G),_____,
 			 KC_LCTL,LT(LAYER_PROGER,KC_R),KC_A,KC_E,KC_N,RCTL_T(KC_S),
-			 KC_LSHIFT,LT(LAYER_NUMPAD,KC_Z),KC_COMMA,KC_U,KC_K,SFT_T(KC_J),OSL(LAYER_FN),
+			 KC_LSHIFT,LT(LAYER_NUMPAD,KC_Z),KC_COMMA,KC_U,KC_K,SFT_T(KC_J),MO(LAYER_FN),
 			 OSL(LAYER_FN),TG(LAYER_NUMPAD),TG(LAYER_MEDIA),_____,MO(LAYER_MOUSE),
 			 // left thumb
 			 LCTL(KC_W),KC_WWW_BACK,KC_PLUS,LT(LAYER_CONTROL,KC_SPACE),GUI_T(KC_BSPACE),KC_MINUS,
@@ -71,7 +71,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 			 M(M_LAYER_IS_KEYMACS),KC_ASTR,KC_SCOLON,KC_MINUS,KC_DQUO,KC_EQUAL,KC_BSPACE,
 			 _____,ALT_T(KC_DOT),KC_W,KC_D,KC_Y,KC_QUOTE,KC_RALT,
 			 CTL_T(KC_L),KC_O,KC_T,KC_I,LT(LAYER_PROGER,KC_H),KC_RCTRL,
-			 OSL(LAYER_FN),SFT_T(KC_M),KC_C,KC_X,KC_V,LT(LAYER_NUMPAD,KC_SLASH),KC_RSHIFT,
+			 MO(LAYER_FN),SFT_T(KC_M),KC_C,KC_X,KC_V,LT(LAYER_NUMPAD,KC_SLASH),KC_RSHIFT,
 			 MO(LAYER_MOUSE),KC_UNDS,TG(LAYER_RUSSIAN),TG(LAYER_QWERTY),OSL(LAYER_FN),
 			 // right thumb
 			 KC_WWW_FORWARD,CTL_T(KC_ESCAPE),KC_WWW_REFRESH,ALT_T(KC_APPLICATION),GUI_T(KC_TAB),LT(LAYER_CONTROL,KC_ENTER)),
@@ -81,7 +81,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 			  M(M_VRSN),KC_GRAVE,KC_EXLM,KC_QUES,KC_COLN,KC_PLUS,_____,
 			  KC_LALT,_____,KC_HASH,KC_CIRC,KC_LBRACKET,_____,_____,
 			  KC_LCTL,_____,KC_AMPR,KC_LCBR,KC_LPRN,_____,
-			  KC_LSHIFT,_____,KC_LABK,KC_AT,KC_TILD,_____,_____,
+			  KC_LSHIFT,_____,KC_LABK,KC_TILD,KC_AT,_____,_____,
 			  _____,_____,_____,_____,_____,
 			  // left thumb
 			  _____,_____,_____,KC_SPACE,_____,_____,
@@ -232,10 +232,10 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
   if (record->event.pressed) {
   switch(id) {
   case M_VRSN:
-    SEND_STRING (QMK_KEYBOARD "/" QMK_KEYMAP " @ " QMK_VERSION "-keymacs");
+    SEND_STRING (QMK_KEYBOARD "/" QMK_KEYMAP " @ " QMK_VERSION "-Keymacs");
     break;
   case M_LAYER_IS_KEYMACS:
-    SEND_STRING ("You are in Keymacs [0]");
+    SEND_STRING ("You are in Keymacs [0] default");
     break;
   case M_LAYER_IS_PROGER:
     SEND_STRING ("You are in Programmer layer [1]");
