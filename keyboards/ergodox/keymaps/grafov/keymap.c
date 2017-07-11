@@ -7,8 +7,8 @@
 // #include "keymap_german.h"
 // #include "keymap_nordic.h"
 
+// Just for aesthetics
 #define _____ KC_TRANSPARENT
-
 
 // Layer names
 enum {
@@ -77,7 +77,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 			   M(M_LAYER_IS_KEYMACS),KC_ASTR,KC_SCOLON,KC_MINUS,KC_DQUO,KC_EQUAL,KC_BSPACE,
 			   OSL(LAYER_FN),ALT_T(KC_DOT),KC_W,KC_D,KC_Y,KC_QUOTE,KC_RALT,
 			   CTL_T(KC_L),KC_O,KC_T,KC_I,LT(LAYER_PROGER,KC_H),KC_RCTRL,
-			   MO(LAYER_FN),SFT_T(KC_M),KC_C,KC_X,KC_V,LT(LAYER_NUMPAD,KC_SLASH),SFT_T(M_RUS),
+			   _____,SFT_T(KC_M),KC_C,KC_X,KC_V,LT(LAYER_NUMPAD,KC_SLASH),SFT_T(M_RUS),
 			   MO(LAYER_MOUSE),KC_UNDS,TG(LAYER_RUSSIAN),TG(LAYER_QWERTY),OSL(LAYER_FN),
 			   // right thumb
 			   KC_WWW_FORWARD,RCTL(KC_W),KC_WWW_REFRESH,ALT_T(KC_APPLICATION),GUI_T(KC_TAB),LT(LAYER_CONTROL,KC_ENTER)),
@@ -85,7 +85,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // Programmer layer (various shifted characters) [yellow]
   [LAYER_PROGER] = KEYMAP(// left fingers
 			  M(M_VRSN),KC_GRAVE,KC_EXLM,KC_QUES,KC_COLN,KC_PLUS,_____,
-			  KC_LALT,_____,KC_HASH,KC_CIRC,KC_LBRACKET,_____,_____,
+			  KC_LALT,_____,KC_CIRC,KC_HASH,KC_LBRACKET,_____,_____,
 			  KC_LCTL,_____,KC_AMPR,KC_LCBR,KC_LPRN,_____,
 			  KC_LSHIFT,_____,KC_LABK,KC_TILD,KC_AT,_____,_____,
 			  _____,_____,_____,_____,_____,
