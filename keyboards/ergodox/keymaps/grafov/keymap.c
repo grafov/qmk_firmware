@@ -9,6 +9,13 @@
 
 #define _____ KC_TRANSPARENT
 
+/* #define MOUSEKEY_DELAY             200 // 300 */
+/* #define MOUSEKEY_INTERVAL          50 */
+/* #define MOUSEKEY_MAX_SPEED         15 // 10 */
+/* #define MOUSEKEY_TIME_TO_MAX       20 */
+/* #define MOUSEKEY_WHEEL_MAX_SPEED   9  // 8 */
+/* #define MOUSEKEY_WHEEL_TIME_TO_MAX 20 // 40 */
+
 // Layer names
 enum {
   LAYER_KEYMACS = 0,
@@ -24,7 +31,7 @@ enum {
 };
 
 enum custom_keycodes {
-  PLACEHOLDER = SAFE_RANGE, // can always be here
+  PLACEHOLDER = SAFE_RANGE, // can always be here  
   EPRM,
   VRSN,
   RGB_SLD,
@@ -38,7 +45,7 @@ enum custom_keycodes {
 // Macros IDs
 enum {
   M_VRSN = 0,
-  M_PRNTLAYER,
+  M_EMACS_SELECT,
   M_LAYER_IS_KEYMACS,
   M_LAYER_IS_PROGER,
   M_LAYER_IS_RUSSIAN,
@@ -48,13 +55,16 @@ enum {
   M_LAYER_IS_NUMPAD,
   M_LAYER_IS_FN,
   M_LAYER_IS_MEDIA,
-  M_LAYER_IS_SYMBOLS
+  M_LAYER_IS_SYMBOLS,
+  M_RUS,
+  M_LAT
 };
 
 //Tap Dance Declarations
 enum {
   TD_QU = 0
 };
+
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -64,9 +74,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 			 KC_LALT,TD(TD_QU),KC_B,KC_P,KC_F,ALGR_T(KC_G),_____,
 			 KC_LCTL,LT(LAYER_PROGER,KC_R),KC_A,KC_E,KC_N,RCTL_T(KC_S),
 			 KC_LSHIFT,LT(LAYER_NUMPAD,KC_Z),KC_COMMA,KC_U,KC_K,SFT_T(KC_J),MO(LAYER_FN),
-			 OSL(LAYER_FN),TG(LAYER_NUMPAD),TG(LAYER_MEDIA),_____,MO(LAYER_MOUSE),
+			 OSL(LAYER_FN),TG(LAYER_NUMPAD),TG(LAYER_MEDIA),TG(LAYER_SYMBOLS),MO(LAYER_MOUSE),
 			 // left thumb
-			 LCTL(KC_W),KC_WWW_BACK,KC_PLUS,LT(LAYER_CONTROL,KC_SPACE),GUI_T(KC_BSPACE),KC_MINUS,
+			 M(M_EMACS_SELECT),KC_WWW_BACK,KC_PLUS,LT(LAYER_CONTROL,KC_SPACE),GUI_T(KC_BSPACE),KC_MINUS,
 			 // right fingers 
 			 M(M_LAYER_IS_KEYMACS),KC_ASTR,KC_SCOLON,KC_MINUS,KC_DQUO,KC_EQUAL,KC_BSPACE,
 			 _____,ALT_T(KC_DOT),KC_W,KC_D,KC_Y,KC_QUOTE,KC_RALT,
@@ -74,7 +84,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 			 MO(LAYER_FN),SFT_T(KC_M),KC_C,KC_X,KC_V,LT(LAYER_NUMPAD,KC_SLASH),KC_RSHIFT,
 			 MO(LAYER_MOUSE),KC_UNDS,TG(LAYER_RUSSIAN),TG(LAYER_QWERTY),OSL(LAYER_FN),
 			 // right thumb
-			 KC_WWW_FORWARD,CTL_T(KC_ESCAPE),KC_WWW_REFRESH,ALT_T(KC_APPLICATION),GUI_T(KC_TAB),LT(LAYER_CONTROL,KC_ENTER)),
+			 KC_WWW_FORWARD,LCTL(KC_W),KC_WWW_REFRESH,ALT_T(KC_APPLICATION),GUI_T(KC_TAB),LT(LAYER_CONTROL,KC_ENTER)),
 
   // Programmer layer (various shifted characters) [yellow]
   [LAYER_PROGER] = KEYMAP(// left fingers
@@ -98,8 +108,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [LAYER_RUSSIAN] = KEYMAP(// left fingers
 			  KC_ESCAPE,KC_1,KC_2,KC_3,KC_4,KC_5,_____,
 			  _____,KC_Q,KC_W,KC_E,KC_R,KC_T,_____,
-			  _____,KC_A,KC_S,KC_D,KC_F,KC_G,_____,
-			  KC_Z,KC_X,KC_C,KC_V,KC_B,_____,
+			  _____,KC_A,KC_S,KC_D,KC_F,KC_G,
+			  KC_LSPO,KC_Z,KC_X,KC_C,KC_V,KC_B,_____,
 			  TO(LAYER_KEYMACS),_____,_____,_____,_____,
 			  // left thumb
 			  _____,_____,_____,_____,_____,_____,
@@ -186,39 +196,57 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   // Fn keys [blue]
   [LAYER_FN] = KEYMAP(// left fingers
-		    _____,KC_F13,KC_F14,KC_F15,KC_F16,_____,_____,
-		    KC_LALT,KC_F9,KC_F10,KC_F11,KC_F12,KC_RALT,_____,
-		    KC_LCTL,KC_F5,KC_F6,KC_F7,KC_F8,KC_RCTRL,
-		    KC_LSHIFT,KC_F1,KC_F2,KC_F3,KC_F4,KC_RSHIFT,_____,
-		    TO(LAYER_KEYMACS),_____,_____,_____,_____,
-		    // left thumb
-		    _____,_____,_____,_____,_____,_____,
-		    // right fingers
-		    M(M_LAYER_IS_FN),_____,KC_F13,KC_F14,KC_F15,KC_F16,_____,
-		    _____,KC_LALT,KC_F9,KC_F10,KC_F11,KC_F12,KC_RALT,
-		    KC_LCTL,KC_F5,KC_F6,KC_F7,KC_F8,KC_RCTRL,
-		    _____,KC_LSHIFT,KC_F1,KC_F2,KC_F3,KC_F4,KC_RSHIFT,
-		    _____,_____,_____,_____,_____,
-		    // right thumb
-		    _____,_____,_____,_____,_____,_____),
+		      _____,KC_F13,KC_F14,KC_F15,KC_F16,_____,_____,
+		      KC_LALT,KC_F9,KC_F10,KC_F11,KC_F12,KC_RALT,_____,
+		      KC_LCTL,KC_F5,KC_F6,KC_F7,KC_F8,KC_RCTRL,
+		      KC_LSHIFT,KC_F1,KC_F2,KC_F3,KC_F4,KC_RSHIFT,_____,
+		      TO(LAYER_KEYMACS),_____,_____,_____,_____,
+		      // left thumb
+		      _____,_____,_____,_____,_____,_____,
+		      // right fingers
+		      M(M_LAYER_IS_FN),_____,KC_F13,KC_F14,KC_F15,KC_F16,_____,
+		      _____,KC_LALT,KC_F9,KC_F10,KC_F11,KC_F12,KC_RALT,
+		      KC_LCTL,KC_F5,KC_F6,KC_F7,KC_F8,KC_RCTRL,
+		      _____,KC_LSHIFT,KC_F1,KC_F2,KC_F3,KC_F4,KC_RSHIFT,
+		      _____,_____,_____,_____,_____,
+		      // right thumb
+		      _____,_____,_____,_____,_____,_____),
 
   // Color and Media controls 
   [LAYER_MEDIA] = KEYMAP(// left fingers
-		       _____,_____,_____,_____,_____,_____,_____,
-		       _____,_____,_____,_____,_____,_____,_____,
-		       _____,_____,_____,_____,_____,_____,
-		       _____,_____,_____,_____,_____,_____,_____,
-		       TO(LAYER_KEYMACS),_____,_____,_____,_____,
-		       // left thumb
-		       RGB_MOD,_____,_____,RGB_VAD,RGB_VAI,_____,
-		       // right fingers
-		       M(M_LAYER_IS_MEDIA),RGB_0000FF,RGB_008000,RGB_FFA500,RGB_800080,RGB_FF0000,_____,
-		       _____,_____,_____,_____,_____,_____,_____,
-		       _____,_____,_____,_____,_____,_____,
-		       _____,_____,_____,_____,_____,_____,_____,
-		       _____,_____,_____,_____,_____,
-		       // right thumb
-		       RGB_TOG,RGB_SLD,_____,_____,RGB_HUD,RGB_HUI),
+			 _____,_____,_____,_____,_____,_____,_____,
+			 _____,_____,_____,_____,_____,_____,_____,
+			 _____,_____,_____,_____,_____,_____,
+			 _____,_____,_____,_____,_____,_____,_____,
+			 TO(LAYER_KEYMACS),_____,_____,_____,_____,
+			 // left thumb
+			 RGB_MOD,_____,_____,RGB_VAD,RGB_VAI,_____,
+			 // right fingers
+			 M(M_LAYER_IS_MEDIA),RGB_0000FF,RGB_008000,RGB_FFA500,RGB_800080,RGB_FF0000,_____,
+			 _____,_____,_____,_____,_____,_____,_____,
+			 _____,_____,_____,_____,_____,_____,
+			 _____,_____,_____,_____,_____,_____,_____,
+			 _____,_____,_____,_____,_____,
+			 // right thumb
+			 RGB_TOG,RGB_SLD,_____,_____,RGB_HUD,RGB_HUI),
+
+  // Symbols layer for Unicode input
+  [LAYER_SYMBOLS] = KEYMAP(// left fingers
+	 		   UC_LNX,UC(0x03a8),UC(0x0152),UC_A,_____,_____,_____,
+			   _____,_____,_____,_____,_____,_____,_____,
+			   _____,_____,_____,_____,_____,_____,
+			   _____,_____,_____,_____,_____,_____,_____,
+			   TO(LAYER_KEYMACS),_____,_____,_____,_____,
+			   // left thumb
+			   RGB_MOD,_____,_____,RGB_VAD,RGB_VAI,_____,
+			   // right fingers
+			   M(M_LAYER_IS_SYMBOLS),RGB_0000FF,RGB_008000,RGB_FFA500,RGB_800080,RGB_FF0000,_____,
+			   _____,_____,_____,_____,_____,_____,_____,
+			   _____,_____,_____,_____,_____,_____,
+			   _____,_____,_____,_____,_____,_____,_____,
+			   _____,_____,_____,_____,_____,
+			   // right thumb
+			   RGB_TOG,RGB_SLD,_____,_____,RGB_HUD,RGB_HUI),
 
 };
 
@@ -226,43 +254,56 @@ const uint16_t PROGMEM fn_actions[] = {
   [1] = ACTION_LAYER_TAP_TOGGLE(1)
 };
 
+
 // leaving this in place for compatibilty with old keymaps cloned and re-compiled.
 const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
 {
   if (record->event.pressed) {
   switch(id) {
+  case M_LAT:
+    register_code(KC_LSHIFT);
+    unregister_code(KC_LSHIFT);
+    layer_on(LAYER_KEYMACS);
+    break;
+  case M_RUS:
+    register_code(KC_RSHIFT);
+    unregister_code(KC_RSHIFT);
+    layer_on(LAYER_RUSSIAN);
+    break;
+  case M_EMACS_SELECT: // Emacs: activate the selection
+    return MACRO(D(LCTL),T(G),T(SPC),U(LCTL),END);
   case M_VRSN:
     SEND_STRING (QMK_KEYBOARD "/" QMK_KEYMAP " @ " QMK_VERSION "-Keymacs");
     break;
   case M_LAYER_IS_KEYMACS:
-    SEND_STRING ("You are in Keymacs [0] default");
+    SEND_STRING ("Layer is Keymacs [0]");
     break;
   case M_LAYER_IS_PROGER:
-    SEND_STRING ("You are in Programmer layer [1]");
+    SEND_STRING ("Layer is Programmer [1]");
     break;
   case M_LAYER_IS_RUSSIAN:
-    SEND_STRING ("You are in Russian layer [2]");
+    SEND_STRING ("Layer is Russian [2]");
     break;
   case M_LAYER_IS_CONTROL:
-    SEND_STRING ("You are in Control layer [3]");
+    SEND_STRING ("Layer is Control [3]");
     break;
   case M_LAYER_IS_MOUSE:
-    SEND_STRING ("You are in Mouse control [4]");
+    SEND_STRING ("Layer is Mouse [4]");
     break;
   case M_LAYER_IS_QWERTY:
-    SEND_STRING ("You are in QWERTY layer [5]");
+    SEND_STRING ("Layer is QWERTY [5]");
     break;
   case M_LAYER_IS_NUMPAD:
-    SEND_STRING ("You are in Numpad layer [6]");
+    SEND_STRING ("Layer is Numpad [6]");
     break;
   case M_LAYER_IS_MEDIA:
-    SEND_STRING ("You are in Media and Color layer [7]");
+    SEND_STRING ("Layer is Media and Color [7]");
     break;
   case M_LAYER_IS_FN:
-    SEND_STRING ("You are in Function keys layer [8]");
+    SEND_STRING ("Layer is Function keys [8]");
     break;
   case M_LAYER_IS_SYMBOLS:
-    SEND_STRING ("You are in Symbols layer [9]");
+    SEND_STRING ("Layer is Symbols [9]");
     break;
   }}
   return MACRO_NONE;
@@ -288,8 +329,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         rgblight_mode(1);
       }
       return false;
-      break;
-    
+      break;    
     case RGB_0000FF:
       if (record->event.pressed) {
         #ifdef RGBLIGHT_ENABLE
@@ -299,8 +339,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         #endif
       }
       return false;
-      break;
-    
+      break;    
     case RGB_008000:
       if (record->event.pressed) {
         #ifdef RGBLIGHT_ENABLE
@@ -407,7 +446,11 @@ void dance_qu (qk_tap_dance_state_t *state, void *user_data) {
       register_code(KC_Q);
       unregister_code(KC_Q);      
       register_code(KC_U);
-      unregister_code(KC_U);      
+      unregister_code(KC_U);
+      // XXX
+      unicode_input_start();
+      register_hex(0x03bb);
+      unicode_input_finish();      
       break;
     default:
       reset_tap_dance(state);
