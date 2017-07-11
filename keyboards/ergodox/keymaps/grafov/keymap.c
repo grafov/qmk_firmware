@@ -72,7 +72,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 			   KC_LSHIFT,LT(LAYER_NUMPAD,KC_Z),KC_COMMA,KC_U,KC_K,SFT_T(KC_J),M(M_EMACS_SELECT),
 			   OSL(LAYER_FN),TG(LAYER_MEDIA),TG(LAYER_SYMBOLS),_____,MO(LAYER_MOUSE),
 			   // left thumb
-			   LCTL(KC_G),KC_WWW_BACK,KC_PLUS,LT(LAYER_CONTROL,KC_SPACE),GUI_T(KC_BSPACE),KC_MINUS,
+			   LCTL(KC_G),KC_WWW_BACK,KC_PLUS,
+			   LT(LAYER_CONTROL,KC_SPACE),GUI_T(KC_BSPACE),KC_MINUS,
 			   // right fingers 
 			   M(M_LAYER_IS_KEYMACS),KC_ASTR,KC_SCOLON,KC_MINUS,KC_DQUO,KC_EQUAL,KC_BSPACE,
 			   OSL(LAYER_FN),ALT_T(KC_DOT),KC_W,KC_D,KC_Y,KC_QUOTE,KC_RALT,
@@ -80,7 +81,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 			   _____,SFT_T(KC_M),KC_C,KC_X,KC_V,LT(LAYER_NUMPAD,KC_SLASH),SFT_T(M_RUS),
 			   MO(LAYER_MOUSE),KC_UNDS,TG(LAYER_RUSSIAN),TG(LAYER_QWERTY),OSL(LAYER_FN),
 			   // right thumb
-			   KC_WWW_FORWARD,RCTL(KC_W),KC_WWW_REFRESH,ALT_T(KC_APPLICATION),GUI_T(KC_TAB),LT(LAYER_CONTROL,KC_ENTER)),
+			   KC_WWW_FORWARD,RCTL(KC_W),KC_WWW_REFRESH,
+			   ALT_T(KC_APPLICATION),GUI_T(KC_TAB),LT(LAYER_CONTROL,KC_ENTER)),
 
   // Programmer layer (various shifted characters) [yellow]
   [LAYER_PROGER] = KEYMAP(// left fingers
@@ -154,23 +156,25 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 			 // right thumb
 			 _____,_____,_____,_____,_____,_____),
 
-  // Qwerty (original)
+  // Qwerty
   [LAYER_QWERTY] = KEYMAP(// left fingers
-			KC_ESCAPE,KC_1,KC_2,KC_3,KC_4,KC_5,TO(LAYER_KEYMACS),
-			KC_LALT,KC_Q,KC_W,KC_E,KC_R,KC_T,KC_TAB,
-			KC_LCTL,KC_A,KC_S,KC_D,KC_F,KC_G,
-			KC_LSHIFT,KC_Z,KC_X,KC_C,KC_V,KC_B,_____,
-			_____,_____,_____,KC_LGUI,KC_LALT,
-			// left thumb
-			_____,_____,_____,KC_SPACE,KC_ENTER,_____,
-			// right fingers
-			M(M_LAYER_IS_QWERTY),KC_6,KC_7,KC_8,KC_9,KC_0,KC_BSPACE,
-			KC_TAB,KC_Y,KC_U,KC_I,KC_O,KC_P,KC_LALT,
-			KC_H,KC_J,KC_K,KC_L,KC_SCOLON,KC_LCTL,
-			_____,KC_N,KC_M,KC_COMMA,KC_DOT,KC_SLASH,KC_RSHIFT,
-			_____,_____,_____,_____,_____,
-			// right thumb
-			_____,_____,_____,_____,KC_ENTER,KC_SPACE),
+			  KC_ESCAPE,KC_1,KC_2,KC_3,KC_4,KC_5,TO(LAYER_KEYMACS),
+			   KC_LALT,KC_Q,KC_W,KC_E,KC_R,KC_T,KC_TAB,
+			   KC_LCTL,KC_A,KC_S,KC_D,KC_F,KC_G,
+			   KC_LSHIFT,KC_Z,KC_X,KC_C,KC_V,KC_B,_____,
+			   _____,_____,_____,KC_LGUI,KC_LALT,
+			   // left thumb
+			   _____,_____,_____,
+			   KC_SPACE,KC_ENTER,_____,
+			   // right fingers
+			   M(M_LAYER_IS_QWERTY),KC_6,KC_7,KC_8,KC_9,KC_0,KC_BSPACE,
+			   KC_TAB,KC_Y,KC_U,KC_I,KC_O,KC_P,KC_LALT,
+			   KC_H,KC_J,KC_K,KC_L,KC_SCOLON,KC_LCTL,
+			   _____,KC_N,KC_M,KC_COMMA,KC_DOT,KC_SLASH,KC_RSHIFT,
+			   _____,KC_LEFT,KC_UP,KC_DOWN,KC_RIGHT,
+			   // right thumb
+			   _____,_____,_____,
+			   _____,KC_ENTER,KC_SPACE),
 
   // Numpad
   [LAYER_NUMPAD] = KEYMAP(// left fingers
