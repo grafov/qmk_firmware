@@ -70,21 +70,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   // Keymacs default
   [LAYER_KEYMACS] = KEYMAP( // left fingers
-			 KC_ESCAPE,KC_GRAVE,KC_EXLM,KC_QUES,KC_COLN,KC_PLUS,_____,
-			 KC_LALT,TD(TD_QU),KC_B,KC_P,KC_F,ALGR_T(KC_G),_____,
-			 KC_LCTL,LT(LAYER_PROGER,KC_R),KC_A,KC_E,KC_N,RCTL_T(KC_S),
-			 KC_LSHIFT,LT(LAYER_NUMPAD,KC_Z),KC_COMMA,KC_U,KC_K,SFT_T(KC_J),MO(LAYER_FN),
-			 OSL(LAYER_FN),TG(LAYER_NUMPAD),TG(LAYER_MEDIA),TG(LAYER_SYMBOLS),MO(LAYER_MOUSE),
-			 // left thumb
-			 M(M_EMACS_SELECT),KC_WWW_BACK,KC_PLUS,LT(LAYER_CONTROL,KC_SPACE),GUI_T(KC_BSPACE),KC_MINUS,
-			 // right fingers 
-			 M(M_LAYER_IS_KEYMACS),KC_ASTR,KC_SCOLON,KC_MINUS,KC_DQUO,KC_EQUAL,KC_BSPACE,
-			 _____,ALT_T(KC_DOT),KC_W,KC_D,KC_Y,KC_QUOTE,KC_RALT,
-			 CTL_T(KC_L),KC_O,KC_T,KC_I,LT(LAYER_PROGER,KC_H),KC_RCTRL,
-			 MO(LAYER_FN),SFT_T(KC_M),KC_C,KC_X,KC_V,LT(LAYER_NUMPAD,KC_SLASH),KC_RSHIFT,
-			 MO(LAYER_MOUSE),KC_UNDS,TG(LAYER_RUSSIAN),TG(LAYER_QWERTY),OSL(LAYER_FN),
-			 // right thumb
-			 KC_WWW_FORWARD,LCTL(KC_W),KC_WWW_REFRESH,ALT_T(KC_APPLICATION),GUI_T(KC_TAB),LT(LAYER_CONTROL,KC_ENTER)),
+			   KC_ESCAPE,KC_GRAVE,KC_EXLM,KC_QUES,KC_COLN,KC_PLUS,TG(LAYER_NUMPAD),
+			   KC_LALT,TD(TD_QU),KC_B,KC_P,KC_F,ALGR_T(KC_G),OSL(LAYER_FN),
+			   KC_LCTL,LT(LAYER_PROGER,KC_R),KC_A,KC_E,KC_N,RCTL_T(KC_S),
+			   KC_LSHIFT,LT(LAYER_NUMPAD,KC_Z),KC_COMMA,KC_U,KC_K,SFT_T(KC_J),M(M_EMACS_SELECT),
+			   OSL(LAYER_FN),TG(LAYER_MEDIA),TG(LAYER_SYMBOLS),_____,MO(LAYER_MOUSE),
+			   // left thumb
+			   LCTL(KC_G),KC_WWW_BACK,KC_PLUS,LT(LAYER_CONTROL,KC_SPACE),GUI_T(KC_BSPACE),KC_MINUS,
+			   // right fingers 
+			   M(M_LAYER_IS_KEYMACS),KC_ASTR,KC_SCOLON,KC_MINUS,KC_DQUO,KC_EQUAL,KC_BSPACE,
+			   OSL(LAYER_FN),ALT_T(KC_DOT),KC_W,KC_D,KC_Y,KC_QUOTE,KC_RALT,
+			   CTL_T(KC_L),KC_O,KC_T,KC_I,LT(LAYER_PROGER,KC_H),KC_RCTRL,
+			   MO(LAYER_FN),SFT_T(KC_M),KC_C,KC_X,KC_V,LT(LAYER_NUMPAD,KC_SLASH),SFT_T(M_RUS),
+			   MO(LAYER_MOUSE),KC_UNDS,TG(LAYER_RUSSIAN),TG(LAYER_QWERTY),OSL(LAYER_FN),
+			   // right thumb
+			   KC_WWW_FORWARD,RCTL(KC_W),KC_WWW_REFRESH,ALT_T(KC_APPLICATION),GUI_T(KC_TAB),LT(LAYER_CONTROL,KC_ENTER)),
 
   // Programmer layer (various shifted characters) [yellow]
   [LAYER_PROGER] = KEYMAP(// left fingers
@@ -122,7 +122,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 			  // right thumb
 			  _____,_____,_____,_____,_____,_____),
 
-  // Control layer [red]
+  // Control layer
   [LAYER_CONTROL] = KEYMAP(// left fingers
 			   _____,_____,_____,_____,LGUI(KC_F10),LGUI(KC_F11),LGUI(KC_F5),
 			   _____,_____,KC_LEFT,KC_UP,KC_RIGHT,KC_ESCAPE,_____,
@@ -140,7 +140,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 			   // right thumb
 			   _____,_____,_____,_____,_____,_____),
 
-  // Mouse control [red]
+  // Mouse control
   [LAYER_MOUSE] = KEYMAP(// left fingers
 			 _____,_____,_____,_____,_____,_____,KC_MS_ACCEL2,
 			 _____,_____,KC_MS_BTN3,_____,_____,_____,KC_MS_ACCEL1,
@@ -176,7 +176,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 			// right thumb
 			_____,_____,_____,_____,KC_ENTER,KC_SPACE),
 
-  // Numpad [green]
+  // Numpad
   [LAYER_NUMPAD] = KEYMAP(// left fingers
 			  KC_NUMLOCK,KC_ASTR,KC_7,KC_8,KC_9,_____,_____,
 			  KC_LALT,KC_PLUS,KC_4,KC_5,KC_6,_____,KC_TAB,
@@ -194,7 +194,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 			  // right thumb
 			  _____,_____,_____,_____,KC_RGUI,KC_SPACE),
 
-  // Fn keys [blue]
+  // Fn keys
   [LAYER_FN] = KEYMAP(// left fingers
 		      _____,KC_F13,KC_F14,KC_F15,KC_F16,_____,_____,
 		      KC_LALT,KC_F9,KC_F10,KC_F11,KC_F12,KC_RALT,_____,
@@ -260,17 +260,7 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
 {
   if (record->event.pressed) {
   switch(id) {
-  case M_LAT:
-    register_code(KC_LSHIFT);
-    unregister_code(KC_LSHIFT);
-    layer_on(LAYER_KEYMACS);
-    break;
-  case M_RUS:
-    register_code(KC_RSHIFT);
-    unregister_code(KC_RSHIFT);
-    layer_on(LAYER_RUSSIAN);
-    break;
-  case M_EMACS_SELECT: // Emacs: activate the selection
+  case M_EMACS_SELECT: // Emacs: reset the selection and activate a new one
     return MACRO(D(LCTL),T(G),T(SPC),U(LCTL),END);
   case M_VRSN:
     SEND_STRING (QMK_KEYBOARD "/" QMK_KEYMAP " @ " QMK_VERSION "-Keymacs");
@@ -304,6 +294,18 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
     break;
   case M_LAYER_IS_SYMBOLS:
     SEND_STRING ("Layer is Symbols [9]");
+    break;
+  }} else {
+  switch(id) {
+  case M_LAT:
+        register_code(KC_LSHIFT);
+        unregister_code(KC_LSHIFT);
+    layer_on(LAYER_KEYMACS);
+    break;
+  case M_RUS:
+        register_code(KC_RSHIFT);
+        unregister_code(KC_RSHIFT);
+    layer_on(LAYER_RUSSIAN);
     break;
   }}
   return MACRO_NONE;
