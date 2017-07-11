@@ -1,4 +1,4 @@
-// Keymacs
+// Keymacs + QWERTY + Emacs macros + misc experiments
 #include "ergodox.h"
 #include "debug.h"
 #include "action_layer.h"
@@ -68,7 +68,9 @@ enum {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
-  // Keymacs default
+  // Default layer
+  // This is the adaptation of Keymacs layout for common keyboards for Ergodox EZ
+  // https://github.com/keyboard-ergonomics/keymacs
   [LAYER_KEYMACS] = KEYMAP( // left fingers
 			   KC_ESCAPE,KC_GRAVE,KC_EXLM,KC_QUES,KC_COLN,KC_PLUS,TG(LAYER_NUMPAD),
 			   KC_LALT,TD(TD_QU),KC_B,KC_P,KC_F,ALGR_T(KC_G),OSL(LAYER_FN),
