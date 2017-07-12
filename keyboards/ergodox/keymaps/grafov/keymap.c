@@ -21,7 +21,8 @@ enum {
   LAYER_NUMPAD,
   LAYER_FN,
   LAYER_MEDIA,
-  LAYER_SYMBOLS
+  LAYER_SYMBOLS,
+  LAYER_WM
 };
 
 enum custom_keycodes {
@@ -50,6 +51,7 @@ enum {
   M_LAYER_IS_FN,
   M_LAYER_IS_MEDIA,
   M_LAYER_IS_SYMBOLS,
+  M_LAYER_IS_WM,
   M_RUS,
   M_LAT
 };
@@ -70,7 +72,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 			   KC_LALT,TD(TD_QU),KC_B,KC_P,KC_F,ALGR_T(KC_G),OSL(LAYER_FN),
 			   KC_LCTL,LT(LAYER_PROGER,KC_R),KC_A,KC_E,KC_N,RCTL_T(KC_S),
 			   KC_LSHIFT,LT(LAYER_NUMPAD,KC_Z),KC_COMMA,KC_U,KC_K,SFT_T(KC_J),M(M_EMACS_SELECT),
-			   OSL(LAYER_FN),TG(LAYER_MEDIA),TG(LAYER_SYMBOLS),_____,MO(LAYER_MOUSE),
+			   TG(LAYER_MEDIA),OSL(LAYER_WM),TG(LAYER_SYMBOLS),_____,MO(LAYER_MOUSE),
 			   // left thumb
 			   LCTL(KC_G),KC_WWW_BACK,KC_PLUS,
 			   LT(LAYER_CONTROL,KC_SPACE),GUI_T(KC_BSPACE),KC_MINUS,
@@ -79,7 +81,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 			   OSL(LAYER_FN),ALT_T(KC_DOT),KC_W,KC_D,KC_Y,KC_QUOTE,KC_RALT,
 			   CTL_T(KC_L),KC_O,KC_T,KC_I,LT(LAYER_PROGER,KC_H),KC_RCTRL,
 			   _____,SFT_T(KC_M),KC_C,KC_X,KC_V,LT(LAYER_NUMPAD,KC_SLASH),SFT_T(M_RUS),
-			   MO(LAYER_MOUSE),KC_UNDS,TG(LAYER_RUSSIAN),TG(LAYER_QWERTY),OSL(LAYER_FN),
+			   MO(LAYER_MOUSE),KC_UNDS,TG(LAYER_RUSSIAN),OSL(LAYER_WM),TG(LAYER_QWERTY),
 			   // right thumb
 			   KC_WWW_FORWARD,RCTL(KC_W),KC_WWW_REFRESH,
 			   ALT_T(KC_APPLICATION),GUI_T(KC_TAB),LT(LAYER_CONTROL,KC_ENTER)),
@@ -248,6 +250,26 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 			   // right thumb
 			   RGB_TOG,RGB_SLD,_____,_____,RGB_HUD,RGB_HUI),
 
+  // Control window manager (i3 currently)
+  [LAYER_WM] = KEYMAP(// left fingers
+		      _____,LSFT(LGUI(KC_9)),LSFT(LGUI(KC_7)),LSFT(LGUI(KC_3)),LSFT(LGUI(KC_1)),LSFT(LGUI(KC_5)),_____,			 
+		      _____,LGUI(KC_9),LGUI(KC_7),LGUI(KC_3),LGUI(KC_1),LGUI(KC_5),_____,
+		      _____,_____,_____,_____,_____,_____,
+		      _____,_____,_____,_____,_____,_____,_____,
+		      TO(LAYER_KEYMACS),_____,_____,_____,_____,
+		      // left thumb
+		      _____,_____,_____,
+		      KC_SPACE,KC_ENTER,_____,
+		      // right fingers
+		      M(M_LAYER_IS_SYMBOLS),LSFT(LGUI(KC_6)),LSFT(LGUI(KC_2)),LSFT(LGUI(KC_0)),LSFT(LGUI(KC_4)),LSFT(LGUI(KC_8)),_____,			 
+		      _____,LGUI(KC_6),LGUI(KC_2),LGUI(KC_0),LGUI(KC_4),LGUI(KC_8),_____,
+		      _____,_____,_____,_____,_____,_____,
+		      _____,_____,_____,_____,_____,_____,_____,
+		      _____,_____,_____,_____,_____,
+		      // right thumb
+		      _____,_____,_____,
+		      _____,KC_ENTER,KC_SPACE),
+
 };
 
 const uint16_t PROGMEM fn_actions[] = {
@@ -266,34 +288,37 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
     SEND_STRING (QMK_KEYBOARD "/" QMK_KEYMAP " @ " QMK_VERSION "-Keymacs");
     break;
   case M_LAYER_IS_KEYMACS:
-    SEND_STRING ("Layer is Keymacs [0]");
+    SEND_STRING ("Layer is Keymacs [00]");
     break;
   case M_LAYER_IS_PROGER:
-    SEND_STRING ("Layer is Programmer [1]");
+    SEND_STRING ("Layer is Programmer [01]");
     break;
   case M_LAYER_IS_RUSSIAN:
-    SEND_STRING ("Layer is Russian [2]");
+    SEND_STRING ("Layer is Russian [02]");
     break;
   case M_LAYER_IS_CONTROL:
-    SEND_STRING ("Layer is Control [3]");
+    SEND_STRING ("Layer is Control [03]");
     break;
   case M_LAYER_IS_MOUSE:
-    SEND_STRING ("Layer is Mouse [4]");
+    SEND_STRING ("Layer is Mouse [04]");
     break;
   case M_LAYER_IS_QWERTY:
-    SEND_STRING ("Layer is QWERTY [5]");
+    SEND_STRING ("Layer is QWERTY [05]");
     break;
   case M_LAYER_IS_NUMPAD:
-    SEND_STRING ("Layer is Numpad [6]");
+    SEND_STRING ("Layer is Numpad [06]");
     break;
   case M_LAYER_IS_MEDIA:
-    SEND_STRING ("Layer is Media and Color [7]");
+    SEND_STRING ("Layer is Media and Color [07]");
     break;
   case M_LAYER_IS_FN:
-    SEND_STRING ("Layer is Function keys [8]");
+    SEND_STRING ("Layer is Function keys [08]");
     break;
   case M_LAYER_IS_SYMBOLS:
-    SEND_STRING ("Layer is Symbols [9]");
+    SEND_STRING ("Layer is Symbols [09]");
+    break;
+  case M_LAYER_IS_WM:
+    SEND_STRING ("Layer is WM [0A]");
     break;
   }} else {
   switch(id) {
