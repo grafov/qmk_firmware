@@ -27,6 +27,8 @@ enum {
 
 enum custom_keycodes {
   PLACEHOLDER = SAFE_RANGE, // can always be here  
+  LAT,
+  RUS,  
   EPRM,
   VRSN,
   RGB_SLD,
@@ -79,8 +81,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 			   // right fingers 
 			   M(M_LAYER_IS_KEYMACS),KC_ASTR,KC_SCOLON,KC_MINUS,KC_DQUO,KC_EQUAL,KC_BSPACE,
 			   OSL(LAYER_FN),ALT_T(KC_DOT),KC_W,KC_D,KC_Y,KC_QUOTE,KC_RALT,
-			   CTL_T(KC_L),KC_O,KC_T,KC_I,LT(LAYER_PROGER,KC_H),KC_RCTRL,
-			   _____,SFT_T(KC_M),KC_C,KC_X,KC_V,LT(LAYER_NUMPAD,KC_SLASH),SFT_T(M_RUS),
+			   CTL_T(KC_L),KC_O,KC_T,KC_I,LT(LAYER_PROGER,KC_H),KC_RCTL,
+			   _____,SFT_T(KC_M),KC_C,KC_X,KC_V,LT(LAYER_NUMPAD,KC_SLASH),KC_RSHIFT,
 			   MO(LAYER_MOUSE),KC_UNDS,TG(LAYER_RUSSIAN),OSL(LAYER_WM),TG(LAYER_QWERTY),
 			   // right thumb
 			   KC_WWW_FORWARD,RCTL(KC_W),KC_WWW_REFRESH,
@@ -327,18 +329,17 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
         unregister_code(KC_LSHIFT);
     layer_on(LAYER_KEYMACS);
     break;
-  case M_RUS:
-        register_code(KC_RSHIFT);
-        unregister_code(KC_RSHIFT);
-    layer_on(LAYER_RUSSIAN);
-    break;
   }}
   return MACRO_NONE;
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
-    // dynamically generate these.
+  case RUS: // XXX
+	register_code(KC_RSHIFT);
+	unregister_code(KC_RSHIFT);
+    layer_on(LAYER_RUSSIAN);
+    break;
     case EPRM:
       if (record->event.pressed) {
         eeconfig_init();
@@ -416,50 +417,61 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 }
 
 void matrix_scan_user(void) {
-
+    static uint8_t old_layer = 0xff;
+  
     uint8_t layer = biton32(layer_state);
 
+	// do action once on a layer switch
+	if (layer == old_layer) return;
+	old_layer = layer;
+	
     ergodox_board_led_off();
     ergodox_right_led_1_off();
     ergodox_right_led_2_off();
     ergodox_right_led_3_off();
     switch (layer) {
     case LAYER_KEYMACS:
-      // rgblight_task();
-      // rgblight_show_solid_color(0xaa,0xaa,0xaa);
+	  //      rgblight_task();
+	  rgblight_show_solid_color(0,0,0);
       break;      
     case LAYER_PROGER:
       ergodox_right_led_2_on();
-      // rgblight_show_solid_color(0x00,0xff,0x00);      
+      rgblight_show_solid_color(0x00,0xff,0x00);      
       break;
     case LAYER_RUSSIAN:
       ergodox_right_led_1_on();
       ergodox_right_led_3_on();
-      // rgblight_show_solid_color(0xff,0x00,0xff);      
+      rgblight_show_solid_color(0xff,0x00,0xff);
       break;
     case LAYER_CONTROL:
       ergodox_right_led_1_on();
-      // rgblight_show_solid_color(0xff,0x00,0x00);
+      rgblight_show_solid_color(0xff,0x00,0x00);
       break;
     case LAYER_MOUSE:
       ergodox_right_led_1_on();
       ergodox_right_led_2_on();
-      // rgblight_show_solid_color(0xff,0xff,0x00);
+	  rgblight_effect_christmas();
       break;
     case LAYER_NUMPAD:
       ergodox_right_led_3_on();
-      // rgblight_show_solid_color(0x00,0x00,0xff);      
+      rgblight_show_solid_color(0x00,0x00,0xff);      
       break;
     case LAYER_FN:
       ergodox_right_led_2_on();
       ergodox_right_led_3_on();
-      //      rgblight_show_solid_color(0x00,0xff,0xff);
+      rgblight_show_solid_color(0x00,0xff,0xff);
+      break;
+    case LAYER_WM:
+      ergodox_right_led_1_on();
+      ergodox_right_led_2_on();
+      ergodox_right_led_3_on();
+	  rgblight_effect_christmas();
       break;
     default:
       ergodox_right_led_1_on();
       ergodox_right_led_2_on();	    
       ergodox_right_led_3_on();
-      //      rgblight_show_solid_color(0xaa,0xaa,0xaa);      
+      rgblight_show_solid_color(0x20,0x20,0x10);
      }
 };
 
