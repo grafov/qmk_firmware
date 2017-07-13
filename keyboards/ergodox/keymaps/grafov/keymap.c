@@ -1,4 +1,4 @@
-// Keymacs + QWERTY + Emacs macros + misc experiments
+// Keymacs + Control layer + QWERTY + Emacs macros + misc experiments
 #include "ergodox.h"
 #include "debug.h"
 #include "action_layer.h"
@@ -9,12 +9,13 @@
 
 // Just for aesthetics
 #define _____ KC_TRANSPARENT
+#define XXXXX KC_NO
 
 // Layer names
 enum {
   LAYER_KEYMACS = 0,
-  LAYER_PROGER,
   LAYER_RUSSIAN,
+  LAYER_PROGER,
   LAYER_CONTROL,
   LAYER_MOUSE,
   LAYER_QWERTY,
@@ -60,21 +61,24 @@ enum {
 
 //Tap Dance Declarations
 enum {
-  TD_QU = 0
+  TD_QU = 0,
+  TD_EYO,
+  TD_SHSIG
 };
 
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
-  // Default layer
-  // This is the adaptation of Keymacs layout for common keyboards for Ergodox EZ
+  // Default layer based on Keymacs layout
+  // -------------------------------------
+  // This is the adaptation of the layout for common keyboards for Ergodox EZ
   // https://github.com/keyboard-ergonomics/keymacs
   [LAYER_KEYMACS] = KEYMAP( // left fingers
 			   KC_ESCAPE,KC_GRAVE,KC_EXLM,KC_QUES,KC_COLN,KC_PLUS,TG(LAYER_NUMPAD),
 			   KC_LALT,TD(TD_QU),KC_B,KC_P,KC_F,ALGR_T(KC_G),OSL(LAYER_FN),
 			   KC_LCTL,LT(LAYER_PROGER,KC_R),KC_A,KC_E,KC_N,RCTL_T(KC_S),
 			   KC_LSHIFT,LT(LAYER_NUMPAD,KC_Z),KC_COMMA,KC_U,KC_K,SFT_T(KC_J),M(M_EMACS_SELECT),
-			   TG(LAYER_MEDIA),OSL(LAYER_WM),TG(LAYER_SYMBOLS),_____,MO(LAYER_MOUSE),
+			   TG(LAYER_KEYMACS),OSL(LAYER_WM),_____,TG(LAYER_SYMBOLS),MO(LAYER_MOUSE),
 			   // left thumb
 			   LCTL(KC_G),KC_WWW_BACK,KC_PLUS,
 			   LT(LAYER_CONTROL,KC_SPACE),GUI_T(KC_BSPACE),KC_MINUS,
@@ -83,10 +87,39 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 			   OSL(LAYER_FN),ALT_T(KC_DOT),KC_W,KC_D,KC_Y,KC_QUOTE,KC_RALT,
 			   CTL_T(KC_L),KC_O,KC_T,KC_I,LT(LAYER_PROGER,KC_H),KC_RCTL,
 			   _____,SFT_T(KC_M),KC_C,KC_X,KC_V,LT(LAYER_NUMPAD,KC_SLASH),KC_RSHIFT,
-			   MO(LAYER_MOUSE),KC_UNDS,TG(LAYER_RUSSIAN),OSL(LAYER_WM),TG(LAYER_QWERTY),
+			   MO(LAYER_MOUSE),KC_UNDS,TG(LAYER_QWERTY),OSL(LAYER_WM),TO(LAYER_RUSSIAN),
 			   // right thumb
 			   KC_WWW_FORWARD,RCTL(KC_W),KC_WWW_REFRESH,
 			   ALT_T(KC_APPLICATION),GUI_T(KC_TAB),LT(LAYER_CONTROL,KC_ENTER)),
+
+  // QWERTY for Russian layout adapted for Ergodox
+  // ---------------------------------------------
+  // Х moved to top for right index finger
+  // Э moved to down for right pinky
+  // Tap dance:
+  // - double-tap for Ь produces Ъ
+  // - unresovled because RCTL_T: double-tap for Е should produce Ё but not yet
+  //
+  // It has used shift-shift switcher now later I suppose Ctrls looks
+  // more comfortable on EZ.
+  //
+  // TODO assign punctuations accordingly with Keymacs maybe except dot and comma.
+  [LAYER_RUSSIAN] = KEYMAP(// left fingers
+			  KC_ESCAPE,_____,_____,_____,_____,_____,_____,
+			  KC_LALT,KC_Q,KC_W,KC_E,KC_R,RALT_T(KC_T),_____,
+			  KC_LCTL,KC_A,KC_S,KC_D,KC_F,RCTL_T(KC_G),
+			  KC_LSHIFT,KC_Z,KC_X,KC_C,KC_V,SFT_T(KC_B),_____,
+			  TO(LAYER_KEYMACS),_____,_____,_____,_____,
+			  // left thumb
+			  _____,_____,_____,_____,_____,_____,
+			  // right fingers
+			  M(M_LAYER_IS_RUSSIAN),_____,KC_LBRACKET,_____,_____,_____,_____,
+			  _____,LALT_T(KC_Y),KC_U,KC_I,KC_O,KC_P,KC_RALT,
+			  LCTL_T(KC_H),KC_J,KC_K,KC_L,KC_SCOLON,KC_RCTL,
+			  _____,SFT_T(KC_N),TD(TD_SHSIG),KC_COMMA,KC_DOT,KC_QUOTE,KC_RSHIFT,
+			  _____,_____,_____,_____,_____,
+			  // right thumb
+			  _____,_____,_____,_____,_____,_____),
 
   // Programmer layer (various shifted characters) [yellow]
   [LAYER_PROGER] = KEYMAP(// left fingers
@@ -106,25 +139,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 			  // right thumb
 			  _____,_____,_____,_____,_____,KC_SPACE),
 
-  // Qwerty for Russian layout
-  [LAYER_RUSSIAN] = KEYMAP(// left fingers
-			  KC_ESCAPE,KC_1,KC_2,KC_3,KC_4,KC_5,_____,
-			  _____,KC_Q,KC_W,KC_E,KC_R,KC_T,_____,
-			  _____,KC_A,KC_S,KC_D,KC_F,KC_G,
-			  KC_LSPO,KC_Z,KC_X,KC_C,KC_V,KC_B,_____,
-			  TO(LAYER_KEYMACS),_____,_____,_____,_____,
-			  // left thumb
-			  _____,_____,_____,_____,_____,_____,
-			  // right fingers
-			  M(M_LAYER_IS_RUSSIAN),KC_6,KC_7,KC_8,KC_9,KC_0,_____,
-			  _____,KC_Y,KC_U,KC_I,KC_O,KC_P,_____,
-			  KC_H,KC_J,KC_K,KC_I,KC_QUOTE,_____,
-			  _____,KC_N,KC_M,KC_COMMA,KC_DOT,KC_SLASH,_____,
-			  _____,_____,_____,_____,_____,
-			  // right thumb
-			  _____,_____,_____,_____,_____,_____),
-
-  // Control layer
+  // Control layer for line and page navigation
+  // TODO maybe combine it with WM control layer?
   [LAYER_CONTROL] = KEYMAP(// left fingers
 			   _____,_____,_____,_____,LGUI(KC_F10),LGUI(KC_F11),LGUI(KC_F5),
 			   _____,_____,KC_LEFT,KC_UP,KC_RIGHT,KC_ESCAPE,_____,
@@ -160,7 +176,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 			 // right thumb
 			 _____,_____,_____,_____,_____,_____),
 
-  // Qwerty
+  // QWERTY for reference and for guests 
   [LAYER_QWERTY] = KEYMAP(// left fingers
 			  KC_ESCAPE,KC_1,KC_2,KC_3,KC_4,KC_5,TO(LAYER_KEYMACS),
 			   KC_LALT,KC_Q,KC_W,KC_E,KC_R,KC_T,KC_TAB,
@@ -216,7 +232,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 		      // right thumb
 		      _____,_____,_____,_____,_____,_____),
 
-  // Color and Media controls 
+  // Media controls and Colors
+  // TODO adapt more for mpv
   [LAYER_MEDIA] = KEYMAP(// left fingers
 			 _____,_____,_____,_____,_____,_____,_____,
 			 _____,_____,_____,_____,_____,_____,_____,
@@ -234,10 +251,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 			 // right thumb
 			 RGB_TOG,RGB_SLD,_____,_____,RGB_HUD,RGB_HUI),
 
-  // Symbols layer for Unicode input
+  // XXX Symbols layer for Unicode input 
   [LAYER_SYMBOLS] = KEYMAP(// left fingers
 	 		   UC_LNX,UC(0x03a8),UC(0x0152),UC_A,_____,_____,_____,
-			   _____,_____,_____,_____,_____,_____,_____,
+			   _____,UC(0x00E4), UC(0x00E5), UC(0x00E9), UC(0x00AE), UC(0x00FE), _____,			   
 			   _____,_____,_____,_____,_____,_____,
 			   _____,_____,_____,_____,_____,_____,_____,
 			   TO(LAYER_KEYMACS),_____,_____,_____,_____,
@@ -252,20 +269,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 			   // right thumb
 			   RGB_TOG,RGB_SLD,_____,_____,RGB_HUD,RGB_HUI),
 
-  // Control window manager (i3 currently)
+  // Window manager control (i3 currently)
   [LAYER_WM] = KEYMAP(// left fingers
 		      _____,LSFT(LGUI(KC_9)),LSFT(LGUI(KC_7)),LSFT(LGUI(KC_3)),LSFT(LGUI(KC_1)),LSFT(LGUI(KC_5)),_____,			 
 		      _____,LGUI(KC_9),LGUI(KC_7),LGUI(KC_3),LGUI(KC_1),LGUI(KC_5),_____,
-		      _____,_____,_____,_____,_____,_____,
-		      _____,_____,_____,_____,_____,_____,_____,
+		      _____,_____,_____,LGUI(KC_UP),LGUI(KC_DOWN),_____,
+		      _____,_____,_____,_____,_____,LGUI(KC_J),_____,
 		      TO(LAYER_KEYMACS),_____,_____,_____,_____,
 		      // left thumb
 		      _____,_____,_____,
 		      KC_SPACE,KC_ENTER,_____,
 		      // right fingers
-		      M(M_LAYER_IS_SYMBOLS),LSFT(LGUI(KC_6)),LSFT(LGUI(KC_2)),LSFT(LGUI(KC_0)),LSFT(LGUI(KC_4)),LSFT(LGUI(KC_8)),_____,			 
-		      _____,LGUI(KC_6),LGUI(KC_2),LGUI(KC_0),LGUI(KC_4),LGUI(KC_8),_____,
-		      _____,_____,_____,_____,_____,_____,
+		      M(M_LAYER_IS_SYMBOLS),LSFT(RGUI(KC_6)),LSFT(RGUI(KC_2)),LSFT(RGUI(KC_0)),LSFT(RGUI(KC_4)),LSFT(RGUI(KC_8)),_____,			 
+		      _____,RGUI(KC_6),RGUI(KC_2),RGUI(KC_0),RGUI(KC_4),RGUI(KC_8),_____,
+		      _____,RGUI(KC_LEFT),RGUI(KC_RIGHT),_____,_____,_____,
 		      _____,_____,_____,_____,_____,_____,_____,
 		      _____,_____,_____,_____,_____,
 		      // right thumb
@@ -292,11 +309,11 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
   case M_LAYER_IS_KEYMACS:
     SEND_STRING ("Layer is Keymacs [00]");
     break;
-  case M_LAYER_IS_PROGER:
-    SEND_STRING ("Layer is Programmer [01]");
-    break;
   case M_LAYER_IS_RUSSIAN:
-    SEND_STRING ("Layer is Russian [02]");
+    SEND_STRING ("Layer is Russian [01]");
+    break;
+  case M_LAYER_IS_PROGER:
+    SEND_STRING ("Layer is Programmer [02]");
     break;
   case M_LAYER_IS_CONTROL:
     SEND_STRING ("Layer is Control [03]");
@@ -335,82 +352,77 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
-  case RUS: // XXX
-	register_code(KC_RSHIFT);
-	unregister_code(KC_RSHIFT);
-    layer_on(LAYER_RUSSIAN);
-    break;
-    case EPRM:
-      if (record->event.pressed) {
-        eeconfig_init();
-      }
-      return false;
-      break;
-    case VRSN:
-      if (record->event.pressed) {
-        SEND_STRING (QMK_KEYBOARD "/" QMK_KEYMAP " @ " QMK_VERSION);
-      }
-      return false;
-      break;
-    case RGB_SLD:
-      if (record->event.pressed) {
-        rgblight_mode(1);
-      }
-      return false;
-      break;    
-    case RGB_0000FF:
-      if (record->event.pressed) {
-        #ifdef RGBLIGHT_ENABLE
-          rgblight_enable();
-          rgblight_mode(1);
-          rgblight_setrgb(0x00,0x00,0xff);
-        #endif
-      }
-      return false;
-      break;    
-    case RGB_008000:
-      if (record->event.pressed) {
-        #ifdef RGBLIGHT_ENABLE
-          rgblight_enable();
-          rgblight_mode(1);
-          rgblight_setrgb(0x00,0x80,0x00);
-        #endif
-      }
-      return false;
-      break;
+  case EPRM:
+	if (record->event.pressed) {
+	  eeconfig_init();
+	}
+	return false;
+	break;
+  case VRSN:
+	if (record->event.pressed) {
+	  SEND_STRING (QMK_KEYBOARD "/" QMK_KEYMAP " @ " QMK_VERSION);
+	}
+	return false;
+	break;
+  case RGB_SLD:
+	if (record->event.pressed) {
+	  rgblight_mode(1);
+	}
+	return false;
+	break;    
+  case RGB_0000FF:
+	if (record->event.pressed) {
+#ifdef RGBLIGHT_ENABLE
+	  rgblight_enable();
+	  rgblight_mode(1);
+	  rgblight_setrgb(0x00,0x00,0xff);
+#endif
+	}
+	return false;
+	break;    
+  case RGB_008000:
+	if (record->event.pressed) {
+#ifdef RGBLIGHT_ENABLE
+	  rgblight_enable();
+	  rgblight_mode(1);
+	  rgblight_setrgb(0x00,0x80,0x00);
+#endif
+	}
+	return false;
+	break;
     
-    case RGB_FFA500:
-      if (record->event.pressed) {
-        #ifdef RGBLIGHT_ENABLE
-          rgblight_enable();
-          rgblight_mode(1);
-          rgblight_setrgb(0xff,0xa5,0x00);
-        #endif
-      }
-      return false;
-      break;
+  case RGB_FFA500:
+	if (record->event.pressed) {
+#ifdef RGBLIGHT_ENABLE
+	  rgblight_enable();
+	  rgblight_mode(1);
+	  rgblight_setrgb(0xff,0xa5,0x00);
+#endif
+	}
+	return false;
+	break;
     
-    case RGB_800080:
-      if (record->event.pressed) {
-        #ifdef RGBLIGHT_ENABLE
-          rgblight_enable();
-          rgblight_mode(1);
-          rgblight_setrgb(0x80,0x00,0x80);
-        #endif
-      }
-      return false;
-      break;
+  case RGB_800080:
+	if (record->event.pressed) {
+#ifdef RGBLIGHT_ENABLE
+	  rgblight_enable();
+	  rgblight_mode(1);
+	  rgblight_setrgb(0x80,0x00,0x80);
+#endif
+	}
+	return false;
+	break;
     
-    case RGB_FF0000:
-      if (record->event.pressed) {
-        #ifdef RGBLIGHT_ENABLE
-          rgblight_enable();
-          rgblight_mode(1);
-          rgblight_setrgb(0xff,0x00,0x00);
-        #endif
-      }
-      return false;
-      break;
+  case RGB_FF0000:
+	if (record->event.pressed) {
+#ifdef RGBLIGHT_ENABLE
+	  rgblight_enable();
+	  rgblight_mode(1);
+	  rgblight_setrgb(0xff,0x00,0x00);
+#endif
+	}
+	return false;
+	break;
     
   }
   return true;
@@ -432,6 +444,8 @@ void matrix_scan_user(void) {
     switch (layer) {
     case LAYER_KEYMACS:
 	  //      rgblight_task();
+	  register_code(KC_LSHIFT);
+	  unregister_code(KC_LSHIFT);	  
 	  rgblight_show_solid_color(0,0,0);
       break;      
     case LAYER_PROGER:
@@ -439,6 +453,8 @@ void matrix_scan_user(void) {
       rgblight_show_solid_color(0x00,0xff,0x00);      
       break;
     case LAYER_RUSSIAN:
+	  register_code(KC_RSHIFT);
+	  unregister_code(KC_RSHIFT);	  
       ergodox_right_led_1_on();
       ergodox_right_led_3_on();
       rgblight_show_solid_color(0xff,0x00,0xff);
@@ -475,6 +491,7 @@ void matrix_scan_user(void) {
      }
 };
 
+// Q or QU experiment
 void dance_qu (qk_tap_dance_state_t *state, void *user_data) {
   switch (state->count) {
     case 1:
@@ -486,10 +503,36 @@ void dance_qu (qk_tap_dance_state_t *state, void *user_data) {
       unregister_code(KC_Q);      
       register_code(KC_U);
       unregister_code(KC_U);
-      // XXX
-      unicode_input_start();
-      register_hex(0x03bb);
-      unicode_input_finish();      
+      break;
+    default:
+      reset_tap_dance(state);
+  }
+}
+
+// Е/Ё для русской раскладки
+void dance_eyo (qk_tap_dance_state_t *state, void *user_data) {
+  switch (state->count) {
+    case 1:
+	  // XXX
+      break;
+    case 2:
+	  // XXX
+      break;
+    default:
+      reset_tap_dance(state);
+  }
+}
+
+// Ь/Ъ для русской раскладки
+void dance_shsig (qk_tap_dance_state_t *state, void *user_data) {
+  switch (state->count) {
+    case 1:
+      register_code(KC_M);
+      unregister_code(KC_M);      
+      break;
+    case 2:
+      register_code(KC_RBRACKET);
+      unregister_code(KC_RBRACKET);      
       break;
     default:
       reset_tap_dance(state);
@@ -498,5 +541,7 @@ void dance_qu (qk_tap_dance_state_t *state, void *user_data) {
 
 //Tap Dance Definitions
 qk_tap_dance_action_t tap_dance_actions[] = {
-  [TD_QU]  = ACTION_TAP_DANCE_FN(dance_qu)
+  [TD_QU]  = ACTION_TAP_DANCE_FN(dance_qu),
+  [TD_EYO] = ACTION_TAP_DANCE_FN(dance_eyo),
+  [TD_SHSIG] = ACTION_TAP_DANCE_FN(dance_shsig)
 };

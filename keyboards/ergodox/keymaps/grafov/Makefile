@@ -17,5 +17,8 @@ flash: ${PRJROOT}/.build/${IMAGE}
 	@rm -f ~/${IMAGE}
 
 init:
-	~/bin/ez.sh
+#	~/bin/ez.sh
+	~/bin/qwerty.sh
+	xset r rate 300 90
+
 

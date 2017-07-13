@@ -4,7 +4,8 @@ My keymap for Ergodox EZ
 This weird layout may be used probably by only one person on this
 planet - by me. But some tricks could be useful for other users of
 Ergodox EZ. See some examples below. For clarity letter placed keys
-referenced to their QWERTY counterparts.
+referenced to their QWERTY counterparts. I think after using Ergodox
+awhile I will backport changes to general Keymacs.
 
 Moved control keys
 ------------------
@@ -55,4 +56,34 @@ important for ergonomics. So the layouts like Workman or Colemak even
 Dvorak is safer for your fingers then default Qwerty.
 
 See https://github.com/keyboard-ergonomics/keymacs
+
+Russian layout
+--------------
+
+Ergodox has one less column than common keyboards so some Russian
+letters had lost their place and I placed them on my own taste.
+
+* Э (ae letter) moved to dot key position.
+* Х (khe letter) moved to top for the right index finger.
+
+Tap-dance tricks:
+
+* press once for Ь (soft sign) and twice for Ъ (hard sign)
+
+It is obviously useful for any keyboards with Russian layout because
+hard sign moved to different positions in different layouts and wastes
+one key for self or shifted. I found tap-dance feature for this case
+more comfortable than usage of Shift. These two letters Ь and Ъ are
+similar in usage and there are no any valid word in Russian where they
+are doubled.
+
+The similar situation has place with Е and Ё letters. But tap-dance
+may follow some troubles here because there are some words (rare used
+though) where Е letter doubled or even tripled (word "длинношеее" for
+example). So I still thinking about placing poor Ё on the keyboard.
+
+Russian layout realized basically it still needs a lot of improvements
+with switcher (I should
+adapt [shift-shift](https://github.com/grafov/shift-shift) for other
+keys). And punctuations haven't set yet.
 
