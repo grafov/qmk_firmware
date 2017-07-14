@@ -16,10 +16,10 @@ enum {
   LAYER_KEYMACS = 0,
   LAYER_RUSSIAN,
   LAYER_PROGER,
-  LAYER_CONTROL,
   LAYER_MOUSE,
   LAYER_QWERTY,
   LAYER_NUMPAD,
+  LAYER_CONTROL,
   LAYER_FN,
   LAYER_MEDIA,
   LAYER_SYMBOLS,
@@ -110,7 +110,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 			  KC_LSHIFT,LT(LAYER_NUMPAD,KC_Z),KC_X,KC_C,KC_V,SFT_T(KC_B),_____,
 			  TO(LAYER_KEYMACS),_____,_____,_____,_____,
 			  // left thumb
-			  _____,_____,_____,_____,_____,_____,
+			  _____,_____,_____,
+			  _____,_____,_____,
 			  // right fingers
 			  // Top row chars: [хз] [?] [!] [,] [хз]    [хз] [.] [-] [х] [хз]
 			  M(M_LAYER_IS_RUSSIAN),_____,KC_7,KC_2,KC_LBRACKET,_____,_____,
@@ -119,7 +120,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 			  _____,SFT_T(KC_N),TD(TD_SHSIG),KC_COMMA,KC_DOT,LT(LAYER_NUMPAD,KC_QUOTE),KC_RSHIFT,
 			  _____,_____,_____,_____,_____,
 			  // right thumb
-			  _____,_____,_____,_____,_____,_____),
+			  _____,_____,_____,
+			  _____,_____,_____),
 
   // Programmer layer (various shifted characters)
   [LAYER_PROGER] = KEYMAP(// left fingers
@@ -129,7 +131,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 			  KC_LSHIFT,_____,KC_LABK,KC_TILD,KC_AT,_____,_____,
 			  _____,_____,_____,_____,_____,
 			  // left thumb
-			  _____,_____,_____,LT(LAYER_CONTROL,KC_SPACE),_____,_____,
+			  _____,_____,_____,
+			  LT(LAYER_CONTROL,KC_SPACE),_____,_____,
 			  // right fingers
 			  M(M_LAYER_IS_PROGER),KC_ASTR,KC_SCOLON,KC_MINUS,KC_DQUO,KC_EQUAL,_____,
 			  _____,KC_RABK,KC_RBRACKET,KC_DLR,KC_PERC,_____,KC_RALT,
@@ -137,7 +140,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 			  _____,KC_ENTER,KC_EQUAL,KC_BSLASH,KC_PIPE,_____,KC_RSHIFT,
 			  _____,_____,_____,_____,_____,
 			  // right thumb
-			  _____,_____,_____,_____,_____,LT(LAYER_CONTROL,KC_SPACE)),
+			  _____,_____,_____,
+			  _____,_____,LT(LAYER_CONTROL,KC_SPACE)),
 
   // Programmer layer for Russian layout 
   /* [LAYER_RUSYM] = KEYMAP(// left fingers */
@@ -156,25 +160,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /* 			  _____,_____,_____,_____,_____, */
   /* 			  // right thumb */
   /* 			  _____,_____,_____,_____,_____,KC_SPACE), */
-
-  // Control layer for line and page navigation
-  // TODO maybe combine it with WM control layer?
-  [LAYER_CONTROL] = KEYMAP(// left fingers
-			   _____,_____,_____,_____,LGUI(KC_F10),LGUI(KC_F11),LGUI(KC_F5),
-			   _____,_____,KC_LEFT,KC_UP,KC_RIGHT,KC_ESCAPE,_____,
-			   _____,LSFT(KC_TAB),KC_HOME,KC_UP,KC_DOWN,KC_END,
-			   _____,_____,RCTL(RSFT(KC_COMMA)),KC_PGUP,KC_PGDOWN,LGUI(KC_J),_____,
-			   TO(LAYER_KEYMACS),_____,_____,_____,_____,
-			   // left thumb
-			   _____,_____,_____,_____,_____,_____,
-			   // right fingers
-			   M(M_LAYER_IS_CONTROL),RGUI(KC_F6),RGUI(KC_F12),_____,_____,_____,_____,
-			   _____,LCTL(LSFT(KC_DOT)),LALT(KC_W),KC_DELETE,LCTL(KC_Y),_____,_____,
-			   _____,KC_LEFT,KC_RIGHT,KC_BSPACE,KC_TAB,_____,
-			   _____,KC_ENTER,LCTL(KC_C),LCTL(KC_X),LCTL(KC_V),LCTL(KC_SLASH),_____,
-			   _____,_____,_____,_____,_____,
-			   // right thumb
-			   _____,_____,_____,_____,_____,_____),
 
   // Mouse control
   [LAYER_MOUSE] = KEYMAP(// left fingers
@@ -222,7 +207,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 			  KC_LSHIFT,_____,KC_DOT,KC_KP_0,KC_EQUAL,KC_ENTER,_____,
 			  TO(LAYER_KEYMACS),_____,_____,_____,_____,
 			  // left thumb
-			  _____,_____,KC_SPACE,KC_LGUI,_____,_____,
+			  _____,_____,_____,
+			  LT(LAYER_CONTROL,KC_SPACE),KC_LGUI,_____,
 			  // right fingers
 			  M(M_LAYER_IS_NUMPAD),_____,KC_KP_7,KC_KP_8,KC_KP_9,KC_KP_ASTERISK,KC_BSPACE,
 			  KC_TAB,KC_DOT,KC_KP_4,KC_KP_5,KC_KP_6,KC_KP_PLUS,KC_RALT,
@@ -230,7 +216,27 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 			  _____,KC_KP_ENTER,KC_DOT,KC_KP_0,KC_EQUAL,_____,KC_RSHIFT,
 			  _____,_____,_____,_____,_____,
 			  // right thumb
-			  _____,_____,_____,_____,KC_RGUI,KC_SPACE),
+			  _____,_____,_____
+			  ,_____,KC_RGUI,LT(LAYER_CONTROL,KC_SPACE)),
+
+  // Control layer for line and page navigation
+  // TODO maybe combine it with WM control layer?
+  [LAYER_CONTROL] = KEYMAP(// left fingers
+			   _____,_____,_____,_____,LGUI(KC_F10),LGUI(KC_F11),LGUI(KC_F5),
+			   _____,_____,KC_LEFT,KC_UP,KC_RIGHT,KC_ESCAPE,_____,
+			   _____,LSFT(KC_TAB),KC_HOME,KC_UP,KC_DOWN,KC_END,
+			   _____,_____,RCTL(RSFT(KC_COMMA)),KC_PGUP,KC_PGDOWN,LGUI(KC_J),_____,
+			   TO(LAYER_KEYMACS),_____,_____,_____,_____,
+			   // left thumb
+			   _____,_____,_____,_____,_____,_____,
+			   // right fingers
+			   M(M_LAYER_IS_CONTROL),RGUI(KC_F6),RGUI(KC_F12),_____,_____,_____,_____,
+			   _____,LCTL(LSFT(KC_DOT)),LALT(KC_W),KC_DELETE,LCTL(KC_Y),_____,_____,
+			   _____,KC_LEFT,KC_RIGHT,KC_BSPACE,KC_TAB,_____,
+			   _____,KC_ENTER,LCTL(KC_C),LCTL(KC_X),LCTL(KC_V),LCTL(KC_SLASH),_____,
+			   _____,_____,_____,_____,_____,
+			   // right thumb
+			   _____,_____,_____,_____,_____,_____),
 
   // Fn keys
   [LAYER_FN] = KEYMAP(// left fingers
@@ -333,17 +339,17 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
   case M_LAYER_IS_PROGER:
     SEND_STRING ("Layer is Programmer [02]");
     break;
-  case M_LAYER_IS_CONTROL:
-    SEND_STRING ("Layer is Control [03]");
-    break;
   case M_LAYER_IS_MOUSE:
-    SEND_STRING ("Layer is Mouse [04]");
+    SEND_STRING ("Layer is Mouse [03]");
     break;
   case M_LAYER_IS_QWERTY:
-    SEND_STRING ("Layer is QWERTY [05]");
+    SEND_STRING ("Layer is QWERTY [04]");
     break;
   case M_LAYER_IS_NUMPAD:
-    SEND_STRING ("Layer is Numpad [06]");
+    SEND_STRING ("Layer is Numpad [05]");
+    break;
+  case M_LAYER_IS_CONTROL:
+    SEND_STRING ("Layer is Control [06]");
     break;
   case M_LAYER_IS_MEDIA:
     SEND_STRING ("Layer is Media and Color [07]");
@@ -466,10 +472,6 @@ void matrix_scan_user(void) {
 	  unregister_code(KC_LSHIFT);	  
 	  rgblight_show_solid_color(0,0,0);
       break;      
-    case LAYER_PROGER:
-      ergodox_right_led_2_on();
-      rgblight_show_solid_color(0x00,0xff,0x00);      
-      break;
     case LAYER_RUSSIAN:
 	  register_code(KC_RSHIFT);
 	  unregister_code(KC_RSHIFT);	  
@@ -477,9 +479,9 @@ void matrix_scan_user(void) {
       ergodox_right_led_3_on();
       rgblight_show_solid_color(0xff,0x00,0xff);
       break;
-    case LAYER_CONTROL:
-      ergodox_right_led_1_on();
-      rgblight_show_solid_color(0xff,0x00,0x00);
+    case LAYER_PROGER:
+      ergodox_right_led_2_on();
+      rgblight_show_solid_color(0x00,0xff,0x00);      
       break;
     case LAYER_MOUSE:
       ergodox_right_led_1_on();
@@ -489,6 +491,10 @@ void matrix_scan_user(void) {
     case LAYER_NUMPAD:
       ergodox_right_led_3_on();
       rgblight_show_solid_color(0x00,0x00,0xff);      
+      break;
+    case LAYER_CONTROL:
+      ergodox_right_led_1_on();
+      rgblight_show_solid_color(0xff,0x00,0x00);
       break;
     case LAYER_FN:
       ergodox_right_led_2_on();
