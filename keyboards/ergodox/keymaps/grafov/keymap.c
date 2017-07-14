@@ -79,7 +79,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 						   KC_LALT,TD(TD_QU),KC_B,KC_P,KC_F,ALGR_T(KC_G),OSL(LAYER_FN),
 						   KC_LCTL,LT(LAYER_PROGER,KC_R),KC_A,KC_E,KC_N,RCTL_T(KC_S),
 						   KC_LSHIFT,LT(LAYER_NUMPAD,KC_Z),KC_COMMA,KC_U,KC_K,SFT_T(KC_J),M(M_EMACS_SELECT),
-						   TG(LAYER_KEYMACS),OSL(LAYER_WM),_____,TG(LAYER_SYMBOLS),MO(LAYER_MOUSE),
+						   TG(LAYER_KEYMACS),MO(LAYER_WM),_____,TG(LAYER_SYMBOLS),MO(LAYER_MOUSE),
 						   // left thumb
 						   LCTL(KC_G),KC_WWW_BACK,KC_PLUS,
 						   LT(LAYER_CONTROL,KC_SPACE),GUI_T(KC_BSPACE),KC_MINUS,
@@ -88,7 +88,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 						   OSL(LAYER_FN),ALT_T(KC_DOT),KC_W,KC_D,KC_Y,KC_QUOTE,KC_RALT,
 						   CTL_T(KC_L),KC_O,KC_T,KC_I,LT(LAYER_PROGER,KC_H),KC_RCTL,
 						   _____,SFT_T(KC_M),KC_C,KC_X,KC_V,LT(LAYER_NUMPAD,KC_SLASH),KC_RSHIFT,
-						   MO(LAYER_MOUSE),KC_UNDS,TG(LAYER_QWERTY),OSL(LAYER_WM),TO(LAYER_RUSSIAN),
+						   MO(LAYER_MOUSE),KC_UNDS,TG(LAYER_QWERTY),MO(LAYER_WM),TO(LAYER_RUSSIAN),
 						   // right thumb
 						   KC_WWW_FORWARD,RCTL(KC_W),KC_WWW_REFRESH,
 						   ALT_T(KC_APPLICATION),GUI_T(KC_TAB),LT(LAYER_CONTROL,KC_ENTER)),
@@ -101,8 +101,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // - double-tap for Ь produces Ъ
   // - unresovled because RCTL_T: double-tap for Е should produce Ё but not yet
   //
-  // It has used shift-shift switcher now later I suppose Ctrls looks
-  // more comfortable on EZ. 
+  // It has used shift-shift switcher but with F23/F24 for switching
+  // instead of default Shift keys.
   [LAYER_RUSSIAN] = KEYMAP(// left fingers
 			  KC_ESCAPE,_____,KC_9,KC_MINUS,KC_6,_____,_____,
 			  KC_LALT,KC_Q,KC_W,KC_E,KC_R,RALT_T(KC_T),_____,
@@ -213,7 +213,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 			  M(M_LAYER_IS_NUMPAD),_____,KC_KP_7,KC_KP_8,KC_KP_9,KC_KP_ASTERISK,KC_BSPACE,
 			  KC_TAB,KC_DOT,KC_KP_4,KC_KP_5,KC_KP_6,KC_KP_PLUS,KC_RALT,
 			  _____,KC_KP_1,KC_KP_2,KC_KP_3,KC_KP_MINUS,KC_RCTRL,
-			  _____,KC_KP_ENTER,KC_DOT,KC_KP_0,KC_EQUAL,_____,KC_RSHIFT,
+			  _____,KC_KP_ENTER,KC_EQUAL,KC_KP_0,KC_DOT,_____,KC_RSHIFT,
 			  _____,_____,_____,_____,_____,
 			  // right thumb
 			  _____,_____,_____
@@ -265,7 +265,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 			 _____,_____,_____,_____,_____,_____,_____,
 			 TO(LAYER_KEYMACS),_____,_____,_____,_____,
 			 // left thumb
-			 RGB_MOD,_____,_____,RGB_VAD,RGB_VAI,_____,
+			 RGB_MOD,_____,_____,
+			 RGB_VAD,RGB_VAI,_____,
 			 // right fingers
 			 M(M_LAYER_IS_MEDIA),RGB_0000FF,RGB_008000,RGB_FFA500,RGB_800080,RGB_FF0000,_____,
 			 _____,_____,_____,_____,_____,_____,_____,
@@ -273,7 +274,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 			 _____,_____,_____,_____,_____,_____,_____,
 			 _____,_____,_____,_____,_____,
 			 // right thumb
-			 RGB_TOG,RGB_SLD,_____,_____,RGB_HUD,RGB_HUI),
+			 RGB_TOG,RGB_SLD,_____,
+			 _____,RGB_HUD,RGB_HUI),
 
   // XXX Symbols layer for Unicode input 
   [LAYER_SYMBOLS] = KEYMAP(// left fingers
@@ -295,23 +297,23 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   // Window manager control (i3 currently)
   [LAYER_WM] = KEYMAP(// left fingers
-		      _____,LSFT(LGUI(KC_9)),LSFT(LGUI(KC_7)),LSFT(LGUI(KC_3)),LSFT(LGUI(KC_1)),LSFT(LGUI(KC_5)),_____,			 
+		      _____,LSFT(LGUI(KC_9)),LSFT(LGUI(KC_7)),LSFT(LGUI(KC_3)),LSFT(LGUI(KC_1)),LSFT(LGUI(KC_5)),_____,
 		      _____,LGUI(KC_9),LGUI(KC_7),LGUI(KC_3),LGUI(KC_1),LGUI(KC_5),_____,
-		      _____,_____,_____,LGUI(KC_UP),LGUI(KC_DOWN),_____,
-		      _____,_____,_____,_____,_____,LGUI(KC_J),_____,
+		      _____,LGUI(KC_R),_____,LGUI(KC_UP),LGUI(KC_DOWN),LGUI(KC_F10),
+		      _____,_____,_____,_____,_____,LGUI(KC_J),LGUI(KC_F11),
 		      TO(LAYER_KEYMACS),_____,_____,_____,_____,
 		      // left thumb
 		      _____,_____,_____,
-		      KC_SPACE,KC_ENTER,_____,
+		      LGUI(KC_SPACE),KC_ENTER,_____,
 		      // right fingers
-		      M(M_LAYER_IS_SYMBOLS),LSFT(RGUI(KC_6)),LSFT(RGUI(KC_2)),LSFT(RGUI(KC_0)),LSFT(RGUI(KC_4)),LSFT(RGUI(KC_8)),_____,			 
-		      _____,RGUI(KC_6),RGUI(KC_2),RGUI(KC_0),RGUI(KC_4),RGUI(KC_8),_____,
-		      _____,RGUI(KC_LEFT),RGUI(KC_RIGHT),_____,_____,_____,
-		      _____,_____,_____,_____,_____,_____,_____,
+		      M(M_LAYER_IS_SYMBOLS),LSFT(RGUI(KC_6)),LSFT(RGUI(KC_2)),LSFT(RGUI(KC_0)),LSFT(RGUI(KC_4)),LSFT(RGUI(KC_8)),LGUI(KC_F9),
+		      _____,RGUI(KC_6),RGUI(KC_2),RGUI(KC_0),RGUI(KC_4),RGUI(KC_8),LGUI(KC_F7),
+		      LGUI(KC_F12),RGUI(KC_LEFT),RGUI(KC_RIGHT),_____,_____,LGUI(KC_F6),
+		      LGUI(KC_F11),_____,_____,_____,_____,_____,LGUI(KC_F5),
 		      _____,_____,_____,_____,_____,
 		      // right thumb
 		      _____,_____,_____,
-		      _____,KC_ENTER,KC_SPACE),
+		      _____,KC_ENTER,RGUI(KC_SPACE)),
 
 };
 
@@ -362,13 +364,6 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
     break;
   case M_LAYER_IS_WM:
     SEND_STRING ("Layer is WM [0A]");
-    break;
-  }} else {
-  switch(id) {
-  case M_LAT:
-        register_code(KC_LSHIFT);
-        unregister_code(KC_LSHIFT);
-    layer_on(LAYER_KEYMACS);
     break;
   }}
   return MACRO_NONE;
@@ -468,13 +463,13 @@ void matrix_scan_user(void) {
     switch (layer) {
     case LAYER_KEYMACS:
 	  //      rgblight_task();
-	  register_code(KC_LSHIFT);
-	  unregister_code(KC_LSHIFT);	  
+	  register_code(KC_F23); // switch to English
+	  unregister_code(KC_F23); // switch to English
 	  rgblight_show_solid_color(0,0,0);
       break;      
     case LAYER_RUSSIAN:
-	  register_code(KC_RSHIFT);
-	  unregister_code(KC_RSHIFT);	  
+	  register_code(KC_F24); // switch to Russian
+	  unregister_code(KC_F24); // switch to Russian
       ergodox_right_led_1_on();
       ergodox_right_led_3_on();
       rgblight_show_solid_color(0xff,0x00,0xff);
