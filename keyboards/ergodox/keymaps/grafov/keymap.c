@@ -112,7 +112,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 			  // left thumb
 			  _____,_____,_____,_____,_____,_____,
 			  // right fingers
-			  M(M_LAYER_IS_RUSSIAN),_____,KC_7,_____,KC_LBRACKET,_____,_____,
+			  // Top row chars: [хз] [?] [!] [,] [хз]    [хз] [.] [-] [х] [хз]
+			  M(M_LAYER_IS_RUSSIAN),_____,KC_7,KC_2,KC_LBRACKET,_____,_____,
 			  _____,LALT_T(KC_Y),KC_U,KC_I,KC_O,KC_P,KC_RALT,
 			  LCTL_T(KC_H),KC_J,KC_K,KC_L,LT(LAYER_PROGER,KC_SCOLON),KC_RCTL,
 			  _____,SFT_T(KC_N),TD(TD_SHSIG),KC_COMMA,KC_DOT,LT(LAYER_NUMPAD,KC_QUOTE),KC_RSHIFT,
@@ -128,7 +129,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 			  KC_LSHIFT,_____,KC_LABK,KC_TILD,KC_AT,_____,_____,
 			  _____,_____,_____,_____,_____,
 			  // left thumb
-			  _____,_____,_____,KC_SPACE,_____,_____,
+			  _____,_____,_____,LT(LAYER_CONTROL,KC_SPACE),_____,_____,
 			  // right fingers
 			  M(M_LAYER_IS_PROGER),KC_ASTR,KC_SCOLON,KC_MINUS,KC_DQUO,KC_EQUAL,_____,
 			  _____,KC_RABK,KC_RBRACKET,KC_DLR,KC_PERC,_____,KC_RALT,
@@ -136,7 +137,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 			  _____,KC_ENTER,KC_EQUAL,KC_BSLASH,KC_PIPE,_____,KC_RSHIFT,
 			  _____,_____,_____,_____,_____,
 			  // right thumb
-			  _____,_____,_____,_____,_____,KC_SPACE),
+			  _____,_____,_____,_____,_____,LT(LAYER_CONTROL,KC_SPACE)),
 
   // Programmer layer for Russian layout 
   /* [LAYER_RUSYM] = KEYMAP(// left fingers */
