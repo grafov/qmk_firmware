@@ -63,7 +63,8 @@ enum {
 enum {
   TD_QU = 0,
   TD_EYO,
-  TD_SHSIG
+  TD_SHSIG,
+  TD_ASSIGN
 };
 
 
@@ -74,26 +75,26 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // This is the adaptation of the layout for common keyboards for Ergodox EZ
   // https://github.com/keyboard-ergonomics/keymacs
   [LAYER_KEYMACS] = KEYMAP( // left fingers
-			   KC_ESCAPE,KC_GRAVE,KC_EXLM,KC_QUES,KC_COLN,KC_PLUS,TG(LAYER_NUMPAD),
-			   KC_LALT,TD(TD_QU),KC_B,KC_P,KC_F,ALGR_T(KC_G),OSL(LAYER_FN),
-			   KC_LCTL,LT(LAYER_PROGER,KC_R),KC_A,KC_E,KC_N,RCTL_T(KC_S),
-			   KC_LSHIFT,LT(LAYER_NUMPAD,KC_Z),KC_COMMA,KC_U,KC_K,SFT_T(KC_J),M(M_EMACS_SELECT),
-			   TG(LAYER_KEYMACS),OSL(LAYER_WM),_____,TG(LAYER_SYMBOLS),MO(LAYER_MOUSE),
-			   // left thumb
-			   LCTL(KC_G),KC_WWW_BACK,KC_PLUS,
-			   LT(LAYER_CONTROL,KC_SPACE),GUI_T(KC_BSPACE),KC_MINUS,
-			   // right fingers 
-			   M(M_LAYER_IS_KEYMACS),KC_ASTR,KC_SCOLON,KC_MINUS,KC_DQUO,KC_EQUAL,KC_BSPACE,
-			   OSL(LAYER_FN),ALT_T(KC_DOT),KC_W,KC_D,KC_Y,KC_QUOTE,KC_RALT,
-			   CTL_T(KC_L),KC_O,KC_T,KC_I,LT(LAYER_PROGER,KC_H),KC_RCTL,
-			   _____,SFT_T(KC_M),KC_C,KC_X,KC_V,LT(LAYER_NUMPAD,KC_SLASH),KC_RSHIFT,
-			   MO(LAYER_MOUSE),KC_UNDS,TG(LAYER_QWERTY),OSL(LAYER_WM),TO(LAYER_RUSSIAN),
-			   // right thumb
-			   KC_WWW_FORWARD,RCTL(KC_W),KC_WWW_REFRESH,
-			   ALT_T(KC_APPLICATION),GUI_T(KC_TAB),LT(LAYER_CONTROL,KC_ENTER)),
+						   KC_ESCAPE,KC_GRAVE,KC_QUES,KC_EXLM,TD(TD_ASSIGN),KC_PLUS,TG(LAYER_NUMPAD),
+						   KC_LALT,TD(TD_QU),KC_B,KC_P,KC_F,ALGR_T(KC_G),OSL(LAYER_FN),
+						   KC_LCTL,LT(LAYER_PROGER,KC_R),KC_A,KC_E,KC_N,RCTL_T(KC_S),
+						   KC_LSHIFT,LT(LAYER_NUMPAD,KC_Z),KC_COMMA,KC_U,KC_K,SFT_T(KC_J),M(M_EMACS_SELECT),
+						   TG(LAYER_KEYMACS),OSL(LAYER_WM),_____,TG(LAYER_SYMBOLS),MO(LAYER_MOUSE),
+						   // left thumb
+						   LCTL(KC_G),KC_WWW_BACK,KC_PLUS,
+						   LT(LAYER_CONTROL,KC_SPACE),GUI_T(KC_BSPACE),KC_MINUS,
+						   // right fingers 
+						   M(M_LAYER_IS_KEYMACS),KC_ASTR,KC_SCOLON,KC_MINUS,KC_DQUO,KC_EQUAL,KC_BSPACE,
+						   OSL(LAYER_FN),ALT_T(KC_DOT),KC_W,KC_D,KC_Y,KC_QUOTE,KC_RALT,
+						   CTL_T(KC_L),KC_O,KC_T,KC_I,LT(LAYER_PROGER,KC_H),KC_RCTL,
+						   _____,SFT_T(KC_M),KC_C,KC_X,KC_V,LT(LAYER_NUMPAD,KC_SLASH),KC_RSHIFT,
+						   MO(LAYER_MOUSE),KC_UNDS,TG(LAYER_QWERTY),OSL(LAYER_WM),TO(LAYER_RUSSIAN),
+						   // right thumb
+						   KC_WWW_FORWARD,RCTL(KC_W),KC_WWW_REFRESH,
+						   ALT_T(KC_APPLICATION),GUI_T(KC_TAB),LT(LAYER_CONTROL,KC_ENTER)),
 
-  // QWERTY for Russian layout adapted for Ergodox
-  // ---------------------------------------------
+  // QWERTY for Russian Typewriter layout adapted for Ergodox
+  // --------------------------------------------------------
   // Х moved to top for right index finger
   // Э moved to down for right pinky
   // Tap dance:
@@ -101,29 +102,27 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // - unresovled because RCTL_T: double-tap for Е should produce Ё but not yet
   //
   // It has used shift-shift switcher now later I suppose Ctrls looks
-  // more comfortable on EZ.
-  //
-  // TODO assign punctuations accordingly with Keymacs maybe except dot and comma.
+  // more comfortable on EZ. 
   [LAYER_RUSSIAN] = KEYMAP(// left fingers
-			  KC_ESCAPE,_____,_____,_____,_____,_____,_____,
+			  KC_ESCAPE,_____,KC_9,KC_MINUS,KC_6,_____,_____,
 			  KC_LALT,KC_Q,KC_W,KC_E,KC_R,RALT_T(KC_T),_____,
-			  KC_LCTL,KC_A,KC_S,KC_D,KC_F,RCTL_T(KC_G),
-			  KC_LSHIFT,KC_Z,KC_X,KC_C,KC_V,SFT_T(KC_B),_____,
+			  KC_LCTL,LT(LAYER_PROGER,KC_A),KC_S,KC_D,KC_F,RCTL_T(KC_G),
+			  KC_LSHIFT,LT(LAYER_NUMPAD,KC_Z),KC_X,KC_C,KC_V,SFT_T(KC_B),_____,
 			  TO(LAYER_KEYMACS),_____,_____,_____,_____,
 			  // left thumb
 			  _____,_____,_____,_____,_____,_____,
 			  // right fingers
-			  M(M_LAYER_IS_RUSSIAN),_____,KC_LBRACKET,_____,_____,_____,_____,
+			  M(M_LAYER_IS_RUSSIAN),_____,KC_7,_____,KC_LBRACKET,_____,_____,
 			  _____,LALT_T(KC_Y),KC_U,KC_I,KC_O,KC_P,KC_RALT,
-			  LCTL_T(KC_H),KC_J,KC_K,KC_L,KC_SCOLON,KC_RCTL,
-			  _____,SFT_T(KC_N),TD(TD_SHSIG),KC_COMMA,KC_DOT,KC_QUOTE,KC_RSHIFT,
+			  LCTL_T(KC_H),KC_J,KC_K,KC_L,LT(LAYER_PROGER,KC_SCOLON),KC_RCTL,
+			  _____,SFT_T(KC_N),TD(TD_SHSIG),KC_COMMA,KC_DOT,LT(LAYER_NUMPAD,KC_QUOTE),KC_RSHIFT,
 			  _____,_____,_____,_____,_____,
 			  // right thumb
 			  _____,_____,_____,_____,_____,_____),
 
-  // Programmer layer (various shifted characters) [yellow]
+  // Programmer layer (various shifted characters)
   [LAYER_PROGER] = KEYMAP(// left fingers
-			  M(M_VRSN),KC_GRAVE,KC_EXLM,KC_QUES,KC_COLN,KC_PLUS,_____,
+			  M(M_VRSN),KC_GRAVE,KC_QUES,KC_EXLM,TD(TD_ASSIGN),KC_PLUS,_____,
 			  KC_LALT,_____,KC_CIRC,KC_HASH,KC_LBRACKET,_____,_____,
 			  KC_LCTL,_____,KC_AMPR,KC_LCBR,KC_LPRN,_____,
 			  KC_LSHIFT,_____,KC_LABK,KC_TILD,KC_AT,_____,_____,
@@ -138,6 +137,24 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 			  _____,_____,_____,_____,_____,
 			  // right thumb
 			  _____,_____,_____,_____,_____,KC_SPACE),
+
+  // Programmer layer for Russian layout 
+  /* [LAYER_RUSYM] = KEYMAP(// left fingers */
+  /* 			  M(M_VRSN),KC_GRAVE,KC_QUES,KC_EXLM,KC_COLN,KC_PLUS,_____, */
+  /* 			  KC_LALT,_____,KC_CIRC,KC_HASH,KC_LBRACKET,_____,_____, */
+  /* 			  KC_LCTL,_____,KC_AMPR,KC_LCBR,KC_LPRN,_____, */
+  /* 			  KC_LSHIFT,_____,KC_LABK,KC_TILD,KC_AT,_____,_____, */
+  /* 			  _____,_____,_____,_____,_____, */
+  /* 			  // left thumb */
+  /* 			  _____,_____,_____,KC_SPACE,_____,_____, */
+  /* 			  // right fingers */
+  /* 			  M(M_LAYER_IS_PROGER),KC_ASTR,KC_SCOLON,KC_MINUS,KC_DQUO,KC_EQUAL,_____, */
+  /* 			  _____,KC_RABK,KC_RBRACKET,KC_DLR,KC_PERC,_____,KC_RALT, */
+  /* 			  _____,KC_RPRN,KC_RCBR,KC_UNDS,_____,KC_RCTRL, */
+  /* 			  _____,KC_ENTER,KC_EQUAL,KC_BSLASH,KC_PIPE,_____,KC_RSHIFT, */
+  /* 			  _____,_____,_____,_____,_____, */
+  /* 			  // right thumb */
+  /* 			  _____,_____,_____,_____,_____,KC_SPACE), */
 
   // Control layer for line and page navigation
   // TODO maybe combine it with WM control layer?
@@ -198,18 +215,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   // Numpad
   [LAYER_NUMPAD] = KEYMAP(// left fingers
-			  KC_NUMLOCK,KC_ASTR,KC_7,KC_8,KC_9,_____,_____,
-			  KC_LALT,KC_PLUS,KC_4,KC_5,KC_6,_____,KC_TAB,
-			  KC_LCTL,KC_MINUS,KC_1,KC_2,KC_3,_____,
-			  KC_LSHIFT,_____,KC_DOT,KC_0,KC_EQUAL,KC_ENTER,_____,
+			  KC_NUMLOCK,KC_ASTR,KC_KP_7,KC_KP_8,KC_KP_9,_____,_____,
+			  KC_LALT,KC_PLUS,KC_KP_4,KC_KP_5,KC_KP_6,_____,KC_TAB,
+			  KC_LCTL,KC_MINUS,KC_KP_1,KC_KP_2,KC_KP_3,_____,
+			  KC_LSHIFT,_____,KC_DOT,KC_KP_0,KC_EQUAL,KC_ENTER,_____,
 			  TO(LAYER_KEYMACS),_____,_____,_____,_____,
 			  // left thumb
 			  _____,_____,KC_SPACE,KC_LGUI,_____,_____,
 			  // right fingers
-			  M(M_LAYER_IS_NUMPAD),_____,KC_7,KC_8,KC_9,KC_KP_ASTERISK,KC_BSPACE,
-			  KC_TAB,KC_DOT,KC_4,KC_5,KC_6,KC_KP_PLUS,KC_RALT,
-			  _____,KC_1,KC_2,KC_3,KC_KP_MINUS,KC_RCTRL,
-			  _____,KC_KP_ENTER,KC_DOT,KC_0,KC_EQUAL,_____,KC_RSHIFT,
+			  M(M_LAYER_IS_NUMPAD),_____,KC_KP_7,KC_KP_8,KC_KP_9,KC_KP_ASTERISK,KC_BSPACE,
+			  KC_TAB,KC_DOT,KC_KP_4,KC_KP_5,KC_KP_6,KC_KP_PLUS,KC_RALT,
+			  _____,KC_KP_1,KC_KP_2,KC_KP_3,KC_KP_MINUS,KC_RCTRL,
+			  _____,KC_KP_ENTER,KC_DOT,KC_KP_0,KC_EQUAL,_____,KC_RSHIFT,
 			  _____,_____,_____,_____,_____,
 			  // right thumb
 			  _____,_____,_____,_____,KC_RGUI,KC_SPACE),
@@ -481,7 +498,8 @@ void matrix_scan_user(void) {
       ergodox_right_led_1_on();
       ergodox_right_led_2_on();
       ergodox_right_led_3_on();
-	  rgblight_effect_christmas();
+	  // rgblight_effect_christmas();
+      rgblight_show_solid_color(0x11,0xff,0x33);	  
       break;
     default:
       ergodox_right_led_1_on();
@@ -539,9 +557,24 @@ void dance_shsig (qk_tap_dance_state_t *state, void *user_data) {
   }
 }
 
+// golang assign op
+void dance_assign (qk_tap_dance_state_t *state, void *user_data) {
+  switch (state->count) {
+    case 1:
+      SEND_STRING(":");
+      break;
+    case 2:
+      SEND_STRING(" := ");
+      break;
+    default:
+      reset_tap_dance(state);
+  }
+}
+
 //Tap Dance Definitions
 qk_tap_dance_action_t tap_dance_actions[] = {
   [TD_QU]  = ACTION_TAP_DANCE_FN(dance_qu),
   [TD_EYO] = ACTION_TAP_DANCE_FN(dance_eyo),
-  [TD_SHSIG] = ACTION_TAP_DANCE_FN(dance_shsig)
+  [TD_SHSIG] = ACTION_TAP_DANCE_FN(dance_shsig),
+  [TD_ASSIGN] = ACTION_TAP_DANCE_FN(dance_assign),
 };
