@@ -14,9 +14,8 @@
 // Layer names
 enum {
   LAYER_KEYMACS = 0,
-  LAYER_AUXCHARS,
   LAYER_RUSSIAN,
-  LAYER_AUXCHARS_RU,
+  LAYER_AUXCHARS,
   LAYER_MOUSE,
   LAYER_QWERTY,
   LAYER_NUMPAD,
@@ -33,22 +32,25 @@ enum custom_keycodes {
   RUS,  
   EPRM,
   VRSN,
+
   RGB_SLD,
+  RGB_FF0000,  
   RGB_0000FF,
   RGB_008000,
   RGB_FFA500,
   RGB_800080,
-  RGB_FF0000
+  
+  XKB,
 };
 
 // Macros IDs
 enum {
   M_VRSN = 0,
   M_EMACS_SELECT,
+
   M_LAYER_IS_KEYMACS,
   M_LAYER_IS_AUXCHARS,
   M_LAYER_IS_RUSSIAN,
-  M_LAYER_IS_AUXCHARS_RU,  
   M_LAYER_IS_CONTROL,
   M_LAYER_IS_MOUSE,
   M_LAYER_IS_QWERTY,
@@ -57,8 +59,46 @@ enum {
   M_LAYER_IS_MEDIA,
   M_LAYER_IS_SYMBOLS,
   M_LAYER_IS_WM,
+
+  M_LAT,
   M_RUS,
-  M_LAT
+
+  RU_IO,
+  RU_SHORTI,
+  RU_TSE, 
+  RU_U, 
+  RU_KA, 
+  RU_IE, 
+  RU_EN,
+  RU_GHE,
+  RU_SHA, 
+  RU_SHCHA, 
+  RU_ZE,
+  RU_HA,
+  RU_HARDSIGN,
+                    
+  RU_EF, 
+  RU_YERU, 
+  RU_VE, 
+  RU_A, 
+  RU_PE, 
+  RU_ER,
+  RU_O, 
+  RU_EL, 
+  RU_DE, 
+  RU_ZHE, 
+  RU_E,  
+                    
+  RU_YA, 
+  RU_CHE,
+  RU_ES,  
+  RU_EM,  
+  RU_I, 
+  RU_TE, 
+  RU_SOFTSIGN,
+  RU_BE,  
+  RU_YU,
+  
 };
 
 //Tap Dance Declarations
@@ -77,7 +117,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // This is the adaptation of the layout for common keyboards for Ergodox EZ
   // https://github.com/keyboard-ergonomics/keymacs
   [LAYER_KEYMACS] = KEYMAP( // left fingers
-						   KC_ESCAPE,KC_GRAVE,KC_QUES,KC_MINUS,TD(TD_ASSIGN),KC_PLUS,TG(LAYER_NUMPAD),
+						   KC_ESCAPE,KC_GRAVE,KC_QUES,KC_MINUS,TD(TD_ASSIGN),KC_PLUS,KC_CAPSLOCK, //TG(LAYER_NUMPAD),
 						   KC_LALT,TD(TD_QU),KC_B,KC_P,KC_F,ALGR_T(KC_G),OSL(LAYER_FN),
 						   KC_LCTL,LT(LAYER_AUXCHARS,KC_R),KC_A,KC_E,KC_N,RCTL_T(KC_S),
 						   KC_LSHIFT,LT(LAYER_NUMPAD,KC_Z),KC_COMMA,KC_U,KC_K,SFT_T(KC_J),M(M_EMACS_SELECT),
@@ -90,12 +130,41 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 						   OSL(LAYER_FN),ALT_T(KC_DOT),KC_W,KC_D,KC_Y,KC_QUOTE,KC_RALT,
 						   CTL_T(KC_L),KC_O,KC_T,KC_I,LT(LAYER_AUXCHARS,KC_H),KC_RCTL,
 						   _____,SFT_T(KC_M),KC_C,KC_X,KC_V,LT(LAYER_NUMPAD,KC_SLASH),KC_RSHIFT,
-						   MO(LAYER_MOUSE),KC_UNDS,_____,MO(LAYER_WM),TO(LAYER_RUSSIAN),
+						   MO(LAYER_MOUSE),KC_UNDS,TT(LAYER_SYMBOLS),MO(LAYER_WM),TT(LAYER_RUSSIAN),
 						   // right thumb
 						   KC_WWW_FORWARD,RCTL(KC_W),KC_WWW_REFRESH,
 						   ALT_T(KC_APPLICATION),GUI_T(KC_TAB),LT(LAYER_CONTROL,KC_ENTER)),
-  
-  // Programmer layer (various shifted characters)
+
+  // QWERTY for Russian Typewriter layout adapted for Ergodox
+  // --------------------------------------------------------
+  // Х moved to top for right index finger
+  // Э moved to down for right pinky
+  // Tap dance:
+  // - double-tap for Ь produces Ъ
+  // - unresovled because RCTL_T: double-tap for Е should produce Ё but not yet
+  //
+  // It has used shift-shift switcher (https://github.com/grafov/shift-shift).
+  // Top row chars: [хз] [?] [-] [,] [хз]    [хз] [.] [х] [!] [хз]
+  [LAYER_RUSSIAN] = KEYMAP(// left fingers
+			  KC_ESCAPE,_____,KC_9,KC_2,KC_6,_____,_____,
+			  KC_LALT,M(RU_SHORTI),M(RU_TSE),M(RU_U),M(RU_KA),RALT_T(M(RU_IE)),_____,
+			  KC_LCTL,LT(LAYER_AUXCHARS,M(RU_EF)),M(RU_YERU),M(RU_VE),M(RU_A),RCTL_T(M(RU_PE)),
+			  KC_LSHIFT,LT(LAYER_NUMPAD,M(RU_YA)),M(RU_CHE),M(RU_ES),M(RU_EM),SFT_T(M(RU_I)),_____,
+			  TO(LAYER_KEYMACS),_____,_____,_____,_____,
+			  // left thumb
+			  _____,_____,_____,
+			  _____,_____,_____,
+			  // right fingers
+			  M(M_LAYER_IS_RUSSIAN),_____,M(KC_7),M(KC_LBRACKET),M(KC_MINUS),_____,_____,
+			  _____,LALT_T(M(RU_EN)),M(RU_GHE),M(RU_SHA),M(RU_SHCHA),M(RU_ZE),KC_RALT,
+			  LCTL_T(M(RU_ER)),M(RU_O),M(RU_EL),M(RU_DE),LT(LAYER_AUXCHARS,M(RU_ZHE)),KC_RCTL,
+			  _____,SFT_T(M(RU_TE)),TD(TD_SHSIG),M(RU_SOFTSIGN),M(RU_BE),LT(LAYER_NUMPAD,M(RU_YU)),KC_RSHIFT,
+			  _____,_____,_____,_____,_____,
+			  // right thumb
+			  _____,_____,_____,
+			  _____,_____,_____),
+
+  // Programmer layer
   [LAYER_AUXCHARS] = KEYMAP(// left fingers
 			  M(M_VRSN),KC_GRAVE,KC_QUES,KC_MINUS,TD(TD_ASSIGN),KC_PLUS,_____,
 			  KC_LALT,_____,KC_CIRC,KC_HASH,KC_LBRACKET,_____,_____,
@@ -115,54 +184,26 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 			  _____,_____,_____,
 			  _____,_____,LT(LAYER_CONTROL,KC_SPACE)),
 
-  // QWERTY for Russian Typewriter layout adapted for Ergodox
-  // --------------------------------------------------------
-  // Х moved to top for right index finger
-  // Э moved to down for right pinky
-  // Tap dance:
-  // - double-tap for Ь produces Ъ
-  // - unresovled because RCTL_T: double-tap for Е should produce Ё but not yet
-  //
-  // It has used shift-shift switcher (https://github.com/grafov/shift-shift).
-  // Top row chars: [хз] [?] [-] [,] [хз]    [хз] [.] [х] [!] [хз]
-  [LAYER_RUSSIAN] = KEYMAP(// left fingers
-			  KC_ESCAPE,_____,KC_9,KC_2,KC_6,_____,_____,
-			  KC_LALT,KC_Q,KC_W,KC_E,KC_R,RALT_T(KC_T),_____,
-			  KC_LCTL,LT(LAYER_AUXCHARS_RU,KC_A),KC_S,KC_D,KC_F,RCTL_T(KC_G),
-			  KC_LSHIFT,LT(LAYER_NUMPAD,KC_Z),KC_X,KC_C,KC_V,SFT_T(KC_B),_____,
-			  TO(LAYER_KEYMACS),_____,_____,_____,_____,
-			  // left thumb
-			  _____,_____,_____,
-			  _____,_____,_____,
-			  // right fingers
-			  M(M_LAYER_IS_RUSSIAN),_____,KC_7,KC_LBRACKET,KC_MINUS,_____,_____,
-			  _____,LALT_T(KC_Y),KC_U,KC_I,KC_O,KC_P,KC_RALT,
-			  LCTL_T(KC_H),KC_J,KC_K,KC_L,LT(LAYER_AUXCHARS_RU,KC_SCOLON),KC_RCTL,
-			  _____,SFT_T(KC_N),TD(TD_SHSIG),KC_COMMA,KC_DOT,LT(LAYER_NUMPAD,KC_QUOTE),KC_RSHIFT,
-			  _____,_____,_____,_____,_____,
-			  // right thumb
-			  _____,_____,_____,
-			  _____,_____,_____),
 
   // Copy of Programmer layer but when Russian layout is turned on it should map chars in other way
-  [LAYER_AUXCHARS_RU] = KEYMAP(// left fingers
-			  M(M_VRSN),KC_GRAVE,KC_9,KC_2,KC_6,KC_PLUS,_____,
-			  KC_LALT,KC_1,KC_CIRC,KC_HASH,KC_LBRACKET,_____,_____,
-			  KC_LCTL,_____,KC_AMPR,KC_LCBR,LSFT(KC_BSLASH),_____,
-			  KC_LSHIFT,_____,KC_LABK,KC_TILD,KC_AT,_____,_____,
-			  _____,_____,_____,_____,_____,
-			  // left thumb
-			  _____,_____,_____,
-			  LT(LAYER_CONTROL,KC_SPACE),_____,_____,
-			  // right fingers
-			  M(M_LAYER_IS_AUXCHARS),_____,KC_7,KC_LBRACKET,KC_MINUS,KC_EQUAL,_____,
-			  _____,KC_RABK,KC_RBRACKET,KC_DLR,KC_PERC,_____,KC_RALT,
-			  _____,KC_BSLASH,KC_RCBR,KC_UNDS,_____,KC_RCTRL,
-			  _____,KC_ENTER,KC_EQUAL,KC_BSLASH,KC_PIPE,_____,KC_RSHIFT,
-			  _____,_____,_____,_____,_____,
-			  // right thumb
-			  _____,_____,_____,
-			  _____,_____,LT(LAYER_CONTROL,KC_SPACE)),
+  /* [LAYER_AUXCHARS_RU] = KEYMAP(// left fingers */
+  /* 			  M(M_VRSN),KC_GRAVE,KC_9,KC_2,KC_6,KC_PLUS,_____, */
+  /* 			  KC_LALT,KC_1,KC_CIRC,KC_HASH,KC_LBRACKET,_____,_____, */
+  /* 			  KC_LCTL,_____,KC_AMPR,KC_LCBR,LSFT(KC_BSLASH),_____, */
+  /* 			  KC_LSHIFT,_____,KC_LABK,KC_TILD,KC_AT,_____,_____, */
+  /* 			  _____,_____,_____,_____,_____, */
+  /* 			  // left thumb */
+  /* 			  _____,_____,_____, */
+  /* 			  LT(LAYER_CONTROL,KC_SPACE),_____,_____, */
+  /* 			  // right fingers */
+  /* 			  M(M_LAYER_IS_AUXCHARS),_____,KC_7,KC_LBRACKET,KC_MINUS,KC_EQUAL,_____, */
+  /* 			  _____,KC_RABK,KC_RBRACKET,KC_DLR,KC_PERC,_____,KC_RALT, */
+  /* 			  _____,KC_BSLASH,KC_RCBR,KC_UNDS,_____,KC_RCTRL, */
+  /* 			  _____,KC_ENTER,KC_EQUAL,KC_BSLASH,KC_PIPE,_____,KC_RSHIFT, */
+  /* 			  _____,_____,_____,_____,_____, */
+  /* 			  // right thumb */
+  /* 			  _____,_____,_____, */
+  /* 			  _____,_____,LT(LAYER_CONTROL,KC_SPACE)), */
 
   // Mouse control
   [LAYER_MOUSE] = KEYMAP(// left fingers
@@ -320,16 +361,115 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 };
 
+const qk_ucis_symbol_t ucis_symbol_table[] = UCIS_TABLE
+(
+ UCIS_SYM("poop", 0x1f4a9),
+ UCIS_SYM("rofl", 0x1f923),
+ UCIS_SYM("kiss", 0x1f619),
+ UCIS_SYM("snowman", 0x2603),
+ UCIS_SYM("coffee", 0x2615),
+ UCIS_SYM("heart", 0x2764),
+ UCIS_SYM("bolt", 0x26a1),
+ UCIS_SYM("pi", 0x03c0),
+ UCIS_SYM("mouse", 0x1f401),
+ UCIS_SYM("micro", 0x00b5),
+ UCIS_SYM("tm", 0x2122)
+);
+
 const uint16_t PROGMEM fn_actions[] = {
   [1] = ACTION_LAYER_TAP_TOGGLE(1)
 };
 
 
+// Runs just one time when the keyboard initializes.
+void matrix_init_user(void) {
+  set_unicode_input_mode(UC_LNX);
+}
+
 // leaving this in place for compatibilty with old keymaps cloned and re-compiled.
 const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
 {
+  if (!record->event.pressed) {
+	switch(id) {
+	case RU_EF: // Ф
+	  //	  return MACRO (T(SCROLLLOCK),T(A),T(SCROLLLOCK), END);
+	  register_code(KC_SCROLLLOCK);	  
+	  unregister_code(KC_SCROLLLOCK);	  
+	  register_code(KC_A);
+	  unregister_code(KC_A);
+	  register_code(KC_SCROLLLOCK);	  
+	  unregister_code(KC_SCROLLLOCK);	  
+	  return MACRO_NONE;
+	}
+  }
+  
   if (record->event.pressed) {
   switch(id) {
+	
+  case RU_SHORTI: // Й
+	return MACRO (T(SCROLLLOCK),T(Q),T(SCROLLLOCK), END);
+  case RU_TSE: // Ц
+	return MACRO (T(SCROLLLOCK),T(W),T(SCROLLLOCK), END);
+  case RU_U: // У
+	return MACRO (T(SCROLLLOCK),T(E),T(SCROLLLOCK), END);
+  case RU_KA: // К
+	return MACRO (T(SCROLLLOCK),T(R),T(SCROLLLOCK), END);
+  case RU_IE: // 
+	return MACRO (T(SCROLLLOCK),T(T),T(SCROLLLOCK), END);
+  case RU_EN: // 
+	return MACRO (T(SCROLLLOCK),T(Y),T(SCROLLLOCK), END);
+  case RU_GHE: // 
+	return MACRO (T(SCROLLLOCK),T(U),T(SCROLLLOCK), END);
+  case RU_SHCHA: // 
+	return MACRO (T(SCROLLLOCK),T(I),T(SCROLLLOCK), END);
+  case RU_HA: // 
+	return MACRO (T(SCROLLLOCK),T(O),T(SCROLLLOCK), END);
+	//  case RU_HARDSIGN: //
+	//	return MACRO (T(SCROLLLOCK),T(),T(SCROLLLOCK), END);
+	//break;
+   
+  case RU_YERU: // 
+	return MACRO (T(SCROLLLOCK),T(S),T(SCROLLLOCK), END);
+  case RU_VE: // 
+	return MACRO (T(SCROLLLOCK),T(D),T(SCROLLLOCK), END);
+  case RU_A: // 
+	return MACRO (T(SCROLLLOCK),T(A),T(SCROLLLOCK), END);
+  case RU_PE: // 
+	return MACRO (T(SCROLLLOCK),T(G),T(SCROLLLOCK), END);
+  case RU_ER: // 
+	return MACRO (T(SCROLLLOCK),T(H),T(SCROLLLOCK), END);
+  case RU_O: // 
+	return MACRO (T(SCROLLLOCK),T(J),T(SCROLLLOCK), END);
+  case RU_EL: // 
+	return MACRO (T(SCROLLLOCK),T(K),T(SCROLLLOCK), END);
+  case RU_DE: // 
+	return MACRO (T(SCROLLLOCK),T(L),T(SCROLLLOCK), END);
+  case RU_ZHE: // 
+	return MACRO (T(SCROLLLOCK),T(SCOLON),T(SCROLLLOCK), END);
+  case RU_E: // 
+	return MACRO (T(SCROLLLOCK),T(QUOTE),T(SCROLLLOCK), END);
+
+	
+  case RU_YA: // 
+	return MACRO (T(SCROLLLOCK),T(Z),T(SCROLLLOCK), END);
+  case RU_CHE: // 
+	return MACRO (T(SCROLLLOCK),T(X),T(SCROLLLOCK), END);
+  case RU_ES: // 
+	return MACRO (T(SCROLLLOCK),T(C),T(SCROLLLOCK), END);
+  case RU_EM: // 
+	return MACRO (T(SCROLLLOCK),T(V),T(SCROLLLOCK), END);
+  case RU_I: // 
+	return MACRO (T(SCROLLLOCK),T(B),T(SCROLLLOCK), END);
+  case RU_TE: // 
+	return MACRO (T(SCROLLLOCK),T(N),T(SCROLLLOCK), END);
+  case RU_SOFTSIGN: // 
+	return MACRO (T(SCROLLLOCK),T(M),T(SCROLLLOCK), END);
+  case RU_BE: // 
+	 return MACRO (T(SCROLLLOCK),T(COMMA),T(SCROLLLOCK), END);
+  case RU_YU: // 
+	return MACRO (T(SCROLLLOCK),T(DOT),T(SCROLLLOCK), END);
+
+	
   case M_EMACS_SELECT: // Emacs: reset the selection and activate a new one
     return MACRO(D(LCTL),T(G),T(SPC),U(LCTL),END);
   case M_VRSN:
@@ -338,38 +478,35 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
   case M_LAYER_IS_KEYMACS:
     SEND_STRING ("Layer is Keymacs [0]");
     break;
-  case M_LAYER_IS_AUXCHARS:
-    SEND_STRING ("Layer is Aux Chars [1]");
-    break;
   case M_LAYER_IS_RUSSIAN:
-    SEND_STRING ("Layer is Russian [2]");
+    SEND_STRING ("Layer is Russian [1]");
     break;
-  case M_LAYER_IS_AUXCHARS_RU:
-    SEND_STRING ("Layer is Aux Chars Rus [3]");
+  case M_LAYER_IS_AUXCHARS:
+    SEND_STRING ("Layer is Aux Chars [2]");
     break;
   case M_LAYER_IS_MOUSE:
-    SEND_STRING ("Layer is Mouse [4]");
+    SEND_STRING ("Layer is Mouse [3]");
     break;
   case M_LAYER_IS_QWERTY:
-    SEND_STRING ("Layer is QWERTY [5]");
+    SEND_STRING ("Layer is QWERTY [4]");
     break;
   case M_LAYER_IS_NUMPAD:
-    SEND_STRING ("Layer is Numpad [6]");
+    SEND_STRING ("Layer is Numpad [5]");
     break;
   case M_LAYER_IS_CONTROL:
-    SEND_STRING ("Layer is Control [7]");
+    SEND_STRING ("Layer is Control [6]");
     break;
   case M_LAYER_IS_MEDIA:
-    SEND_STRING ("Layer is Media and Color [8]");
+    SEND_STRING ("Layer is Media and Color [7]");
     break;
   case M_LAYER_IS_FN:
-    SEND_STRING ("Layer is Function keys [9]");
+    SEND_STRING ("Layer is Function keys [8]");
     break;
   case M_LAYER_IS_SYMBOLS:
-    SEND_STRING ("Layer is Symbols [A]");
+    SEND_STRING ("Layer is Symbols [9]");
     break;
   case M_LAYER_IS_WM:
-    SEND_STRING ("Layer is WM [B]");
+    SEND_STRING ("Layer is WM [A]");
     break;
   }}
   return MACRO_NONE;
@@ -389,6 +526,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 	}
 	return false;
 	break;
+	
   case RGB_SLD:
 	if (record->event.pressed) {
 	  rgblight_mode(1);
@@ -448,8 +586,15 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 	}
 	return false;
 	break;
-    
+	
+  case XKB:
+	if (record->event.pressed) {
+	  SEND_STRING ("setxkbmap -layout 'us,ru(typewriter)' -option grp:sclk_toggle -option lv3:caps_switch -option misc:typo");
+	}
+	return false;
+	break;
   }
+  
   return true;
 }
 
@@ -468,54 +613,69 @@ void matrix_scan_user(void) {
     switch (layer) {
     case LAYER_KEYMACS:
 	  //      rgblight_task();
-	  if (old_layer == LAYER_RUSSIAN) {
-		register_code(KC_LALT); // switch to English
-		unregister_code(KC_LALT); // switch to English
-	  }
+	  /* if (old_layer == LAYER_RUSSIAN) { */
+	  /* 	register_code(KC_LALT); // switch to English */
+	  /* 	unregister_code(KC_LALT); // switch to English */
+	  /* } */
 	  rgblight_show_solid_color(0,0,0);
       break;      
     case LAYER_RUSSIAN:
-	  register_code(KC_RALT); // switch to Russian
-	  unregister_code(KC_RALT); // switch to Russian
+	  /* register_code(KC_RALT); // switch to Russian */
+	  /* unregister_code(KC_RALT); // switch to Russian */
       ergodox_right_led_1_on();
       ergodox_right_led_3_on();
+#ifdef RGBLIGHT_ENABLE
       rgblight_show_solid_color(0xff,0x00,0xff);
+#endif
       break;
     case LAYER_AUXCHARS:
-    case LAYER_AUXCHARS_RU:	  
       ergodox_right_led_2_on();
-      rgblight_show_solid_color(0x00,0xff,0x00);      
+#ifdef RGBLIGHT_ENABLE
+      rgblight_show_solid_color(0x00,0xff,0x00);
+#endif	  
       break;
     case LAYER_MOUSE:
       ergodox_right_led_1_on();
       ergodox_right_led_2_on();
+#ifdef RGBLIGHT_ENABLE
 	  rgblight_effect_christmas();
+#endif	  
       break;
     case LAYER_NUMPAD:
       ergodox_right_led_3_on();
-      rgblight_show_solid_color(0x00,0x00,0xff);      
+#ifdef RGBLIGHT_ENABLE	  
+      rgblight_show_solid_color(0x00,0x00,0xff);
+#endif	  
       break;
     case LAYER_CONTROL:
       ergodox_right_led_1_on();
+#ifdef RGBLIGHT_ENABLE
       rgblight_show_solid_color(0xff,0x00,0x00);
+#endif
       break;
     case LAYER_FN:
       ergodox_right_led_2_on();
       ergodox_right_led_3_on();
+#ifdef RGBLIGHT_ENABLE
       rgblight_show_solid_color(0x00,0xff,0xff);
+#endif	  
       break;
     case LAYER_WM:
       ergodox_right_led_1_on();
       ergodox_right_led_2_on();
       ergodox_right_led_3_on();
+#ifdef RGBLIGHT_ENABLE
 	  // rgblight_effect_christmas();
-      rgblight_show_solid_color(0x11,0xff,0x33);	  
+      rgblight_show_solid_color(0x11,0xff,0x33);
+#endif	  
       break;
     default:
       ergodox_right_led_1_on();
       ergodox_right_led_2_on();	    
       ergodox_right_led_3_on();
+#ifdef RGBLIGHT_ENABLE
       rgblight_show_solid_color(0x20,0x20,0x10);
+#endif
      }
 	old_layer = layer;
 };
