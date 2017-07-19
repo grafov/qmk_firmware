@@ -1,6 +1,6 @@
 TAP_DANCE_ENABLE = yes
 #UNICODE_ENABLE = yes
-UCIS_ENABLE = yes
+#UCIS_ENABLE = yes
 #UNICODEMAP_ENABLE = yes
 
 IMAGE:=ergodox_ez_grafov.hex

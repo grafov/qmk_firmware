@@ -10,6 +10,11 @@
 // Just for aesthetics
 #define _____ KC_TRANSPARENT
 #define XXXXX KC_NO
+#define SCLK register_code(KC_SCROLLLOCK);unregister_code(KC_SCROLLLOCK);
+#define RU(kc) SCLK register_code(kc);unregister_code(kc); SCLK
+
+
+#define LTRU 0x7100
 
 // Layer names
 enum {
@@ -28,10 +33,13 @@ enum {
 
 enum custom_keycodes {
   PLACEHOLDER = SAFE_RANGE, // can always be here  
-  LAT,
-  RUS,  
   EPRM,
   VRSN,
+
+  LTRU_AUX_LEFT,
+  LTRU_AUX_RIGHT,
+  LTRU_NUM_LEFT,
+  LTRU_NUM_RIGHT,
 
   RGB_SLD,
   RGB_FF0000,  
@@ -148,8 +156,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [LAYER_RUSSIAN] = KEYMAP(// left fingers
 			  KC_ESCAPE,_____,KC_9,KC_2,KC_6,_____,_____,
 			  KC_LALT,M(RU_SHORTI),M(RU_TSE),M(RU_U),M(RU_KA),RALT_T(M(RU_IE)),_____,
-			  KC_LCTL,LT(LAYER_AUXCHARS,M(RU_EF)),M(RU_YERU),M(RU_VE),M(RU_A),RCTL_T(M(RU_PE)),
-			  KC_LSHIFT,LT(LAYER_NUMPAD,M(RU_YA)),M(RU_CHE),M(RU_ES),M(RU_EM),SFT_T(M(RU_I)),_____,
+			  KC_LCTL,LTRU_AUX_LEFT,M(RU_YERU),M(RU_VE),M(RU_A),RCTL_T(M(RU_PE)),
+			  KC_LSHIFT,LTRU_NUM_LEFT,M(RU_CHE),M(RU_ES),M(RU_EM),SFT_T(M(RU_I)),_____,
 			  TO(LAYER_KEYMACS),_____,_____,_____,_____,
 			  // left thumb
 			  _____,_____,_____,
@@ -157,14 +165,34 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 			  // right fingers
 			  M(M_LAYER_IS_RUSSIAN),_____,M(KC_7),M(KC_LBRACKET),M(KC_MINUS),_____,_____,
 			  _____,LALT_T(M(RU_EN)),M(RU_GHE),M(RU_SHA),M(RU_SHCHA),M(RU_ZE),KC_RALT,
-			  LCTL_T(M(RU_ER)),M(RU_O),M(RU_EL),M(RU_DE),LT(LAYER_AUXCHARS,M(RU_ZHE)),KC_RCTL,
-			  _____,SFT_T(M(RU_TE)),TD(TD_SHSIG),M(RU_SOFTSIGN),M(RU_BE),LT(LAYER_NUMPAD,M(RU_YU)),KC_RSHIFT,
+			  LCTL_T(M(RU_ER)),M(RU_O),M(RU_EL),M(RU_DE),LTRU_AUX_RIGHT,KC_RCTL,
+			  _____,SFT_T(M(RU_TE)),TD(TD_SHSIG),M(RU_BE),M(RU_YU),LTRU_NUM_RIGHT,KC_RSHIFT,
 			  _____,_____,_____,_____,_____,
 			  // right thumb
 			  _____,_____,_____,
 			  _____,_____,_____),
 
-  // Programmer layer
+/* Symbol Layer
+ *
+ * ,--------------------------------------------------.           ,--------------------------------------------------.
+ * |        |   `  |   ?  |   -  |   :  |   +  |      |           |      |   *  |   ;  |   "  |   !  |   =  |   BSP  |
+ * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
+ * |        |      |   ^  |   #  |   [  |      |      |           |      |      |   ]  |   $  |   %  |      |        |
+ * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
+ * |        |      |   &  |   {  |   (  |      |------|           |------|      |   )  |   }  |   _  |      |        |
+ * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
+ * |        |      |   <  |   ~  |   @  |      |      |           |      |      |   =  |   \  |   |  |   /  |        |
+ * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
+ *   |      |      |      |      |      |                                       |      |      |      |      |      |
+ *   `----------------------------------'                                       `----------------------------------'
+ *                                        ,-------------.       ,-------------.
+ *                                        |      |      |       |TOG   |
+ *                                 ,------|------|------|       |------+------+------.
+ *                                 |VAI   |VAD   |HUI   |       |SAI   |      |MOD   |
+ *                                 |      |      |------|       |------|      |      |
+ *                                 |      |      |HUD   |       |SAD   |      |      |
+ *                                 `--------------------'       `--------------------'
+ */  
   [LAYER_AUXCHARS] = KEYMAP(// left fingers
 			  M(M_VRSN),KC_GRAVE,KC_QUES,KC_MINUS,TD(TD_ASSIGN),KC_PLUS,_____,
 			  KC_LALT,_____,KC_CIRC,KC_HASH,KC_LBRACKET,_____,_____,
@@ -183,27 +211,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 			  // right thumb
 			  _____,_____,_____,
 			  _____,_____,LT(LAYER_CONTROL,KC_SPACE)),
-
-
-  // Copy of Programmer layer but when Russian layout is turned on it should map chars in other way
-  /* [LAYER_AUXCHARS_RU] = KEYMAP(// left fingers */
-  /* 			  M(M_VRSN),KC_GRAVE,KC_9,KC_2,KC_6,KC_PLUS,_____, */
-  /* 			  KC_LALT,KC_1,KC_CIRC,KC_HASH,KC_LBRACKET,_____,_____, */
-  /* 			  KC_LCTL,_____,KC_AMPR,KC_LCBR,LSFT(KC_BSLASH),_____, */
-  /* 			  KC_LSHIFT,_____,KC_LABK,KC_TILD,KC_AT,_____,_____, */
-  /* 			  _____,_____,_____,_____,_____, */
-  /* 			  // left thumb */
-  /* 			  _____,_____,_____, */
-  /* 			  LT(LAYER_CONTROL,KC_SPACE),_____,_____, */
-  /* 			  // right fingers */
-  /* 			  M(M_LAYER_IS_AUXCHARS),_____,KC_7,KC_LBRACKET,KC_MINUS,KC_EQUAL,_____, */
-  /* 			  _____,KC_RABK,KC_RBRACKET,KC_DLR,KC_PERC,_____,KC_RALT, */
-  /* 			  _____,KC_BSLASH,KC_RCBR,KC_UNDS,_____,KC_RCTRL, */
-  /* 			  _____,KC_ENTER,KC_EQUAL,KC_BSLASH,KC_PIPE,_____,KC_RSHIFT, */
-  /* 			  _____,_____,_____,_____,_____, */
-  /* 			  // right thumb */
-  /* 			  _____,_____,_____, */
-  /* 			  _____,_____,LT(LAYER_CONTROL,KC_SPACE)), */
 
   // Mouse control
   [LAYER_MOUSE] = KEYMAP(// left fingers
@@ -361,47 +368,34 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 };
 
-const qk_ucis_symbol_t ucis_symbol_table[] = UCIS_TABLE
-(
- UCIS_SYM("poop", 0x1f4a9),
- UCIS_SYM("rofl", 0x1f923),
- UCIS_SYM("kiss", 0x1f619),
- UCIS_SYM("snowman", 0x2603),
- UCIS_SYM("coffee", 0x2615),
- UCIS_SYM("heart", 0x2764),
- UCIS_SYM("bolt", 0x26a1),
- UCIS_SYM("pi", 0x03c0),
- UCIS_SYM("mouse", 0x1f401),
- UCIS_SYM("micro", 0x00b5),
- UCIS_SYM("tm", 0x2122)
-);
+/* const qk_ucis_symbol_t ucis_symbol_table[] = UCIS_TABLE */
+/* ( */
+/*  UCIS_SYM("poop", 0x1f4a9), */
+/*  UCIS_SYM("rofl", 0x1f923), */
+/*  UCIS_SYM("kiss", 0x1f619), */
+/*  UCIS_SYM("snowman", 0x2603), */
+/*  UCIS_SYM("coffee", 0x2615), */
+/*  UCIS_SYM("heart", 0x2764), */
+/*  UCIS_SYM("bolt", 0x26a1), */
+/*  UCIS_SYM("pi", 0x03c0), */
+/*  UCIS_SYM("mouse", 0x1f401), */
+/*  UCIS_SYM("micro", 0x00b5), */
+/*  UCIS_SYM("tm", 0x2122) */
+/* ); */ 
 
 const uint16_t PROGMEM fn_actions[] = {
-  [1] = ACTION_LAYER_TAP_TOGGLE(1)
+  //  [1] = ACTION_LAYER_TAP_TOGGLE(1)
 };
 
 
 // Runs just one time when the keyboard initializes.
-void matrix_init_user(void) {
-  set_unicode_input_mode(UC_LNX);
-}
+/* void matrix_init_user(void) { */
+/*   set_unicode_input_mode(UC_LNX); */
+/* } */
 
 // leaving this in place for compatibilty with old keymaps cloned and re-compiled.
 const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
 {
-  if (!record->event.pressed) {
-	switch(id) {
-	case RU_EF: // Ф
-	  //	  return MACRO (T(SCROLLLOCK),T(A),T(SCROLLLOCK), END);
-	  register_code(KC_SCROLLLOCK);	  
-	  unregister_code(KC_SCROLLLOCK);	  
-	  register_code(KC_A);
-	  unregister_code(KC_A);
-	  register_code(KC_SCROLLLOCK);	  
-	  unregister_code(KC_SCROLLLOCK);	  
-	  return MACRO_NONE;
-	}
-  }
   
   if (record->event.pressed) {
   switch(id) {
@@ -433,7 +427,7 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
   case RU_VE: // 
 	return MACRO (T(SCROLLLOCK),T(D),T(SCROLLLOCK), END);
   case RU_A: // 
-	return MACRO (T(SCROLLLOCK),T(A),T(SCROLLLOCK), END);
+	return MACRO (T(SCROLLLOCK),T(F),T(SCROLLLOCK), END);
   case RU_PE: // 
 	return MACRO (T(SCROLLLOCK),T(G),T(SCROLLLOCK), END);
   case RU_ER: // 
@@ -444,8 +438,8 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
 	return MACRO (T(SCROLLLOCK),T(K),T(SCROLLLOCK), END);
   case RU_DE: // 
 	return MACRO (T(SCROLLLOCK),T(L),T(SCROLLLOCK), END);
-  case RU_ZHE: // 
-	return MACRO (T(SCROLLLOCK),T(SCOLON),T(SCROLLLOCK), END);
+	//  case RU_ZHE: // 
+	//	return MACRO (T(SCROLLLOCK),T(SCOLON),T(SCROLLLOCK), END);
   case RU_E: // 
 	return MACRO (T(SCROLLLOCK),T(QUOTE),T(SCROLLLOCK), END);
 
@@ -513,7 +507,58 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-  switch (keycode) {
+  static bool layer_interrupted = false;
+  
+  switch (keycode) {	  
+  case LTRU_AUX_LEFT: // for Russian layer
+	if (record->event.pressed) {
+	  layer_interrupted = false;
+	  layer_on(LAYER_AUXCHARS);
+	} else {
+	  if (!layer_interrupted) {
+		RU(KC_A); // ф
+	  }
+	  layer_off(LAYER_AUXCHARS);
+	}
+	return false;
+	break;
+  case LTRU_AUX_RIGHT: // for Russian layer
+	if (record->event.pressed) {
+	  layer_interrupted = false;
+	  layer_on(LAYER_AUXCHARS);
+	} else {
+	  if (!layer_interrupted) {
+		RU(KC_SCOLON); // ж
+	  }
+	  layer_off(LAYER_AUXCHARS);
+	}
+	return false;
+	break;
+  case LTRU_NUM_LEFT: // for Russian layer 
+	if (record->event.pressed) {
+	  layer_interrupted = false;
+	  layer_on(LAYER_NUMPAD);
+	} else {
+	  if (!layer_interrupted) {
+		RU(KC_Z); // я
+	  }
+	  layer_off(LAYER_NUMPAD);
+	}
+	return false;
+	break;
+  case LTRU_NUM_RIGHT: // for Russian layer
+	if (record->event.pressed) {
+	  layer_interrupted = false;
+	  layer_on(LAYER_NUMPAD);
+	} else {
+	  if (!layer_interrupted) {
+		RU(KC_QUOTE); // э
+	  }
+	  layer_off(LAYER_NUMPAD);
+	}
+	return false;
+	break;
+	
   case EPRM:
 	if (record->event.pressed) {
 	  eeconfig_init();
@@ -593,6 +638,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 	}
 	return false;
 	break;
+
+    default: {
+      layer_interrupted = true;
+      break;
+    }
+	
   }
   
   return true;
