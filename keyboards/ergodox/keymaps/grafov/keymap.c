@@ -800,3 +800,31 @@ qk_tap_dance_action_t tap_dance_actions[] = {
   [TD_SHSIG] = ACTION_TAP_DANCE_FN(dance_shsig),
   [TD_ASSIGN] = ACTION_TAP_DANCE_FN(dance_assign),
 };
+
+// https://github.com/qmk/qmk_firmware/issues/303
+/* #define CTL_T_CUSTOM 0x7101 */
+
+/* bool ctl_t_interrupted = false; */
+
+/* bool process_record_user(uint16_t keycode, keyrecord_t *record) { */
+/*     switch(keycode) { */
+/*       case CTL_T_CUSTOM: { */
+/*       if (record->event.pressed) { */
+/*         ctl_t_interrupted = false; */
+/*         register_code(KC_LCTL); */
+/*       } else { */
+/*         unregister_code(KC_LCTL); */
+/*         if (!ctl_t_interrupted) { */
+/*           register_code(KC_V); */
+/*           unregister_code(KC_V); */
+/*         } */
+/*       } */
+/*       return false; */
+/*       break; */
+/*     } */
+/*     default: { */
+/*       ctl_t_interrupted = true; */
+/*       break; */
+/*     } */
+/* } */
+	
