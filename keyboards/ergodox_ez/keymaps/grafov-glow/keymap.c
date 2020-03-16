@@ -57,18 +57,11 @@ enum custom_keycodes
 {
    PLACEHOLDER = SAFE_RANGE,      // can always be here
    RU_ASTR,
-};
-
-// Macros IDs
-enum
-{
-   M_EMACS_SELECT = 0,
-   M_EMACS_BLOCK_SELECT,
+   EMACS_SELECT,
+   EMACS_BLOCK_SELECT,
    M_RUASTR,
    ACCENT,
    RU_NOSIGN,
-   M_WMDOWN,
-   M_WMUP,
 };
 
 //Tap Dance Declarations
@@ -114,10 +107,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
 	  KC_ESCAPE,                                                          KC_GRAVE,             KC_COLON,         KC_MINUS,         KC_EXLM,                KC_PLUS,              LCTL(KC_G),
 	  KC_LALT,                                                            LT(LAYER_NUMPAD,      KC_Q),            KC_B,             KC_P,                   KC_F,                 ALT_T(KC_G),              OSL(LAYER_WM),
 	  KC_LCTL,                                                            LT(LAYER_AUXCHARS,    KC_R),            KC_A,             KC_E,                   KC_N,                 RCTL_T(KC_S),
-	  KC_LSHIFT,                                                          LSFT_T(KC_Z),         KC_COMMA,         KC_U,             KC_K,                   LT(LAYER_CONTROL,     KC_J),                    M(M_EMACS_SELECT),
+	  KC_LSHIFT,                                                          LSFT_T(KC_Z),         KC_COMMA,         KC_U,             KC_K,                   LT(LAYER_CONTROL,KC_J),                   EMACS_SELECT,
 	  TG(LAYER_KEYMACS),                                                  TG(LAYER_GAME),       KC_LGUI,          KC_UNDS,          LSFT_T(KC_TAB),
 	  // left thumb
-	  M(M_EMACS_BLOCK_SELECT),                                            KC_WWW_BACK,          LCTL(KC_V),
+	  EMACS_BLOCK_SELECT,                                            KC_WWW_BACK,          LCTL(KC_V),
 	  LT(LAYER_CONTROL,                                                   KC_SPACE),            LT(LAYER_MOUSE,   KC_TAB),          KC_INS,
 	  // right finger
 	  TG(LAYER_NUMPAD),                                                   KC_ASTR,              KC_QUES,          KC_DQUO,          KC_SCOLON,              KC_EQUAL,             KC_BSPACE,
@@ -153,8 +146,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
    [LAYER_AUXCHARS] = LAYOUT_ergodox(
 	  // left fingers
 	  _____,                                                               TD(TD_GRAVEACCENT),   KC_COLON,         KC_MINUS,         KC_EXLM,                KC_PLUS,              _____,
-	  KC_LALT,                                                            M(ACCENT),            KC_PERC,          KC_LBRACKET,      KC_RBRACKET,            XXXXX,                _____,
-	  KC_LCTL,                                                            M(RU_NOSIGN),         KC_UNDS,          KC_LPRN,          KC_RPRN,                XXXXX,
+	  KC_LALT,                                                            ACCENT,            KC_PERC,          KC_LBRACKET,      KC_RBRACKET,            XXXXX,                _____,
+	  KC_LCTL,                                                            RU_NOSIGN,         KC_UNDS,          KC_LPRN,          KC_RPRN,                XXXXX,
 	  KC_LSHIFT,                                                          XXXXX,                KC_LABK,          KC_AT,            KC_TILD,                KC_ENTER,             _____,
 	  _____,                                                              _____,                _____,            _____,            KC_TAB,
 	  // left thumb
@@ -208,7 +201,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
 	  KC_LSHIFT,                                                          LSFT_T(KC_Z),         KC_6,             KC_C,             KC_V,                   LT(LAYER_AUXCHARS_RU, KC_B),                    _____,
 	  TO(LAYER_KEYMACS),                                                  TO(LAYER_KEYMACS),    _____,            KC_UNDS,          _____,
 	  // left thumb=======
-	  M(M_EMACS_BLOCK_SELECT),                                            KC_WWW_BACK,          KC_PLUS,
+	  EMACS_BLOCK_SELECT,                                            KC_WWW_BACK,          KC_PLUS,
 	  LT(LAYER_CONTROL,                                                   KC_SPACE),            LT(LAYER_MOUSE,   KC_TAB),          KC_INS,
 	  // right fingers
 	  _____,                                                              RU_ASTR,              KC_9,             TD(TD_HE),        TD(TD_SCHCOLON),        TD(TD_RELKILAPKI),    _____,
@@ -243,7 +236,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
 	*/
    [LAYER_AUXCHARS_RU] = LAYOUT_ergodox(     // left fingers
 	  _____,                                                            TD(TD_GRAVEACCENT),   KC_COLON,         KC_MINUS,         KC_EXLM,                KC_PLUS,              _____,
-	  KC_LALT,                                                            M(ACCENT),            KC_PERC,          KC_LBRACKET,      KC_RBRACKET,            _____,                _____,
+	  KC_LALT,                                                            ACCENT,            KC_PERC,          KC_LBRACKET,      KC_RBRACKET,            _____,                _____,
 	  KC_LCTL,                                                            XXXXX,                KC_UNDS,          KC_LPRN,          KC_RPRN,                KC_NO,
 	  KC_LSHIFT,                                                          XXXXX,                KC_LABK,          KC_AT,            KC_TILD,                KC_ENTER,             _____,
 	  _____,                                                              _____,                _____,            SFT_T(KC_9),      KC_TAB,
@@ -253,7 +246,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
 	  // right fingers
 	  _____,                                                              KC_ASTR,              KC_QUES,          KC_LBRACKET,      KC_SCOLON,              KC_EQUAL,             _____,
 	  _____,                                                              KC_PIPE,              KC_CIRC,          KC_DLR,           KC_AMPR,                KC_QUOTE,             KC_RALT,
-	  M(RU_NOSIGN),                                                       KC_LCBR,              KC_RCBR,          KC_HASH,          KC_NO,                  KC_RCTRL,
+	  RU_NOSIGN,                                                       KC_LCBR,              KC_RCBR,          KC_HASH,          KC_NO,                  KC_RCTRL,
 	  OSL(LAYER_FN),                                                      KC_ENTER,             KC_EQUAL,         KC_BSLASH,        KC_RABK,                KC_SLASH,             KC_RSHIFT,
 	  KC_TAB,                                                             _____,                _____,            _____,            _____,
 	  // right thumb
@@ -301,7 +294,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
 	*/
    [LAYER_NUMPAD] = LAYOUT_ergodox(     // left fingers
 	  KC_NUMLOCK,                                                         TD(TD_GRAVEACCENT),   KC_COLON,         KC_MINUS,         KC_EXLM,                KC_PLUS,              _____,
-	  KC_LALT,                                                            M(ACCENT),            KC_PERC,          KC_LBRACKET,      KC_RBRACKET,            XXXXX,                _____,
+	  KC_LALT,                                                            ACCENT,            KC_PERC,          KC_LBRACKET,      KC_RBRACKET,            XXXXX,                _____,
 	  KC_LCTL,                                                            XXXXX,                KC_UNDS,          KC_LPRN,          KC_RPRN,                XXXXX,
 	  KC_LSHIFT,                                                          XXXXX,                KC_LABK,          KC_AT,            KC_TILD,                KC_TAB,               _____,
 	  _____,                                                              _____,                _____,            _____,            _____,
@@ -311,7 +304,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
 	  // right fingers
 	  _____,                                                              KC_KP_ASTERISK,       KC_7,             KC_8,             KC_9,                   KC_EQUAL,             KC_BSPACE,
 	  KC_NUMLOCK,                                                         KC_PIPE,              KC_4,             KC_5,             KC_6,                   KC_QUOTE,             KC_RALT,
-	  M(RU_NOSIGN),                                                       KC_1,                 KC_2,             KC_3,             KC_KP_MINUS,            KC_RCTRL,
+	  RU_NOSIGN,                                                       KC_1,                 KC_2,             KC_3,             KC_KP_MINUS,            KC_RCTRL,
 	  KC_KP_SLASH,                                                        KC_KP_ENTER,          KC_KP_EQUAL,      KC_0,             KC_KP_DOT,              _____,                KC_RSHIFT,
 	  _____,                                                              _____,                _____,            _____,            _____,
 	  // right thumb
@@ -382,7 +375,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
 	*/
    [LAYER_FN] = LAYOUT_ergodox(     // left fingers
 	  KC_NUMLOCK,                                                         TD(TD_GRAVEACCENT),   KC_COLON,         TD(TD_DASH),      KC_EXLM,                KC_PLUS,              _____,
-	  KC_LALT,                                                            M(ACCENT),            KC_PERC,          KC_LBRACKET,      KC_RBRACKET,            KC_NO,                _____,
+	  KC_LALT,                                                            ACCENT,            KC_PERC,          KC_LBRACKET,      KC_RBRACKET,            KC_NO,                _____,
 	  KC_LCTL,                                                            KC_NO,                KC_UNDS,          KC_LPRN,          KC_RPRN,                KC_NO,
 	  KC_LSHIFT,                                                          KC_NO,                KC_LABK,          KC_AT,            KC_TILD,                KC_TAB,               _____,
 	  TO(LAYER_KEYMACS),                                                  _____,                _____,            _____,            _____,
@@ -460,38 +453,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
 	  KC_DELETE,                                                          _____,                KC_SPACE),
 };
 
-// const uint16_t PROGMEM fn_actions[] = {
-//	[1] = ACTION_LAYER_TAP_TOGGLE(1)
-//  };
-
-
-// leaving this in place for compatibilty with old keymaps cloned and re-compiled.
-const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt) {
-   if(record->event.pressed){
-	  switch(id){
-		  case ACCENT:
-			 return(MACRO(D(CAPSLOCK), T(A), U(CAPSLOCK), END));
-
-		  case RU_NOSIGN:
-			 return(MACRO(T(SCROLLLOCK), T(3), T(SCROLLLOCK), END));
-
-		  case M_EMACS_SELECT:                                                                                                                                                                                                                                                                                                                                                                                                                           // Emacs: reset the selection and activate a new one
-			 return(MACRO(D(LCTL), T(G), T(SPC), U(LCTL), END));
-
-		  case M_EMACS_BLOCK_SELECT:                                                                                                                                                                                                                                                                                                                                                                                                                     // Emacs: reset the selection and activate a new block selection
-			 return(MACRO(D(LCTL), T(G), T(X), U(LCTL), T(SPC), END));
-
-		  case M_WMUP:
-			 return(MACRO(D(LALT), T(UP), U(LALT), END));
-
-		  case M_WMDOWN:
-			 return(MACRO(D(LALT), T(DOWN), U(LALT), END));
-
-	  }
-   }
-   return(MACRO_NONE);
-};
-
 static bool ingame = false;     // for GAME LAYER
 
 // implements user hook on the each key press/release
@@ -542,12 +503,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
 				// switch to English
 				TAP(LAT);
 				}
-			 // (set-prefix-key (kbd "C-s-t"))
-			 // register_code(KC_LCTL);
 			 register_code(KC_LGUI);
-			 // TAP(KC_T);
-			 //unregister_code(KC_LGUI);
-			 //unregister_code(KC_LCTL);
 			 break;
 			 }
 	  }
@@ -566,23 +522,19 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
 				 }
 			  break;
 
-//           case LAYER_RUSSIAN:
 		   case LAYER_KEYMACS:
 			  if(ingame && (keycode == KC_ENTER || keycode == KC_ESC)){
 				 ingame = false;
-//                 register_code(KC_DOT);
-				 //               unregister_code(KC_DOT);
 				 unregister_code(KC_ESC);
 				 register_code(KC_ENTER);
 				 unregister_code(KC_ENTER);
-//                 layer_off(LAYER_RUSSIAN);
 				 layer_off(LAYER_KEYMACS);
 				 layer_on(LAYER_GAME);
 				 return(false);
 				 }
+			  break;
 			  }
 	   }
-
 
    switch(keycode){
 	   case KC_LSHIFT:
@@ -593,7 +545,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
 			 }
 		  else{
 		   ergodox_right_led_3_off();
-			  shift_pressed = false;
+		  shift_pressed = false;
 			  }
 		  return(true);
 
@@ -643,6 +595,22 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
 			 unregister_code(LV3);
 			 }
 		  return(false);
+
+	  case ACCENT:
+			 SEND_STRING(SS_DOWN(X_CAPSLOCK) "a" SS_UP(X_CAPSLOCK));
+			 return(false);
+
+	  // case RU_NOSIGN:
+	  //		 SEND_STRING(SS_TAP(X_SCROLLLOCK), "3", SS_TAP(X_SCROLLLOCK));
+	  //		 return(false);
+
+	  case EMACS_SELECT:              // Emacs: reset the selection and activate a new one
+			 SEND_STRING(SS_LCTL("g "));
+			 return(false);
+
+	  case EMACS_BLOCK_SELECT:
+			 SEND_STRING(SS_LCTL("gx") " ");
+			 return(false);
    }
 
    return(true);
