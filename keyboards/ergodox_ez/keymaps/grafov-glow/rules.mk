@@ -10,12 +10,17 @@ KEYLOGGER_ENABLE = no
 UCIS_ENABLE = no
 MOUSEKEY_ENABLE = yes
 AUTOLOG_ENABLE = no
-RGBLIGHT_ENABLE = yes
-RGBLIGHT_ANIMATION = yes
-EXTRAKEY_ENABLE = yes
-LEADER_ENABLE = yes
+EXTRAKEY_ENABLE = no
+LEADER_ENABLE = no
+
+RGBLIGHT_ENABLE = no
+RGBLIGHT_ANIMATION = no
+RGB_MATRIX_ENABLE = yes
 
 OPT_DEFS += -DUSER_PRINT
+
+# https://thomasbaart.nl/2018/12/01/reducing-firmware-size-in-qmk/
+EXTRAFLAGS += -flto
 
 KEYMAP_VERSION = $(shell \
  if [ -d "${KEYMAP_PATH}/.git" ]; then \
