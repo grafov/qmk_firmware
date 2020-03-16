@@ -17,7 +17,7 @@ RGBLIGHT_ENABLE = no
 RGBLIGHT_ANIMATION = no
 RGB_MATRIX_ENABLE = yes
 
-OPT_DEFS += -DUSER_PRINT
+# OPT_DEFS += -DUSER_PRINT
 
 # https://thomasbaart.nl/2018/12/01/reducing-firmware-size-in-qmk/
 EXTRAFLAGS += -flto
@@ -37,4 +37,11 @@ OPT_DEFS += -DKEYMAP_VERSION=\"$(KEYMAP_VERSION)\\\#$(KEYMAP_BRANCH)\"
 
 ifndef QUANTUM_DIR
 	include ../../../../Makefile
+endif
+
+ifeq ($(strip $(CONSOLE_ENABLE)), yes)
+	TMK_COMMON_DEFS += -DCONSOLE_ENABLE
+else
+	TMK_COMMON_DEFS += -DNO_PRINT
+	TMK_COMMON_DEFS += -DNO_DEBUG
 endif
