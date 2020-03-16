@@ -59,7 +59,7 @@ enum
 
 enum custom_keycodes
 {
-   PLACEHOLDER = EZ_SAFE_RANGE,           // can always be here
+   PLACEHOLDER = SAFE_RANGE,           // can always be here
    EPRM,
    VRSN,
    XKBHELP,
@@ -567,13 +567,13 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
           case RU_NOSIGN:
              return(MACRO(T(SCROLLLOCK), T(3), T(SCROLLLOCK), END));
 
-          case KEYNAV:                                                                                                                                                                                                                                    // run Keynav (it is non default keybinding)
+          case KEYNAV:                                                                                                                                                                                                                                                    // run Keynav (it is non default keybinding)
              return(MACRO(D(LCTL), D(LALT), T(N), U(LCTL), U(LALT), END));
 
-          case M_EMACS_SELECT:                                                                                                                                                                                                                           // Emacs: reset the selection and activate a new one
+          case M_EMACS_SELECT:                                                                                                                                                                                                                                           // Emacs: reset the selection and activate a new one
              return(MACRO(D(LCTL), T(G), T(SPC), U(LCTL), END));
 
-          case M_EMACS_BLOCK_SELECT:                                                                                                                                                                                                                     // Emacs: reset the selection and activate a new block selection
+          case M_EMACS_BLOCK_SELECT:                                                                                                                                                                                                                                     // Emacs: reset the selection and activate a new block selection
              return(MACRO(D(LCTL), T(G), T(X), U(LCTL), T(SPC), END));
 
           case M_WMUP:
@@ -736,7 +736,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
               }
           return(true);
 
-       case KC_LCTL:                                                                                                                                                                                                                                                                                                                                                                                                                                                            // when Ctl pressed in Russian layout temporary switch back to Latin layout
+       case KC_LCTL:                                                                                                                                                                                                                                                                                                                                                                                                                                                                    // when Ctl pressed in Russian layout temporary switch back to Latin layout
        case KC_RCTL:
 
        case KC_LALT:
