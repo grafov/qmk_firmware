@@ -583,24 +583,30 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
 			  }
 	   }
 
+
    switch(keycode){
 	   case KC_LSHIFT:
 	   case KC_RSHIFT:
+		  ergodox_right_led_3_on();
 		  if(record->event.pressed){
 			 shift_pressed = true;
 			 }
 		  else{
+		   ergodox_right_led_3_off();
 			  shift_pressed = false;
 			  }
 		  return(true);
 
-	   case KC_LCTL:                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            // when Ctl pressed in Russian layout temporary switch back to Latin layout
-	   case KC_RCTL:
-
+  // when Alt or Ctl pressed in Russian layout temporary switch back to Latin layout
+   case KC_LCTL:																																													case KC_RCTL:
+	  ergodox_right_led_2_on();
 	   case KC_LALT:
-	   // when Alt pressed in Russian layout temporary switch back to Latin layout
 	   case KC_RALT:
-	   //case KC_LGUI:
+		  if (keycode==KC_LALT||keycode==KC_RALT) ergodox_right_led_1_on();
+	   if(!record->event.pressed) {
+		ergodox_right_led_1_off();
+		   ergodox_right_led_2_off();
+	   }
 	   case KC_APP:
 		  if(backrus){
 			 if(!record->event.pressed){
@@ -646,104 +652,51 @@ uint32_t layer_state_set_user(uint32_t state)
 {
    uint8_t layer = biton32(state);
 
-#ifdef RGBLIGHT_ENABLE
-   ergodox_board_led_off();
-   ergodox_right_led_1_off();
-   ergodox_right_led_2_off();
-   ergodox_right_led_3_off();
-#endif
    switch(layer){
 	   case LAYER_KEYMACS:
-																																												 #ifdef RGBLIGHT_ENABLE
-		  if(ingame){
-			 ergodox_right_led_2_on();
-			 ergodox_right_led_3_on();
-			 }
-		  rgblight_show_solid_color(0, 0, 0);
-   #endif
 		  rgblight_mode(0);
 		  break;
 
 	   case LAYER_CONTROL:
-																																																								  #ifdef RGBLIGHT_ENABLE
-		  ergodox_right_led_1_on();
-		  rgblight_show_solid_color(0xff, 0x00, 0x00);
-																								  #endif
 		  rgblight_mode(1);
-		  rgblight_sethsv(96, 255, 255);
+		  rgblight_sethsv(HSV_RED);
 		  break;
 
 	   case LAYER_AUXCHARS:
-																				  #ifdef RGBLIGHT_ENABLE
-		  ergodox_right_led_3_on();
-		  rgblight_show_solid_color(0x00, 0x00, 0xff);
-																																																																																		  #endif
+		  rgblight_mode(1);
+		  rgblight_sethsv(HSV_AZURE);
 		  break;
 
 	   case LAYER_RUSSIAN:
-																				  #ifdef RGBLIGHT_ENABLE
-		  ergodox_right_led_1_on();
-		  ergodox_right_led_3_on();
-		  rgblight_show_solid_color(0xff, 0x00, 0xff);
-																				  #endif
 		  rgblight_mode(1);
-		  rgblight_sethsv(172, 255, 255);
+		  rgblight_sethsv(HSV_BLUE);
 		  break;
 
 	   case LAYER_AUXCHARS_RU:
-
-																				  #ifdef RGBLIGHT_ENABLE
-		  ergodox_right_led_3_on();
-		  rgblight_show_solid_color(0x00, 0x00, 0xff);
-																				  #endif
+		  rgblight_mode(1);
+		  rgblight_sethsv(HSV_MAGENTA);
 		  break;
 
 	   case LAYER_MOUSE:
-																					  #ifdef RGBLIGHT_ENABLE
-		  ergodox_right_led_1_on();
-		  ergodox_right_led_2_on();
-		  ergodox_right_led_1_on();
-		  rgblight_show_solid_color(0x22, 0x00, 0x00);
-		  //rgblight_effect_christmas();
-		  #endif
-		  // rgblight_mode(1);
-		  //rgb_matrix_set_color(96, 192, 192, 33);
+		  rgblight_mode(1);
+		  rgblight_sethsv(HSV_GOLD);
 		  break;
 
-		  ergodox_right_led_2_on();
-		  case LAYER_NUMPAD:
-																																																																								  #ifdef RGBLIGHT_ENABLE
-
-		  rgblight_show_solid_color(0x00, 0xff, 0x00);
-																																																																										  #endif
+	  case LAYER_NUMPAD:
+		  rgblight_mode(1);
+		  rgblight_sethsv(HSV_GREEN);
 		  break;
 
 	   case LAYER_FN:
-		  ergodox_right_led_2_on();
-		  ergodox_right_led_3_on();
-																								  #ifdef RGBLIGHT_ENABLE
-		  rgblight_show_solid_color(0x00, 0xa0, 0xa0);
-																																																																										  #endif
+		  rgblight_mode(1);
+		  rgblight_sethsv(HSV_PURPLE);
 		  break;
 
 	   case LAYER_WM:
-																								  #ifdef RGBLIGHT_ENABLE
-		  ergodox_right_led_1_on();
-		  ergodox_right_led_2_on();
-		  //ergodox_right_led_3_on();
-		  // rgblight_effect_christmas();
-		  rgblight_show_solid_color(0x99, 0x77, 0x0A);
-																																																																								  #endif
+		  rgblight_mode(1);
+		  rgblight_sethsv(HSV_ORANGE);
 		  break;
-
-																																																								  #ifdef RGBLIGHT_ENABLE
-	   default:
-		  ergodox_right_led_1_on();
-		  ergodox_right_led_2_on();
-		  ergodox_right_led_3_on();
-		  rgblight_show_solid_color(0x20, 0x20, 0x10);
-																																	  #endif
-		  }
+	  }
    return(state);
 };
 
