@@ -44,8 +44,8 @@
 #define DEBOUNCE    7
 
 // https://thomasbaart.nl/2018/12/01/reducing-firmware-size-in-qmk/
-#define NO_ACTION_MACRO
-#define NO_ACTION_FUNCTION
+// #define NO_ACTION_MACRO
+// #define NO_ACTION_FUNCTION
 
 #ifndef NO_DEBUG
 #define NO_DEBUG
@@ -54,6 +54,9 @@
 #define NO_PRINT
 #endif // !NO_PRINT
 
-#undef RGBLIGHT_ANIMATIONS
+#define DISABLE_RGB_MATRIX_DIGITAL_RAIN
+#define DISABLE_RGB_MATRIX_ALPHAS_MODS
+#define DISABLE_RGB_MATRIX_JELLYBEAN_RAINDROPS
+#define DISABLE_RGB_MATRIX_RAINDROPS
 
 #endif

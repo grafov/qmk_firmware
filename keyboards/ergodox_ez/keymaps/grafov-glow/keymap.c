@@ -632,7 +632,7 @@ uint32_t layer_state_set_user(uint32_t state)
 
 	   case LAYER_AUXCHARS:
 		  rgblight_mode(1);
-		  rgblight_sethsv(HSV_AZURE);
+		  rgblight_sethsv(96, 255, 255);
 		  break;
 
 	   case LAYER_RUSSIAN:
@@ -642,7 +642,7 @@ uint32_t layer_state_set_user(uint32_t state)
 
 	   case LAYER_AUXCHARS_RU:
 		  rgblight_mode(1);
-		  rgblight_sethsv(HSV_MAGENTA);
+		  rgblight_sethsv(96, 255, 255);
 		  break;
 
 	   case LAYER_MOUSE:
@@ -789,3 +789,4 @@ qk_tap_dance_action_t tap_dance_actions[] =
    [TD_SCHCOLON]    = ACTION_TAP_DANCE_DOUBLE(KC_O, KC_EQUAL),          // щ/:
    [TD_YO]          = ACTION_TAP_DANCE_DOUBLE(KC_SLASH, KC_TILD),       // ч/;
 };
+

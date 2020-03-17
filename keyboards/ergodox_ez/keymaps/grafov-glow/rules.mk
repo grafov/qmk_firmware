@@ -17,6 +17,9 @@ RGBLIGHT_ENABLE = no
 RGBLIGHT_ANIMATION = no
 RGB_MATRIX_ENABLE = yes
 
+LINK_TIME_OPTIMIZATION_ENABLE = yes
+WEBUSB_ENABLE = yes
+
 # OPT_DEFS += -DUSER_PRINT
 
 # https://thomasbaart.nl/2018/12/01/reducing-firmware-size-in-qmk/
