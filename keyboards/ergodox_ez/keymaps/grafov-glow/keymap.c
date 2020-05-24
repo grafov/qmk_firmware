@@ -395,20 +395,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
 
    // Gaming mode mostly for action games
    [LAYER_GAME] = LAYOUT_ergodox(     // left fingers
-      KC_ESCAPE,                                                          KC_1,               KC_2,             KC_3,             KC_4,                   KC_5,              KC_6,
-      KC_TAB,                                                             KC_LALT,            KC_Q,             KC_W,             KC_E,                   KC_T,              KC_0,
+      KC_ESCAPE,                                                          KC_1,               KC_2,             KC_3,             KC_4,                   KC_5,              KC_EQUAL,
+      KC_TAB,                                                             KC_LALT,            KC_Q,             KC_W,             KC_E,                   KC_T,              KC_H,
       KC_M,                                                               KC_LCTL,            KC_A,             KC_S,             KC_D,                   KC_F,
       KC_RSHIFT,                                                          KC_LSHIFT,          KC_Z,             KC_X,             KC_C,                   KC_V,              KC_G,
       KC_J,                                                               KC_L,               KC_TILD,          KC_LGUI,          KC_R,
       // left thumb
-      KC_B,                                                               KC_9,               _____,
+      KC_B,                                                               _____,              _____,
       KC_SPACE,                                                           KC_MS_BTN3,         KC_MS_BTN1,
       // right fingers
-      KC_7,                                                               KC_8,               KC_F7,            KC_F8,            KC_F9,                  KC_0,              KC_Y,
-      KC_I,                                                               KC_Y,               KC_F4,            KC_F5,            KC_F6,                  KC_P,              KC_U,
-      KC_H,                                                               KC_H,               KC_F1,            KC_F2,            KC_F3,                  KC_I,
-      _____,                                                              KC_N,               KC_F11,           KC_F10,           KC_F12,                 KC_SLASH,          KC_RSHIFT,
-      _____,                                                              KC_LEFT,            KC_UP,            TO(LAYER_QWERTY), TO(LAYER_KEYMACS),
+      KC_BSPACE,                                                          KC_6,               KC_7,             KC_8,             KC_9,                   KC_0,              RCTL(KC_Y),
+      KC_I,                                                               KC_O,               KC_F7,            KC_F8,            KC_F9,                  KC_W,              RCTL(KC_U),
+      KC_P,                                                               KC_F4,              KC_F5,            KC_F6,            KC_H,                   RCTL(KC_I),
+      _____,                                                              KC_N,               KC_F1,            KC_F2,            KC_F3,                  KC_SLASH,          KC_RSHIFT,
+      KC_F11,                                                             KC_F10,             KC_F12,           TO(LAYER_QWERTY), TO(LAYER_KEYMACS),
       // right thumb
       _____,                                                              _____,              _____,
       _____,                                                              KC_ENTER,           KC_SPACE),
@@ -464,147 +464,165 @@ void keyboard_post_init_user(void)
    rgb_matrix_enable();
 }
 
-#define COL_BLANK     { 0, 0, 0 }
-#define COL_WHITE     { 85, 30, 255 }
-#define COL_RED       { 0, 255, 180 }
-#define COLBRED       { 0, 255, 255 }
-#define COL_ORANGE    { 10, 255, 213 }
-#define COL_BLUE      { 134, 255, 213 }
-#define COL_PURPLE    { 234, 255, 158 }
-#define COL_GREEN     { 85, 255, 158 }
-#define COLBGREEN     { 85, 255, 255 }
-#define COL_TEAL      { 85, 203, 158 }
-#define COLBPURPLE    { 243, 222, 255 }
-#define COL_YELLOW    { 40, 255, 158 }
+#define BLANK_HSV      { 0, 0, 0 }
+#define WHITE_HSV      { 85, 30, 255 }
+#define DRED_HSV       { 0, 255, 64 }
+#define RED_HSV        { 0, 255, 158 }
+#define BRED_HSV       { 0, 255, 255 }
+#define ORANGE_HSV     { 10, 255, 213 }
+#define BLUE_HSV       { 134, 255, 213 }
+#define DBLUE_HSV      { 134, 255, 64 }
+#define PURPLE_HSV     { 234, 255, 158 }
+#define GREEN_HSV      { 85, 255, 158 }
+#define BGREEN_HSV     { 85, 255, 255 }
+#define TEAL_HSV       { 85, 203, 158 }
+#define BPURPLE_HSV    { 243, 222, 255 }
+#define YELLOW_HSV     { 40, 255, 158 }
 
 const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] =
 {
    [LAYER_KEYMACS] =
    {
    // right
-   COL_BLANK,  COL_BLANK, COL_BLANK, COL_BLANK, COL_BLANK,
-   COL_BLANK,  COL_BLANK, COL_BLANK, COL_BLANK, COL_TEAL,
-   COL_BLANK,  COL_BLANK, COL_BLANK, COL_BLANK, COL_BLUE,
-   COL_TEAL,   COL_BLANK, COL_BLANK, COL_BLANK, COL_BLANK,
-   COL_YELLOW, COL_BLANK, COL_BLANK, COL_BLANK,
+   BLANK_HSV,  BLANK_HSV, BLANK_HSV, BLANK_HSV, BLANK_HSV,
+   BLANK_HSV,  BLANK_HSV, BLANK_HSV, BLANK_HSV, TEAL_HSV,
+   BLANK_HSV,  BLANK_HSV, BLANK_HSV, BLANK_HSV, DBLUE_HSV,
+   TEAL_HSV,   BLANK_HSV, BLANK_HSV, BLANK_HSV, BLANK_HSV,
+   YELLOW_HSV, BLANK_HSV, BLANK_HSV, BLANK_HSV,
    // left mirrored
-   COL_BLANK,  COL_BLANK, COL_BLANK, COL_BLANK, COL_BLANK,
-   COL_BLANK,  COL_BLANK, COL_BLANK, COL_BLANK, COL_TEAL,
-   COL_BLANK,  COL_BLANK, COL_BLANK, COL_BLANK, COL_BLUE,
-   COL_RED,    COL_BLANK, COL_BLANK, COL_BLANK, COL_BLANK,
-   COL_BLANK,  COL_BLANK, COL_BLANK, COL_BLANK
+   BLANK_HSV,  BLANK_HSV, BLANK_HSV, BLANK_HSV, BLANK_HSV,
+   BLANK_HSV,  BLANK_HSV, BLANK_HSV, BLANK_HSV, TEAL_HSV,
+   BLANK_HSV,  BLANK_HSV, BLANK_HSV, BLANK_HSV, DBLUE_HSV,
+   DRED_HSV,   BLANK_HSV, BLANK_HSV, BLANK_HSV, BLANK_HSV,
+   BLANK_HSV,  BLANK_HSV, BLANK_HSV, BLANK_HSV
    },
 
    [LAYER_CONTROL] =
    {
    // right
-   COL_BLANK, COL_BLANK, COL_BLANK, COL_BLANK, COL_BLANK,
-   COL_BLANK, COL_BLANK, COL_BLANK, COL_BLANK, COL_BLANK,
-   COL_BLANK, COL_RED,   COL_RED,   COL_BLANK, COL_BLANK,
-   COL_BLANK, COL_RED,   COL_RED,   COL_RED,   COL_BLANK,
-   COL_BLANK, COL_BLANK, COL_BLANK, COL_BLANK,
+   BLANK_HSV, BLANK_HSV, BLANK_HSV, BLANK_HSV, BLANK_HSV,
+   BLANK_HSV, BLANK_HSV, BLANK_HSV, BLANK_HSV, BLANK_HSV,
+   BLANK_HSV, BRED_HSV,  BRED_HSV,  BLANK_HSV, BLANK_HSV,
+   BLANK_HSV, DRED_HSV,  DRED_HSV,  DRED_HSV,  BLANK_HSV,
+   BLANK_HSV, BLANK_HSV, BLANK_HSV, BLANK_HSV,
    // left mirrored
-   COL_BLANK, COL_BLANK, COL_BLANK, COL_BLANK, COL_BLANK,
-   COL_BLANK, COL_BLANK, COL_BLANK, COL_BLANK, COL_BLANK,
-   COL_BLANK, COL_RED,   COL_RED,   COL_BLANK, COL_BLANK,
-   COL_BLANK, COL_RED,   COL_RED,   COL_RED,   COL_BLANK,
-   COL_BLANK, COL_BLANK, COL_BLANK, COL_BLANK
+   BLANK_HSV, BLANK_HSV, BLANK_HSV, BLANK_HSV, BLANK_HSV,
+   BLANK_HSV, BLANK_HSV, BLANK_HSV, BLANK_HSV, BLANK_HSV,
+   BLANK_HSV, BRED_HSV,  BRED_HSV,  BLANK_HSV, BLANK_HSV,
+   BLANK_HSV, DRED_HSV,  DRED_HSV,  DRED_HSV,  BLANK_HSV,
+   BLANK_HSV, BLANK_HSV, BLANK_HSV, BLANK_HSV
    },
 
    [LAYER_AUX] =
    {
    // right
-   COL_BLANK, COL_BLANK, COL_BLANK, COL_BLANK, COL_BLANK,
-   COL_BLANK, COL_GREEN, COL_GREEN, COL_GREEN, COL_BLANK,
-   COL_BLANK, COL_GREEN, COL_GREEN, COL_GREEN, COL_BLANK,
-   COL_BLANK, COL_GREEN, COL_GREEN, COL_GREEN, COL_BLANK,
-   COL_BLANK, COL_BLANK, COL_BLANK, COL_BLANK,
+   DBLUE_HSV, DBLUE_HSV, DBLUE_HSV, DBLUE_HSV, DBLUE_HSV,
+   BLANK_HSV, DBLUE_HSV, DBLUE_HSV, DBLUE_HSV, BLANK_HSV,
+   BLANK_HSV, DBLUE_HSV, DBLUE_HSV, DBLUE_HSV, BLANK_HSV,
+   BLANK_HSV, DBLUE_HSV, DBLUE_HSV, DBLUE_HSV, BLANK_HSV,
+   BLANK_HSV, BLANK_HSV, BLANK_HSV, BLANK_HSV,
    // left mirrored
-   COL_BLANK, COL_BLANK, COL_BLANK, COL_BLANK, COL_BLANK,
-   COL_GREEN, COL_GREEN, COL_GREEN, COL_GREEN, COL_BLANK,
-   COL_GREEN, COL_GREEN, COL_GREEN, COL_GREEN, COL_BLANK,
-   COL_GREEN, COL_GREEN, COL_GREEN, COL_GREEN, COL_BLANK,
-   COL_BLANK, COL_BLANK, COL_BLANK, COL_BLANK
+   DBLUE_HSV, DBLUE_HSV, DBLUE_HSV, DBLUE_HSV, DBLUE_HSV,
+   BLANK_HSV, DBLUE_HSV, DBLUE_HSV, DBLUE_HSV, BLANK_HSV,
+   BLANK_HSV, DBLUE_HSV, DBLUE_HSV, DBLUE_HSV, BLANK_HSV,
+   BLANK_HSV, DBLUE_HSV, DBLUE_HSV, DBLUE_HSV, BLANK_HSV,
+   BLANK_HSV, BLANK_HSV, BLANK_HSV, BLANK_HSV
+   },
+
+   [LAYER_AUX_RU] =
+   {
+   // right
+   BLANK_HSV, BLANK_HSV, BLANK_HSV, BLANK_HSV, BLANK_HSV,
+   WHITE_HSV, DBLUE_HSV, DBLUE_HSV, DBLUE_HSV, BLANK_HSV,
+   BLUE_HSV,  DBLUE_HSV, DBLUE_HSV, DBLUE_HSV, BLANK_HSV,
+   RED_HSV,   DBLUE_HSV, DBLUE_HSV, DBLUE_HSV, BLANK_HSV,
+   BLANK_HSV, BLANK_HSV, BLANK_HSV, BLANK_HSV,
+   // left mirrored
+   BLANK_HSV, BLANK_HSV, BLANK_HSV, BLANK_HSV, BLANK_HSV,
+   WHITE_HSV, DBLUE_HSV, DBLUE_HSV, DBLUE_HSV, BLANK_HSV,
+   BLUE_HSV,  DBLUE_HSV, DBLUE_HSV, DBLUE_HSV, BLANK_HSV,
+   RED_HSV,   DBLUE_HSV, DBLUE_HSV, DBLUE_HSV, BLANK_HSV,
+   BLANK_HSV, BLANK_HSV, BLANK_HSV, BLANK_HSV
    },
 
    [LAYER_NUMPAD] =
    {
    // right
-   COL_BLANK, COL_GREEN, COL_GREEN, COL_GREEN, COL_BLANK,
-   COL_BLANK, COL_GREEN, COLBGREEN, COL_GREEN, COL_BLANK,
-   COL_BLANK, COL_GREEN, COL_GREEN, COL_GREEN, COL_BLANK,
-   COL_BLANK, COL_BLANK, COL_GREEN, COL_BLANK, COL_BLANK,
-   COL_BLANK, COL_BLANK, COL_BLANK, COL_BLANK,
+   BLANK_HSV, TEAL_HSV,  TEAL_HSV,  TEAL_HSV,  BLANK_HSV,
+   BLANK_HSV, TEAL_HSV,  GREEN_HSV, TEAL_HSV,  BLANK_HSV,
+   BLANK_HSV, TEAL_HSV,  TEAL_HSV,  TEAL_HSV,  BLANK_HSV,
+   BLANK_HSV, BLANK_HSV, TEAL_HSV,  BLANK_HSV, BLANK_HSV,
+   BLANK_HSV, BLANK_HSV, BLANK_HSV, BLANK_HSV,
    // left mirrored
-   COL_BLANK, COL_BLANK, COL_BLANK, COL_BLANK, COL_BLANK,
-   COL_BLANK, COL_BLANK, COL_BLANK, COL_BLANK, COL_BLANK,
-   COL_BLANK, COL_BLANK, COL_BLANK, COL_BLANK, COL_BLANK,
-   COL_BLANK, COL_BLANK, COL_BLANK, COL_BLANK, COL_BLANK,
-   COL_BLANK, COL_BLANK, COL_BLANK, COL_BLANK
+   BLANK_HSV, BLANK_HSV, BLANK_HSV, BLANK_HSV, BLANK_HSV,
+   BLANK_HSV, BLANK_HSV, BLANK_HSV, BLANK_HSV, BLANK_HSV,
+   BLANK_HSV, BLANK_HSV, BLANK_HSV, BLANK_HSV, BLANK_HSV,
+   BLANK_HSV, BLANK_HSV, BLANK_HSV, BLANK_HSV, BLANK_HSV,
+   BLANK_HSV, BLANK_HSV, BLANK_HSV, BLANK_HSV
    },
 
    [LAYER_RUSSIAN] =
    {
    // right
-   COL_BLANK, COL_BLANK, COL_BLANK, COL_BLANK, COL_BLANK,
-   COL_WHITE, COL_WHITE, COL_WHITE, COL_WHITE, COL_WHITE,
-   COL_BLUE,  COL_BLUE,  COL_BLUE,  COL_BLUE,  COL_BLUE,
-   COL_RED,   COL_RED,   COL_RED,   COL_RED,   COL_RED,
-   COL_BLANK, COL_BLANK, COL_BLANK, COL_BLANK,
+   BLANK_HSV, BLANK_HSV, BLANK_HSV, BLANK_HSV, BLANK_HSV,
+   WHITE_HSV, WHITE_HSV, WHITE_HSV, WHITE_HSV, WHITE_HSV,
+   BLUE_HSV,  BLUE_HSV,  BLUE_HSV,  BLUE_HSV,  BLUE_HSV,
+   RED_HSV,   RED_HSV,   RED_HSV,   RED_HSV,   RED_HSV,
+   BLANK_HSV, BLANK_HSV, BLANK_HSV, BLANK_HSV,
    // left mirrored
-   COL_BLANK, COL_BLANK, COL_BLANK, COL_BLANK, COL_BLANK,
-   COL_WHITE, COL_WHITE, COL_WHITE, COL_WHITE, COL_WHITE,
-   COL_BLUE,  COL_BLUE,  COL_BLUE,  COL_BLUE,  COL_BLUE,
-   COL_RED,   COL_RED,   COL_RED,   COL_RED,   COL_RED,
-   COL_BLANK, COL_BLANK, COL_BLANK, COL_BLANK
+   BLANK_HSV, BLANK_HSV, BLANK_HSV, BLANK_HSV, BLANK_HSV,
+   WHITE_HSV, WHITE_HSV, WHITE_HSV, WHITE_HSV, WHITE_HSV,
+   BLUE_HSV,  BLUE_HSV,  BLUE_HSV,  BLUE_HSV,  BLUE_HSV,
+   RED_HSV,   RED_HSV,   RED_HSV,   RED_HSV,   RED_HSV,
+   BLANK_HSV, BLANK_HSV, BLANK_HSV, BLANK_HSV
    },
 
    [LAYER_WM] =
    {
    // right
-   COL_BLANK, COL_ORANGE, COL_ORANGE, COL_ORANGE, COL_BLANK,
-   COL_BLANK, COL_ORANGE, COL_ORANGE, COL_ORANGE, COL_BLANK,
-   COL_BLANK, COL_ORANGE, COL_ORANGE, COL_ORANGE, COL_BLANK,
-   COL_BLANK, COL_BLANK,  COL_ORANGE, COL_BLANK,  COL_BLANK,
-   COL_BLANK, COL_BLANK,  COL_BLANK,  COL_BLANK,
+   BLANK_HSV, ORANGE_HSV, ORANGE_HSV, ORANGE_HSV, BLANK_HSV,
+   BLANK_HSV, ORANGE_HSV, ORANGE_HSV, ORANGE_HSV, BLANK_HSV,
+   BLANK_HSV, ORANGE_HSV, ORANGE_HSV, ORANGE_HSV, BLANK_HSV,
+   BLANK_HSV, BLANK_HSV,  ORANGE_HSV, BLANK_HSV,  BLANK_HSV,
+   BLANK_HSV, BLANK_HSV,  BLANK_HSV,  BLANK_HSV,
    // left mirrored
-   COL_BLANK, COL_BLANK,  COL_BLANK,  COL_BLANK,  COL_BLANK,
-   COL_BLANK, COL_BLANK,  COL_BLANK,  COL_BLANK,  COL_BLANK,
-   COL_BLANK, COL_BLANK,  COL_BLANK,  COL_BLANK,  COL_BLANK,
-   COL_BLANK, COL_BLANK,  COL_BLANK,  COL_BLANK,  COL_BLANK,
-   COL_BLANK, COL_BLANK,  COL_BLANK,  COL_BLANK
+   BLANK_HSV, BLANK_HSV,  BLANK_HSV,  BLANK_HSV,  BLANK_HSV,
+   BLANK_HSV, BLANK_HSV,  BLANK_HSV,  BLANK_HSV,  BLANK_HSV,
+   BLANK_HSV, BLANK_HSV,  BLANK_HSV,  BLANK_HSV,  BLANK_HSV,
+   BLANK_HSV, BLANK_HSV,  BLANK_HSV,  BLANK_HSV,  BLANK_HSV,
+   BLANK_HSV, BLANK_HSV,  BLANK_HSV,  BLANK_HSV
    },
 
    [LAYER_GAME] =
    {
    // right
-   COL_BLANK, COL_PURPLE, COL_PURPLE, COL_PURPLE, COL_BLANK,
-   COL_BLANK, COL_PURPLE, COL_PURPLE, COL_PURPLE, COL_BLANK,
-   COL_BLANK, COL_PURPLE, COL_PURPLE, COL_PURPLE, COL_BLANK,
-   COL_BLANK, COL_BLUE,   COL_PURPLE, COL_BLUE,   COL_BLANK,
-   COL_BLANK, COL_BLANK,  COL_BLANK,  COL_BLANK,
+   TEAL_HSV,  TEAL_HSV,   TEAL_HSV,   TEAL_HSV,   TEAL_HSV,
+   BLANK_HSV, PURPLE_HSV, PURPLE_HSV, PURPLE_HSV, BLANK_HSV,
+   BLANK_HSV, PURPLE_HSV, PURPLE_HSV, PURPLE_HSV, BLANK_HSV,
+   BLANK_HSV, PURPLE_HSV, PURPLE_HSV, PURPLE_HSV, BLANK_HSV,
+   BLUE_HSV,  PURPLE_HSV, BLUE_HSV,   BLANK_HSV,
    // left mirrored
-   COL_TEAL,  COL_TEAL,   COL_TEAL,   COL_TEAL,   COL_TEAL,
-   COL_BLANK, COL_BLANK,  COLBRED,    COL_BLANK,  COL_BLANK,
-   COL_BLANK, COLBRED,    COLBRED,    COLBRED,    COL_BLANK,
-   COL_BLANK, COL_BLANK,  COL_BLANK,  COL_BLANK,  COL_BLANK,
-   COL_BLANK, COL_BLANK,  COL_BLANK,  COL_BLANK
+   TEAL_HSV,  TEAL_HSV,   TEAL_HSV,   TEAL_HSV,   TEAL_HSV,
+   BLANK_HSV, BLANK_HSV,  BRED_HSV,   BLANK_HSV,  BLANK_HSV,
+   BLANK_HSV, BRED_HSV,   BRED_HSV,   BRED_HSV,   BLANK_HSV,
+   BLANK_HSV, BLANK_HSV,  BLANK_HSV,  BLANK_HSV,  BLANK_HSV,
+   BLANK_HSV, BLANK_HSV,  BLANK_HSV,  BLANK_HSV
    },
 
    [LAYER_FN] =
    {
    // right
-   COL_BLANK, COL_PURPLE, COL_PURPLE, COL_PURPLE, COL_BLANK,
-   COL_BLANK, COL_PURPLE, COL_PURPLE, COL_PURPLE, COL_BLANK,
-   COL_BLANK, COL_PURPLE, COL_PURPLE, COL_PURPLE, COL_BLANK,
-   COL_BLANK, COL_PURPLE, COL_PURPLE, COL_PURPLE, COL_BLANK,
-   COL_BLANK, COL_BLANK,  COL_BLANK,  COL_BLANK,
+   BLANK_HSV, PURPLE_HSV, PURPLE_HSV, PURPLE_HSV, BLANK_HSV,
+   BLANK_HSV, PURPLE_HSV, PURPLE_HSV, PURPLE_HSV, BLANK_HSV,
+   BLANK_HSV, PURPLE_HSV, PURPLE_HSV, PURPLE_HSV, BLANK_HSV,
+   BLANK_HSV, PURPLE_HSV, PURPLE_HSV, PURPLE_HSV, BLANK_HSV,
+   BLANK_HSV, BLANK_HSV,  BLANK_HSV,  BLANK_HSV,
    // left mirrored
-   COL_BLANK, COL_BLANK,  COL_BLANK,  COL_BLANK,  COL_BLANK,
-   COL_BLANK, COL_BLANK,  COL_BLANK,  COL_BLANK,  COL_BLANK,
-   COL_BLANK, COL_BLANK,  COL_BLANK,  COL_BLANK,  COL_BLANK,
-   COL_BLANK, COL_BLANK,  COL_BLANK,  COL_BLANK,  COL_BLANK,
-   COL_BLANK, COL_BLANK,  COL_BLANK,  COL_BLANK
+   BLANK_HSV, BLANK_HSV,  BLANK_HSV,  BLANK_HSV,  BLANK_HSV,
+   BLANK_HSV, BLANK_HSV,  BLANK_HSV,  BLANK_HSV,  BLANK_HSV,
+   BLANK_HSV, BLANK_HSV,  BLANK_HSV,  BLANK_HSV,  BLANK_HSV,
+   BLANK_HSV, BLANK_HSV,  BLANK_HSV,  BLANK_HSV,  BLANK_HSV,
+   BLANK_HSV, BLANK_HSV,  BLANK_HSV,  BLANK_HSV
    },
 };
 
@@ -613,18 +631,18 @@ void set_layer_color(int layer)
    for(int i = 0; i < DRIVER_LED_TOTAL; i++){
        HSV hsv =
        {
-          .h = pgm_read_byte(&ledmap[layer][i][0]),
-          .s = pgm_read_byte(&ledmap[layer][i][1]),
-          .v = pgm_read_byte(&ledmap[layer][i][2]),
+	  .h = pgm_read_byte(&ledmap[layer][i][0]),
+	  .s = pgm_read_byte(&ledmap[layer][i][1]),
+	  .v = pgm_read_byte(&ledmap[layer][i][2]),
        };
        if(!hsv.h && !hsv.s && !hsv.v){
-          rgb_matrix_set_color(i, 0, 0, 0);
-          }
+	  rgb_matrix_set_color(i, 0, 0, 0);
+	  }
        else{
-           RGB   rgb = hsv_to_rgb(hsv);
-           float f   = (float)rgb_matrix_config.hsv.v / UINT8_MAX;
-           rgb_matrix_set_color(i, f * rgb.r, f * rgb.g, f * rgb.b);
-           }
+	   RGB   rgb = hsv_to_rgb(hsv);
+	   float f   = (float)rgb_matrix_config.hsv.v / UINT8_MAX;
+	   rgb_matrix_set_color(i, f * rgb.r, f * rgb.g, f * rgb.b);
+	   }
        }
 }
 
@@ -639,12 +657,12 @@ void rgb_matrix_indicators_user(void)
       }
    else{
        if(rgb_matrix_get_flags() == LED_FLAG_NONE){
-          rgb_matrix_set_color_all(0, 0, 0);
-          }
+	  rgb_matrix_set_color_all(0, 0, 0);
+	  }
        }
 }
 
-static bool ingame = false;     // for GAME LAYER
+static bool		 ingame = false;     // for GAME LAYER
 
 // implements user hook on the each key press/release
 bool process_record_user(uint16_t keycode, keyrecord_t *record)
@@ -661,153 +679,155 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
       // when layer switched
       //
       if(old_layer == LAYER_WM){
-         unregister_code(KC_LGUI);
-         }
+	 unregister_code(KC_LGUI);
+	 }
 
       switch(layer){
-          case LAYER_CONTROL:
-          case LAYER_KEYMACS:
-          case LAYER_NUMPAD:
-          case LAYER_AUX_RU:
-             if(old_layer == LAYER_RUSSIAN){
-                // switch to English
-                TAP(LAT);
-                }
-             break;
+	  case LAYER_CONTROL:
+	  case LAYER_KEYMACS:
+	  case LAYER_NUMPAD:
+	  case LAYER_AUX_RU:
+	     if(old_layer == LAYER_RUSSIAN){
+		// switch to English
+		TAP(LAT);
+		}
+	     break;
 
-          case LAYER_RUSSIAN:
-             if(old_layer != LAYER_MOUSE){
-                // switch to Russian
-                TAP(RUS);
-                }
-             break;
+	  case LAYER_RUSSIAN:
+	     if(old_layer != LAYER_MOUSE){
+		// switch to Russian
+		TAP(RUS);
+		}
+	     break;
 
-          case LAYER_FN:
-             if(old_layer == LAYER_RUSSIAN){
-                // switch to English
-                TAP(LAT);
-                }
-             break;
+	  case LAYER_FN:
+	     if(old_layer == LAYER_RUSSIAN){
+		// switch to English
+		TAP(LAT);
+		}
+	     break;
 
-          case LAYER_WM:
-             if(old_layer == LAYER_RUSSIAN){
-                // switch to English
-                TAP(LAT);
-                }
-             register_code(KC_LGUI);
-             break;
-             }
+	  case LAYER_WM:
+	     if(old_layer == LAYER_RUSSIAN){
+		// switch to English
+		TAP(LAT);
+		}
+	     register_code(KC_LGUI);
+	     break;
+	     }
       }
    else{
        // when layer didn't switch
        //
        switch(old_layer){
-           case LAYER_GAME:
-              if(keycode == KC_I || keycode == KC_Y || keycode == KC_U){
-                 ingame = true;
-                 register_code(keycode);
-                 unregister_code(keycode);
-                 layer_off(LAYER_GAME);
-                 layer_on(LAYER_KEYMACS);
-                 return(true);
-                 }
-              break;
+	   /* // especially for switching to chat in Tannenberg/Verdun */
+	   /* // I have stopped using it */
+	   /* case LAYER_GAME: */
+	   /*    if(keycode == KC_I || keycode == KC_Y || keycode == KC_U){ */
+	   /*			 ingame = true; */
+	   /*       register_code(keycode); */
+	   /*       unregister_code(keycode); */
+	   /*       layer_off(LAYER_GAME); */
+	   /*       layer_on(LAYER_KEYMACS); */
+	   /*       return(true); */
+	   /*       } */
+	   /*    break; */
 
-           case LAYER_KEYMACS:
-              if(ingame && (keycode == KC_ENTER || keycode == KC_ESC)){
-                 ingame = false;
-                 unregister_code(KC_ESC);
-                 register_code(KC_ENTER);
-                 unregister_code(KC_ENTER);
-                 layer_off(LAYER_KEYMACS);
-                 layer_on(LAYER_GAME);
-                 return(false);
-                 }
-              break;
-              }
+	   case LAYER_KEYMACS:
+	      if(		 ingame && (keycode == KC_ENTER || keycode == KC_ESC)){
+		 ingame = false;
+		 unregister_code(KC_ESC);
+		 register_code(KC_ENTER);
+		 unregister_code(KC_ENTER);
+		 layer_off(LAYER_KEYMACS);
+		 layer_on(LAYER_GAME);
+		 return(false);
+		 }
+	      break;
+	      }
        }
 
    switch(keycode){
        case KC_LSHIFT:
        case KC_RSHIFT:
-          ergodox_right_led_3_on();
-          if(record->event.pressed){
-             shift_pressed = true;
-             }
-          else{
-              ergodox_right_led_3_off();
-              shift_pressed = false;
-              }
-          return(true);
+	  ergodox_right_led_3_on();
+	  if(record->event.pressed){
+	     shift_pressed = true;
+	     }
+	  else{
+	      ergodox_right_led_3_off();
+	      shift_pressed = false;
+	      }
+	  return(true);
 
        // when Alt or Ctl pressed in Russian layout temporary switch back to Latin layout
        case KC_LCTL:
        case KC_RCTL:
-          ergodox_right_led_2_on();
+	  ergodox_right_led_2_on();
 
        case KC_LALT:
        case KC_RALT:
-          if(keycode == KC_LALT || keycode == KC_RALT){
-             ergodox_right_led_1_on();
-             }
-          if(!record->event.pressed){
-             ergodox_right_led_1_off();
-             ergodox_right_led_2_off();
-             }
+	  if(keycode == KC_LALT || keycode == KC_RALT){
+	     ergodox_right_led_1_on();
+	     }
+	  if(!record->event.pressed){
+	     ergodox_right_led_1_off();
+	     ergodox_right_led_2_off();
+	     }
 
        case KC_APP:
-          if(backrus){
-             if(!record->event.pressed){
-                layer_off(LAYER_KEYMACS);
-                layer_on(LAYER_RUSSIAN);
-                backrus = false;
-                }
-             }
-          else{
-              if(layer == LAYER_RUSSIAN){
-                 layer_off(LAYER_RUSSIAN);
-                 layer_on(LAYER_KEYMACS);
-                 backrus = true;
-                 }
-              }
-          return(true);
+	  if(backrus){
+	     if(!record->event.pressed){
+		layer_off(LAYER_KEYMACS);
+		layer_on(LAYER_RUSSIAN);
+		backrus = false;
+		}
+	     }
+	  else{
+	      if(layer == LAYER_RUSSIAN){
+		 layer_off(LAYER_RUSSIAN);
+		 layer_on(LAYER_KEYMACS);
+		 backrus = true;
+		 }
+	      }
+	  return(true);
 
        case RU_ASTR:
-          if(record->event.pressed){
-             SEND_STRING(SS_TAP(XLAT) "*" SS_TAP(XRUS));
-             }
-          return(false);
+	  if(record->event.pressed){
+	     SEND_STRING(SS_TAP(XLAT) "*" SS_TAP(XRUS));
+	     }
+	  return(false);
 
        case KC_MINUS:
-          if(shift_pressed && record->event.pressed){
-             unregister_code(KC_LSHIFT);
-             unregister_code(KC_RSHIFT);
-             register_code(LV3);
-             }
-          if(record->event.pressed){
-             TAP(KC_MINUS);
-             }
-          if(shift_pressed && !record->event.pressed){
-             unregister_code(LV3);
-             }
-          return(false);
+	  if(shift_pressed && record->event.pressed){
+	     unregister_code(KC_LSHIFT);
+	     unregister_code(KC_RSHIFT);
+	     register_code(LV3);
+	     }
+	  if(record->event.pressed){
+	     TAP(KC_MINUS);
+	     }
+	  if(shift_pressed && !record->event.pressed){
+	     unregister_code(LV3);
+	     }
+	  return(false);
 
        case ACCENT:
-          SEND_STRING(SS_DOWN(X_CAPSLOCK) "a" SS_UP(X_CAPSLOCK));
-          return(false);
+	  SEND_STRING(SS_DOWN(X_CAPSLOCK) "a" SS_UP(X_CAPSLOCK));
+	  return(false);
 
        // case RU_NOSIGN:
        //		 SEND_STRING(SS_TAP(X_SCROLLLOCK), "3", SS_TAP(X_SCROLLLOCK));
        //		 return(false);
 
-       case EMACS_SELECT:                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 // Emacs: reset the selection and activate a new one
-          SEND_STRING(SS_LCTL("g "));
-          return(false);
+       case EMACS_SELECT:                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             // Emacs: reset the selection and activate a new one
+	  SEND_STRING(SS_LCTL("g "));
+	  return(false);
 
        case EMACS_BLOCK_SELECT:
-          SEND_STRING(SS_LCTL("gx") " ");
-          return(false);
-          }
+	  SEND_STRING(SS_LCTL("gx") " ");
+	  return(false);
+	  }
 
    return(true);
 }
@@ -833,18 +853,18 @@ void dance_graveaccent(qk_tap_dance_state_t *state, void *user_data)
 {
    switch(state->count){
        case 1:
-          TAP(KC_GRAVE);
-          break;
+	  TAP(KC_GRAVE);
+	  break;
 
        case 2:
-          register_code(LV3);
-          TAP(KC_A);
-          unregister_code(LV3);
-          break;
+	  register_code(LV3);
+	  TAP(KC_A);
+	  unregister_code(LV3);
+	  break;
 
        default:
-          reset_tap_dance(state);
-          }
+	  reset_tap_dance(state);
+	  }
 }
 
 // -/— minus or emdash
@@ -854,24 +874,24 @@ void dance_dash(qk_tap_dance_state_t *state, void *user_data)
 
    switch(state->count){
        case 1:
-          if(layer == LAYER_RUSSIAN){
-             TAP(LAT);
-             }
-          TAP(KC_MINUS);
-          if(layer == LAYER_RUSSIAN){
-             TAP(RUS);
-             }
-          break;
+	  if(layer == LAYER_RUSSIAN){
+	     TAP(LAT);
+	     }
+	  TAP(KC_MINUS);
+	  if(layer == LAYER_RUSSIAN){
+	     TAP(RUS);
+	     }
+	  break;
 
        case 2:
-          register_code(LV3);
-          TAP(KC_MINUS);
-          unregister_code(LV3);
-          break;
+	  register_code(LV3);
+	  TAP(KC_MINUS);
+	  unregister_code(LV3);
+	  break;
 
        default:
-          reset_tap_dance(state);
-          }
+	  reset_tap_dance(state);
+	  }
 }
 
 // «/„ для русской раскладки
@@ -879,20 +899,20 @@ void dance_elkilapki_left(qk_tap_dance_state_t *state, void *user_data)
 {
    switch(state->count){
        case 1:
-          register_code(LV3);
-          TAP(KC_COMMA);
-          unregister_code(LV3);
-          break;
+	  register_code(LV3);
+	  TAP(KC_COMMA);
+	  unregister_code(LV3);
+	  break;
 
        case 2:
-          register_code(LV3);
-          TAP(KC_J);
-          unregister_code(LV3);
-          break;
+	  register_code(LV3);
+	  TAP(KC_J);
+	  unregister_code(LV3);
+	  break;
 
        default:
-          reset_tap_dance(state);
-          }
+	  reset_tap_dance(state);
+	  }
 }
 
 // »/“ для русской раскладки
@@ -900,20 +920,20 @@ void dance_elkilapki_right(qk_tap_dance_state_t *state, void *user_data)
 {
    switch(state->count){
        case 1:
-          register_code(LV3);
-          TAP(KC_DOT);
-          unregister_code(LV3);
-          break;
+	  register_code(LV3);
+	  TAP(KC_DOT);
+	  unregister_code(LV3);
+	  break;
 
        case 2:
-          register_code(LV3);
-          TAP(KC_K);
-          unregister_code(LV3);
-          break;
+	  register_code(LV3);
+	  TAP(KC_K);
+	  unregister_code(LV3);
+	  break;
 
        default:
-          reset_tap_dance(state);
-          }
+	  reset_tap_dance(state);
+	  }
 }
 
 // Ь/Ъ для русской раскладки
@@ -921,18 +941,18 @@ void dance_shsig(qk_tap_dance_state_t *state, void *user_data)
 {
    switch(state->count){
        case 1:
-          register_code(KC_M);
-          unregister_code(KC_M);
-          break;
+	  register_code(KC_M);
+	  unregister_code(KC_M);
+	  break;
 
        case 2:
-          register_code(KC_RBRACKET);
-          unregister_code(KC_RBRACKET);
-          break;
+	  register_code(KC_RBRACKET);
+	  unregister_code(KC_RBRACKET);
+	  break;
 
        default:
-          reset_tap_dance(state);
-          }
+	  reset_tap_dance(state);
+	  }
 }
 
 // And finally the Dancings!
