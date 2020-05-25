@@ -435,10 +435,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
 
    // Window manager control (currently for Spectr WM)
    [LAYER_WM] = LAYOUT_ergodox(     // left fingers
-      TO(LAYER_KEYMACS),                                                  KC_GRAVE,           KC_COLON,         KC_MINUS,         KC_EXLM,                KC_PLUS,           _____,
+      TO(LAYER_KEYMACS),                                                  KC_GRAVE,           KC_COLON,         KC_MINUS,         KC_EXLM,                KC_PLUS,           KC_F,
       ALT_T(KC_TAB),                                                      KC_Q,               KC_B,             KC_P,             KC_F,                   ALGR_T(KC_G),      LCTL(KC_ENTER),
       KC_LCTL,                                                            LT(LAYER_NUMPAD,    KC_R),            KC_A,             KC_E,                   KC_N,              KC_S,
-      KC_LSHIFT,                                                          KC_Z,               KC_COMMA,         KC_U,             KC_K,                   SFT_T(KC_J),       LSFT(KC_TAB),
+      KC_LSHIFT,                                                          KC_Z,               KC_COMMA,         KC_U,             KC_K,                   SFT_T(KC_J),       KC_K,
       TO(LAYER_KEYMACS),                                                  _____,              _____,            KC_UNDS,          KC_TAB,
       // left thumb
       LCTL(KC_G),                                                         KC_WWW_BACK,        LCTL(KC_V),
