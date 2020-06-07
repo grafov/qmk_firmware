@@ -130,9 +130,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
     * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
     * |        |   ́  |   %  |   [  |   ]  |      |      |           |      |   |  |   ^  |   $  |   &  |   '  |        |
     * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
-    * |        |      |   _  |   (  |.  )  |      |------|           |------|   №  |.  {  |   }  |   #  |      |        |
+    * |        |      |   @  |   (  |.  )  |      |------|           |------|   №  |.  {  |   }  |   #  |      |        |
     * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
-    * |        |      |   <  |   @  |   ~  |      |      |           |      |      |   =  |   \  |   >  |   /  |        |
+    * |        |      |   <  |   _  |   ~  |      |      |           |      |      |   =  |   \  |   >  |   /  |        |
     * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
     *   |      |      |      |      |      |                                       |      |      |      |      |      |
     *   `----------------------------------'                                       `----------------------------------'
@@ -148,8 +148,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
       // left fingers
       _____,                                                              TD(TD_GRAVEACCENT), KC_COLON,         KC_MINUS,         KC_EXLM,                KC_PLUS,           _____,
       KC_LALT,                                                            ACCENT,             KC_PERC,          KC_LBRACKET,      KC_RBRACKET,            XXXXX,             _____,
-      KC_LCTL,                                                            RU_NOSIGN,          KC_UNDS,          KC_LPRN,          KC_RPRN,                XXXXX,
-      KC_LSHIFT,                                                          XXXXX,              KC_LABK,          KC_AT,            KC_TILD,                KC_ENTER,          _____,
+      KC_LCTL,                                                            RU_NOSIGN,          KC_AT,            KC_LPRN,          KC_RPRN,                XXXXX,
+      KC_LSHIFT,                                                          XXXXX,              KC_LABK,          KC_UNDS,          KC_TILD,                KC_ENTER,          _____,
       _____,                                                              _____,              _____,            _____,            KC_TAB,
       // left thumb
       _____,                                                              _____,              _____,
@@ -221,9 +221,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
     * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
     * |        |   ́  |   %  |   [  |   ]  |      |      |           |      |   |  |   ^  |   $  |   &  |   '  |        |
     * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
-    * |        |      |   _  |   (  |.  )  |      |------|           |------|   №  |.  {  |   }  |   #  |      |        |
+    * |        |      |   @  |   (  |.  )  |      |------|           |------|   №  |.  {  |   }  |   #  |      |        |
     * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
-    * |        |      |   <  |   @  |   ~  |      |      |           |      |      |   =  |   \  |   >  |   /  |        |
+    * |        |      |   <  |   _  |   ~  |      |      |           |      |      |   =  |   \  |   >  |   /  |        |
     * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
     *   |      |      |      |   _  |      |                                       |      |      |      |      |      |
     *   `----------------------------------'                                       `----------------------------------'
@@ -238,8 +238,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
    [LAYER_AUX_RU] = LAYOUT_ergodox(     // left fingers
       _____,                                                              TD(TD_GRAVEACCENT), KC_COLON,         KC_MINUS,         KC_EXLM,                KC_PLUS,           _____,
       KC_LALT,                                                            ACCENT,             KC_PERC,          KC_LBRACKET,      KC_RBRACKET,            _____,             _____,
-      KC_LCTL,                                                            XXXXX,              KC_UNDS,          KC_LPRN,          KC_RPRN,                KC_NO,
-      KC_LSHIFT,                                                          XXXXX,              KC_LABK,          KC_AT,            KC_TILD,                KC_ENTER,          _____,
+      KC_LCTL,                                                            XXXXX,              KC_AT,            KC_LPRN,          KC_RPRN,                KC_NO,
+      KC_LSHIFT,                                                          XXXXX,              KC_LABK,          KC_UNDS,          KC_TILD,                KC_ENTER,          _____,
       _____,                                                              _____,              _____,            SFT_T(KC_9),      KC_TAB,
       // left thumb
       _____,                                                              _____,              _____,
@@ -279,9 +279,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
     * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
     * |        |   ́  |   %  |   [  |   ]  |      |      |           |      |   |  |   4  |   5  |   6  |   '  |        |
     * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
-    * |        |      |   _  |   (  |.  )  |      |------|           |------|   №  |.  1  |   2  |   3  |   -  |        |
+    * |        |      |   @  |   (  |.  )  |      |------|           |------|   №  |.  1  |   2  |   3  |   -  |        |
     * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
-    * |        |      |   ,  |   @  |   ~  |      |      |           |      |      |   =  |   0  |   .  |   /  |        |
+    * |        |      |   ,  |   _  |   ~  |      |      |           |      |      |   =  |   0  |   .  |   /  |        |
     * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
     *   |      |      |      |   _  |      |                                       |      |      |      |      |      |
     *   `----------------------------------'                                       `----------------------------------'
@@ -296,8 +296,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
    [LAYER_NUMPAD] = LAYOUT_ergodox(     // left fingers
       KC_NUMLOCK,                                                         TD(TD_GRAVEACCENT), KC_COLON,         KC_MINUS,         KC_EXLM,                KC_PLUS,           _____,
       KC_LALT,                                                            ACCENT,             KC_PERC,          KC_LBRACKET,      KC_RBRACKET,            XXXXX,             _____,
-      KC_LCTL,                                                            XXXXX,              KC_UNDS,          KC_LPRN,          KC_RPRN,                XXXXX,
-      KC_LSHIFT,                                                          XXXXX,              KC_LABK,          KC_AT,            KC_TILD,                KC_TAB,            _____,
+      KC_LCTL,                                                            XXXXX,              KC_AT,            KC_LPRN,          KC_RPRN,                XXXXX,
+      KC_LSHIFT,                                                          XXXXX,              KC_LABK,          KC_UNDS,          KC_TILD,                KC_TAB,            _____,
       _____,                                                              _____,              _____,            _____,            _____,
       // left thumb
       _____,                                                              _____,              _____,
@@ -360,9 +360,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
     * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
     * |        |   ́  |   %  |   [  |   ]  |      |      |           |      | Alt  |   F4 |   F5 |   F6 |   +  |        |
     * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
-    * |        |      |   _  |   (  |.  )  |      |------|           |------| Ctrl |.  F1 |   F2 |   F3 |   -  |        |
+    * |        |      |   @  |   (  |.  )  |      |------|           |------| Ctrl |.  F1 |   F2 |   F3 |   -  |        |
     * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
-    * |        |      |   ,  |   @  |   ~  |      |      |           |      | Shift|      |  F10 |      |   /  |        |
+    * |        |      |   ,  |   _  |   ~  |      |      |           |      | Shift|      |  F10 |      |   /  |        |
     * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
     *   |      |      |      |   _  |      |                                       |      |      |      |      |      |
     *   `----------------------------------'                                       `----------------------------------'
@@ -376,18 +376,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
     */
    [LAYER_FN] = LAYOUT_ergodox(     // left fingers
       KC_NUMLOCK,                                                         TD(TD_GRAVEACCENT), KC_COLON,         TD(TD_DASH),      KC_EXLM,                KC_PLUS,           _____,
-      KC_LALT,                                                            ACCENT,             KC_PERC,          KC_LBRACKET,      KC_RBRACKET,            KC_NO,             _____,
-      KC_LCTL,                                                            KC_NO,              KC_UNDS,          KC_LPRN,          KC_RPRN,                KC_NO,
-      KC_LSHIFT,                                                          KC_NO,              KC_LABK,          KC_AT,            KC_TILD,                KC_TAB,            _____,
+      KC_LALT,                                                            ACCENT,             KC_PERC,          KC_LBRACKET,      KC_RBRACKET,            KC_RALT,             _____,
+      KC_LCTL,                                                            KC_NO,              KC_AT,            KC_LPRN,          KC_RPRN,                KC_RCTL,
+      KC_LSHIFT,                                                          KC_NO,              KC_LABK,          KC_UNDS,          KC_TILD,                KC_RSHIFT,            _____,
       TO(LAYER_KEYMACS),                                                  _____,              _____,            _____,            _____,
       // left thumb
       _____,                                                              _____,              _____,
       LT(LAYER_CONTROL,                                                   KC_SPACE),          LT(LAYER_WM,      KC_TAB),          _____,
       // right fingers
       _____,                                                              KC_KP_ASTERISK,     KC_F7,            KC_F8,            KC_F9,                  KC_EQUAL,          KC_BSPACE,
-      KC_RALT,                                                            KC_PIPE,            KC_F4,            KC_F5,            KC_F6,                  KC_KP_PLUS,        KC_RALT,
-      KC_RCTL,                                                            KC_F1,              KC_F2,            KC_F3,            KC_KP_MINUS,            KC_RCTRL,
-      KC_RSHIFT,                                                          _____,              KC_F11,           KC_F10,           KC_F12,                 _____,             KC_RSHIFT,
+      _____,                                                            KC_LALT,            KC_F4,            KC_F5,            KC_F6,                  KC_KP_PLUS,        KC_RALT,
+      KC_LCTL,                                                            KC_F1,              KC_F2,            KC_F3,            KC_KP_MINUS,            KC_RCTL,
+      KC_LSHIFT,                                                          _____,              KC_F11,           KC_F10,           KC_F12,                 _____,             KC_RSHIFT,
       _____,                                                              _____,              _____,            _____,            TO(LAYER_RUSSIAN),
       // right thumb
       _____,                                                              _____,              _____,
@@ -435,23 +435,23 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
 
    // Window manager control (currently for Spectr WM)
    [LAYER_WM] = LAYOUT_ergodox(     // left fingers
-      TO(LAYER_KEYMACS),                                                  KC_GRAVE,           KC_COLON,         KC_MINUS,         KC_EXLM,                KC_PLUS,           KC_F,
-      ALT_T(KC_TAB),                                                      KC_Q,               KC_B,             KC_P,             KC_F,                   ALGR_T(KC_G),      LCTL(KC_ENTER),
-      KC_LCTL,                                                            LT(LAYER_NUMPAD,    KC_R),            KC_A,             KC_E,                   KC_N,              KC_S,
-      KC_LSHIFT,                                                          KC_Z,               KC_COMMA,         KC_U,             KC_K,                   SFT_T(KC_J),       KC_K,
+      TO(LAYER_KEYMACS),                                                  KC_GRAVE,           KC_COLON,         KC_MINUS,         KC_EXLM,                KC_PLUS,           KC_K,
+      ALT_T(KC_TAB),                                                      KC_Q,               KC_B,             KC_P,             KC_F,                   KC_RALT,      LCTL(KC_ENTER),
+      KC_LCTL,                                                            LT(LAYER_NUMPAD,    KC_R),            KC_A,             KC_E,                   KC_N,              KC_RCTL,
+      KC_LSHIFT,                                                          KC_Z,               KC_COMMA,         KC_U,             KC_K,                   KC_RSHIFT,       KC_F,
       TO(LAYER_KEYMACS),                                                  _____,              _____,            KC_UNDS,          KC_TAB,
       // left thumb
       LCTL(KC_G),                                                         KC_WWW_BACK,        LCTL(KC_V),
-      KC_SPACE,                                                           _____,              KC_INS,
+      LALT(KC_SPACE),                                                           _____,              KC_INS,
       // right fingers
-      _____,                                                              KC_ASTR,            KC_7,             KC_8,             KC_9,                   KC_EQUAL,          KC_BSPACE,
-      RCTL(KC_ENTER),                                                     ALT_T(KC_V),        KC_4,             KC_5,             KC_6,                   KC_QUOTE,          KC_RALT,
-      CTL_T(KC_D),                                                        KC_1,               KC_2,             KC_3,             LT(LAYER_NUMPAD,        KC_H),             KC_RCTL,
-      KC_TAB,                                                             SFT_T(KC_M),        KC_C,             KC_0,             KC_DOT,                 KC_SLASH,          KC_RSHIFT,
+      KC_K,                                                              KC_ASTR,            KC_7,             KC_8,             KC_9,                   KC_EQUAL,          KC_BSPACE,
+      RCTL(KC_ENTER),                                                     KC_LALT,        KC_4,             KC_5,             KC_6,                   KC_QUOTE,          KC_RALT,
+      KC_LCTL,                                                          KC_1,               KC_2,             KC_3,             LT(LAYER_NUMPAD,        KC_H),             KC_RCTL,
+      KC_F,                                                             KC_LSHIFT,        KC_C,             KC_0,             KC_DOT,                 KC_SLASH,          KC_RSHIFT,
       KC_TAB,                                                             KC_UNDS,            _____,            _____,            TO(LAYER_RUSSIAN),
       // right thumb
       KC_WWW_FORWARD,                                                     RCTL(KC_W),         KC_WWW_REFRESH,
-      KC_DELETE,                                                          _____,              KC_SPACE),
+      KC_DELETE,                                                          _____,              LALT(KC_SPACE)),
 };
 
 
