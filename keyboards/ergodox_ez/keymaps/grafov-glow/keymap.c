@@ -404,12 +404,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
       TO(LAYER_KEYMACS),                                                  KC_L,               KC_TILD,          KC_LGUI,          KC_R,
       // left thumb
       KC_B,                                                               _____,              _____,
-      KC_SPACE,                                                           KC_MS_BTN3,         KC_MS_BTN1,
+      KC_SPACE,                                                           KC_MS_BTN3,         KC_KP_DOT,
       // right fingers
       KC_BSPACE,                                                          KC_6,               KC_7,             KC_8,             KC_9,                   KC_0,              RCTL(KC_Y),
       KC_I,                                                               KC_O,               KC_F7,            KC_F8,            KC_F9,                  KC_W,              RCTL(KC_U),
       KC_P,                                                               KC_F4,              KC_F5,            KC_F6,            KC_H,                   RCTL(KC_I),
-      _____,                                                              KC_N,               KC_F1,            KC_F2,            KC_F3,                  KC_SLASH,          KC_RSHIFT,
+      KC_J,                                                               KC_N,               KC_F1,            KC_F2,            KC_F3,                  KC_SLASH,          KC_RSHIFT,
       KC_F11,                                                             KC_F10,             KC_F12,           _____,            TO(LAYER_RUSSIAN),
       // right thumb
       _____,                                                              _____,              _____,
@@ -441,7 +441,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
       ALT_T(KC_TAB),                                                      KC_Q,               KC_B,             KC_P,             KC_F,                   KC_RALT,      LCTL(KC_ENTER),
       KC_LCTL,                                                            LT(LAYER_NUMPAD,    KC_R),            KC_A,             KC_E,                   KC_N,              KC_RCTL,
       KC_LSHIFT,                                                          KC_Z,               KC_COMMA,         KC_U,             KC_K,                   KC_RSHIFT,       KC_F,
-      TO(LAYER_KEYMACS),                                                  _____,              _____,            KC_UNDS,          KC_TAB,
+      TG(LAYER_KEYMACS),                                                  TO(LAYER_GAME),     TO(LAYER_QWERTY), KC_UNDS,          KC_TAB,
       // left thumb
       LCTL(KC_G),                                                         KC_WWW_BACK,        LCTL(KC_V),
       LALT(KC_SPACE),                                                           _____,              KC_INS,
