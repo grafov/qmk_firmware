@@ -665,7 +665,7 @@ void rgb_matrix_indicators_user(void)
        }
 }
 
-static bool		 ingame = false;     // for GAME LAYER
+//static bool		 ingame = false;     // for GAME LAYER
 
 // implements user hook on the each key press/release
 bool process_record_user(uint16_t keycode, keyrecord_t *record)
@@ -737,18 +737,17 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
 	   /*       return(true); */
 	   /*       } */
 	   /*    break; */
-
-	   case LAYER_KEYMACS:
-	      if(		 ingame && (keycode == KC_ENTER || keycode == KC_ESC)){
-		 ingame = false;
-		 unregister_code(KC_ESC);
-		 register_code(KC_ENTER);
-		 unregister_code(KC_ENTER);
-		 layer_off(LAYER_KEYMACS);
-		 layer_on(LAYER_GAME);
-		 return(false);
-		 }
-	      break;
+	   /* case LAYER_KEYMACS: */
+	   /*    if(		 ingame && (keycode == KC_ENTER || keycode == KC_ESC)){ */
+	   /*	 ingame = false; */
+	   /*	 unregister_code(KC_ESC); */
+	   /*	 register_code(KC_ENTER); */
+	   /*	 unregister_code(KC_ENTER); */
+	   /*	 layer_off(LAYER_KEYMACS); */
+	   /*	 layer_on(LAYER_GAME); */
+	   /*	 return(false); */
+	   /*	 } */
+	   /*    break; */
 	   case LAYER_GAME:
 	     if ((lshift && keycode == KC_RSHIFT) || (rshift && keycode == KC_LSHIFT)) {
 	       layer_off(LAYER_GAME);

@@ -41,7 +41,7 @@
 
 // https://github.com/qmk/qmk_firmware/issues/1958
 #undef DEBOUNCE
-#define DEBOUNCE    7
+#define DEBOUNCE    30
 
 // https://thomasbaart.nl/2018/12/01/reducing-firmware-size-in-qmk/
 // #define NO_ACTION_MACRO
