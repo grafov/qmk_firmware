@@ -39,6 +39,6 @@
 
 // https://github.com/qmk/qmk_firmware/issues/1958
 #undef DEBOUNCE
-#define DEBOUNCE    1
+#define DEBOUNCE    30
 
 #endif
