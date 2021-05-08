@@ -230,7 +230,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     /* It has used shift-shift switcher (https://github.com/grafov/shift-shift). */
     [LAYER_RUSSIAN] = LAYOUT_ergodox(
 	// left fingers
-	KC_ESCAPE, TD(TD_LELKILAPKI), TD(TD_TSE), TD(TD_DASH), KC_MINUS, TD(TD_YO), KC_CAPSLOCK,
+	KC_ESCAPE, TD(TD_LELKILAPKI), TD(TD_TSE), KC_KP_MINUS, KC_MINUS, TD(TD_YO), KC_CAPSLOCK,
 	// row 2
 	KC_LALT, LT(LAYER_NUMPAD, KC_Q), KC_W, KC_E, KC_R, ALT_T(KC_S), _____,
 	// row 3
@@ -459,7 +459,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      */
     [LAYER_FN] = LAYOUT_ergodox(  // left fingers
 				  // top row
-	KC_NUMLOCK, TD(TD_GRAVEACCENT), KC_COLON, TD(TD_DASH), KC_EXLM, KC_PLUS, M(M_LAYER_IS_NUMPAD),
+	KC_NUMLOCK, TD(TD_GRAVEACCENT), KC_COLON, KC_KP_MINUS, KC_EXLM, KC_PLUS, M(M_LAYER_IS_NUMPAD),
 	// row 2
 	KC_LALT, M(ACCENT), KC_PERC, KC_LBRACKET, KC_RBRACKET, KC_NO, _____,
 	// row 3
@@ -663,7 +663,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     static uint8_t old_layer = 0xff;
     static bool    backrus;
     static uint8_t layer = 0xff;
-    static bool    shift_pressed;
+    // static bool    shift_pressed;
 
     old_layer = layer;
     layer     = biton32(layer_state);
@@ -716,10 +716,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 	    case KC_RSHIFT:
 		ergodox_right_led_3_on();
 		if (record->event.pressed) {
-		    shift_pressed = true;
+		  // shift_pressed = true;
 		} else {
 		    ergodox_right_led_3_off();
-		    shift_pressed = false;
+		    //   shift_pressed = false;
 		}
 		return (true);
 
@@ -759,19 +759,19 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 		}
 		return (false);
 
-	    case KC_MINUS:
-		if (shift_pressed && record->event.pressed) {
-		    unregister_code(KC_LSHIFT);
-		    unregister_code(KC_RSHIFT);
-		    register_code(LV3);
-		}
-		if (record->event.pressed) {
-		    TAP(KC_MINUS);
-		}
-		if (shift_pressed && !record->event.pressed) {
-		    unregister_code(LV3);
-		}
-		return (false);
+	    /* case KC_MINUS: */
+	    /*	if (shift_pressed && record->event.pressed) { */
+	    /*	    unregister_code(KC_LSHIFT); */
+	    /*	    unregister_code(KC_RSHIFT); */
+	    /*	    register_code(LV3); */
+	    /*	} */
+	    /*	if (record->event.pressed) { */
+	    /*	    TAP(KC_MINUS); */
+	    /*	} */
+	    /*	if (shift_pressed && !record->event.pressed) { */
+	    /*	    unregister_code(LV3); */
+	    /*	} */
+	    /*	return (false); */
 
 	    case EMACS_SELECT:
 		// Emacs: reset the selection and activate a new one
