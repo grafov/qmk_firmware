@@ -58,6 +58,7 @@ enum custom_keycodes
 {
    PLACEHOLDER = SAFE_RANGE,      // can always be here
    RU_ASTR,
+   EMACS_TAB,
    EMACS_SELECT,
    EMACS_BLOCK_SELECT,
    M_RUASTR,
@@ -111,7 +112,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
       KC_LALT,                                                            LT(LAYER_NUMPAD,    KC_Q),            KC_B,             KC_P,                   KC_F,              ALT_T(KC_G),     OSL(LAYER_WM),
       KC_LCTL,                                                            LT(LAYER_AUX,       KC_R),            KC_A,             KC_E,                   KC_N,              RCTL_T(KC_S),
       KC_LSHIFT,                                                          LSFT_T(KC_Z),       KC_COMMA,         KC_U,             KC_K,                   LT(LAYER_FN,  KC_J),           EMACS_SELECT,
-      TG(LAYER_KEYMACS),                                                  XXXXX,              KC_LGUI,          KC_UNDS,          LSFT_T(KC_TAB),
+      TG(LAYER_KEYMACS),                                                  XXXXX,              KC_LGUI,          KC_UNDS,          EMACS_TAB,
       // left thumb
       EMACS_BLOCK_SELECT,                                                 KC_WWW_BACK,        LCTL(KC_V),
       LT(LAYER_CONTROL,                                                   KC_SPACE),          LT(LAYER_MOUSE,   KC_TAB),          KC_INS,
@@ -198,7 +199,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
    /* It has used shift-shift switcher (https://github.com/grafov/shift-shift). */
    [LAYER_RUSSIAN] = LAYOUT_ergodox(
       // left fingers
-      KC_ESCAPE,                                                          TD(TD_LELKILAPKI),  TD(TD_TSE),       TD(TD_DASH),      KC_MINUS,               TD(TD_YO),         KC_CAPSLOCK,
+      KC_ESCAPE,                                                          TD(TD_LELKILAPKI),  TD(TD_TSE),       KC_KP_MINUS,      KC_MINUS,               TD(TD_YO),         KC_CAPSLOCK,
       KC_LALT,                                                            LT(LAYER_NUMPAD,    KC_Q),            KC_W,             KC_E,                   KC_R,              ALT_T(KC_S),     _____,
       KC_LCTL,                                                            LT(LAYER_AUX_RU,    KC_A),            KC_F,             KC_T,                   KC_D,              RCTL_T(KC_G),
       KC_LSHIFT,                                                          LSFT_T(KC_Z),       KC_6,             KC_C,             KC_V,                   LT(LAYER_AUX_RU,   KC_B),           _____,
@@ -361,11 +362,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
     * ,--------------------------------------------------.           ,--------------------------------------------------.
     * |        |   `  |   :  |   -  |   !  |   +  |      |           |      |   *  |   F7 |   F8 |   F9 |   =  |   BSP  |
     * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
-    * |        |   ́  |   %  |   [  |   ]  |      |      |           |      | Alt  |   F4 |   F5 |   F6 |   +  |        |
+    * |        |    ́  |   %  |   [  |   ]  |      |      |           |      | LAlt |   F4 |   F5 |   F6 | RAlt |        |
     * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
-    * |        |      |   @  |   (  |.  )  |      |------|           |------| Ctrl |.  F1 |   F2 |   F3 |   -  |        |
+    * |        |      |   @  |   (  |.  )  |      |------|           |------| LCtrl|.  F1 |   F2 |   F3 | RCtrl|        |
     * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
-    * |        |      |   ,  |   _  |   ~  |      |      |           |      | Shift|      |  F10 |      |   /  |        |
+    * |        |      |   ,  |   _  |   ~  |      |      |           |      |LShift|      |  F10 |      |RShift|        |
     * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
     *   |      |      |      |   _  |      |                                       |      |      |      |      |      |
     *   `----------------------------------'                                       `----------------------------------'
@@ -388,9 +389,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
       LT(LAYER_CONTROL,                                                   KC_SPACE),          LT(LAYER_WM,      KC_TAB),          _____,
       // right fingers
       _____,                                                              KC_KP_ASTERISK,     KC_F7,            KC_F8,            KC_F9,                  KC_EQUAL,          KC_BSPACE,
-      _____,                                                              KC_LALT,            KC_F4,            KC_F5,            KC_F6,                  KC_KP_PLUS,        KC_RALT,
+      _____,                                                              KC_LALT,            KC_F4,            KC_F5,            KC_F6,                  KC_RALT,        KC_RALT,
       KC_LCTL,                                                            KC_F1,              KC_F2,            KC_F3,            KC_KP_MINUS,            KC_RCTL,
-      KC_LSHIFT,                                                          _____,              KC_F11,           KC_F10,           KC_F12,                 _____,             KC_RSHIFT,
+      KC_LSHIFT,                                                          _____,              KC_F11,           KC_F10,           KC_F12,                 KC_RSHIFT,          KC_RSHIFT,
       _____,                                                              _____,              _____,            _____,            KC_RSHIFT,
       // right thumb
       _____,                                                              _____,              _____,
@@ -673,7 +674,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
    static uint8_t old_layer = 0xff;
    static bool    backrus;
    static uint8_t layer = 0xff;
-   static bool    shift_pressed;
+   // static bool    shift_pressed;
    static bool    lshift = false;
    static bool    rshift = false;
 
@@ -773,11 +774,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
        case KC_RSHIFT:
 	  ergodox_right_led_3_on();
 	  if(record->event.pressed){
-	     shift_pressed = true;
+	    // shift_pressed = true;
 	     }
 	  else{
 	      ergodox_right_led_3_off();
-	      shift_pressed = false;
+	      // shift_pressed = false;
 	      }
 	  return(true);
 
@@ -819,19 +820,19 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
 	     }
 	  return(false);
 
-       case KC_MINUS:
-	  if(shift_pressed && record->event.pressed){
-	     unregister_code(KC_LSHIFT);
-	     unregister_code(KC_RSHIFT);
-	     register_code(LV3);
-	     }
-	  if(record->event.pressed){
-	     TAP(KC_MINUS);
-	     }
-	  if(shift_pressed && !record->event.pressed){
-	     unregister_code(LV3);
-	     }
-	  return(false);
+       /* case KC_KP_MINUS: */
+       /*	  if(shift_pressed && record->event.pressed){ */
+       /*	     unregister_code(KC_LSHIFT); */
+       /*	     unregister_code(KC_RSHIFT); */
+       /*	     register_code(LV3); */
+       /*	     } */
+       /*	  if(record->event.pressed){ */
+       /*	     TAP(KC_MINUS); */
+       /*	     } */
+       /*	  if(shift_pressed && !record->event.pressed){ */
+       /*	     unregister_code(LV3); */
+       /*	     } */
+       /*	  return(false); */
 
        case ASSIGN:
 	  if(record->event.pressed){
@@ -851,9 +852,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
        //		 SEND_STRING(SS_TAP(X_SCROLLLOCK), "3", SS_TAP(X_SCROLLLOCK));
        //		 return(false);
 
-       case EMACS_SELECT:                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             // Emacs: reset the selection and activate a new one
-	  SEND_STRING(SS_LCTL("g "));
-	  return(false);
+       case EMACS_TAB:
+	 SEND_STRING(SS_LCTL("g") SS_TAP(X_TAB));
+	 return(false);
+
+       case EMACS_SELECT:
+	 // Emacs: reset the selection and activate a new one
+	 SEND_STRING(SS_LCTL("g "));
+	 return(false);
 
        case EMACS_BLOCK_SELECT:
 	  SEND_STRING(SS_LCTL("gx") " ");
