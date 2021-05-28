@@ -47,6 +47,7 @@ enum custom_keycodes {
     PLACEHOLDER = SAFE_RANGE,  // can always be here
     EMACS_SELECT,
     EMACS_BLOCK_SELECT,
+    EMACS_ALTX,
     EPRM,
     RGB_SLD,
     RGB_0000FF,
@@ -104,8 +105,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * |   Alt  |   q  |   b  |   p  |   f  |   g  | LGUI |           | LGUI |   v  |   w  |   l  |   y  |   '  |   Alt  |
      * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
      * |   Ctl  |   r  |   a  |   e  |.  n  |   s  |------|           |------|   d  |.  o  |   t  |   i  |   h  |   Ctl  |
-     * |--------+------+------+------+------+------| Emacs|           |  Fn  |------+------+------+------+------+--------|
-     * |  Shift |   z  |   ,  |   u  |   k  |   j  |  Sel |           |      |   m  |   c  |   x  |   .  |   /  |  Shift |
+     * |--------+------+------+------+------+------| Emacs|           | Emacs|------+------+------+------+------+--------|
+     * |  Shift |   z  |   ,  |   u  |   k  |   j  |  Sel |           | Alt+X|   m  |   c  |   x  |   .  |   /  |  Shift |
      * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
      *   | LAT  |QWERTY| LGUI |   _  | S/Tab|                                       |M/Tab | APP  | RGUI |  CAPS|  RUS |
      *   `----------------------------------'                                       `----------------------------------'
@@ -139,7 +140,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	// row 3
 	LCTL_T(KC_D), KC_O, KC_T, KC_I, LT(LAYER_AUXCHARS, KC_H), KC_RCTL,
 	// row 4
-	OSL(LAYER_FN), LT(LAYER_NUMPAD, KC_M), KC_C, KC_X, KC_DOT, RSFT_T(KC_SLASH), KC_RSHIFT,
+	EMACS_ALTX, LT(LAYER_NUMPAD, KC_M), KC_C, KC_X, KC_DOT, RSFT_T(KC_SLASH), KC_RSHIFT,
 	// row 5
 	LT(LAYER_FN, KC_TAB), KC_EQUAL, KC_RGUI, KC_CAPSLOCK, TO(LAYER_RUSSIAN),
 	// right thumb
@@ -774,13 +775,23 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 	    /*	return (false); */
 
 	    case EMACS_SELECT:
+	      if(!record->event.pressed){
 		// Emacs: reset the selection and activate a new one
 		SEND_STRING(SS_LCTL("g "));
-		return (false);
+	      }
+	      return (false);
 
 	    case EMACS_BLOCK_SELECT:
+	      if(!record->event.pressed){
 		SEND_STRING(SS_LCTL("gx") " ");
-		return (false);
+	      }
+	      return (false);
+
+	    case EMACS_ALTX:
+	      if(!record->event.pressed){
+		SEND_STRING(SS_LALT("x"));
+	      }
+	      return(false);
 
 	    case EPRM:
 		if (record->event.pressed) {

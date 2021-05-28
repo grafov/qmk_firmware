@@ -61,6 +61,7 @@ enum custom_keycodes
    EMACS_TAB,
    EMACS_SELECT,
    EMACS_BLOCK_SELECT,
+   EMACS_ALTX,
    M_RUASTR,
    ASSIGN,
    ACCENT,
@@ -94,10 +95,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
     * |   Alt  |   q  |   b  |   p  |   f  |   g  | LGUI |           | LGUI |   v  |   w  |   l  |   y  |   '  |   Alt  |
     * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
     * |   Ctl  |   r  |   a  |   e  |.  n  |   s  |------|           |------|   d  |.  o  |   t  |   i  |   h  |   Ctl  |
-    * |--------+------+------+------+------+------| Emacs|           |  Fn  |------+------+------+------+------+--------|
-    * |  Shift |   z  |   ,  |   u  |   k  |   j  |  Sel |           |      |   m  |   c  |   x  |   .  |   /  |  Shift |
+    * |--------+------+------+------+------+------| Emacs|           | Emacs|------+------+------+------+------+--------|
+    * |  Shift |   z  |   ,  |   u  |   k  |   j  |  Sel |           | CMD  |   m  |   c  |   x  |   .  |   /  |  Shift |
     * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
-    *   | LAT  |QWERTY| LGUI |   _  | S/Tab|                                       |M/Tab | APP  | RGUI |  CAPS|  RUS |
+    *   | LAT  |QWERTY| LGUI |   _  |EmxTab|                                       |M/Tab | APP  | RGUI |  CAPS|  RUS |
     *   `----------------------------------'                                       `----------------------------------'
     *                                        ,-------------.       ,-------------.
     *                                        | CtlG | Back |       | Frwd | CtlW |
@@ -115,12 +116,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
       TG(LAYER_KEYMACS),                                                  XXXXX,              KC_LGUI,          KC_UNDS,          EMACS_TAB,
       // left thumb
       EMACS_BLOCK_SELECT,                                                 KC_WWW_BACK,        LCTL(KC_V),
-      LT(LAYER_CONTROL,                                                   KC_SPACE),          LT(LAYER_MOUSE,   KC_TAB),          KC_INS,
+      LT(LAYER_CONTROL,                                                   KC_SPACE),          LT(LAYER_MOUSE, KC_TAB),          KC_INS,
       // right finger
       TG(LAYER_NUMPAD),                                                   KC_ASTR,            KC_QUES,          KC_DQUO,          KC_SCOLON,              ASSIGN,            KC_BSPACE,
       OSL(LAYER_WM),                                                      ALT_T(KC_V),        KC_W,             KC_L,             KC_Y,                   LT(LAYER_NUMPAD,   KC_QUOTE),       KC_RALT,
       LCTL_T(KC_D),                                                       KC_O,               KC_T,             KC_I,             LT(LAYER_AUX,           KC_H),             KC_RCTL,
-      OSL(LAYER_FN),                                                      LT(LAYER_NUMPAD,    KC_M),            KC_C,             KC_X,                   KC_DOT,            RSFT_T(KC_SLASH),KC_RSHIFT,
+      EMACS_ALTX,                                                      LT(LAYER_NUMPAD,    KC_M),            KC_C,             KC_X,                   KC_DOT,            RSFT_T(KC_SLASH),KC_RSHIFT,
       LT(LAYER_FN,                                                     KC_TAB),            KC_EQUAL,         KC_RGUI,          KC_CAPSLOCK,            TO(LAYER_RUSSIAN),
       // right thumb
       KC_WWW_FORWARD,                                                     RCTL(KC_W),         KC_WWW_REFRESH,   // RCTL(KC_R),
@@ -853,18 +854,30 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
        //		 return(false);
 
        case EMACS_TAB:
-	 SEND_STRING(SS_LCTL("g") SS_TAP(X_TAB));
+	 if(!record->event.pressed){
+	   SEND_STRING(SS_LCTL("g") SS_TAP(X_TAB));
+	 }
 	 return(false);
 
        case EMACS_SELECT:
-	 // Emacs: reset the selection and activate a new one
-	 SEND_STRING(SS_LCTL("g "));
+	 if(!record->event.pressed){
+	   // Emacs: reset the selection and activate a new one
+	   SEND_STRING(SS_LCTL("g "));
+	 }
 	 return(false);
 
        case EMACS_BLOCK_SELECT:
-	  SEND_STRING(SS_LCTL("gx") " ");
-	  return(false);
+	  if(!record->event.pressed){
+	    SEND_STRING(SS_LCTL("gx") " ");
 	  }
+	  return(false);
+
+       case EMACS_ALTX:
+	  if(!record->event.pressed){
+	    SEND_STRING(SS_LALT("x"));
+	  }
+	 return(false);
+  }
 
    return(true);
 }
