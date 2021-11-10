@@ -122,7 +122,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 				       // top row
 	KC_ESCAPE, KC_GRAVE, KC_COLON, KC_MINUS, KC_EXLM, KC_PLUS, LCTL(KC_G),
 	// row 2
-w	KC_LALT, LT(LAYER_NUMPAD, KC_Q), KC_B, KC_P, KC_F, ALT_T(KC_G), KC_FIND,
+	KC_LALT, LT(LAYER_NUMPAD, KC_Q), KC_B, KC_P, KC_F, ALT_T(KC_G), KC_FIND,
 	// row 3
 	KC_LCTL, LT(LAYER_AUXCHARS, KC_R), KC_A, KC_E, KC_N, RCTL_T(KC_S),
 	// row 4
@@ -393,7 +393,7 @@ w	KC_LALT, LT(LAYER_NUMPAD, KC_Q), KC_B, KC_P, KC_F, ALT_T(KC_G), KC_FIND,
      * Copypaste keys for right hand because I'm using trackball by left hand.
      *
      * ,--------------------------------------------------.           ,--------------------------------------------------.
-     * |  Esc   |      |      |      |      |      |      |           |      |      |      |      |      |      |   BSP  |
+     * |  Esc   |      |      |      |      |      |      |           |      |      | MLClk| MRClk| MMClk|      | CAPSLCK|
      * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
      * |  Alt   |      |      |      |      | Esc  |      |           |      | CtlV | AltW | CtlW | CtlY |      | Alt    |
      * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
@@ -413,7 +413,7 @@ w	KC_LALT, LT(LAYER_NUMPAD, KC_Q), KC_B, KC_P, KC_F, ALT_T(KC_G), KC_FIND,
      */
     [LAYER_CONTROL] = LAYOUT_ergodox(  // left fingers
 				       // top row
-	TO(LAYER_MEDIA), XXXXX, XXXXX, XXXXX, _____, _____, KC_CAPSLOCK,
+	TO(LAYER_MEDIA), XXXXX, XXXXX, XXXXX, XXXXX, _____, _____,
 	// row 2
 	_____, XXXXX, KC_LEFT, KC_UP, KC_RIGHT, KC_ESCAPE, KC_LGUI,
 	// row 3
@@ -425,7 +425,7 @@ w	KC_LALT, LT(LAYER_NUMPAD, KC_Q), KC_B, KC_P, KC_F, ALT_T(KC_G), KC_FIND,
 	// left thumb
 	KC_SPACE, KC_TAB, _____, _____, _____, _____,
 	// right fingers
-	_____, RGUI(KC_F6), RGUI(KC_F12), XXXXX, XXXXX, XXXXX, _____,
+	_____, RGUI(KC_F6), KC_MS_BTN1, KC_MS_BTN3, KC_MS_BTN2, XXXXX, KC_CAPSLOCK,
 	// row 2
 	KC_LGUI, LCTL(KC_V), LALT(KC_W), LCTL(KC_W), LCTL(KC_Y), XXXXX, _____,
 	// row 3

@@ -122,7 +122,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
       OSL(LAYER_WM),                                                      ALT_T(KC_V),        KC_W,             KC_L,             KC_Y,                   LT(LAYER_NUMPAD,   KC_QUOTE),       KC_RALT,
       LCTL_T(KC_D),                                                       KC_O,               KC_T,             KC_I,             LT(LAYER_AUX,           KC_H),             KC_RCTL,
       EMACS_ALTX,                                                      LT(LAYER_NUMPAD,    KC_M),            KC_C,             KC_X,                   KC_DOT,            RSFT_T(KC_SLASH),KC_RSHIFT,
-      LT(LAYER_FN,                                                     KC_TAB),            KC_EQUAL,         KC_RGUI,          KC_CAPSLOCK,            TO(LAYER_RUSSIAN),
+      LT(LAYER_FN,                                                     KC_TAB),          KC_MS_BTN1,         KC_MS_BTN2,       KC_MS_BTN3,             TO(LAYER_RUSSIAN),
       // right thumb
       KC_WWW_FORWARD,                                                     RCTL(KC_W),         KC_WWW_REFRESH,   // RCTL(KC_R),
       KC_DELETE,                                                          LT(LAYER_MOUSE,     KC_ENTER),        LT(LAYER_CONTROL, KC_SPACE)),
@@ -163,7 +163,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
       _____,                                                              KC_PIPE,            KC_CIRC,          KC_DLR,           KC_AMPR,                KC_QUOTE,          KC_RALT,
       KC_NO,                                                              KC_LCBR,            KC_RCBR,          KC_HASH,          XXXXX,                  KC_RCTRL,
       _____,                                                              KC_ENTER,           KC_EQUAL,         KC_BSLASH,        KC_RABK,                KC_SLASH,         KC_RSHIFT,
-      KC_TAB,                                                             _____,              _____,            _____,            _____,
+      KC_TAB,                                                             XXXXX,              XXXXX,            XXXXX,            _____,
       // right thumb
       _____,                                                              _____,              _____,
       _____,                                                              _____,              LT(LAYER_CONTROL, KC_SPACE)),
@@ -204,7 +204,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
       KC_LALT,                                                            LT(LAYER_NUMPAD,    KC_Q),            KC_W,             KC_E,                   KC_R,              ALT_T(KC_S),     _____,
       KC_LCTL,                                                            LT(LAYER_AUX_RU,    KC_A),            KC_F,             KC_T,                   KC_D,              RCTL_T(KC_G),
       KC_LSHIFT,                                                          LSFT_T(KC_Z),       KC_6,             KC_C,             KC_V,                   LT(LAYER_AUX_RU,   KC_B),           _____,
-      TO(LAYER_KEYMACS),                                                  TO(LAYER_KEYMACS),  _____,            KC_UNDS,          _____,
+      TO(LAYER_KEYMACS),                                                  KC_CAPSLOCK,         _____,            KC_UNDS,          _____,
       // left thumb=======
       EMACS_BLOCK_SELECT,                                                 KC_WWW_BACK,        KC_PLUS,
       LT(LAYER_CONTROL,                                                   KC_SPACE),          LT(LAYER_MOUSE,   KC_TAB),          KC_INS,
@@ -213,7 +213,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
       _____,                                                              ALT_T(KC_Y),        KC_U,             KC_I,             KC_DOT,                 LT(LAYER_NUMPAD,   KC_P),           KC_RALT,
       LCTL_T(KC_H),                                                       KC_J,               KC_K,             KC_L,             LT(LAYER_AUX_RU,        KC_SCOLON),        KC_RCTL,
       OSL(LAYER_FN),                                                      LT(LAYER_NUMPAD,    KC_N),            TD(TD_SHSIG),     KC_COMMA,               KC_7,              RSFT_T(KC_QUOTE),KC_RSHIFT,
-      _____,                                                              _____,              _____,            KC_CAPSLOCK,      _____,
+      _____,                                                              KC_MS_BTN1,         KC_MS_BTN2,       KC_MS_BTN3,       _____,
       // right thumb
       KC_WWW_FORWARD,                                                     RCTL(KC_W),         KC_WWW_REFRESH,   // RCTL(KC_R),
       KC_DELETE,                                                          LT(LAYER_MOUSE,     KC_ENTER),        LT(LAYER_CONTROL, KC_SPACE)),
@@ -253,7 +253,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
       _____,                                                              KC_PIPE,            KC_CIRC,          KC_DLR,           KC_AMPR,                KC_QUOTE,          KC_RALT,
       RU_NOSIGN,                                                          KC_LCBR,            KC_RCBR,          KC_HASH,          KC_NO,                  KC_RCTRL,
       OSL(LAYER_FN),                                                      KC_ENTER,           KC_EQUAL,         KC_BSLASH,        KC_RABK,                KC_SLASH,          KC_RSHIFT,
-      KC_TAB,                                                             _____,              _____,            _____,            _____,
+      KC_TAB,                                                             XXXXX,              XXXXX,            XXXXX,            _____,
       // right thumb
       _____,                                                              _____,              _____,
       _____,                                                              _____,              LT(LAYER_CONTROL, KC_ENTER)),
@@ -263,7 +263,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
     * ,--------------------------------------------------.           ,--------------------------------------------------.
     * |  Esc   |      |      |      |      |      |      |           |      |      |      |      |      |      |        |
     * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
-    * |  Alt   |      |      |      |      |      |      |           |      |      |      |      |      |      | Alt    |
+    * |  Alt   |      |      |      |      |      |      |           |      |      | Back | Fwd  |      |      | Alt    |
     * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
     * |  Ctrl  |      |      |  Up  |. Down|      |------|           |------|      |. Left| Right|      |      | Ctrl   |
     * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
@@ -289,10 +289,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
       _____,                                                              _____,              _____,            _____,            _____,                  _____,
       // right fingers
       KC_MS_ACCEL0,                                                       _____,              _____,            _____,            _____,                  _____,             _____,
-      KC_MS_ACCEL2,                                                       _____,              _____,            _____,            KC_MS_BTN3,             _____,             _____,
+      KC_MS_ACCEL2,                                                       _____,              KC_WWW_BACK,      KC_WWW_FORWARD,   KC_MS_BTN3,             _____,             _____,
       _____,                                                              KC_MS_LEFT,         KC_MS_RIGHT,      KC_MS_BTN1,       _____,                  _____,
       KC_MS_ACCEL1,                                                       KC_ENTER,           KC_MS_WH_LEFT,    KC_MS_WH_RIGHT,   KC_MS_BTN2,             _____,             _____,
-      _____,                                                              _____,              _____,            _____,            _____,
+      _____,                                                              XXXXX,              XXXXX,            XXXXX,            _____,
       // right thumb
       _____,                                                              _____,              _____,            _____,            _____,                  _____),
 
@@ -302,7 +302,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
     * Copypaste keys for right hand because I'm using trackball by left hand.
     *
     * ,--------------------------------------------------.           ,--------------------------------------------------.
-    * |  Esc   |      |      |      |      |      |      |           |      |      |      |      |      |      |   BSP  |
+    * |  Esc   |      |      |      |      |      |      |           |      |      | MLClk| MRClk| MMClk|      | CAPSLCK|
     * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
     * |  Alt   |      |      |      |      | Esc  |      |           |      | CtlV | AltW | CtlW | CtlY |      | Alt    |
     * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
@@ -321,19 +321,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
     *                                 `--------------------'       `--------------------'
     */
    [LAYER_CONTROL] = LAYOUT_ergodox(     // left fingers
-      _____,                                                              XXXXX,              XXXXX,            XXXXX,            _____,                  _____,             KC_CAPSLOCK,
+      _____,                                                              XXXXX,              XXXXX,            XXXXX,            XXXXX,                  _____,             _____,
       _____,                                                              XXXXX,              KC_LEFT,          KC_UP,            KC_RIGHT,               KC_ESCAPE,         KC_LGUI,
       _____,                                                              RCTL(KC_R),         KC_HOME,          KC_UP,            KC_DOWN,                KC_END,
       _____,                                                              RCTL(KC_Z),         RSFT(KC_ENTER),   KC_PGUP,          KC_PGDOWN,              KC_ENTER,          LCTL(KC_QUES),
       TG(LAYER_KEYMACS),                                                  TO(LAYER_GAME),     TO(LAYER_QWERTY), XXXXX,            KC_TAB,
       // left thumb
-      KC_SPACE,                                                           KC_TAB,             _____,            _____,            _____,                  _____,
+      KC_SPACE,                                                           _____,              _____,            _____,            _____,                  _____,
       // right fingers
-      _____,                                                              RGUI(KC_F6),        RGUI(KC_F12),     XXXXX,            XXXXX,                  XXXXX,             _____,
+      _____,                                                              RGUI(KC_F6),        KC_MS_BTN1,       KC_MS_BTN3,       KC_MS_BTN2,             _____,             KC_CAPSLOCK,
       KC_LGUI,                                                            LCTL(KC_V),         LALT(KC_W),       LCTL(KC_W),       LCTL(KC_Y),             XXXXX,             _____,
       KC_DELETE,                                                          KC_LEFT,            KC_RIGHT,         KC_BSPACE,        KC_TAB,                 _____,
       XXXXX,                                                              KC_ENTER,           LCTL(KC_C),       LCTL(KC_X),       LCTL(KC_V),             LCTL(KC_SLASH),    _____,
-      KC_TAB,                                                             XXXXX,              XXXXX,            XXXXX,            TG(LAYER_RUSSIAN),
+      KC_TAB,                                                             _____,              _____,            _____,            TG(LAYER_RUSSIAN),
       // right thumb
       _____,                                                              _____,              _____,            _____,            KC_ENTER,               KC_SPACE),
 
@@ -513,21 +513,21 @@ const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] =
    BLANK_HSV,  BLANK_HSV, BLANK_HSV, BLANK_HSV, TEAL_HSV,
    BLANK_HSV,  BLANK_HSV, BLANK_HSV, BLANK_HSV, DBLUE_HSV,
    TEAL_HSV,   BLANK_HSV, BLANK_HSV, BLANK_HSV, BLANK_HSV,
-   PURPLE_HSV, BLANK_HSV, BLANK_HSV, BLANK_HSV,
+   PURPLE_HSV, DRED_HSV,  DRED_HSV,  DRED_HSV,
    // left mirrored
    BLANK_HSV,  BLANK_HSV, BLANK_HSV, BLANK_HSV, BLANK_HSV,
    BLANK_HSV,  BLANK_HSV, BLANK_HSV, BLANK_HSV, TEAL_HSV,
    BLANK_HSV,  BLANK_HSV, BLANK_HSV, BLANK_HSV, DBLUE_HSV,
    PURPLE_HSV,   BLANK_HSV, BLANK_HSV, BLANK_HSV, BLANK_HSV,
-   BLANK_HSV,  BLANK_HSV, BLANK_HSV, BLANK_HSV
+   BLANK_HSV,  BLANK_HSV, BLANK_HSV, DBLUE_HSV
    },
 
    [LAYER_CONTROL] =
    {
    // right
-   BLANK_HSV, BLANK_HSV, BLANK_HSV, BLANK_HSV, BLANK_HSV,
-   BLANK_HSV, BLANK_HSV, BLANK_HSV, BLANK_HSV, BLANK_HSV,
-   BLANK_HSV, BRED_HSV,  BRED_HSV,  BLANK_HSV, BLANK_HSV,
+   BLANK_HSV, BRED_HSV,  BRED_HSV,  BRED_HSV,  BLANK_HSV,
+   DRED_HSV,  DRED_HSV,  DRED_HSV,  DRED_HSV,  BLANK_HSV,
+   DRED_HSV,  BRED_HSV,  BRED_HSV,  DRED_HSV,  BLANK_HSV,
    BLANK_HSV, DRED_HSV,  DRED_HSV,  DRED_HSV,  BLANK_HSV,
    BLANK_HSV, BLANK_HSV, BLANK_HSV, BLANK_HSV,
    // left mirrored
@@ -535,6 +535,22 @@ const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] =
    BLANK_HSV, BLANK_HSV, BLANK_HSV, BLANK_HSV, BLANK_HSV,
    BLANK_HSV, BRED_HSV,  BRED_HSV,  BLANK_HSV, BLANK_HSV,
    BLANK_HSV, DRED_HSV,  DRED_HSV,  DRED_HSV,  BLANK_HSV,
+   BLANK_HSV, BLANK_HSV, BLANK_HSV, BLANK_HSV
+   },
+
+   [LAYER_MOUSE] =
+   {
+   // right
+   BLANK_HSV, BLANK_HSV, BLANK_HSV, BLANK_HSV, BLANK_HSV,
+   BLANK_HSV, DRED_HSV,  DRED_HSV,  BRED_HSV,  BLANK_HSV,
+   BLANK_HSV, DRED_HSV,  DRED_HSV,  BRED_HSV,  BLANK_HSV,
+   BLANK_HSV, DRED_HSV,  DRED_HSV,  BRED_HSV,  BLANK_HSV,
+   BLANK_HSV, BLANK_HSV, BLANK_HSV, BLANK_HSV,
+   // left mirrored
+   BLANK_HSV, BLANK_HSV, BLANK_HSV, BLANK_HSV,  BLANK_HSV,
+   BLANK_HSV, BLANK_HSV, BLANK_HSV, BLANK_HSV,  BLANK_HSV,
+   BLANK_HSV, DRED_HSV,  DRED_HSV,  BLANK_HSV,  BLANK_HSV,
+   BLANK_HSV, DRED_HSV,  DRED_HSV,  BLANK_HSV,  BLANK_HSV,
    BLANK_HSV, BLANK_HSV, BLANK_HSV, BLANK_HSV
    },
 
