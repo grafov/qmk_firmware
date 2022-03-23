@@ -102,11 +102,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * ,--------------------------------------------------.           ,--------------------------------------------------.
      * |   Esc  |   `  |   :  |   -  |   !  |   +  | Ctl-G|           | NumLk|   *  |   ?  |   "  |   ;  |   =  |   BSP  |
      * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
-     * |   Alt  |   q  |   b  |   p  |   f  |   g  | FIND |           | LGUI |   v  |   w  |   l  |   y  |   '  |   Alt  |
-     * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
+     * |   Alt  |   q  |   b  |   p  |   f  |   g  | Emacs|           | LGUI |   v  |   w  |   l  |   y  |   '  |   Alt  |
+     * |--------+------+------+------+------+------|Select|           |      |------+------+------+------+------+--------|
      * |   Ctl  |   r  |   a  |   e  |.  n  |   s  |------|           |------|   d  |.  o  |   t  |   i  |   h  |   Ctl  |
-     * |--------+------+------+------+------+------| Emacs|           | Emacs|------+------+------+------+------+--------|
-     * |  Shift |   z  |   ,  |   u  |   k  |   j  |  Sel |           | Alt+X|   m  |   c  |   x  |   .  |   /  |  Shift |
+     * |--------+------+------+------+------+------| FIND |           | Emacs|------+------+------+------+------+--------|
+     * |  Shift |   z  |   ,  |   u  |   k  |   j  |      |           | Alt+X|   m  |   c  |   x  |   .  |   /  |  Shift |
      * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
      *   | LAT  |QWERTY| LGUI |   _  | S/Tab|                                       |M/Tab | APP  | RGUI |  CAPS|  RUS |
      *   `----------------------------------'                                       `----------------------------------'
@@ -122,11 +122,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 				       // top row
 	KC_ESCAPE, KC_GRAVE, KC_COLON, KC_MINUS, KC_EXLM, KC_PLUS, LCTL(KC_G),
 	// row 2
-	KC_LALT, LT(LAYER_NUMPAD, KC_Q), KC_B, KC_P, KC_F, ALT_T(KC_G), KC_FIND,
+	KC_LALT, LT(LAYER_NUMPAD, KC_Q), KC_B, KC_P, KC_F, ALT_T(KC_G), EMACS_SELECT,
 	// row 3
 	KC_LCTL, LT(LAYER_AUXCHARS, KC_R), KC_A, KC_E, KC_N, RCTL_T(KC_S),
 	// row 4
-	KC_LSHIFT, LSFT_T(KC_Z), KC_COMMA, KC_U, KC_K, LT(LAYER_FN, KC_J), EMACS_SELECT,
+	KC_LSHIFT, LSFT_T(KC_Z), KC_COMMA, KC_U, KC_K, LT(LAYER_FN, KC_J), KC_FIND,
 	// row 5
 	TG(LAYER_KEYMACS), _____, KC_LGUI, KC_UNDS, LSFT_T(KC_TAB),
 	// left thumb top
