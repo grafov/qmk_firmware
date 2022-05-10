@@ -835,19 +835,17 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
 	     ergodox_right_led_2_off();
 	     }
 
+       /* passed here after Ctrl, Alt, Shift */
        case KC_APP:
-	  if(!record->event.pressed){
-	  if(backrus){
+	  if(!record->event.pressed && backrus){
 		layer_off(LAYER_KEYMACS);
 		layer_on(LAYER_RUSSIAN);
 		backrus = false;
-	     }
-	  else{
+	  } else{
 	      if(layer == LAYER_RUSSIAN){
 		 layer_off(LAYER_RUSSIAN);
 		 layer_on(LAYER_KEYMACS);
 		 backrus = true;
-		 }
 	      }
 	  }
 	  return(true);
