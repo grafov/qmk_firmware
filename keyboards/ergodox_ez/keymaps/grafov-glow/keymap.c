@@ -102,7 +102,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
     *   | LAT  |QWERTY| LGUI |   _  |EmxTab|                                       |M/Tab | APP  | RGUI |  CAPS|  RUS |
     *   `----------------------------------'                                       `----------------------------------'
     *                                        ,-------------.       ,-------------.
-    *                                        | BSel | Back |       | Frwd | CtlW |
+    *                                        | BSel | CtlW |       | Back | Frwd |
     *                                 ,------|------|------|       |------+------+------.
     *                                 |      |      | CtlV |       | Rfrsh|      |      |
     *                                 |  SPC |  Tab |------|       |------| Ret  | SPC  |
@@ -116,7 +116,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
       KC_LSHIFT,                                                          LSFT_T(KC_Z),       KC_COMMA,         KC_U,             KC_K,                   LT(LAYER_FN,  KC_J),           EMACS_SELECT,
       TG(LAYER_KEYMACS),                                                  XXXXX,              KC_LGUI,          KC_UNDS,          EMACS_TAB,
       // left thumb
-      EMACS_BLOCK_SELECT,                                                 KC_WWW_BACK,        LCTL(KC_V),
+      EMACS_BLOCK_SELECT,                                                 RCTL(KC_W),        LCTL(KC_V),
       LT(LAYER_CONTROL,                                                   KC_SPACE),          LT(LAYER_MOUSE, KC_TAB),          KC_INS,
       // right finger
       TG(LAYER_NUMPAD),                                                   KC_ASTR,            KC_QUES,          KC_DQUO,          KC_SCOLON,              ASSIGN,            KC_BSPACE,
@@ -125,7 +125,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
       EMACS_ALTX,                                                      LT(LAYER_NUMPAD,    KC_M),            KC_C,             KC_X,                   KC_DOT,            RSFT_T(KC_SLASH),KC_RSHIFT,
       LT(LAYER_FN,                                                     KC_TAB),          KC_MS_BTN1,         KC_MS_BTN2,       KC_MS_BTN3,             TO(LAYER_RUSSIAN),
       // right thumb
-      KC_WWW_FORWARD,                                                     RCTL(KC_W),         KC_WWW_REFRESH,   // RCTL(KC_R),
+      KC_WWW_BACK,                                                        KC_WWW_FORWARD,     KC_WWW_REFRESH,
       KC_DELETE,                                                          LT(LAYER_MOUSE,     KC_ENTER),        LT(LAYER_CONTROL, KC_SPACE)),
 
    /* Symbol Layer
@@ -207,7 +207,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
       KC_LSHIFT,                                                          LSFT_T(KC_Z),       KC_6,             KC_C,             KC_V,                   LT(LAYER_AUX_RU,   KC_B),           _____,
       TO(LAYER_KEYMACS),                                                  KC_CAPSLOCK,         _____,            KC_UNDS,          _____,
       // left thumb=======
-      EMACS_BLOCK_SELECT,                                                 KC_WWW_BACK,        KC_PLUS,
+      EMACS_BLOCK_SELECT,                                                 RCTL(KC_W),        KC_PLUS,
       LT(LAYER_CONTROL,                                                   KC_SPACE),          LT(LAYER_MOUSE,   KC_TAB),          KC_INS,
       // right fingers
       _____,                                                              RU_ASTR,            KC_9,             TD(TD_HE),        TD(TD_SCHCOLON),        TD(TD_RELKILAPKI), _____,
@@ -216,7 +216,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
       EMACS_ALTX,                                                      LT(LAYER_NUMPAD,    KC_N),            TD(TD_SHSIG),     KC_COMMA,               KC_7,              RSFT_T(KC_QUOTE),KC_RSHIFT,
       _____,                                                              KC_MS_BTN1,         KC_MS_BTN2,       KC_MS_BTN3,       _____,
       // right thumb
-      KC_WWW_FORWARD,                                                     RCTL(KC_W),         KC_WWW_REFRESH,   // RCTL(KC_R),
+      KC_WWW_BACK,                                                        KC_WWW_FORWARD,     KC_WWW_REFRESH,   // RCTL(KC_R),
       KC_DELETE,                                                          LT(LAYER_MOUSE,     KC_ENTER),        LT(LAYER_CONTROL, KC_SPACE)),
 
    /* Symbol Layer (AUX) for Russian layout

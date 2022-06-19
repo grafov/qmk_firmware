@@ -111,7 +111,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      *   | LAT  |QWERTY| LGUI |   _  | S/Tab|                                       |M/Tab | APP  | RGUI |  CAPS|  RUS |
      *   `----------------------------------'                                       `----------------------------------'
      *                                        ,-------------.       ,-------------.
-     *                                        | CtlG | Back |       | Frwd | CtlW |
+     *                                        | CtlG | CtlW |       | Back | Frwd |
      *                                 ,------|------|------|       |------+------+------.
      *                                 |      |      | CtlV |       | Rfrsh|      |      |
      *                                 |  SPC |  Tab |------|       |------| Ret  | SPC  |
@@ -130,7 +130,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	// row 5
 	TG(LAYER_KEYMACS), _____, KC_LGUI, KC_UNDS, LSFT_T(KC_TAB),
 	// left thumb top
-	M(M_EMACS_BLOCK_SELECT), KC_WWW_BACK, LCTL(KC_V),
+	M(M_EMACS_BLOCK_SELECT), RCTL(KC_W),  LCTL(KC_V),
 	// thumb low
 	LT(LAYER_CONTROL, KC_SPACE), LT(LAYER_MOUSE, KC_TAB), KC_INS,
 	// right fingers top
@@ -144,7 +144,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	// row 5
 	LT(LAYER_FN, KC_TAB), KC_EQUAL, KC_RGUI, KC_CAPSLOCK, TO(LAYER_RUSSIAN),
 	// right thumb
-	KC_WWW_FORWARD, RCTL(KC_W), KC_WWW_REFRESH,  // RCTL(KC_R),
+	KC_WWW_BACK, KC_WWW_FORWARD, KC_WWW_REFRESH,
 	// thumb 2
 	KC_DELETE, LT(LAYER_MOUSE, KC_ENTER), LT(LAYER_CONTROL, KC_SPACE)),
 
@@ -241,7 +241,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	// row 5
 	TO(LAYER_KEYMACS), TO(LAYER_KEYMACS), _____, KC_UNDS, _____,
 	// left thumb=======
-	M(M_EMACS_BLOCK_SELECT), KC_WWW_BACK, KC_PLUS,
+	M(M_EMACS_BLOCK_SELECT), RCTL(KC_W), KC_PLUS,
 	// th 2
 	LT(LAYER_CONTROL, KC_SPACE), LT(LAYER_MOUSE, KC_TAB), KC_INS,
 	// right fingers
@@ -255,7 +255,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	// row 5
 	_____, _____, _____, KC_CAPSLOCK, _____,
 	// right thumb
-	KC_WWW_FORWARD, RCTL(KC_W), KC_WWW_REFRESH,  // RCTL(KC_R),
+	KC_WWW_BACK, KC_WWW_FORWARD, KC_WWW_REFRESH,  // RCTL(KC_R),
 	// th 2
 	KC_DELETE, LT(LAYER_MOUSE, KC_ENTER), LT(LAYER_CONTROL, KC_SPACE)),
 
