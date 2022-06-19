@@ -401,10 +401,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
     *                                 `--------------------'       `--------------------'
     */
    [LAYER_FN] = LAYOUT_ergodox(     // left fingers
-      KC_NUMLOCK,                                                         TD(TD_GRAVEACCENT), KC_COLON,         TD(TD_DASH),      KC_EXLM,                KC_PLUS,           _____,
-      KC_LALT,                                                            ACCENT,             KC_PERC,          KC_LBRACKET,      KC_RBRACKET,            KC_RALT,             _____,
-      KC_LCTL,                                                            KC_NO,              KC_AT,            KC_LPRN,          KC_RPRN,                KC_RCTL,
-      KC_LSHIFT,                                                          KC_NO,              KC_LABK,          KC_UNDS,          KC_TILD,                KC_RSHIFT,            _____,
+      KC_NUMLOCK,                                                         TD(TD_GRAVEACCENT), KC_F7,            KC_F8,            KC_F9,                KC_PLUS,           _____,
+      KC_LALT,                                                            ACCENT,             KC_F4,            KC_F5,            KC_F6,                KC_RALT,             _____,
+      KC_LCTL,                                                            KC_NO,              KC_F1,            KC_F2,            KC_F3,                KC_RCTL,
+      KC_LSHIFT,                                                          KC_NO,              KC_F11,           KC_F10,           KC_F12,                KC_RSHIFT,            _____,
       KC_LSHIFT,                                                  _____,              _____,            _____,            _____,
       // left thumb
       _____,                                                              _____,              _____,
@@ -660,10 +660,10 @@ const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] =
    BLANK_HSV, PURPLE_HSV, PURPLE_HSV, PURPLE_HSV, BLANK_HSV,
    BLANK_HSV, BLANK_HSV,  BLANK_HSV,  BLANK_HSV,
    // left mirrored
-   BLANK_HSV, BLANK_HSV,  BLANK_HSV,  BLANK_HSV,  BLANK_HSV,
-   BLANK_HSV, BLANK_HSV,  BLANK_HSV,  BLANK_HSV,  BLANK_HSV,
-   BLANK_HSV, BLANK_HSV,  BLANK_HSV,  BLANK_HSV,  BLANK_HSV,
-   BLANK_HSV, BLANK_HSV,  BLANK_HSV,  BLANK_HSV,  BLANK_HSV,
+   BLANK_HSV, PURPLE_HSV, PURPLE_HSV, PURPLE_HSV, BLANK_HSV,
+   BLANK_HSV, PURPLE_HSV, PURPLE_HSV, PURPLE_HSV, BLANK_HSV,
+   BLANK_HSV, PURPLE_HSV, PURPLE_HSV, PURPLE_HSV, BLANK_HSV,
+   BLANK_HSV, PURPLE_HSV, PURPLE_HSV, PURPLE_HSV, BLANK_HSV,
    BLANK_HSV, BLANK_HSV,  BLANK_HSV,  BLANK_HSV
    },
 };
