@@ -164,7 +164,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
       _____,                                                              KC_PIPE,            KC_CIRC,          KC_DLR,           KC_AMPR,                KC_QUOTE,          KC_RALT,
       KC_NO,                                                              KC_LCBR,            KC_RCBR,          KC_HASH,          XXXXX,                  KC_RCTRL,
       _____,                                                              KC_ENTER,           KC_EQUAL,         KC_BSLASH,        KC_RABK,                KC_SLASH,         KC_RSHIFT,
-      LT(LAYER_PTR,KC_TAB),                                            LT(LAYER_FN,KC_APP),   XXXXX,            XXXXX,            _____,
+      LT(LAYER_PTR,KC_TAB),                                            LT(LAYER_FN,KC_APP),   XXXXX,            KC_CAPS,            _____,
       // right thumb
       _____,                                                              _____,              _____,
       _____,                                                              _____,              LT(LAYER_CONTROL, KC_SPACE)),
@@ -214,7 +214,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
       _____,                                                              ALT_T(KC_Y),        KC_U,             KC_I,             KC_DOT,                 LT(LAYER_NUMPAD,   KC_P),           KC_RALT,
       LCTL_T(KC_H),                                                       KC_J,               KC_K,             KC_L,             LT(LAYER_AUX_RU,        KC_SCOLON),        KC_RCTL,
       EMACS_ALTX,                                                      LT(LAYER_NUMPAD,    KC_N),            TD(TD_SHSIG),     KC_COMMA,               KC_7,              RSFT_T(KC_QUOTE),KC_RSHIFT,
-      LT(LAYER_PTR,KC_TAB),                                            LT(LAYER_FN,KC_APP),   XXXXX,            XXXXX,            _____,
+      LT(LAYER_PTR,KC_TAB),                                            LT(LAYER_FN,KC_APP),   XXXXX,            KC_CAPS,            _____,
       // right thumb
       KC_WWW_BACK,                                                        KC_WWW_FORWARD,     KC_WWW_REFRESH,   // RCTL(KC_R),
       KC_DELETE,                                                          LT(LAYER_PTR,     KC_ENTER),        LT(LAYER_CONTROL, KC_SPACE)),
@@ -264,11 +264,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
     * ,--------------------------------------------------.           ,--------------------------------------------------.
     * |  Esc   |      |      |      |      |      |      |           |      |      |      |      |      |      |        |
     * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
-    * |  Alt   |      |      |      |      |      |      |           |      |      | Back | Fwd  |      |      | Alt    |
+    * |  Alt   |      |      |      |      |      |      |           |      |      | WLft | WRght|      |      | Alt    |
     * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
     * |  Ctrl  |      |      | WUp  |.WDwn |      |------|           |------|      |. LClk| RClk | MClk |      | Ctrl   |
     * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
-    * | Shift  |      |      |      |      |      |      |           |      | Enter|  WLft| WRght|      |      | Shift  |
+    * | Shift  |      |      |      |      |      |      |           |      | Enter| CtlC | CtlX | CtlV |      | Shift  |
     * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
     *   |      |      |      |      |      |                                       |      |      |      |      |      |
     *   `----------------------------------'                                       `----------------------------------'
@@ -290,9 +290,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
       _____,                                                              _____,              _____,            _____,            _____,                  _____,
       // right fingers
       KC_MS_ACCEL0,                                                       _____,              _____,            _____,            _____,                  _____,             _____,
-      KC_MS_ACCEL2,                                                       _____,              KC_WWW_BACK,      KC_WWW_FORWARD,   KC_MS_BTN3,             _____,             _____,
+      KC_MS_ACCEL2,                                                       _____,              KC_MS_WH_LEFT,    KC_MS_WH_RIGHT,   _____,             _____,             _____,
       KC_DELETE,                                                          KC_MS_BTN1,         KC_MS_BTN2,       KC_MS_BTN3,       _____,                  _____,
-      KC_MS_ACCEL1,                                                       KC_ENTER,           KC_MS_WH_LEFT,    KC_MS_WH_RIGHT,   KC_MS_BTN2,             _____,             _____,
+      KC_MS_ACCEL1,                                                       KC_ENTER,           LCTL(KC_C),       LCTL(KC_X),       LCTL(KC_V),             _____,             _____,
       _____,                                                              XXXXX,              XXXXX,            XXXXX,            _____,
       // right thumb
       _____,                                                              _____,              _____,            _____,            _____,                  _____),
@@ -514,12 +514,12 @@ const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] =
    BLANK_HSV,  BLANK_HSV, BLANK_HSV, BLANK_HSV, TEAL_HSV,
    BLANK_HSV,  BLANK_HSV, BLANK_HSV, BLANK_HSV, DBLUE_HSV,
    TEAL_HSV,   BLANK_HSV, BLANK_HSV, BLANK_HSV, BLANK_HSV,
-   PURPLE_HSV, DRED_HSV,  DRED_HSV,  DRED_HSV,
+   DRED_HSV,  PURPLE_HSV, BLANK_HSV, BLANK_HSV,
    // left mirrored
    BLANK_HSV,  BLANK_HSV, BLANK_HSV, BLANK_HSV, BLANK_HSV,
    BLANK_HSV,  BLANK_HSV, BLANK_HSV, BLANK_HSV, TEAL_HSV,
    BLANK_HSV,  BLANK_HSV, BLANK_HSV, BLANK_HSV, DBLUE_HSV,
-   PURPLE_HSV,   BLANK_HSV, BLANK_HSV, BLANK_HSV, BLANK_HSV,
+   PURPLE_HSV, BLANK_HSV, BLANK_HSV, BLANK_HSV, BLANK_HSV,
    BLANK_HSV,  BLANK_HSV, BLANK_HSV, DBLUE_HSV
    },
 
