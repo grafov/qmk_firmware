@@ -32,8 +32,8 @@
 #define RUS      KC_RSFT
 #define LAT      KC_LSFT
 
-#define MRUS     SCROLLLOCK
-#define MLAT     SCROLLLOCK
+#define MRUS     RSFT
+#define MLAT     LSFT
 #define XLAT     X_SCROLLLOCK
 #define XRUS     X_SCROLLLOCK
 #define LV3      KC_CAPSLOCK
@@ -118,19 +118,22 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
       KC_LALT,                                                            LT(LAYER_NUMPAD,    KC_Q),            KC_B,             KC_P,                   KC_F,              ALT_T(KC_G),     KC_FIND,
       KC_LCTL,                                                            LT(LAYER_AUX,       KC_R),            KC_A,             KC_E,                   KC_N,              RCTL_T(KC_S),
       KC_LSHIFT,                                                          LSFT_T(KC_Z),       KC_COMMA,         KC_U,             KC_K,                   LT(LAYER_FN,  KC_J),           EMACS_SELECT,
-      TG(LAYER_KEYMACS),                                                  XXXXX,              KC_LGUI,          KC_UNDS,          EMACS_TAB,
+      TG(LAYER_KEYMACS),                                                  XXXXX,              KC_LGUI,          KC_UNDS,          KC_LSHIFT,
       // left thumb
-      EMACS_BLOCK_SELECT,                                                 RCTL(KC_W),        LCTL(KC_V),
-      LT(LAYER_CONTROL,                                                   KC_BSPACE),        LT(LAYER_PTR, KC_TAB),          KC_DELETE,
+      KC_LSHIFT, KC_LSHIFT,  KC_LCTRL,
+      LT(LAYER_CONTROL, KC_BSPACE), CTL_T(KC_TAB), ALT_T(KC_DEL),
+
       // right finger
       TG(LAYER_NUMPAD),                                                   KC_ASTR,            KC_QUES,          KC_DQUO,          KC_SCOLON,              ASSIGN,            KC_UNDO,
       OSL(LAYER_WM),                                                      ALT_T(KC_V),        KC_W,             KC_L,             KC_Y,                   LT(LAYER_NUMPAD,   KC_QUOTE),       KC_RALT,
       LCTL_T(KC_D),                                                       KC_O,               KC_T,             KC_I,             LT(LAYER_AUX,           KC_H),             KC_RCTL,
       EMACS_ALTX,                                                         LT(LAYER_NUMPAD,KC_M),            KC_C,             KC_X,                   KC_DOT,            RSFT_T(KC_SLASH),KC_RSHIFT,
-      LT(LAYER_PTR,KC_TAB),                                                LT(LAYER_FN,KC_APP),         KC_RGUI,       KC_CAPS,             TO(LAYER_RUSSIAN),
+      KC_LSHIFT,                                                LT(LAYER_FN,KC_APP),         KC_RGUI,       KC_CAPS,             TO(LAYER_RUSSIAN),
       // right thumb
-      KC_WWW_BACK,                                                        KC_WWW_FORWARD,     KC_WWW_REFRESH,
-      KC_INS,                                                           LT(LAYER_PTR,     KC_ENTER),        LT(LAYER_CONTROL, KC_SPACE)),
+      KC_LSHIFT, KC_LSHIFT, KC_RCTRL,
+      ALT_T(KC_INS), CTL_T(KC_ENTER), LT(LAYER_CONTROL, KC_SPACE)),
+
+
 
    /* Symbol Layer
     *
@@ -211,8 +214,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
       KC_LSHIFT,                                                          LSFT_T(KC_Z),       KC_6,             KC_C,             KC_V,                   LT(LAYER_AUX_RU,   KC_B),           _____,
       TO(LAYER_KEYMACS),                                                  KC_CAPSLOCK,         _____,            KC_UNDS,          _____,
       // left thumb=======
-      EMACS_BLOCK_SELECT,                                                 RCTL(KC_W),        KC_PLUS,
-      LT(LAYER_CONTROL,                                                   KC_BSPACE),          LT(LAYER_PTR,   KC_TAB),          KC_DELETE,
+      _____,                                                              _____,              _____,
+      LT(LAYER_CONTROL,                                                   KC_BSPACE),          _____,            _____,
+
       // right fingers
       _____,                                                              RU_ASTR,            KC_9,             TD(TD_HE),        TD(TD_SCHCOLON),        TD(TD_RELKILAPKI), _____,
       _____,                                                              ALT_T(KC_Y),        KC_U,             KC_I,             KC_DOT,                 LT(LAYER_NUMPAD,   KC_P),           KC_RALT,
@@ -220,8 +224,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
       EMACS_ALTX,                                                      LT(LAYER_NUMPAD,    KC_N),            TD(TD_SHSIG),     KC_COMMA,               KC_7,              RSFT_T(KC_QUOTE),KC_RSHIFT,
       LT(LAYER_PTR,KC_TAB),                                            LT(LAYER_FN,KC_APP),   XXXXX,            KC_CAPS,            _____,
       // right thumb
-      KC_WWW_BACK,                                                        KC_WWW_FORWARD,     KC_WWW_REFRESH,   // RCTL(KC_R),
-      KC_INS,                                                          LT(LAYER_PTR,     KC_ENTER),        LT(LAYER_CONTROL, KC_SPACE)),
+      _____,                                                              _____,              _____,
+      _____,                                                              _____,              LT(LAYER_CONTROL, KC_SPACE)),
+
 
    /* Symbol Layer (AUX) for Russian layout
     *
@@ -708,171 +713,92 @@ void rgb_matrix_indicators_user(void)
        }
 }
 
-//static bool		 ingame = false;     // for GAME LAYER
+uint8_t cur_layer = LAYER_KEYMACS;
+
+layer_state_t layer_state_set_user(layer_state_t state) {
+    static uint8_t old_layer = 0xff;
+    cur_layer = get_highest_layer(state);
+
+    switch (cur_layer) {
+    case LAYER_RUSSIAN:
+      // Turn on RUS layout on enter to Russian layer.
+      if (old_layer != LAYER_RUSSIAN) {
+	tap_code(RUS);
+      }
+      break;
+    default:
+      // Switch back to English when we leave Russian layer.
+      if (old_layer == LAYER_RUSSIAN) {
+	tap_code(LAT);
+      }
+    }
+    old_layer = cur_layer;
+    xprintf("LAYER: %d \n", cur_layer); // left for debugging yet
+    return state;
+}
 
 // implements user hook on the each key press/release
 bool process_record_user(uint16_t keycode, keyrecord_t *record)
 {
-   static uint8_t old_layer = 0xff;
-   static bool    backrus;
-   static uint8_t layer = 0xff;
-   // static bool    shift_pressed;
-   static bool    lshift = false;
-   static bool    rshift = false;
-
-   old_layer = layer;
-   layer     = biton32(layer_state);
-
-   if(old_layer != layer){
-      // when layer switched
-      //
-      if(old_layer == LAYER_WM){
-	 unregister_code(KC_LGUI);
-	 }
-
-      switch(layer){
-	  case LAYER_CONTROL:
-	  case LAYER_KEYMACS:
-	  case LAYER_NUMPAD:
-	  case LAYER_AUX_RU:
-	     if(old_layer == LAYER_RUSSIAN){
-		// switch to English
-		TAP(LAT);
-		}
-	     break;
-
-	  case LAYER_RUSSIAN:
-	     if(old_layer != LAYER_PTR){
-		// switch to Russian
-		TAP(RUS);
-		}
-	     break;
-
-	  case LAYER_FN:
-	     if(old_layer == LAYER_RUSSIAN){
-		// switch to English
-		TAP(LAT);
-		}
-	     break;
-
-	  case LAYER_WM:
-	     if(old_layer == LAYER_RUSSIAN){
-		// switch to English
-		TAP(LAT);
-		}
-	     register_code(KC_LGUI);
-	     break;
-	     }
-      }
-   else{
-       // when layer didn't switched
-       //
-       switch(old_layer){
-	   /* // especially for switching to chat in Tannenberg/Verdun */
-	   /* // I have stopped using it */
-	   /* case LAYER_GAME: */
-	   /*    if(keycode == KC_I || keycode == KC_Y || keycode == KC_U){ */
-	   /*			 ingame = true; */
-	   /*       register_code(keycode); */
-	   /*       unregister_code(keycode); */
-	   /*       layer_off(LAYER_GAME); */
-	   /*       layer_on(LAYER_KEYMACS); */
-	   /*       return(true); */
-	   /*       } */
-	   /*    break; */
-	   /* case LAYER_KEYMACS: */
-	   /*    if(		 ingame && (keycode == KC_ENTER || keycode == KC_ESC)){ */
-	   /*	 ingame = false; */
-	   /*	 unregister_code(KC_ESC); */
-	   /*	 register_code(KC_ENTER); */
-	   /*	 unregister_code(KC_ENTER); */
-	   /*	 layer_off(LAYER_KEYMACS); */
-	   /*	 layer_on(LAYER_GAME); */
-	   /*	 return(false); */
-	   /*	 } */
-	   /*    break; */
-	   case LAYER_GAME:
-	     if ((lshift && keycode == KC_RSHIFT) || (rshift && keycode == KC_LSHIFT)) {
-	       layer_off(LAYER_GAME);
-	       layer_on(LAYER_KEYMACS);
-	       break;
-	     }
-	     if ( keycode == KC_LSHIFT ) {
-	       lshift=true;
-	       break;
-	     }
-	     if ( keycode == KC_RSHIFT ) {
-	       rshift=true;
-	       break;
-	     }
-	     lshift=false;
-	     rshift=false;
-	     break;
-       }
-   }
+    // For compatibility with software that not understand how to map
+    // non-English keys with modifiers. Just temporary switch to
+    // Keymacs layer when modifier pressed. It works only for Russian
+    // layer.
+    static bool back_to_ussr = false;
+    if (cur_layer == LAYER_RUSSIAN && record->event.pressed) {
+	switch (keycode) {
+	case KC_LCTL:
+	case KC_RCTL:
+	case KC_LALT:
+	case KC_RALT:
+	case KC_APP:
+	case CTL_T(KC_TAB):
+	case CTL_T(KC_ENTER):
+	case ALT_T(KC_DEL):
+	case ALT_T(KC_INS):
+	    layer_off(LAYER_RUSSIAN);
+	    layer_on(LAYER_KEYMACS);
+	    back_to_ussr = true;
+	}
+    }
+    if (back_to_ussr && !record->event.pressed) {
+	switch (keycode) {
+	case KC_LCTL:
+	case KC_RCTL:
+	case KC_LALT:
+	case KC_RALT:
+	case KC_APP:
+	case CTL_T(KC_TAB):
+	case CTL_T(KC_ENTER):
+	case ALT_T(KC_DEL):
+	case ALT_T(KC_INS):
+	    layer_off(LAYER_KEYMACS);
+	    layer_on(LAYER_RUSSIAN);
+	    back_to_ussr = false;
+	}
+    }
 
    switch(keycode){
-       case KC_LSHIFT:
-       case KC_RSHIFT:
-	  ergodox_right_led_3_on();
-	  if(record->event.pressed){
-	    // shift_pressed = true;
-	     }
-	  else{
-	      ergodox_right_led_3_off();
-	      // shift_pressed = false;
-	      }
-	  return(true);
-
-       // when Alt or Ctl pressed in Russian layout temporary switch back to Latin layout
-       case KC_LCTL:
-       case KC_RCTL:
-	  ergodox_right_led_2_on();
-
-       case KC_LALT:
-       case KC_RALT:
-	  if(keycode == KC_LALT || keycode == KC_RALT){
-	     ergodox_right_led_1_on();
-	     }
-	  if(!record->event.pressed){
-	     ergodox_right_led_1_off();
-	     ergodox_right_led_2_off();
-	     }
-
-       /* passed here after Ctrl, Alt, Shift */
-       case KC_APP:
-	  if(!record->event.pressed && backrus){
-		layer_off(LAYER_KEYMACS);
-		layer_on(LAYER_RUSSIAN);
-		backrus = false;
-	  } else{
-	      if(layer == LAYER_RUSSIAN){
-		 layer_off(LAYER_RUSSIAN);
-		 layer_on(LAYER_KEYMACS);
-		 backrus = true;
-	      }
-	  }
-	  return(true);
-
+	    case KC_LSHIFT:
+	    case KC_RSHIFT:
+		if (record->event.pressed) ergodox_right_led_3_on();
+		else ergodox_right_led_3_off();
+		return (true);
+	    case KC_LCTL:
+	    case KC_RCTL:
+		if (record->event.pressed) ergodox_right_led_2_on();
+		else ergodox_right_led_2_off();
+		return (true);
+	    case KC_LALT:
+	    case KC_RALT:
+		if (record->event.pressed) ergodox_right_led_1_on();
+		else ergodox_right_led_1_off();
+		return (true);
        case RU_ASTR:
 	  if(record->event.pressed){
 	     SEND_STRING(SS_TAP(XLAT) "*" SS_TAP(XRUS));
 	     }
 	  return(false);
-
-       /* case KC_KP_MINUS: */
-       /*	  if(shift_pressed && record->event.pressed){ */
-       /*	     unregister_code(KC_LSHIFT); */
-       /*	     unregister_code(KC_RSHIFT); */
-       /*	     register_code(LV3); */
-       /*	     } */
-       /*	  if(record->event.pressed){ */
-       /*	     TAP(KC_MINUS); */
-       /*	     } */
-       /*	  if(shift_pressed && !record->event.pressed){ */
-       /*	     unregister_code(LV3); */
-       /*	     } */
-       /*	  return(false); */
 
        case ASSIGN:
 	  if(record->event.pressed){
@@ -887,10 +813,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
 	    SEND_STRING(SS_UP(X_CAPSLOCK));
 	  }
 	  return(false);
-
-       // case RU_NOSIGN:
-       //		 SEND_STRING(SS_TAP(X_SCROLLLOCK), "3", SS_TAP(X_SCROLLLOCK));
-       //		 return(false);
 
        case EMACS_TAB:
 	 if(!record->event.pressed){
@@ -912,7 +834,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
 
        case EMACS_ALTX:
 	  if(record->event.pressed){
-	      if(layer == LAYER_RUSSIAN){
+	      if(cur_layer == LAYER_RUSSIAN){
 		 layer_off(LAYER_RUSSIAN);
 	      }
 	  } else {
@@ -921,7 +843,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
 	 return(false);
        case EMACS_RESET:
 	  if(record->event.pressed){
-	      if(layer == LAYER_RUSSIAN){
+	      if(cur_layer == LAYER_RUSSIAN){
 		 layer_off(LAYER_RUSSIAN);
 	      }
 	  } else {
@@ -932,21 +854,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
 
    return(true);
 }
-
-/* uint32_t layer_state_set_user(uint32_t state) */
-/* { */
-/*    uint8_t layer = biton32(state); */
-
-/*    /\* switch(layer){ *\/ */
-/*    /\*     case LAYER_KEYMACS: *\/ */
-/*    /\*        rgblight_mode(0); *\/ */
-/*    /\*        break; *\/ */
-/*    /\*     case LAYER_CONTROL: *\/ */
-/*    /\*        rgblight_mode(1); *\/ */
-/*    /\*        break; *\/ */
-/*    /\*     } *\/ */
-/*    return(state); */
-/* }; */
 
 // XXX I have stopped using it
 // Grave vs accent sign
