@@ -83,7 +83,7 @@ enum
    TD_RELKILAPKI,
    TD_TSE,
    TD_HE,
-   TD_SCHCOLON,
+m   TD_SCHCOLON,
    TD_YO,
 };
 
@@ -723,6 +723,9 @@ layer_state_t layer_state_set_user(layer_state_t state) {
     case LAYER_RUSSIAN:
       // Turn on RUS layout on enter to Russian layer.
       if (old_layer != LAYER_RUSSIAN) {
+	tap_code(RUS);
+      } else {
+	tap_code(LAT);
 	tap_code(RUS);
       }
       break;
