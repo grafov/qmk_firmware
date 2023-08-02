@@ -22,6 +22,7 @@ enum custom_keycodes {
     EMACS_CMD,
     EMACS_RESET,
     EMACS_CHBUF,
+    RU_ASTR,
 };
 
 // Tap Dance declarations
@@ -44,7 +45,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     * |--------+------+------+------+------+------| Win  |           |  F   |------+------+------+------+------+--------|
     * |C-A-Find|   z  |   ,  |   u  |   k  |   j  | Mgmt |           |  N   |   m  |   c  |   x  |   .  |   /  | A-Find |
     * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
-    *   | LAT  |      | LAT  |  Alt |  Ctl |                                       |  Sft |  Alt | RUS  |      |  RUS |
+    *   | LAT  |      | LAT  |  GUI |  Alt |                                       |  Alt | Menu | RUS  |      |  RUS |
     *   `----------------------------------'                                       `----------------------------------'
     *                                        ,--------------.     ,--------------.
     *                                        |  Ctl |  Shift|     |  Shift| Shift|
@@ -61,7 +62,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_FIND,                      LT(SYMBOLS,KC_R),      KC_A,               KC_E,             KC_N,              KC_S,
       C(A(KC_FIND)),                KC_Z,                  KC_COMMA,           KC_U,             KC_K,              KC_J,          MO(WM),
 	       // lower row
-	       TO(KEYMACS),                  XXXX,                  TO(KEYMACS),        KC_LALT,          KC_LCTL,
+	       TO(KEYMACS),                  XXXX,                  TO(KEYMACS),        KC_LGUI,        KC_LALT,
 
       // left thumb
       KC_LCTL, KC_LSFT,  KC_LCTL,
@@ -69,11 +70,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
       // right finger
       MO(NUMPAD),                           KC_ASTR,            KC_QUES,          KC_DQUO,          KC_SCLN,          ____,                   KC_UNDO,
-      XXXX,                                 KC_V,               KC_W,             KC_L,             KC_Y,             LT(NUMPAD,KC_QUOTE),    EMACS_CHBUF,
+      LGUI(KC_MS_BTN1),                     KC_V,               KC_W,             KC_L,             KC_Y,             KC_QUOTE,               EMACS_CHBUF,
 					    KC_D,               KC_O,             KC_T,             KC_I,             LT(SYMBOLS,KC_H),       EMACS_CMD,
       MO(FN),                               LT(NUMPAD,KC_M),    KC_C,             KC_X,             KC_DOT,           KC_SLASH,               LALT(KC_FIND),
 	       // lower row
-	       KC_LSFT,                              KC_RALT,            TG(RUSSIAN),      XXXX,             TG(RUSSIAN),
+	       KC_RALT,                     KC_MENU,            TG(RUSSIAN),      XXXX,             TG(RUSSIAN),
 
       // right thumb
       KC_LSFT, KC_LSFT, KC_RCTL,
@@ -105,13 +106,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    /* QWERTY for Russian Typewriter layout adapted for Ergodox/Keymacs */
     [RUSSIAN] = LAYOUT_ergodox(
       // left fingers
-      KC_ESC,               XXXX,                KC_5,             KC_KP_MINUS,   KC_MINUS,      KC_TILDE,        EMACS_RESET,
+      KC_ESC,               ____,                KC_5,             KC_KP_MINUS,   KC_MINUS,      KC_TILDE,        EMACS_RESET,
       LCTL(KC_FIND),        LT(NUMPAD,KC_E),     KC_X,             KC_R,          KC_L,          KC_S,            EMACS_SELECT,
       KC_FIND,              LT(SYMBOLS,KC_LBRC), KC_F,             KC_T,          KC_J,          KC_G,
-      LCA_T(KC_FIND),       KC_Z,                KC_6,             KC_C,          KC_V,          XXXX,            MO(8),
+      LCA_T(KC_FIND),       KC_Z,                KC_6,             KC_C,          KC_V,          XXXX,            MO(WM),
 
 		      // lower row
-		      TO(KEYMACS),       ____,             TO(KEYMACS),          KC_LALT,          KC_LCTL,
+		      TO(KEYMACS),       ____,             TO(KEYMACS),          ____,          ____,
 
 
       // left thumb
@@ -119,13 +120,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       LT(CONTROL, KC_BSPC), LSFT_T(KC_TAB), ALT_T(KC_DEL),
 
       // right fingers
-      ____,                 ____,              KC_9,            KC_4,        KC_PLUS,         KC_1,                 KC_UNDO,
-      ____,                 KC_U,              KC_D,            KC_H,        KC_P,            LT(NUMPAD,KC_I),      EMACS_CHBUF,
+      ____,                 RU_ASTR,           KC_9,            KC_4,        KC_PLUS,         KC_1,                 KC_UNDO,
+      ____,                 KC_U,              KC_D,            KC_H,        KC_P,            KC_I,                 EMACS_CHBUF,
 			    KC_DOT,            KC_N,            KC_B,        KC_Y,            LT(SYMBOLS,KC_K),     EMACS_CMD,
       MO(FN),               MO(NUMPAD),        KC_M,            KC_COMMA,    KC_7,            KC_Q,                 LALT(KC_FIND),
 
 			     // lower row
-			     KC_RSFT,          KC_RALT,         XXXX,     ____,            XXXX,
+			     ____,          ____,         XXXX,     ____,            XXXX,
 
       // right thumb
       KC_RSFT, KC_RSFT, KC_RCTL,
@@ -165,10 +166,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       LT(CONTROL,                                                   KC_SPACE),          LT(WM,      KC_TAB),          ____,
 
       // right fingers
-      KC_NUM,                                                         KC_KP_ASTERISK,     KC_7,             KC_8,             KC_9,                   KC_EQUAL,          KC_BSPC,
-      KC_KP_PLUS,                                                         KC_PIPE,            KC_4,             KC_5,             KC_6,                   KC_QUOTE,          KC_RALT,
+      KC_NUM,                                                        KC_KP_ASTERISK,     KC_7,             KC_8,             KC_9,                   KC_EQUAL,          KC_BSPC,
+      KC_KP_PLUS,                                                    KC_PIPE,            KC_4,             KC_5,             KC_6,                   KC_QUOTE,          KC_RALT,
       ____,                                                          KC_1,               KC_2,             KC_3,             KC_KP_MINUS,            KC_RCTL,
-      KC_KP_SLASH,                                                        KC_KP_ENTER,        KC_KP_EQUAL,      KC_0,             KC_DOT,              ____,             KC_RSFT,
+      KC_KP_SLASH,                                                   KC_KP_ENTER,        KC_KP_EQUAL,      KC_0,             KC_DOT,              ____,             KC_RSFT,
       ____,                                                              ____,              ____,            ____,            ____,
       // right thumb
       ____,                                                              ____,              ____
@@ -320,24 +321,24 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       LGUI(KC_P),            KC_GRAVE,           KC_COLON,         KC_MINUS,         KC_EXLM,            KC_PLUS,           KC_K,
       ALT_T(KC_TAB),          KC_Q,               KC_B,             KC_P,             KC_F,               KC_RALT,           LCTL(KC_ENTER),
 			      KC_LCTL,            LT(NUMPAD,KC_R),  KC_A,             KC_E,               KC_N,              KC_RCTL,
-      KC_LSFT,                KC_Z,               KC_COMMA,         KC_U,             KC_K,               ____,  XXXX,
+      KC_LSFT,                KC_Z,               KC_COMMA,         KC_U,             KC_K,               ____,  TG(GAME),
 
-			      // lower row
-	     TO(KEYMACS),     TG(GAME),     ____, ____,     ____,
+      // lower row
+	     TO(KEYMACS),     ____,     ____, ____,     ____,
       // left thumb
       ____,                         ____,        ____,
-      LGUI(KC_MS_BTN1),       LGUI(KC_LSFT),     LGUI(KC_DEL),
+      LGUI(KC_LSFT),       LGUI(KC_LSFT),     LGUI(KC_DEL),
 
       // right fingers
-      LGUI(KC_F),                                        LGUI(KC_F),         LGUI(KC_7),       LGUI(KC_8),             LGUI(KC_9),             KC_EQUAL,          KC_BSPC,
+      LGUI(KC_F),                                        LGUI(KC_T),         LGUI(KC_7),       LGUI(KC_8),             LGUI(KC_9),             XXXX,          LGUI(KC_BSPC),
       LGUI(KC_F4),                                       LGUI(KC_F4),        LGUI(KC_4),       LGUI(KC_5),             LGUI(KC_6),             LGUI(KC_F3),      LGUI(KC_F3),
 							 LGUI(KC_F1),        LGUI(KC_1),       LGUI(KC_2),             LGUI(KC_3),             LGUI(KC_F2),     LGUI(KC_F2),
       LGUI(KC_F1),                                       ____,               KC_C,             LGUI(KC_0),             KC_DOT,                 KC_SLASH,          XXXX,
-      KC_TAB,                                            KC_UNDS,             ____,            ____,            TO(RUSSIAN),
+      KC_TAB,                                            ____,             ____,            ____,            TO(RUSSIAN),
 
       // right thumb
       ____, ____, ____,
-      LGUI(KC_INS),                                                          LGUI(KC_ENTER),     C(LGUI(KC_SPACE))
+      LGUI(KC_INS),      LGUI(KC_ENTER),     C(LGUI(KC_SPACE))
    ),
 
    // Gaming mode mostly for action games
@@ -346,7 +347,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_TAB,                                                             KC_LALT,            KC_Q,             KC_W,             KC_E,                   KC_T,              KC_H,
       KC_M,                                                               KC_LCTL,            KC_A,             KC_S,             KC_D,                   KC_F,
       KC_K,                                                               KC_LSFT,            KC_Z,             KC_X,             KC_C,                   KC_V,              KC_G,
-      TD_GAME_KEYMACS,                                                    LALT(KC_1),         LALT(KC_2),       LALT(KC_3),       KC_R,
+      TO(KEYMACS),                                                    LALT(KC_1),         LALT(KC_2),       LALT(KC_3),       KC_R,
       // left thumb
       KC_B,                                                               ____,              ____,
       KC_SPACE,                                                           KC_MS_BTN3,         KC_KP_DOT,
@@ -383,12 +384,6 @@ layer_state_t layer_state_set_user(layer_state_t state) {
     cur_layer = get_highest_layer(state);
 
     switch (cur_layer) {
-	//case KEYMACS:
-	//if (old_layer == KEYMACS) {
-	//    tap_code(RUS);
-	//    tap_code(LAT);
-	//}
-	//break;
     case RUSSIAN:
       // Turn on RUS layout on enter to Russian layer.
       if (old_layer != RUSSIAN) {
@@ -559,10 +554,18 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
    case EMACS_RESET:
 	 if(record->event.pressed){
 	     switch_russian_layer(false);
+	 } else {
 	     SEND_STRING(SS_LCTL("ggg"));
 	     switch_russian_layer(true);
 	 }
 	 return(false);
+   case RU_ASTR: // for Russian layer only
+     if (record->event.pressed) {
+	 tap_code(LAT);
+	 SEND_STRING("*");
+	 tap_code(RUS);
+     }
+     return (false);
    }
    return(true);
 }
@@ -580,7 +583,7 @@ enum combos {
     RU_FE,
 };
 // in RUSSIAN on left hand:
-const uint16_t PROGMEM ex_combo[] = {KC_E, KC_X, COMBO_END};
+const uint16_t PROGMEM xr_combo[] = {KC_X, KC_R, COMBO_END};
 const uint16_t PROGMEM ft_combo[] = {KC_F, KC_T, COMBO_END};
 const uint16_t PROGMEM tj_combo[] = {KC_T, KC_J, COMBO_END};
 // in RUSSIAN on right hand:
@@ -589,7 +592,7 @@ const uint16_t PROGMEM dh_combo[] = {KC_D, KC_H, COMBO_END};
 const uint16_t PROGMEM mcom_combo[] = {KC_M, KC_COMMA, COMBO_END};
 const uint16_t PROGMEM com7_combo[] = {KC_COMMA, KC_7, COMBO_END};
 combo_t key_combos[] = {
-    [RU_TSE] = COMBO(ex_combo, KC_W),
+    [RU_TSE] = COMBO(xr_combo, KC_W),
     [RU_AE] = COMBO(ft_combo, KC_QUOTE),
     [RU_YO] = COMBO(tj_combo, KC_SLASH),
     [RU_SCSHE] = COMBO(hp_combo, KC_O),
@@ -598,10 +601,20 @@ combo_t key_combos[] = {
     [RU_FE] = COMBO(com7_combo, KC_A),
 };
 
+void dance_game_tokeymacs(tap_dance_state_t *state, void *user_data) {
+   switch (state->count) {
+   case 1:
+       SEND_STRING("k");
+       break;
+   case 3:
+       layer_on(KEYMACS);
+       break;
+   }
+}
+
 // Tap Dance definitions
 tap_dance_action_t tap_dance_actions[] = {
-    // Tap once for Escape, twice for Caps Lock
-    [TD_GAME_KEYMACS] = ACTION_TAP_DANCE_DOUBLE(KC_L, TO(KEYMACS)),
+    [TD_GAME_KEYMACS] = ACTION_TAP_DANCE_FN(dance_game_tokeymacs),
 };
 
 

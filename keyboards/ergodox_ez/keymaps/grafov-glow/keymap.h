@@ -1,6 +1,5 @@
 #include QMK_KEYBOARD_H
 
-#define TAP(kc)    register_code(kc); unregister_code(kc)
 #define XXXX KC_NO
 
 // Switchers
