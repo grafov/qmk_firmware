@@ -39,11 +39,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     * ,--------------------------------------------------.           ,--------------------------------------------------.
     * |   Esc  |   `  |   :  |   -  |   !  |   +  | Ctl-G|           | NumLk|   *  |   ?  |   "  |   ;  |  :=  |  Undo  |
     * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
-    * |Ctl-Find|   q  |   b  |   p  |   f  |   g  | Emacs|           | Win  |   v  |   w  |   l  |   y  |   '  | C-X-B  |
+    * |Ctl-Find|   q  |   b  |   p  |   f  |   g  | Emacs|           | Win  |   m  |   w  |   l  |   y  |   '  | C-X-B  |
     * |--------+------+------+------+------+------| Sel  |           | move |------+------+------+------+------+--------|
     * |  Find  |   r  |   a  |   e  |.  n  |   s  |------|           |------|   d  |.  o  |   t  |   i  |   h  |  A-X   |
     * |--------+------+------+------+------+------| Win  |           |  F   |------+------+------+------+------+--------|
-    * |C-A-Find|   z  |   ,  |   u  |   k  |   j  | Mgmt |           |  N   |   m  |   c  |   x  |   .  |   /  | A-Find |
+    * |C-A-Find|   z  |   ,  |   u  |   k  |   j  | Mgmt |           |  N   |   v  |   c  |   x  |   .  |   /  | A-Find |
     * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
     *   | LAT  | LGUI | LAT  |  Ctl |  Alt |                                       |  Alt | Ctl  | RUS  | Menu |  RUS |
     *   `----------------------------------'                                       `----------------------------------'
@@ -70,9 +70,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
       // right finger
       XXXX,                           KC_ASTR,            KC_QUES,          KC_DQUO,          KC_SCLN,          ____,                       KC_UNDO,
-      LGUI(KC_MS_BTN1),                     KC_V,               KC_W,             KC_L,             KC_Y,             LT(NUMPAD,KC_QUOTE),  EMACS_CHBUF,
+      LGUI(KC_MS_BTN1),                     KC_M,               KC_W,             KC_L,             KC_Y,             LT(NUMPAD,KC_QUOTE),  EMACS_CHBUF,
 					    KC_D,               KC_O,             KC_T,             KC_I,             LT(SYMBOLS,KC_H),     EMACS_CMD,
-      XXXX,                           LT(FN,KC_M),    KC_C,             KC_X,             KC_DOT,           KC_SLASH,               LALT(KC_FIND),
+      XXXX,                           LT(FN,KC_V),    KC_C,             KC_X,             KC_DOT,           KC_SLASH,               LALT(KC_FIND),
 	       // lower row
 	       KC_RALT,                     KC_RCTL,            TG(RUSSIAN),      KC_MENU,             TG(RUSSIAN),
 
@@ -203,7 +203,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_LALT,                                                            ____,             KC_PERC,          KC_LBRC,      KC_RBRC,            XXXX,             ____,
       KC_LCTL,                                                            ____,          KC_AT,            KC_LPRN,          KC_RPRN,                XXXX,
       KC_LSFT,                                                          XXXX,              KC_LABK,          KC_UNDS,          KC_TILD,                KC_ENTER,          ____,
-      ____,                                                              ____,              ____,            ____,            KC_TAB,
+      ____,                                                              ____,              ____,            ____,            ____,
 
       // left thumb
       ____,                                                              ____,              ____,
@@ -214,7 +214,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       ____,                                                              KC_PIPE,            KC_CIRC,          KC_DLR,           KC_AMPR,                KC_QUOTE,          KC_RALT,
       KC_NO,                                                              KC_LCBR,            KC_RCBR,          KC_HASH,          XXXX,                  KC_RCTL,
       ____,                                                              KC_ENTER,           KC_EQUAL,         KC_BSLS,        KC_RABK,                KC_SLASH,         KC_RSFT,
-      ____,                                            LT(FN,KC_APP),   XXXX,            KC_CAPS,            ____,
+      ____,                                            ____,   ____,            ____,            ____,
 
       // right thumb
       ____,                                                              ____,              ____,
@@ -248,7 +248,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_LALT,                                                            ____,             KC_F4,            KC_F5,            KC_F6,                KC_RALT,             ____,
       KC_LCTL,                                                            KC_NO,              KC_F1,            KC_F2,            KC_F3,                KC_RCTL,
       KC_LSFT,                                                          KC_NO,              KC_F11,           KC_F10,           KC_F12,                KC_LSFT,            ____,
-      KC_LSFT,                                                  ____,              ____,            ____,            ____,
+      KC_LSFT,                                                  KC_LGUI,              ____,            KC_LCTL,            KC_LALT,
 
       // left thumb
       ____,                                                              ____,              ____,
@@ -259,7 +259,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       ____,                                                              KC_LALT,            KC_F4,            KC_F5,            KC_F6,                  KC_RALT,        KC_RALT,
       KC_LCTL,                                                            KC_F1,              KC_F2,            KC_F3,            KC_KP_MINUS,            KC_RCTL,
       KC_LSFT,                                                          ____,              KC_F11,           KC_F10,           KC_F12,                 KC_LSFT,          KC_LSFT,
-      ____,                                                              ____,              ____,            ____,            KC_LSFT,
+	  KC_RALT,                                                     KC_RCTL,              ____,            ____,            ____,
 
       // right thumb
       ____,                                                              ____,              ____,
@@ -300,7 +300,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 					 // lower row
 					 TO(KEYMACS),        ____,             ____,            XXXX,       XXXX,
       // left thumb
-      KC_SPACE,      ____,              ____,            ____,            ____,                  ____,
+      ____,      KC_LSFT,              ____,            ____,            ____,                  ____,
 
       // right fingers
       ____,                       XXXX,               XXXX,             XXXX,             KC_MENU,           ____,           KC_UNDO,
@@ -312,7 +312,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 				 XXXX,  XXXX, XXXX, XXXX, TO(RUSSIAN),
 
       // right thumb
-      ____,                        ____,              ____,            ____,            KC_ENTER,               KC_SPACE
+      ____,                        ____,              ____,            ____,            KC_LCTL,               ____
    ),
 
    // Window manager control (currently for Spectr WM)
@@ -332,7 +332,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       // right fingers
       LGUI(KC_F),                                        LGUI(KC_T),         LGUI(KC_7),       LGUI(KC_8),             LGUI(KC_9),             XXXX,          LGUI(KC_BSPC),
       LGUI(KC_F4),                                       LGUI(KC_F4),        LGUI(KC_4),       LGUI(KC_5),             LGUI(KC_6),             LGUI(KC_F3),      XXXX,
-							 LGUI(KC_F1),        LGUI(KC_1),       LGUI(KC_2),             LGUI(KC_3),             LGUI(KC_F2),     LGUI(KC_F2),
+							 LGUI(KC_F1),        LGUI(KC_1),       LGUI(KC_2),             LGUI(KC_3),             XXXX,          LGUI(KC_F2),
       LGUI(KC_F1),                                       ____,               KC_C,             LGUI(KC_0),             KC_DOT,                 KC_SLASH,         LGUI(KC_F3),
       KC_TAB,                                            ____,             ____,            ____,            TO(RUSSIAN),
 
