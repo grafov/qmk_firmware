@@ -39,13 +39,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     * ,--------------------------------------------------.           ,--------------------------------------------------.
     * |   Esc  |   `  |   :  |   -  |   !  |   +  | Ctl-G|           | NumLk|   *  |   ?  |   "  |   ;  |  :=  |  Undo  |
     * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
-    * |Ctl-Find|   q  |   b  |   p  |   f  |   g  | Emacs|           |      |   v  |   w  |   l  |   y  |   '  | C-X-B  |
-    * |--------+------+------+------+------+------| Sel  |           |      |------+------+------+------+------+--------|
+    * |Ctl-Find|   q  |   b  |   p  |   f  |   g  | Emacs|           | Win  |   v  |   w  |   l  |   y  |   '  | C-X-B  |
+    * |--------+------+------+------+------+------| Sel  |           | move |------+------+------+------+------+--------|
     * |  Find  |   r  |   a  |   e  |.  n  |   s  |------|           |------|   d  |.  o  |   t  |   i  |   h  |  A-X   |
     * |--------+------+------+------+------+------| Win  |           |  F   |------+------+------+------+------+--------|
     * |C-A-Find|   z  |   ,  |   u  |   k  |   j  | Mgmt |           |  N   |   m  |   c  |   x  |   .  |   /  | A-Find |
     * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
-    *   | LAT  |      | LAT  |  GUI |  Alt |                                       |  Alt | Menu | RUS  |      |  RUS |
+    *   | LAT  | LGUI | LAT  |  Ctl |  Alt |                                       |  Alt | Ctl  | RUS  | Menu |  RUS |
     *   `----------------------------------'                                       `----------------------------------'
     *                                        ,--------------.     ,--------------.
     *                                        |  Ctl |  Shift|     |  Shift| Shift|
@@ -62,19 +62,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_FIND,                      LT(SYMBOLS,KC_R),      KC_A,               KC_E,             KC_N,              KC_S,
       C(A(KC_FIND)),                KC_Z,                  KC_COMMA,           KC_U,             KC_K,              KC_J,          MO(WM),
 	       // lower row
-	       TO(KEYMACS),                  XXXX,                  TO(KEYMACS),        KC_LGUI,        KC_LALT,
+	       TO(KEYMACS),                  KC_LGUI,              TO(KEYMACS),        KC_LCTL,        KC_LALT,
 
       // left thumb
       KC_LCTL, KC_LSFT,  KC_LCTL,
       LT(CONTROL, KC_BSPC), LSFT_T(KC_TAB), ALT_T(KC_DEL),
 
       // right finger
-      MO(NUMPAD),                           KC_ASTR,            KC_QUES,          KC_DQUO,          KC_SCLN,          ____,                   KC_UNDO,
-      LGUI(KC_MS_BTN1),                     KC_V,               KC_W,             KC_L,             KC_Y,             KC_QUOTE,               EMACS_CHBUF,
-					    KC_D,               KC_O,             KC_T,             KC_I,             LT(SYMBOLS,KC_H),       EMACS_CMD,
-      MO(FN),                               LT(NUMPAD,KC_M),    KC_C,             KC_X,             KC_DOT,           KC_SLASH,               LALT(KC_FIND),
+      XXXX,                           KC_ASTR,            KC_QUES,          KC_DQUO,          KC_SCLN,          ____,                       KC_UNDO,
+      LGUI(KC_MS_BTN1),                     KC_V,               KC_W,             KC_L,             KC_Y,             LT(NUMPAD,KC_QUOTE),  EMACS_CHBUF,
+					    KC_D,               KC_O,             KC_T,             KC_I,             LT(SYMBOLS,KC_H),     EMACS_CMD,
+      XXXX,                           LT(FN,KC_M),    KC_C,             KC_X,             KC_DOT,           KC_SLASH,               LALT(KC_FIND),
 	       // lower row
-	       KC_RALT,                     KC_MENU,            TG(RUSSIAN),      XXXX,             TG(RUSSIAN),
+	       KC_RALT,                     KC_RCTL,            TG(RUSSIAN),      KC_MENU,             TG(RUSSIAN),
 
       // right thumb
       KC_LSFT, KC_LSFT, KC_RCTL,
@@ -112,7 +112,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       LCA_T(KC_FIND),       KC_Z,                KC_6,             KC_C,          KC_V,          XXXX,            MO(WM),
 
 		      // lower row
-		      TO(KEYMACS),       ____,             TO(KEYMACS),          ____,          ____,
+		      TO(KEYMACS),       KC_LGUI,             TO(KEYMACS),          KC_LCTL,          KC_LALT,
 
 
       // left thumb
@@ -126,7 +126,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       MO(FN),               MO(NUMPAD),        KC_M,            KC_COMMA,    KC_7,            KC_Q,                 LALT(KC_FIND),
 
 			     // lower row
-			     ____,          ____,         XXXX,     ____,            XXXX,
+			     KC_RALT,          KC_RCTL,         XXXX,     KC_MENU,            XXXX,
 
       // right thumb
       KC_RSFT, KC_RSFT, KC_RCTL,
@@ -293,8 +293,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    [CONTROL] = LAYOUT_ergodox(
       // left fingers
       KC_ESC,                             XXXX,              XXXX,            XXXX,            XXXX,                  ____,             ____,
-      ____,                               XXXX,              KC_LEFT,          KC_PGUP,          KC_RIGHT,            KC_ESCAPE,         KC_LGUI,
-					  ____,              RCTL(KC_R),         KC_HOME,          KC_UP,            KC_DOWN,            ____,
+      ____,                               XXXX,              KC_LEFT,          KC_PGUP,         KC_RIGHT,           KC_ESCAPE,         KC_LGUI,
+					  ____,              RCTL(KC_R),         KC_HOME,       KC_UP,            KC_DOWN,            ____,
       ____,                               RCTL(KC_Z),        RSFT(KC_ENTER),   XXXX,            KC_PGDN,             KC_ENTER,          LCTL(KC_QUES),
 
 					 // lower row
@@ -324,16 +324,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_LSFT,                KC_Z,               KC_COMMA,         KC_U,             KC_K,               ____,  TG(GAME),
 
       // lower row
-	     TO(KEYMACS),     ____,     ____, ____,     ____,
+      TO(KEYMACS),     ____,     TG(GAME), ____,     ____,
       // left thumb
       ____,                         ____,        ____,
       LGUI(KC_LSFT),       LGUI(KC_LSFT),     LGUI(KC_DEL),
 
       // right fingers
       LGUI(KC_F),                                        LGUI(KC_T),         LGUI(KC_7),       LGUI(KC_8),             LGUI(KC_9),             XXXX,          LGUI(KC_BSPC),
-      LGUI(KC_F4),                                       LGUI(KC_F4),        LGUI(KC_4),       LGUI(KC_5),             LGUI(KC_6),             LGUI(KC_F3),      LGUI(KC_F3),
+      LGUI(KC_F4),                                       LGUI(KC_F4),        LGUI(KC_4),       LGUI(KC_5),             LGUI(KC_6),             LGUI(KC_F3),      XXXX,
 							 LGUI(KC_F1),        LGUI(KC_1),       LGUI(KC_2),             LGUI(KC_3),             LGUI(KC_F2),     LGUI(KC_F2),
-      LGUI(KC_F1),                                       ____,               KC_C,             LGUI(KC_0),             KC_DOT,                 KC_SLASH,          XXXX,
+      LGUI(KC_F1),                                       ____,               KC_C,             LGUI(KC_0),             KC_DOT,                 KC_SLASH,         LGUI(KC_F3),
       KC_TAB,                                            ____,             ____,            ____,            TO(RUSSIAN),
 
       // right thumb
@@ -482,6 +482,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
 	case KC_RCTL:
 	case KC_LALT:
 	case KC_RALT:
+	case KC_LGUI:
+	case KC_MENU:
 	case ALT_T(KC_INS):
 	case ALT_T(KC_DEL):
 	case RCTL_T(KC_ENTER):
@@ -504,6 +506,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
 	case KC_RCTL:
 	case KC_LALT:
 	case KC_RALT:
+	case KC_LGUI:
+	case KC_MENU:
 	case ALT_T(KC_INS):
 	case ALT_T(KC_DEL):
 	case RCTL_T(KC_ENTER):
@@ -526,7 +530,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
 	 if(record->event.pressed){
 	   // Emacs: reset the selection and activate a new one
 	   switch_russian_layer(false);
-	   SEND_STRING(SS_LCTL("g "));
+	   SEND_STRING(SS_LCTL("g"));
+	   SEND_STRING(SS_LCTL(" "));
 	   switch_russian_layer(true);
 	 }
 	 return(false);
