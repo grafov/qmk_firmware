@@ -530,8 +530,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
 	 if(record->event.pressed){
 	   // Emacs: reset the selection and activate a new one
 	   switch_russian_layer(false);
-	   SEND_STRING(SS_LCTL("g"));
-	   SEND_STRING(SS_LCTL(" "));
+	   SEND_STRING(SS_LCTL("g") SS_DELAY(100) SS_LCTL(" "));
 	   switch_russian_layer(true);
 	 }
 	 return(false);
@@ -545,14 +544,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
    case EMACS_CHBUF:
 	  if (record->event.pressed){
 	     switch_russian_layer(false);
-	     SEND_STRING(SS_LCTL("gx") "b");
+	     SEND_STRING(SS_LCTL("g") SS_DELAY(100) SS_LCTL("x") SS_DELAY(50) "b");
 	     switch_russian_layer(true);
 	  }
 	  return(false);
    case EMACS_CMD:
        if(record->event.pressed){
 	  switch_russian_layer(false);
-	  SEND_STRING(SS_LCTL("g") SS_LALT("x"));
+	  SEND_STRING(SS_LCTL("g") SS_DELAY(100) SS_LALT("x"));
 	  switch_russian_layer(true);
        }
        return(false);
@@ -560,7 +559,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
 	 if(record->event.pressed){
 	     switch_russian_layer(false);
 	 } else {
-	     SEND_STRING(SS_LCTL("ggg"));
+	     SEND_STRING(SS_LCTL("g") SS_DELAY(100) SS_LCTL("g"));
 	     switch_russian_layer(true);
 	 }
 	 return(false);
