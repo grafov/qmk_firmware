@@ -37,7 +37,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     * https://github.com/keyboard-ergonomics/keymacs
     *
     * ,--------------------------------------------------.           ,--------------------------------------------------.
-    * |   Esc  |   `  |   :  |   -  |   !  |   +  | Ctl-G|           | NumLk|   *  |   ?  |   "  |   ;  |  :=  |  Undo  |
+    * |   Esc  |   `  |   :  |   -  |   !  |   +  | Ctl-G|           | NumLk|   *  |   ?  |   "  |   ;  |      |  Undo  |
     * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
     * |Ctl-Find|   q  |   b  |   p  |   f  |   g  | Emacs|           | Win  |   m  |   w  |   l  |   y  |   '  | C-X-B  |
     * |--------+------+------+------+------+------| Sel  |           | move |------+------+------+------+------+--------|
@@ -300,7 +300,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 					 // lower row
 					 TO(KEYMACS),        ____,             ____,            XXXX,       XXXX,
       // left thumb
-      ____,      KC_LSFT,              ____,            ____,            ____,                  ____,
+      KC_LCTL, KC_LSFT,  KC_LCTL,
+      MO(CONTROL), KC_LSFT, KC_LALT,
 
       // right fingers
       ____,                       XXXX,               XXXX,             XXXX,             KC_MENU,           ____,           KC_UNDO,
@@ -312,7 +313,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 				 XXXX,  XXXX, XXXX, XXXX, TO(RUSSIAN),
 
       // right thumb
-      ____,                        ____,              ____,            ____,            KC_LCTL,               ____
+      KC_LSFT, KC_LSFT, KC_RCTL,
+      KC_RALT, KC_RCTL, MO(CONTROL)
    ),
 
    // Window manager control (currently for Spectr WM)
