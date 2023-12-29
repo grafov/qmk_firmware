@@ -17,6 +17,7 @@ enum layers {
 enum custom_keycodes {
     VRSN = SAFE_RANGE,
     ____,
+    LAY_RST,
     EMACS_SELECT,
     EMACS_BLSEL,
     EMACS_CMD,
@@ -62,7 +63,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_FIND,                      LT(SYMBOLS,KC_R),      KC_A,               KC_E,             KC_N,              KC_S,
       C(A(KC_FIND)),                KC_Z,                  KC_COMMA,           KC_U,             KC_K,              KC_J,          MO(WM),
 	       // lower row
-	       TO(KEYMACS),                  KC_LGUI,              TO(KEYMACS),        KC_LCTL,        KC_LALT,
+	       LAY_RST,                  KC_LGUI,              TO(KEYMACS),        KC_LCTL,        KC_LALT,
 
       // left thumb
       KC_LCTL, KC_LSFT,  KC_LCTL,
@@ -81,19 +82,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       ALT_T(KC_INS), RCTL_T(KC_ENTER), LT(CONTROL, KC_SPACE)
    ),
 
-   /* Russian layout slightly opimized for home row and adapted for EZ with Keymacs punctuatitons
-    * for frequency optimization see https://ru.wikipedia.org/wiki/Частотность
+   /* Russian (ВОЛНА0) layout slightly opimized for home square. My experiment.
     *
     * ,--------------------------------------------------.           ,--------------------------------------------------.
-    * |        |  « „ |  ч : |   -  |   !  |  ё + |Ctl+G |           |      |   *  |   ?  |  х " |  щ ; |  » “ |   BSP  |
+    * |        |  « „ |   :  |   -  |   !  |   +  |Ctl+G |           |      |   *  |   ?  |   "  |   ;  |  » “ |   BSP  |
     * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
-    * |        |   й  |   ц  |   у  |   к  |   ы  |      |           |      |   н  |   г  |   ш  |   ю  |   з  |        |
+    * |        |   у  ц   ч  |   к  |   д  |   ы  |      |           |      |   г  ж   в  |   р  щ   з  |   ш  |        |
     * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
-    * |        |   ф  |   а  |   е  |.  в  |   п  |------|           |------|   р  |.  о  |   л  |   д  |   ж  |        |
+    * |        |   х  |   а  э   е  ё   о  |   п  |------|           |------|   ю  |   т  |   и  |   н  |   л  |        |
     * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
-    * |        |   я  |   ,  |   с  |   м  |   и  |      |           |      |   т  |  ь ъ |   б  |   .  |   э  |        |
+    * |        |   я  |   ,  |   с  |   м  |      |      |           |      |      |   ь  ъ   б  |   .  |   й  |        |
     * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
-    *   | LAT  | LAT  |      |   _  |      |                                       |      |      |      | CAPS |      |
+    *   | LAT  | LAT  |      |   _  |      |                                       |      |      |      |      |      |
     *   `----------------------------------'                                       `----------------------------------'
     *                                        ,-------------.       ,-------------.
     *                                        |      |      |       |      |      |
@@ -103,7 +103,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     *                                 |      |      |      |       |      |      |      |
     *                                 `--------------------'       `--------------------'
     */
-   /* QWERTY for Russian Typewriter layout adapted for Ergodox/Keymacs */
     [RUSSIAN] = LAYOUT_ergodox(
       // left fingers
       KC_ESC,               ____,                KC_5,             KC_KP_MINUS,   KC_MINUS,      KC_TILDE,        EMACS_RESET,
@@ -301,7 +300,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 					 TO(KEYMACS),        ____,             ____,            XXXX,       XXXX,
       // left thumb
       KC_LCTL, KC_LSFT,  KC_LCTL,
-      MO(CONTROL), KC_LSFT, KC_LALT,
+      XXXX, KC_LSFT, KC_LALT,
 
       // right fingers
       ____,                       XXXX,               XXXX,             XXXX,             KC_MENU,           ____,           KC_UNDO,
@@ -314,7 +313,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
       // right thumb
       KC_LSFT, KC_LSFT, KC_RCTL,
-      KC_RALT, KC_RCTL, MO(CONTROL)
+      KC_RALT, KC_RCTL, XXXX
    ),
 
    // Window manager control (currently for Spectr WM)
@@ -329,11 +328,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       TO(KEYMACS),     ____,     TG(GAME), ____,     ____,
       // left thumb
       ____,                         ____,        ____,
-      LGUI(KC_LSFT),       LGUI(KC_LSFT),     LGUI(KC_DEL),
+      LGUI(KC_BSPC),       LGUI(KC_LSFT),     LGUI(KC_DEL),
 
       // right fingers
-      LGUI(KC_F),                                        LGUI(KC_T),         LGUI(KC_7),       LGUI(KC_8),             LGUI(KC_9),             XXXX,          LGUI(KC_BSPC),
-      LGUI(KC_F4),                                       LGUI(KC_F4),        LGUI(KC_4),       LGUI(KC_5),             LGUI(KC_6),             LGUI(KC_F3),      XXXX,
+      LGUI(KC_F4),                                        LGUI(KC_T),         LGUI(KC_7),       LGUI(KC_8),             LGUI(KC_9),             XXXX,          LGUI(KC_UNDO),
+      LGUI(KC_F),                                       LGUI(KC_F4),        LGUI(KC_4),       LGUI(KC_5),             LGUI(KC_6),             LGUI(KC_F3),      XXXX,
 							 LGUI(KC_F1),        LGUI(KC_1),       LGUI(KC_2),             LGUI(KC_3),             XXXX,          LGUI(KC_F2),
       LGUI(KC_F1),                                       ____,               KC_C,             LGUI(KC_0),             KC_DOT,                 KC_SLASH,         LGUI(KC_F3),
       KC_TAB,                                            ____,             ____,            ____,            TO(RUSSIAN),
@@ -390,20 +389,22 @@ layer_state_t layer_state_set_user(layer_state_t state) {
       // Turn on RUS layout on enter to Russian layer.
       if (old_layer != RUSSIAN) {
 	tap_code(RUS);
-      } // else {
-	// tap_code(LAT);
-	// tap_code(RUS);
-      // }
+	xprintf("LAYER: %d %d ->RUS\n", old_layer, cur_layer); // left for debugging yet
+      }  else {
+	xprintf("LAYER: %d %d (RUS)\n", old_layer, cur_layer); // left for debugging yet
+       }
       break;
     default:
       // Switch back to English when we leave Russian layer.
       if (old_layer == RUSSIAN) {
 	tap_code(LAT);
+	xprintf("LAYER: %d %d ->LAT\n", old_layer, cur_layer); // left for debugging yet
+      } else {
+	xprintf("LAYER: %d %d (LAT)\n", old_layer, cur_layer); // left for debugging yet
       }
     }
 
     //old_layer = cur_layer;
-    xprintf("LAYER: %d %d\n", old_layer, cur_layer); // left for debugging yet
     old_layer = cur_layer;
     ergodox_board_led_off();
     ergodox_right_led_1_off();
@@ -473,6 +474,21 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 // implements user hook on the each key press/release
 bool process_record_user(uint16_t keycode, keyrecord_t *record)
 {
+
+    switch(keycode) {
+    case LAY_RST:
+		if (!record->event.pressed) {
+	    layer_off(RUSSIAN);
+	    layer_on(KEYMACS);
+		    return false;
+		}
+    case KC_LSFT:
+    case KC_RSFT:
+	if (record->event.pressed) {
+		return true;
+	}
+    }
+
     // For compatibility with software that not understand how to map
     // non-English keys with modifiers. Just temporary switch to
     // Keymacs layer when modifier pressed. It works only for Russian
@@ -502,7 +518,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
 	/*     } */
 	/* } */
     }
-    if (back_to_ussr && !record->event.pressed) {
+    if (back_to_ussr && cur_layer != RUSSIAN && !record->event.pressed) {
 	switch (keycode) {
 	case KC_LCTL:
 	case KC_RCTL:
@@ -567,9 +583,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
 	 return(false);
    case RU_ASTR: // for Russian layer only
      if (record->event.pressed) {
-	 tap_code(LAT);
+	  switch_russian_layer(false);
+     } else {
 	 SEND_STRING("*");
-	 tap_code(RUS);
+	 switch_russian_layer(true);
      }
      return (false);
    }
