@@ -50,10 +50,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     *   | LAT  | LGUI | LAT  |  Ctl |  Alt |                                       |  Alt | Ctl  | RUS  | Menu |  RUS |
     *   `----------------------------------'                                       `----------------------------------'
     *                                        ,--------------.     ,--------------.
-    *                                        |  Ctl |  Shift|     |  Shift| Shift|
+    *                                        |  Tab |  Ctrl |     |  Ctrl | Shift|
     *                                 ,------|------|-------|     |-------+------+------.
-    *                                 |      |      |  Ctl  |     |  Ctl  |      |      |
-    *                                 | BSpc |  Tab |-------|     |-------| Enter| SPC  |
+    *                                 |      |      | Shift |     | Shift |      |      |
+    *                                 | BSpc |      |-------|     |-------| Enter| SPC  |
     *                                 | nav  | Shift|Del/Alt|     |Ins/Alt| Ctlr | nav  |
     *                                 `---------------------'     `---------------------'
     */
@@ -67,8 +67,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	       LAY_RST,                  KC_LGUI,              TO(KEYMACS),        KC_LCTL,        KC_LALT,
 
       // left thumb
-      KC_LCTL, KC_LSFT,  KC_LCTL,
-      LT(CONTROL, KC_BSPC), LSFT_T(KC_TAB), ALT_T(KC_DEL),
+      KC_TAB, KC_LCTL,  KC_LSFT,
+      LT(CONTROL, KC_BSPC), KC_LSFT, ALT_T(KC_DEL),
 
       // right finger
       XXXX,                           KC_ASTR,            KC_QUES,          KC_DQUO,          KC_SCLN,          ____,                       KC_UNDO,
@@ -79,7 +79,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	       KC_RALT,                     KC_RCTL,            TG(RUSSIAN),      KC_MENU,             TG(RUSSIAN),
 
       // right thumb
-      KC_LSFT, KC_LSFT, KC_RCTL,
+      KC_RCTL, KC_LSFT, KC_LSFT,
       ALT_T(KC_INS), RCTL_T(KC_ENTER), LT(CONTROL, KC_SPACE)
    ),
 
@@ -116,8 +116,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 
       // left thumb
-      KC_LCTL,    KC_RSFT,  KC_LCTL,
-      LT(CONTROL, KC_BSPC), LSFT_T(KC_TAB), ALT_T(KC_DEL),
+      KC_TAB, KC_LCTL, KC_LSFT,
+      LT(CONTROL, KC_BSPC), KC_LSFT, ALT_T(KC_DEL),
 
       // right fingers
       ____,                 RU_ASTR,           KC_9,            KC_4,        KC_EQUAL,        KC_1,                 KC_UNDO,
@@ -129,7 +129,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 			     KC_RALT,          KC_RCTL,         XXXX,     KC_MENU,            LAY_RUS,
 
       // right thumb
-      KC_RSFT, KC_RSFT, KC_RCTL,
+      KC_RCTL, KC_LSFT, KC_LSFT,
       ALT_T(KC_INS), RCTL_T(KC_ENTER), LT(CONTROL, KC_SPACE)
    ),
 
@@ -162,8 +162,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_LSFT,                                                          XXXX,              KC_LABK,          KC_UNDS,          KC_TILD,                KC_TAB,            ____,
       ____,                                                              ____,              ____,            ____,            ____,
       // left thumb
-      ____,                                                              ____,              ____,
-      LT(CONTROL,                                                   KC_SPACE),          LT(WM,      KC_TAB),          ____,
+      ____,    ____,              ____,
+      ____, ____,      ____,
 
       // right fingers
       KC_NUM,                                                        KC_KP_ASTERISK,     KC_7,             KC_8,             KC_9,                   KC_EQUAL,          KC_BSPC,
@@ -172,8 +172,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_KP_SLASH,                                                   KC_KP_ENTER,        KC_KP_EQUAL,      KC_0,             KC_DOT,              ____,             KC_RSFT,
       ____,                                                              ____,              ____,            ____,            ____,
       // right thumb
-      ____,                                                              ____,              ____
-      ,                                                                   ____,              LT(WM,      KC_ENTER),        LT(CONTROL,       KC_SPACE)
+      ____,     ____,              ____,
+      ____,             ____, ____
    ),
 
    /* Symbol Layer
@@ -218,7 +218,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
       // right thumb
       ____,                                                              ____,              ____,
-      ____,                                                              ____,              LT(CONTROL, KC_SPACE)
+      ____,                                                              ____,              ____
    ),
 
    /* Fn keys for the right hand (left hand the same as for Symbols layer)
@@ -262,8 +262,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	  KC_RALT,                                                     KC_RCTL,              ____,            ____,            ____,
 
       // right thumb
-      ____,                                                              ____,              ____,
-      ____,                                                              LT(WM,        KC_ENTER),        LT(CONTROL, KC_SPACE)
+      ____,                                                              ____,       ____,
+      ____,                                                              ____,       ____
    ),
 
    /* Control layer for line and page navigation and common text operations
@@ -556,7 +556,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
 	 if(record->event.pressed){
 	   // Emacs: reset the selection and activate a new one
 	   switch_russian_layer(false);
-	   SEND_STRING(SS_LCTL("g") SS_DELAY(100) SS_LCTL(" "));
+	   SEND_STRING(SS_LCTL(" "));
 	   switch_russian_layer(true);
 	 }
 	 return(false);
@@ -585,7 +585,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
 	 if(record->event.pressed){
 	     switch_russian_layer(false);
 	 } else {
-	     SEND_STRING(SS_LCTL("g") SS_DELAY(100) SS_LCTL("g"));
+	     SEND_STRING(SS_LCTL("g"));
 	     switch_russian_layer(true);
 	 }
 	 return(false);
