@@ -577,7 +577,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
    case EMACS_CMD:
        if(record->event.pressed){
 	  switch_russian_layer(false);
-	  SEND_STRING(SS_LCTL("g") SS_DELAY(100) SS_LALT("x"));
+	  SEND_STRING(SS_LALT("x"));
 	  switch_russian_layer(true);
        }
        return(false);
