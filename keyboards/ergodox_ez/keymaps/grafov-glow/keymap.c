@@ -333,9 +333,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
       // right fingers
       LGUI(KC_F4),                                       LGUI(KC_T),         LGUI(KC_7),       LGUI(KC_8),             LGUI(KC_9),             XXXX,             LGUI(KC_UNDO),
-      LGUI(KC_F),                                        XXXX,               LGUI(KC_4),       LGUI(KC_5),             LGUI(KC_6),             LGUI(KC_UP),      XXXX,
-							 LGUI(KC_LEFT),      LGUI(KC_1),       LGUI(KC_2),             LGUI(KC_3),             LGUI(KC_RIGHT),   LGUI(KC_F2),
-      LGUI(KC_F1),                                       ____,               KC_C,             LGUI(KC_0),             KC_DOT,                 LGUI(KC_DOWN),    LGUI(KC_F3),
+      LGUI(KC_F),                                        LGUI(KC_F12),       LGUI(KC_4),       LGUI(KC_5),             LGUI(KC_6),             LGUI(KC_UP),      LGUI(KC_F13),
+							 LGUI(KC_LEFT),      LGUI(KC_1),       LGUI(KC_2),             LGUI(KC_3),             LGUI(KC_RIGHT),   LGUI(KC_F14),
+      LGUI(KC_F1),                                       LGUI(KC_F11),       KC_C,             LGUI(KC_0),             KC_DOT,                 LGUI(KC_DOWN),    LGUI(KC_F15),
       KC_TAB,                                            ____,             ____,            ____,            TO(RUSSIAN),
 
       // right thumb
