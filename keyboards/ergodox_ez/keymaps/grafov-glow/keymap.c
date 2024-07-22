@@ -534,7 +534,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
     // Keymacs layer when modifier pressed. It works only for Russian
     // layer.
     static bool back_to_ussr = false;
-    if (cur_layer == RUSSIAN && record->event.pressed) {
+    // on modifier key press:
+    if (!back_to_ussr && cur_layer == RUSSIAN && record->event.pressed) {
 	switch (keycode) {
 	case KC_LCTL:
 	case KC_RCTL:
@@ -549,15 +550,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
 	    layer_off(RUSSIAN);
 	    layer_on(KEYMACS);
 	}
-	/* if (record->event.key.col == 0) { */
-	/*     switch (record->event.key.row) { */
-	/*     case 0: */
-	/*     layer_off(RUSSIAN); */
-	/*     layer_on(KEYMACS); */
-	/*     back_to_ussr = true; */
-	/*     } */
-	/* } */
     }
+    // on modifier key release:
     if (back_to_ussr && cur_layer != RUSSIAN && !record->event.pressed) {
 	switch (keycode) {
 	case KC_LCTL:
@@ -573,14 +567,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
 	    layer_off(KEYMACS);
 	    layer_on(RUSSIAN);
 	}
-	/* if (record->event.key.col == 0) { */
-	/*     switch (record->event.key.row) { */
-	/*     case 0: */
-	/*     layer_off(KEYMACS); */
-	/*     layer_on(RUSSIAN); */
-	/*     back_to_ussr = false; */
-	/*     } */
-	/* } */
    }
 
    switch(keycode){
