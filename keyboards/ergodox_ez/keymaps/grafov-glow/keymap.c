@@ -493,8 +493,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
 		apressed = true;
 		if (dpressed) {
 		    SEND_STRING(SS_UP(X_D));
-		}
+		    dpressed = false;
+		};
 	    } else {
+		// to prevent double key release
+		if (!apressed) {
+		    return false;
+		}
 		apressed = false;
 	    }
 	    return true;
@@ -503,9 +508,19 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
 		dpressed = true;
 		if (apressed) {
 		    SEND_STRING(SS_UP(X_A));
-		}
+		};
 	    } else {
+		// to prevent double key release
+		if (!dpressed) {
+		    return false;
+		}
 		dpressed = false;
+	    }
+	    if (!record->event.pressed) {
+		// to prevent double release
+		if (dpressed) {
+		    return false;
+		}
 	    }
 	    return true;
 	    }
