@@ -303,7 +303,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
        ____,                               RCTL(KC_Z),        RSFT(KC_ENTER),   KC_PGUP,         KC_PGDN,             KC_ENTER,          LCTL(KC_QUES),
 
 					 // lower row
-					 TO(KEYMACS),        ____,             ____,            XXXX,       XXXX,
+					 TO(KEYMACS),        KC_APP,              KC_LGUI,        KC_LALT,      KC_LCTL,
 
       // left thumb
       KC_LCTL, KC_LSFT,  KC_LCTL, // 1,2,3
@@ -315,8 +315,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 				  KC_DEL,             KC_LEFT,          KC_RIGHT,         KC_END,            KC_WWW_BACK,     KC_WWW_FORWARD,
       ____,                       XXXX,               KC_MS_BTN1,       KC_MS_BTN2,       KC_MS_BTN3,        KC_MS_BTN4,      KC_MS_BTN5,
 
-				 // lower row
-				 XXXX,  XXXX, XXXX, XXXX, TO(RUSSIAN),
+  		   // lower row
+	       KC_RCTL,            KC_RALT,            KC_RGUI,      KC_MENU,             TG(RUSSIAN),
 
       // right thumb
       KC_LSFT, KC_RCTL, KC_RCTL, // 1,2,3
