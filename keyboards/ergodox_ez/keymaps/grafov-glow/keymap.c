@@ -58,13 +58,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     *                                        | Ctrl | Shift |     | Shift | Ctrl |
     *                                 ,------|------|3------|     |3------+------+------.
     *                                 |      |      | Ctrl  |     | Ctrl  |      |      |
-    *                                 | BSpc | LGUI |-------|     |-------| Enter| SPC  |
+    *                                 | BSpc |      |-------|     |-------| Enter| SPC  |
     *                                 | +nav | Shift|Del/Alt|     |Ins/Alt| Shift| +nav |
     *                                 `4------5------6------'     `4-------5------6-----'
     */
     [KEYMACS] = LAYOUT_ergodox(
       // left fingers
-      KC_ESC,                       KC_GRAVE,              KC_COLON,           KC_MINUS,         KC_EXLM,           RU_NUM,       EMACS_RESET,
+      KC_ESC,                       KC_GRAVE,              KC_COLON,           KC_MINUS,         KC_EXLM,           KC_PLUS,       EMACS_RESET,
       EMACS_WIN,                    LT(NUMPAD,KC_Q),       KC_B,               KC_P,             KC_F,              KC_G,          EMACS_SELECT,
       KC_FIND,                      LT(SYMBOLS,KC_R),      KC_A,               KC_E,             KC_N,              KC_S,
       LCTL(KC_FIND),                KC_Z,                  KC_COMMA,           KC_U,             KC_K,              KC_J,          MO(WM),
@@ -73,10 +73,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
       // left thumb
       KC_LCTL, KC_LSFT,  KC_LCTL, // 1,2,3
-      LT(CONTROL, KC_BSPC), LSFT_T(KC_LGUI), ALT_T(KC_DEL), // 4,5,6
+      LT(CONTROL, KC_BSPC), KC_LSFT, ALT_T(KC_DEL), // 4,5,6
 
       // right finger
-      KC_EXEC,              KC_ASTR,            KC_QUES,          KC_DQUO,          KC_SCLN,          ____,                       KC_UNDO,
+      KC_EXEC,              KC_ASTR,            KC_QUES,          KC_DQUO,          KC_SCLN,          RU_NUM,                       KC_UNDO,
       KC_TAB,               KC_M,               KC_W,             KC_L,             KC_Y,             LT(NUMPAD,KC_QUOTE),  EMACS_CHBUF,
 			    KC_D,               KC_O,             KC_T,             KC_I,             LT(SYMBOLS,KC_H),     EMACS_CMD,
       XXXX,                 LT(FN,KC_V),    KC_C,             KC_X,             KC_DOT,           KC_SLASH,               LALT(KC_FIND),
@@ -121,7 +121,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
       // left thumb
       KC_LCTL, KC_LSFT,  KC_LCTL, // 1,2,3
-      LT(CONTROL, KC_BSPC), LSFT_T(KC_LGUI), ALT_T(KC_DEL), // 4,5,6
+      LT(CONTROL, KC_BSPC), KC_LSFT, ALT_T(KC_DEL), // 4,5,6
 
 
       // right fingers
@@ -168,10 +168,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       ____,                                                              ____,              ____,            ____,            ____,
       // left thumb
       KC_LCTL, KC_LSFT,  KC_LCTL, // 1SFT3
-      LT(CONTROL, KC_BSPC), LCTL_T(KC_LGUI), ALT_T(KC_DEL), // 4,5,6
+      LT(CONTROL, KC_BSPC), KC_LSFT, ALT_T(KC_DEL), // 4,5,6
 
       // right fingers
-      KC_NUM,                                                        KC_KP_ASTERISK,     KC_7,             KC_8,             KC_9,                   KC_EQUAL,          KC_BSPC,
+      KC_NUM,                                                        KC_KP_ASTERISK,     KC_7,             KC_8,             KC_9,                   XXXX,          KC_BSPC,
       KC_KP_PLUS,                                                    KC_PIPE,            KC_4,             KC_5,             KC_6,                   KC_QUOTE,          KC_RALT,
       ____,                                                          KC_1,               KC_2,             KC_3,             KC_KP_MINUS,            KC_RCTL,
       KC_KP_SLASH,                                                   KC_KP_ENTER,        KC_KP_EQUAL,      KC_0,             KC_DOT,              ____,             KC_RSFT,
@@ -212,7 +212,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
       // left thumb
       KC_LCTL, KC_LSFT,  KC_LCTL, // 1SFT3
-      LT(CONTROL, KC_BSPC), LCTL_T(KC_LGUI), ALT_T(KC_DEL), // 4,5,6
+      LT(CONTROL, KC_BSPC), KC_LSFT, ALT_T(KC_DEL), // 4,5,6
 
       // right fingers
       KC_EXEC,                                                           KC_ASTR,            KC_QUES,          KC_DQUO,          KC_SCLN,              ____,            ____,
@@ -257,10 +257,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
       // left thumb
       KC_LCTL, KC_LSFT,  KC_LCTL, // 1SFT3
-      LT(CONTROL, KC_BSPC), LCTL_T(KC_LGUI), ALT_T(KC_DEL), // 4,5,6
+      LT(CONTROL, KC_BSPC), KC_LSFT, ALT_T(KC_DEL), // 4,5,6
 
       // right fingers
-      KC_EXEC,                                                           KC_KP_ASTERISK,     KC_F7,            KC_F8,            KC_F9,                  KC_EQUAL,          KC_BSPC,
+      KC_EXEC,                                                           KC_KP_ASTERISK,     KC_F7,            KC_F8,            KC_F9,                  KC_NUM,          KC_BSPC,
       ____,                                                              KC_LALT,            KC_F4,            KC_F5,            KC_F6,                  KC_RALT,        KC_RALT,
       KC_LCTL,                                                            KC_F1,              KC_F2,            KC_F3,            KC_KP_MINUS,            KC_RCTL,
       KC_LSFT,                                                          ____,              KC_F11,           KC_F10,           KC_F12,                 KC_LSFT,          KC_LSFT,
@@ -704,12 +704,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
 	 switch_russian_layer(true);
      }
      return (false);
-   case RU_NUM:
+   case RU_NUM: // FIXME yet works only on Keymacs layer
      if (record->event.pressed) {
-	  switch_russian_layer(false);
+	  layer_on(RUSSIAN);
      } else {
 	 SEND_STRING("1");
-	 switch_russian_layer(true);
+	 layer_off(RUSSIAN);
      }
      return (false);
    }
