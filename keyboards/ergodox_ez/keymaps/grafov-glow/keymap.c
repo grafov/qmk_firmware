@@ -54,9 +54,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
     *   | LAT  | Menu | LGUI |  Alt | Ctrl |                                       | Ctrl | Alt  | RGUI | Menu |  RUS |
     *   `----------------------------------'                                       `----------------------------------'
-    *                                        ,1------2------.     ,2-------3-----.
+    *                                        ,1------2------.     ,1-------2-----.
     *                                        | Ctrl | Shift |     | Shift | Ctrl |
-    *                                 ,------|------|3------|     |1------+------+------.
+    *                                 ,------|------|3------|     |3------+------+------.
     *                                 |      |      | Ctrl  |     | Ctrl  |      |      |
     *                                 | BSpc | LGUI |-------|     |-------| Enter| SPC  |
     *                                 | +nav | Shift|Del/Alt|     |Ins/Alt| Shift| +nav |
@@ -84,7 +84,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	       KC_RCTL,            KC_RALT,            KC_RGUI,      KC_MENU,             TG(RUSSIAN),
 
       // right thumb
-      KC_RCTL, KC_LSFT, KC_RCTL, // 1,2,3
+      KC_LSFT, KC_RCTL, KC_RCTL, // 1,2,3
       ALT_T(KC_INS), LSFT_T(KC_ENTER), LT(CONTROL, KC_SPACE) // 4,5,6
    ),
 
@@ -95,7 +95,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
     * |        |   у  ц   ч  |   к  |   д  |   ы  |      |           | Tab  |   г  |   в  ф   р  щ   з  |   ш  |        |
     * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
-    * |        |   х  |   а  э   е  ё   о  |   п  |------|           |------|   ю  |   т  |   и  й   н  |   л  |        |
+    * |        |   х  |   а  э   е  ё   о  |   п  |------|           |------|   й  ю   т  |   и  |   н  |   л  |        |
     * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
     * |        |   я  |   ,  |   с  |   м  |      |      |           |      |      |   ь  ъ   б  ж   .  |   /  |        |
     * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
@@ -127,14 +127,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       // right fingers
       KC_EXEC,              RU_ASTR,           KC_9,            KC_4,        KC_EQUAL,        KC_1,                 KC_UNDO,
       KC_TAB,               KC_U,              KC_D,            KC_H,        KC_P,            KC_I,                 EMACS_CHBUF,
-			    KC_DOT,            KC_N,            KC_B,        KC_Y,            LT(SYMBOLS,KC_K),     EMACS_CMD,
+			    KC_Q,            KC_N,            KC_B,        KC_Y,            LT(SYMBOLS,KC_K),     EMACS_CMD,
       ____,                MO(FN),        KC_M,            KC_COMMA,    KC_7,            RU_SLASH,                 LALT(KC_FIND),
 
 	       // lower row
 	       KC_RCTL,            KC_RALT,            KC_RGUI,      KC_MENU,          LAY_RUS,
 
       // right thumb
-      KC_RCTL, KC_LSFT, KC_RCTL, // 1,2,3
+      KC_LSFT, KC_RCTL, KC_RCTL, // 1,2,3
       ALT_T(KC_INS), LSFT_T(KC_ENTER), LT(CONTROL, KC_SPACE) // 4,5,6
    ),
 
@@ -177,7 +177,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_KP_SLASH,                                                   KC_KP_ENTER,        KC_KP_EQUAL,      KC_0,             KC_DOT,              ____,             KC_RSFT,
       ____,                                                              ____,              ____,            ____,            ____,
       // right thumb
-      KC_RCTL, KC_LSFT, KC_RCTL, // 1,2,3
+      KC_LSFT, KC_RCTL, KC_RCTL, // 1,2,3
       ALT_T(KC_INS), LSFT_T(KC_ENTER), LT(CONTROL, KC_SPACE) // 4,5,6
    ),
 
@@ -222,7 +222,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       ____,                                            ____,   ____,            ____,            ____,
 
       // right thumb
-      KC_RCTL, KC_LSFT, KC_RCTL, // 1,2,3
+      KC_LSFT, KC_RCTL, KC_RCTL, // 1,2,3
       ALT_T(KC_INS), LSFT_T(KC_ENTER), LT(CONTROL, KC_SPACE) // 4,5,6
    ),
 
@@ -267,7 +267,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	  ____,              ____,               ____,            ____,            ____,
 
       // right thumb
-      KC_RCTL, KC_LSFT, KC_RCTL, // 1,2,3
+      KC_LSFT, KC_RCTL, KC_RCTL, // 1,2,3
       ALT_T(KC_INS), LSFT_T(KC_ENTER), LT(CONTROL, KC_SPACE) // 4,5,6
    ),
 
@@ -319,7 +319,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 				 XXXX,  XXXX, XXXX, XXXX, TO(RUSSIAN),
 
       // right thumb
-      KC_RCTL, KC_LSFT, KC_RCTL, // 1,2,3
+      KC_LSFT, KC_RCTL, KC_RCTL, // 1,2,3
       ALT_T(KC_INS), RCTL_T(KC_ENTER), CONTROL_RKEEP // 4,5,6
    ),
 
@@ -727,7 +727,7 @@ enum combos {
     RU_DZJ,
     RU_TVZN,
     RU_FE,
-    RU_YI,
+    RU_YU,
 };
 // in RUSSIAN on left hand:
 const uint16_t PROGMEM xr_combo[] = {KC_X, KC_R, COMBO_END};
@@ -738,7 +738,7 @@ const uint16_t PROGMEM hp_combo[] = {KC_H, KC_P, COMBO_END};
 const uint16_t PROGMEM dh_combo[] = {KC_D, KC_H, COMBO_END};
 const uint16_t PROGMEM mcom_combo[] = {KC_M, KC_COMMA, COMBO_END};
 const uint16_t PROGMEM com7_combo[] = {KC_COMMA, KC_7, COMBO_END};
-const uint16_t PROGMEM b7_combo[] = {KC_B, KC_7, COMBO_END};
+const uint16_t PROGMEM qn_combo[] = {KC_Q, KC_N, COMBO_END};
 combo_t key_combos[] = {
     [RU_TSE] = COMBO(xr_combo, KC_W), // Ц
     [RU_AE] = COMBO(ft_combo, KC_QUOTE), // Э
@@ -747,7 +747,7 @@ combo_t key_combos[] = {
     [RU_FE] = COMBO(dh_combo, KC_A), // Ф
     [RU_TVZN] = COMBO(mcom_combo, KC_RBRC), // Ъ
     [RU_DZJ] = COMBO(com7_combo, KC_SCLN), // Ж
-    [RU_YI] = COMBO(b7_combo, KC_Q), // Й
+    [RU_YU] = COMBO(qn_combo, KC_DOT), // Ю
 };
 
 void dance_game_tokeymacs(tap_dance_state_t *state, void *user_data) {
