@@ -72,7 +72,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_ESC,                       KC_GRAVE,              KC_COLON,           KC_MINUS,         KC_EXLM,           KC_PLUS,       EMACS_RESET,
       EMACS_WIN,                    LT(NUMPAD,KC_Q),       KC_B,               KC_P,             KC_F,              KC_G,          EMACS_SELECT,
       KC_FIND,                      LT(SYMBOLS,KC_R),      KC_A,               KC_E,             KC_N,              KC_S,
-      LCTL(KC_FIND),                KC_Z,                  KC_COMMA,           KC_U,             KC_K,              KC_J,          MO(WM),
+      LCTL(KC_FIND),                KC_Z,                  KC_COMMA,           KC_U,             KC_K,              LT(FN,KC_J),     MO(WM),
 	       // lower row
 	       LAY_RST,                  KC_APP,              KC_LGUI,        KC_LALT,      KC_LCTL,
 
@@ -119,7 +119,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_ESC,               ____,                KC_5,             KC_KP_MINUS,   KC_MINUS,      KC_TILDE,        EMACS_RESET,
       EMACS_WIN,        LT(NUMPAD,KC_E),     KC_X,             KC_R,          KC_L,          KC_S,            EMACS_SELECT,
       KC_FIND,              LT(SYMBOLS,KC_LBRC), KC_F,             KC_T,          KC_J,          KC_G,
-      LCTL(KC_FIND),       KC_Z,                KC_6,             KC_C,          KC_V,          XXXX,            MO(WM),
+      LCTL(KC_FIND),       KC_Z,                KC_6,             KC_C,          KC_V,          MO(FN),            MO(WM),
 
 	       // lower row
 	       TO(KEYMACS),                  KC_APP,              KC_LGUI,        KC_LALT,      KC_LCTL,
