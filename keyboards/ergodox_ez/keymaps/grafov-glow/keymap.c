@@ -98,9 +98,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     * ,--------------------------------------------------.           ,--------------------------------------------------.
     * |        |  « „ |   :  |   -  |   !  |   +  |Ctl+G |           |      |   *  |   ?  |   "  |   ;  |  » “ |   BSP  |
     * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
-    * |        |   у  ц   ч  |   к  |   д  |   ы  |      |           | Tab  |   г  |   в  ф   р  щ   з  |   ш  |        |
+    * |        |   у  |   ч  ц   к  ю   д  |   ы  |      |           | Tab  |   г  |   в  ф   р  щ   з  |   ш  |        |
     * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
-    * |        |   х  |   а  э   е  ё   о  |   п  |------|           |------|   й  |   т  ю   и  |   н  |   л  |        |
+    * |        |   х  |   а  э   е  ё   о  |   п  |------|           |------|   й  |   т  |   и  |   н  |   л  |        |
     * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
     * |        |   я  |   ,  |   с  |   м  |      |      |           |      |      |   ь  ъ   б  ж   .  |   /  |        |
     * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
@@ -742,6 +742,7 @@ enum combos {
 
 // on left hand:
 const uint16_t PROGMEM xr_combo[] = {KC_X, KC_R, COMBO_END};
+const uint16_t PROGMEM rl_combo[] = {KC_R, KC_L, COMBO_END};
 const uint16_t PROGMEM ft_combo[] = {KC_F, KC_T, COMBO_END};
 const uint16_t PROGMEM tj_combo[] = {KC_T, KC_J, COMBO_END};
 const uint16_t PROGMEM ctl_int1[] = {LCTL_T(KC_DEL), KC_INT1, COMBO_END};
@@ -752,13 +753,13 @@ const uint16_t PROGMEM hp_combo[] = {KC_H, KC_P, COMBO_END};
 const uint16_t PROGMEM dh_combo[] = {KC_D, KC_H, COMBO_END};
 const uint16_t PROGMEM mcom_combo[] = {KC_M, KC_COMMA, COMBO_END};
 const uint16_t PROGMEM com7_combo[] = {KC_COMMA, KC_7, COMBO_END};
-const uint16_t PROGMEM nb_combo[] = {KC_N, KC_B, COMBO_END};
 const uint16_t PROGMEM ctl_int3[] = {RCTL_T(KC_INS), KC_INT3, COMBO_END};
 const uint16_t PROGMEM ctl_int3_int4[] = {RCTL_T(KC_INS), KC_INT3, KC_INT4, COMBO_END};
 
 combo_t key_combos[] = {
     // left
     [RU_TSE] = COMBO(xr_combo, KC_W), // Ц
+    [RU_YU] = COMBO(rl_combo, KC_DOT), // Ю
     [RU_AE] = COMBO(ft_combo, KC_QUOTE), // Э
     [RU_YO] = COMBO(tj_combo, KC_SLASH), // Ё
     [LTHUMB_ALT] = COMBO(ctl_int1, KC_LALT), // ALT only
@@ -768,7 +769,6 @@ combo_t key_combos[] = {
     [RU_FE] = COMBO(dh_combo, KC_A), // Ф
     [RU_TVZN] = COMBO(mcom_combo, KC_RBRC), // Ъ
     [RU_DZJ] = COMBO(com7_combo, KC_SCLN), // Ж
-    [RU_YU] = COMBO(nb_combo, KC_DOT), // Ю
     [RTHUMB_ALT] = COMBO(ctl_int3, KC_RALT), // ALT only
     [RTHUMB_CTL_ALT] = COMBO_ACTION(ctl_int3_int4), // CTL+ALT
 };
