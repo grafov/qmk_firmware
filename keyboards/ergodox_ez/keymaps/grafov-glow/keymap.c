@@ -229,7 +229,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
       // right thumb
       KC_INT4, KC_RCTL, KC_INT3, // 1,2,3
-      CTL_T(KC_INS), LSFT_T(KC_ENTER), LT(CONTROL, KC_SPACE) // 4,5,6
+      RCTL_T(KC_INS), LSFT_T(KC_ENTER), LT(CONTROL, KC_SPACE) // 4,5,6
    ),
 
    /* Fn keys for the right hand (left hand the same as for Symbols layer)
@@ -600,13 +600,15 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
 	case KC_RCTL:
 	case KC_LALT:
 	case KC_RALT:
-	/* case KC_LGUI: */
-    /* case KC_RGUI: */
-	/* case KC_MENU: */
-	case CTL_T(KC_INS):
-	case CTL_T(KC_DEL):
-	case LSFT_T(KC_ENTER):
-    case LSFT_T(KC_LGUI):
+	case KC_LGUI:
+	case KC_MENU:
+    case KC_INT1:
+    case KC_INT2:
+    case KC_INT3:
+    case KC_INT4:
+	case RCTL_T(KC_INS):
+    case LCTL_T(KC_DEL):
+	case RCTL_T(KC_ENTER):
 	    back_to_ussr = true;
 	    layer_off(RUSSIAN);
 	    layer_on(KEYMACS);
@@ -625,9 +627,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
     case KC_INT2:
     case KC_INT3:
     case KC_INT4:
-	case CTL_T(KC_INS):
-	case CTL_T(KC_DEL):
-	case RCTL_T(KC_ENTER):
+	case RCTL_T(KC_INS):
+    case LCTL_T(KC_DEL):
 	    back_to_ussr = false;
 	    layer_off(KEYMACS);
 	    layer_on(RUSSIAN);
