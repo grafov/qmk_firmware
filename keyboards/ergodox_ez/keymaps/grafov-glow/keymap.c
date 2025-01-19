@@ -90,7 +90,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
       // right thumb
       KC_INT4, KC_RCTL, KC_INT3, // 1,2,3
-      RCTL_T(KC_INS), LSFT_T(KC_ENTER), LT(CONTROL, KC_SPACE) // 4,5,6
+      RCTL_T(KC_INS), RSFT_T(KC_ENTER), LT(CONTROL, KC_SPACE) // 4,5,6
    ),
 
    /* Russian Wave (ВОЛНА0) layout slightly opimized for home square. My experiment.
@@ -140,7 +140,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
       // right thumb
       KC_INT4, KC_RCTL, KC_INT3, // 1,2,3
-      RCTL_T(KC_INS), LSFT_T(KC_ENTER), LT(CONTROL, KC_SPACE) // 4,5,6
+      RCTL_T(KC_INS), RSFT_T(KC_ENTER), LT(CONTROL, KC_SPACE) // 4,5,6
    ),
 
    /* Numpad for the right hand (left hand the same as for Symbols layer)
@@ -184,7 +184,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       ____,                                                              ____,              ____,            ____,            ____,
       // right thumb
       KC_INT4, KC_RCTL, KC_INT3, // 1,2,3
-      RCTL_T(KC_INS), LSFT_T(KC_ENTER), LT(CONTROL, KC_SPACE) // 4,5,6
+      RCTL_T(KC_INS), RSFT_T(KC_ENTER), LT(CONTROL, KC_SPACE) // 4,5,6
    ),
 
    /* Symbol Layer
@@ -229,7 +229,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
       // right thumb
       KC_INT4, KC_RCTL, KC_INT3, // 1,2,3
-      RCTL_T(KC_INS), LSFT_T(KC_ENTER), LT(CONTROL, KC_SPACE) // 4,5,6
+      RCTL_T(KC_INS), RSFT_T(KC_ENTER), LT(CONTROL, KC_SPACE) // 4,5,6
    ),
 
    /* Fn keys for the right hand (left hand the same as for Symbols layer)
@@ -274,7 +274,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
       // right thumb
       KC_INT4, KC_RCTL, KC_INT3, // 1,2,3
-      RCTL_T(KC_INS), LSFT_T(KC_ENTER), LT(CONTROL, KC_SPACE) // 4,5,6
+      RCTL_T(KC_INS), RSFT_T(KC_ENTER), LT(CONTROL, KC_SPACE) // 4,5,6
    ),
 
    /* Control layer for line and page navigation and common text operations
@@ -326,7 +326,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
       // right thumb
       KC_INT4, KC_RCTL, KC_INT3, // 1,2,3
-      RCTL_T(KC_INS), LSFT_T(KC_ENTER), CONTROL_RKEEP // 4,5,6
+      RCTL_T(KC_INS), RSFT_T(KC_ENTER), CONTROL_RKEEP // 4,5,6
    ),
 
    // Window manager control (currently for i3 / Sway WMs)
@@ -340,7 +340,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       TO(KEYMACS),     ____,     ____, KC_LALT,    KC_LCTL,
       // left thumb
       KC_LCTL, KC_INT2,  KC_INT1, // 1,2,3
-      KC_BSPC,       KC_LSFT,     KC_DEL,
+      KC_BSPC,       KC_LSFT,     LCTL_T(KC_DEL),
 
       // right fingers
       KC_F12,                                       KC_F16,         KC_7,      KC_8,            KC_9,            XXXX,             KC_UNDO,
@@ -352,7 +352,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
       // right thumb
       KC_INT4, KC_RCTL, KC_INT3, // 1,2,3
-      KC_INS,      KC_ENTER,     C(KC_SPACE)
+      RCTL_T(KC_INS),   RSFT_T(KC_ENTER),     KC_SPACE
    ),
 
    // Gaming mode mostly for action games
