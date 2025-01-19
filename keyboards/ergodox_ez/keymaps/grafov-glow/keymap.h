@@ -15,5 +15,4 @@
 
 // native as KC_HIRAGANA code 91
 #define RUS KC_LNG4
-
 void switch_russian_layer(bool back);

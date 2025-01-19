@@ -49,8 +49,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     * |Emacs <>|   q  |   b  |   p  |   f  |   g  |Emacs |           | Tab  |   m  |   w  |   l  |   y  |   '  | C-X-B  |
     * |--------+------+------+------+------+------|Select|           |      |------+------+------+------+------+--------|
     * |  Find  |   r  |   a  |   e  |.  n  |   s  |------|           |------|   d  |.  o  |   t  |   i  |   h  |  A-X   |
-    * |--------+------+------+------+------+------| Win  |           |  F   |------+------+------+------+------+--------|
-    * |Ctl-Find|   z  |   ,  |   u  |   k  |   j  | Mgmt |           |  N   |   v  |   c  |   x  |   .  |   /  | A-Find |
+    * |--------+------+------+------+------+------| Win  |           | Win  |------+------+------+------+------+--------|
+    * |Ctl-Find|   z  |   ,  |   u  |   k  |   j  | Mgmt |           | Mgmt |   v  |   c  |   x  |   .  |   /  | A-Find |
     * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
     *   | LAT  | Menu | LGUI |  Alt | Ctrl |                                       | Ctrl | Alt  | RGUI | Menu |  RUS |
     *   `----------------------------------'                                       `----------------------------------'
@@ -84,7 +84,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_EXEC,              KC_ASTR,            KC_QUES,          KC_DQUO,          KC_SCLN,          RU_NUM,                       KC_UNDO,
       KC_TAB,               KC_M,               KC_W,             KC_L,             KC_Y,             LT(NUMPAD,KC_QUOTE),  EMACS_CHBUF,
 			    KC_D,               KC_O,             KC_T,             KC_I,             LT(SYMBOLS,KC_H),     EMACS_CMD,
-      XXXX,                 LT(FN,KC_V),    KC_C,             KC_X,             KC_DOT,           KC_SLASH,               LALT(KC_FIND),
+      MO(WM),                 LT(FN,KC_V),    KC_C,             KC_X,             KC_DOT,           KC_SLASH,               LALT(KC_FIND),
 	       // lower row
 	       KC_RCTL,            KC_RALT,            KC_RGUI,      KC_MENU,             TG(RUSSIAN),
 
@@ -306,7 +306,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
        KC_ESC,                             XXXX,              XXXX,            XXXX,            XXXX,                  ____,             ____,
        ____,                               XXXX,              KC_LEFT,          KC_UP,         KC_RIGHT,           KC_ESCAPE,         KC_LGUI,
        ____,              RCTL(KC_R),      KC_HOME,           KC_UP,            KC_DOWN,            ____,
-       ____,                               RCTL(KC_Z),        RSFT(KC_ENTER),   KC_PGUP,         KC_PGDN,             KC_ENTER,          LCTL(KC_QUES),
+       ____,                               RCTL(KC_Z),        XXXX,            KC_PGUP,         KC_PGDN,             KC_ENTER,       KC_LGUI,
 
 					 // lower row
 					 TO(KEYMACS),        KC_APP,              KC_LGUI,        KC_LALT,      KC_LCTL,
@@ -319,7 +319,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_EXEC,                    XXXX,               XXXX,             XXXX,             KC_MENU,           ____,           KC_UNDO,
       ____,                       XXXX,               XXXX,             XXXX,             XXXX,              XXXX,            ____,
 				  KC_DEL,             KC_LEFT,          KC_RIGHT,         KC_END,            KC_WWW_BACK,     KC_WWW_FORWARD,
-      ____,                       XXXX,               KC_MS_BTN1,       KC_MS_BTN2,       KC_MS_BTN3,        KC_MS_BTN4,      KC_MS_BTN5,
+      KC_RGUI,                       XXXX,               KC_MS_BTN1,       KC_MS_BTN2,       KC_MS_BTN3,        KC_MS_BTN4,      KC_MS_BTN5,
 
   		   // lower row
 	       KC_RCTL,            KC_RALT,            KC_RGUI,      KC_MENU,             TG(RUSSIAN),
@@ -332,27 +332,27 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    // Window manager control (currently for i3 / Sway WMs)
    [WM] = LAYOUT_ergodox(
       // left fingers
-      LGUI(KC_PSCR),          KC_GRAVE,           KC_COLON,         KC_MINUS,         KC_EXLM,            KC_PLUS,          LGUI(KC_K),
-      ALT_T(KC_TAB),          KC_Q,               KC_B,             KC_P,             KC_F,               KC_RALT,           LCTL(KC_ENTER),
-			      KC_LCTL,            LT(NUMPAD,KC_R),  KC_A,             KC_E,               KC_N,              KC_RCTL,
-      KC_LSFT,                KC_Z,               KC_COMMA,         KC_U,             KC_K,               ____,  TG(GAME),
-
+      KC_ESC,                       KC_GRAVE,              KC_COLON,           KC_MINUS,         KC_EXLM,           KC_PLUS,       KC_CANCEL,
+      EMACS_WIN,                    LT(NUMPAD,KC_Q),       KC_B,               KC_P,             KC_F,              KC_G,          EMACS_SELECT,
+      KC_FIND,                      LT(SYMBOLS,KC_R),      KC_A,               KC_E,             KC_N,              KC_S,
+      LCTL(KC_FIND),                KC_Z,                  KC_COMMA,           KC_U,             KC_K,              LT(FN,KC_J),     KC_LGUI,
       // lower row
-      TO(KEYMACS),     ____,     ____, ____,     ____,
+      TO(KEYMACS),     ____,     ____, KC_LALT,    KC_LCTL,
       // left thumb
-      ____,                         ____,        ____,
-      LGUI(KC_BSPC),       LGUI(KC_LSFT),     LGUI(KC_DEL),
+      KC_LCTL, KC_INT2,  KC_INT1, // 1,2,3
+      KC_BSPC,       KC_LSFT,     KC_DEL,
 
       // right fingers
-      LGUI(KC_F4),                                       LGUI(KC_T),         LGUI(KC_7),       LGUI(KC_8),             LGUI(KC_9),             XXXX,             LGUI(KC_UNDO),
-      LGUI(KC_F),                                        LGUI(KC_F12),       LGUI(KC_4),       LGUI(KC_5),             LGUI(KC_6),             LGUI(KC_UP),      LGUI(KC_F13),
-							                     LGUI(KC_LEFT),              LGUI(KC_1),       LGUI(KC_2),             LGUI(KC_3),             LGUI(KC_RIGHT),   LGUI(KC_F14),
-      LGUI(KC_F1),                                       LGUI(KC_F11),       KC_C,             LGUI(KC_0),             KC_DOT,                 LGUI(KC_DOWN),    LGUI(KC_F15),
-      LGUI(KC_RALT),                                      LGUI(KC_RCTL),             ____,            TG(GAME),            TO(RUSSIAN),
+      KC_F12,                                       KC_F16,         KC_7,      KC_8,            KC_9,            XXXX,             KC_UNDO,
+      KC_F11,                                       KC_F15,       KC_4,      KC_5,            KC_6,            KC_UP,      KC_F13,
+		                        KC_F14,              KC_1,      KC_2,            KC_3,            XXXX,   KC_F14,
+      KC_RGUI,                                       KC_F13,       KC_C,            KC_0,            KC_DOT,                 KC_DOWN,    KC_F15,
+         // lower row
+         KC_RCTL,                                      KC_RALT,             ____,            TG(GAME),            TO(RUSSIAN),
 
       // right thumb
-      ____, ____, ____,
-      LGUI(KC_INS),      LGUI(KC_ENTER),     C(LGUI(KC_SPACE))
+      KC_INT4, KC_RCTL, KC_INT3, // 1,2,3
+      KC_INS,      KC_ENTER,     C(KC_SPACE)
    ),
 
    // Gaming mode mostly for action games
@@ -374,8 +374,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 										KC_RALT,          KC_LSFT,          KC_LEFT,                KC_DOWN,           KC_RIGHT,
       // right thumb
       KC_F7,                                       KC_F8,             KC_F9,
-      KC_F6,                                       KC_RGUI,           KC_ENTER),
-
+      KC_F6,                                       KC_RGUI,           KC_ENTER
+    ),
 };
 
 // Runs just one time when the keyboard initializes.
@@ -398,6 +398,8 @@ uint8_t old_layer = 0xff;
 layer_state_t layer_state_set_user(layer_state_t state) {
     cur_layer = get_highest_layer(state);
 
+    static bool insidewm = false;
+
     switch (cur_layer) {
     case RUSSIAN:
       // Turn on RUS layout on enter to Russian layer.
@@ -408,14 +410,28 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 	xprintf("LAYER: %d %d (RUS)\n", old_layer, cur_layer); // left for debugging yet
        }
       break;
+    case WM:
+        if (old_layer != WM) {
+            SEND_STRING(SS_DOWN(X_LGUI));
+            insidewm = true;
+        }
+        break;
     default:
       // Switch back to English when we leave Russian layer.
-      if (old_layer == RUSSIAN) {
-	tap_code(LAT);
-	xprintf("LAYER: %d %d ->LAT\n", old_layer, cur_layer); // left for debugging yet
-      } else {
-	xprintf("LAYER: %d %d (LAT)\n", old_layer, cur_layer); // left for debugging yet
-      }
+        switch (old_layer){
+            case RUSSIAN:
+                tap_code(LAT);
+                xprintf("LAYER: %d %d ->LAT\n", old_layer, cur_layer); // left for debugging yet
+                if (!insidewm){
+                    break;
+                }
+            case WM:
+                SEND_STRING(SS_UP(X_LGUI));
+                xprintf("LAYER: %d %d (WM)\n", old_layer, cur_layer);
+                break;
+            default:
+                xprintf("LAYER: %d %d (LAT)\n", old_layer, cur_layer); // left for debugging yet
+        }
     }
 
     //old_layer = cur_layer;
@@ -476,7 +492,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
 	}
     }
 
-    // control
     // need rework! TODO
     /* static bool lc_pressed, rc_pressed = false; */
     /* switch (keycode) { */
