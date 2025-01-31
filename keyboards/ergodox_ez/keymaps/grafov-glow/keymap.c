@@ -86,7 +86,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 			    KC_D,               KC_O,             KC_T,             KC_I,             LT(SYMBOLS,KC_H),     EMACS_CMD,
       MO(WM),                 LT(FN,KC_V),    KC_C,             KC_X,             KC_DOT,           KC_SLASH,               LALT(KC_FIND),
 	       // lower row
-	       KC_RCTL,            KC_RALT,            KC_RGUI,      KC_APP,             TG(RUSSIAN),
+	       KC_RCTL,            KC_RALT,            KC_APP,      KC_PSCR,             TG(RUSSIAN),
 
       // right thumb
       KC_INT4, KC_RCTL, KC_INT3, // 1,2,3
@@ -401,24 +401,30 @@ layer_state_t layer_state_set_user(layer_state_t state) {
     static bool insidewm = false;
 
     switch (cur_layer) {
-    case RUSSIAN:
-      // Turn on RUS layout on enter to Russian layer.
-      if (old_layer != RUSSIAN) {
-	tap_code(RUS);
-	xprintf("LAYER: %d %d ->RUS\n", old_layer, cur_layer); // left for debugging yet
-      }  else {
-	xprintf("LAYER: %d %d (RUS)\n", old_layer, cur_layer); // left for debugging yet
-       }
-      break;
     case WM:
         if (old_layer != WM) {
+            switch_russian_layer(false);
             SEND_STRING(SS_DOWN(X_LGUI));
             insidewm = true;
         }
         break;
+    case RUSSIAN:
+        // Turn on RUS layout on enter to Russian layer.
+        if (old_layer != RUSSIAN) {
+            tap_code(RUS);
+            xprintf("LAYER: %d %d ->RUS\n", old_layer, cur_layer); // left for debugging yet
+        }  else {
+            xprintf("LAYER: %d %d (RUS)\n", old_layer, cur_layer); // left for debugging yet
+        }
+        // Отдельная логика возврата из WM для русского слоя, т.к. в ветку default мы тут не попадем.
+        if (insidewm) {
+            SEND_STRING(SS_UP(X_LGUI));
+            insidewm = false;
+        }
+        break;
     default:
-      // Switch back to English when we leave Russian layer.
         switch (old_layer){
+            // Switch back to English when we leave Russian layer.
             case RUSSIAN:
                 tap_code(LAT);
                 xprintf("LAYER: %d %d ->LAT\n", old_layer, cur_layer); // left for debugging yet
@@ -426,6 +432,7 @@ layer_state_t layer_state_set_user(layer_state_t state) {
                     break;
                 }
             case WM:
+                insidewm = false;
                 SEND_STRING(SS_UP(X_LGUI));
                 xprintf("LAYER: %d %d (WM)\n", old_layer, cur_layer);
                 break;
@@ -492,29 +499,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
 	}
     }
 
-    // need rework! TODO
-    /* static bool lc_pressed, rc_pressed = false; */
-    /* switch (keycode) { */
-    /* case CONTROL_LKEEP: */
-    /*	lc_pressed = false; */
-    /*	if (record->event.pressed) { */
-    /*	    lc_pressed = true; */
-    /*	} */
-    /*	return false; */
-    /* case CONTROL_RKEEP: */
-    /*	rc_pressed = false; */
-    /*	if (record->event.pressed) { */
-    /*	    rc_pressed = true; */
-    /*	} */
-    /*	return false; */
-    /* } */
-    /* if (lc_pressed || rc_pressed) { */
-    /*	layer_on(CONTROL); */
-    /* } else { */
-    /*	layer_off(CONTROL); */
-    /* } */
-
-    // SNAP TAP (separate A/D key press in games)
+    // SNAP TAP like in Razer keyboards :)
+    // -- separate A/D key press in games
     static bool apressed = false;
     static bool dpressed = false;
     if (cur_layer == GAME) {
@@ -722,21 +708,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
    }
    return(true);
 }
-
-// Handle ctl-alt by single-double-triple keys on thumb cluster.
-/* bool thumb_ctl_alt(uint16_t keycode, keyrecord_t *record) { */
-/*     static int pressed; // ctl->alt->ctl+alt */
-/*                         // 001 - ctl */
-/*                         // 002 - alt */
-/*                         // 003 - ctl+alt */
-/*     switch (keycode) { */
-/*         case CTL_T(KC_DEL): */
-/*         case CTL_T(KC_INS): */
-/*             if (record->event.pressed) { */
-/*                 SEND_STRING() */
-/*             } */
-/*     } */
-/* } */
 
 // Russian Wave & Thumb combos
 enum combos {
