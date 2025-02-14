@@ -58,7 +58,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     *                                        | Ctrl | Int2  |     | Int4  | Ctrl |
     *                                 ,------|------|3------|     |3------+------+------.
     *                                 |      |      | Int1  |     | Int3  |      |      |
-    *                                 | BSpc |      |-------|     |-------| Enter| SPC  |
+    *                                 | BSpc |  Tab |-------|     |-------| Enter| SPC  |
     *                                 | +nav | Shift|Del/Ctl|     |Ins/Ctl| Shift| +nav |
     *                                 `4------5------6------'     `4-------5------6-----'
     *
@@ -78,7 +78,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
       // left thumb
       KC_LCTL, KC_INT2,  KC_INT1, // 1,2,3
-      LT(CONTROL, KC_BSPC), KC_LSFT, LCTL_T(KC_DEL), // 4,5,6
+      LT(CONTROL, KC_BSPC), LSFT_T(KC_TAB), LCTL_T(KC_DEL), // 4,5,6
 
       // right finger
       KC_EXEC,              KC_ASTR,            KC_QUES,          KC_DQUO,          KC_SCLN,          RU_NUM,                       KC_UNDO,
@@ -126,7 +126,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
       // left thumb
       KC_LCTL, KC_INT2,  KC_INT1, // 1,2,3
-      LT(CONTROL, KC_BSPC), KC_LSFT, LCTL_T(KC_DEL), // 4,5,6
+      LT(CONTROL, KC_BSPC), LSFT_T(KC_TAB), LCTL_T(KC_DEL), // 4,5,6
 
 
       // right fingers
@@ -173,7 +173,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       ____,                                                              ____,              ____,            ____,            ____,
       // left thumb
       KC_LCTL, KC_INT2,  KC_INT1, // 1,2,3
-      LT(CONTROL, KC_BSPC), KC_LSFT, LCTL_T(KC_DEL), // 4,5,6
+      LT(CONTROL, KC_BSPC), LSFT_T(KC_TAB), LCTL_T(KC_DEL), // 4,5,6
 
 
       // right fingers
@@ -218,7 +218,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
       // left thumb
       KC_LCTL, KC_INT2,  KC_INT1, // 1,2,3
-      LT(CONTROL, KC_BSPC), KC_LSFT, LCTL_T(KC_DEL), // 4,5,6
+      LT(CONTROL, KC_BSPC), LSFT_T(KC_TAB), LCTL_T(KC_DEL), // 4,5,6
 
       // right fingers
       KC_EXEC,                                                           KC_ASTR,            KC_QUES,          KC_DQUO,          KC_SCLN,              ____,            ____,
@@ -263,7 +263,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
       // left thumb
       KC_LCTL, KC_INT2,  KC_INT1, // 1,2,3
-      LT(CONTROL, KC_BSPC), KC_LSFT, LCTL_T(KC_DEL), // 4,5,6
+      LT(CONTROL, KC_BSPC), LSFT_T(KC_TAB), LCTL_T(KC_DEL), // 4,5,6
 
       // right fingers
       KC_EXEC,                                                           KC_KP_ASTERISK,     KC_F7,            KC_F8,            KC_F9,                  KC_NUM,          KC_UNDO,
@@ -313,7 +313,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
       // left thumb
       KC_LCTL, KC_INT2,  KC_INT1, // 1,2,3
-      CONTROL_LKEEP, KC_LSFT, LCTL_T(KC_DEL), // 4,5,6
+      CONTROL_LKEEP, LSFT_T(KC_TAB), LCTL_T(KC_DEL), // 4,5,6
 
       // right fingers
       KC_EXEC,                    XXXX,               XXXX,             XXXX,             KC_MENU,           ____,           KC_UNDO,
@@ -340,7 +340,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       TO(KEYMACS),     KC_AGAIN,     KC_APP, KC_LALT,    KC_LCTL,
       // left thumb
       KC_LCTL, KC_INT2,  KC_INT1, // 1,2,3
-      KC_BSPC,       KC_LSFT,     LCTL_T(KC_DEL),
+      KC_BSPC,    LSFT_T(KC_TAB),     LCTL_T(KC_DEL),
 
       // right fingers
       KC_F12,                                       KC_F20,         KC_7,      KC_8,            KC_9,            KC_CLAG,             KC_UNDO,
