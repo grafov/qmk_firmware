@@ -5,6 +5,7 @@
 
 enum layers {
     KEYMACS, // default layer
+    ESPERANTO,
     RUSSIAN,
     NUMPAD,
     SYMBOLS,
@@ -25,6 +26,12 @@ enum custom_keycodes {
     EMACS_RESET,
     EMACS_CHBUF,
     EMACS_WIN,
+    EO_CCRU, // Ĉ
+    EO_GCRU, // Ĝ
+    EO_HCRU, // Ĥ
+    EO_JCRU, // Ĵ
+    EO_SCRU, // Ŝ
+    EO_UBRU, // Ŭ
     RU_ASTR,
     RU_NUM,
     RU_SLASH,
@@ -36,6 +43,15 @@ enum custom_keycodes {
 enum {
     TD_GAME_KEYMACS,
 };
+
+// Unicode test
+/* enum unicode_names { BANG, IRONY, SNEK }; */
+
+/* const uint32_t PROGMEM unicode_map[] = { */
+/*     [BANG]  = 0x203D,  // ‽ */
+/*     [IRONY] = 0x2E2E,  // ⸮ */
+/*     [SNEK]  = 0x1F40D, // 🐍 */
+/* }; */
 
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -72,7 +88,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_ESC,                       KC_GRAVE,              KC_COLON,           KC_MINUS,         KC_EXLM,           KC_PLUS,       KC_PAUSE,
       EMACS_WIN,                    LT(NUMPAD,KC_Q),       KC_B,               KC_P,             KC_F,              KC_G,          EMACS_SELECT,
       KC_FIND,                      LT(SYMBOLS,KC_R),      KC_A,               KC_E,             KC_N,              KC_S,
-      KC_MENU,                KC_Z,                  KC_COMMA,           KC_U,             KC_K,              LT(FN,KC_J),     MO(WM),
+      KC_MENU,                LT(ESPERANTO,KC_Z),          KC_COMMA,           KC_U,             KC_K,              LT(FN,KC_J),     MO(WM),
 	       // lower row
 	       LAY_RST,                  KC_AGAIN,             KC_APP,        KC_LALT,      KC_LCTL,
 
@@ -84,7 +100,54 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_EXEC,              KC_ASTR,            KC_QUES,          KC_DQUO,          KC_SCLN,          RU_NUM,                       KC_UNDO,
       KC_TAB,               KC_M,               KC_W,             KC_L,             KC_Y,             LT(NUMPAD,KC_QUOTE),  EMACS_CHBUF,
 			    KC_D,               KC_O,             KC_T,             KC_I,             LT(SYMBOLS,KC_H),     EMACS_CMD,
-      MO(WM),                 LT(FN,KC_V),    KC_C,             KC_X,             KC_DOT,           KC_SLASH,               LALT(KC_FIND),
+      MO(WM),                 LT(FN,KC_V),    KC_C,             KC_X,             KC_DOT,           LT(ESPERANTO,KC_SLASH),     LALT(KC_FIND),
+	       // lower row
+	       KC_RCTL,            KC_RALT,            KC_APP,      KC_PSCR,             TG(RUSSIAN),
+
+      // right thumb
+      KC_INT4, KC_RCTL, KC_INT3, // 1,2,3
+      RCTL_T(KC_INS), RSFT_T(KC_ENTER), LT(CONTROL, KC_SPACE) // 4,5,6
+   ),
+
+   /* Esperanto special letters layer
+    *
+    * ,--------------------------------------------------.           ,--------------------------------------------------.
+    * |   Esc  |   `  |   :  |   -  |   !  |   +  | Ctl-G|           | ASST |   *  |   ?  |   "  |   ;  |   №  |  Undo  |
+    * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
+    * |Emacs <>|   q  |   b  |   p  |   f  |   ĝ  |Emacs |           | Tab  |   m  |   w  |   l  |   y  |   '  | C-X-B  |
+    * |--------+------+------+------+------+------|Select|           |      |------+------+------+------+------+--------|
+    * |  Find  |   r  |   a  |   e  |.  n  |   ŝ  |------|           |------|   d  |.  o  |   t  |   i  |   ĥ  |  A-X   |
+    * |--------+------+------+------+------+------| Win  |           | Win  |------+------+------+------+------+--------|
+    * |  Menu  |   z  |   ,  |   ŭ  |   k  |   j  | Mgmt |           | Mgmt |   v  |   ĉ  |   x  |   .  |   /  | A-Find |
+    * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
+    *   | LAT  | Redo | App  |  Alt | Ctrl |                                       | Ctrl | Alt  | App  | PrScr|  RUS |
+    *   `----------------------------------'                                       `----------------------------------'
+    *                                        ,1------2------.     ,1-------2-----.
+    *                                        | Ctrl | Int2  |     | Int4  | Ctrl |
+    *                                 ,------|------|3------|     |3------+------+------.
+    *                                 |      |      | Int1  |     | Int3  |      |      |
+    *                                 | BSpc |  Tab |-------|     |-------| Enter| SPC  |
+    *                                 | +nav | Shift|Del/Ctl|     |Ins/Ctl| Shift| +nav |
+    *                                 `4------5------6------'     `4-------5------6-----'
+    */
+    [ESPERANTO] = LAYOUT_ergodox(
+      // left fingers
+      KC_ESC,                       KC_GRAVE,              KC_COLON,           KC_MINUS,         KC_EXLM,           KC_PLUS,       KC_PAUSE,
+      EMACS_WIN,                    LT(NUMPAD,KC_Q),       KC_B,               KC_P,             KC_F,              EO_GCRU,          EMACS_SELECT,
+      KC_FIND,                      LT(SYMBOLS,KC_R),      KC_A,               KC_E,             KC_N,              EO_SCRU,
+      KC_MENU,                KC_Z,                  KC_COMMA,           EO_UBRU,             KC_K,              EO_JCRU,     MO(WM),
+	       // lower row
+	       LAY_RST,                  KC_AGAIN,             KC_APP,        KC_LALT,      KC_LCTL,
+
+      // left thumb
+      KC_LCTL, KC_INT2,  KC_INT1, // 1,2,3
+      LT(CONTROL, KC_BSPC), LSFT_T(KC_TAB), LCTL_T(KC_DEL), // 4,5,6
+
+      // right finger
+      KC_EXEC,              KC_ASTR,            KC_QUES,          KC_DQUO,          KC_SCLN,          RU_NUM,                       KC_UNDO,
+      KC_TAB,               KC_M,               KC_W,             KC_L,             KC_Y,             LT(NUMPAD,KC_QUOTE),  EMACS_CHBUF,
+			    KC_D,               KC_O,             KC_T,             KC_I,             EO_HCRU,     EMACS_CMD,
+      MO(WM),                 LT(FN,KC_V),    EO_CCRU,             KC_X,             KC_DOT,           KC_SLASH,               LALT(KC_FIND),
 	       // lower row
 	       KC_RCTL,            KC_RALT,            KC_APP,      KC_PSCR,             TG(RUSSIAN),
 
@@ -146,13 +209,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    /* Numpad for the right hand (left hand the same as for Symbols layer)
     *
     * ,--------------------------------------------------.           ,--------------------------------------------------.
-    * |        |   `  |   :  |   -  |   !  |   +  |      |           | Numlk|   *  |   7  |   8  |   9  |  :=  |   BSP  |
+    * |        |   `  |   :  |   -  |   !  |   +  |      |           | Numlk|   *  |   7  |   8  |   9  |  №  |   BSP  |
     * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
-    * |        |    ́  |   %  |   [  |   ]  | Alt  |      |           |   +  |   |  |   4  |   5  |   6  |   '  |        |
+    * |        |   ́   |   %  |   [  |   ]  | Alt  |      |           |   +  |   |  |   4  |   5  |   6  |   '  |        |
     * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
-    * |        |      |   @  |   (  |.  )  | Ctrl |------|           |------|   №  |.  1  |   2  |   3  |   -  |        |
+    * |        |      |   @  |   (  |.  )  | Ctrl |------|           |------|      |.  1  |   2  |   3  |   -  |        |
     * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
-    * |        |      |   ,  |   _  |   ~  | Shift|      |           |      | Enter|   =  |   0  |   .  |   /  |        |
+    * |        |      |   ,  |   _  |   ~  | Shift|      |           |      |   |  |   =  |   0  |   .  |   /  |        |
     * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
     *   |      |      |      |   _  |      |                                       |      |      |      |      |      |
     *   `----------------------------------'                                       `----------------------------------'
@@ -190,13 +253,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    /* Symbol Layer
     *
     * ,--------------------------------------------------.           ,--------------------------------------------------.
-    * |        |   `  |   :  |   -  |   !  |   +  |      |           |Numpad|   ×  |   ?  |   "  |   ;  |  :=  |   BSP  |
+    * |        |   `  |   :  |   -  |   !  |   +  |      |           |Numpad|   ×  |   ?  |   "  |   ;  |  №  |   BSP  |
     * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
     * |        |    ́  |   %  |   [  |   ]  |      |      |           |      |   |  |   ^  |   $  |   &  |   '  |        |
     * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
-    * |        |      |   @  |   (  |.  )  |      |------|           |------|   №  |.  {  |   }  |   #  |   °  |        |
+    * |        |      |   @  |   (  |.  )  |      |------|           |------|      |.  {  |   }  |   #  |   °  |        |
     * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
-    * |        |      |   <  |   _  |   ~  |      |      |           |      |      |   =  |   \  |   >  |   /  |        |
+    * |        |      |   <  |   _  |   ~  |      |      |           |      |   |  |   =  |   \  |   >  |   /  |        |
     * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
     *   |      |      |      |  _   |      |                                       |      |      |      |      |      |
     *   `----------------------------------'                                       `----------------------------------'
@@ -408,10 +471,16 @@ layer_state_t layer_state_set_user(layer_state_t state) {
             insidewm = true;
         }
         break;
+    case ESPERANTO:
+        if (old_layer != KEYMACS) {
+            break;
+        }
+        tap_code_delay(EPO, 10);
+        break;
     case RUSSIAN:
         // Turn on RUS layout on enter to Russian layer.
         if (old_layer != RUSSIAN) {
-            tap_code(RUS);
+            tap_code_delay(RUS, 10);
             xprintf("LAYER: %d %d ->RUS\n", old_layer, cur_layer); // left for debugging yet
         }  else {
             xprintf("LAYER: %d %d (RUS)\n", old_layer, cur_layer); // left for debugging yet
@@ -423,10 +492,11 @@ layer_state_t layer_state_set_user(layer_state_t state) {
         }
         break;
     default:
+        // Switch back to Latin when we leave Russian/Esperanto layers
         switch (old_layer){
-            // Switch back to English when we leave Russian layer.
+            case ESPERANTO:
             case RUSSIAN:
-                tap_code(LAT);
+                tap_code_delay(LAT, 10);
                 xprintf("LAYER: %d %d ->LAT\n", old_layer, cur_layer); // left for debugging yet
                 if (!insidewm){
                     break;
@@ -441,7 +511,8 @@ layer_state_t layer_state_set_user(layer_state_t state) {
         }
     }
 
-    //old_layer = cur_layer;
+    // * * * LED lights
+    //
     old_layer = cur_layer;
     ergodox_board_led_off();
     ergodox_right_led_1_off();
@@ -548,7 +619,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
 	if (!record->event.pressed) {
 	    layer_off(RUSSIAN);
 	    layer_on(KEYMACS);
-	    tap_code(LAT);
+	    tap_code_delay(LAT, 10);
 	    switch_layouts = true;
 	    return false;
 	}
@@ -556,7 +627,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
 	if (!record->event.pressed) {
 	    layer_off(KEYMACS);
 	    layer_on(RUSSIAN);
-	    tap_code(RUS);
+	    tap_code_delay(RUS, 10);
 	    return false;
 	}
     case KC_LSFT:
@@ -681,6 +752,51 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
 	     switch_russian_layer(true);
 	 }
 	 return(false);
+   // Esperanto letters
+   // see /usr/share/X11/xkb/symbols/epo for key map reference
+   case EO_CCRU:
+     if (record->event.pressed) {
+         SEND_STRING(SS_DOWN(X_X));
+     } else {
+         SEND_STRING(SS_UP(X_X));
+     }
+     return (false);
+   case EO_GCRU:
+     if (record->event.pressed) {
+         SEND_STRING(SS_DOWN(X_W));
+     } else {
+         SEND_STRING(SS_UP(X_W));
+     }
+     return (false);
+   case EO_HCRU:
+     if (record->event.pressed) {
+         SEND_STRING(SS_DOWN(X_RBRC));
+     } else {
+         SEND_STRING(SS_UP(X_RBRC));
+     }
+     return (false);
+   case EO_JCRU:
+     if (record->event.pressed) {
+         SEND_STRING(SS_DOWN(X_LBRC));
+     } else {
+         SEND_STRING(SS_UP(X_LBRC));
+     }
+     return (false);
+   case EO_SCRU:
+     if (record->event.pressed) {
+         SEND_STRING(SS_DOWN(X_Q));
+     } else {
+         SEND_STRING(SS_UP(X_Q));
+     }
+     return (false);
+   case EO_UBRU: //FIXME
+     if (record->event.pressed) {
+         SEND_STRING(SS_DOWN(X_Y));
+     } else {
+         SEND_STRING(SS_UP(X_Y));
+     }
+     return (false);
+   // Russian letters
    case RU_SLASH:
      if (record->event.pressed) {
 	  switch_russian_layer(false);
@@ -747,14 +863,14 @@ combo_t key_combos[] = {
     // left
     [RU_TSE] = COMBO(xr_combo, KC_W), // Ц
     [RU_YU] = COMBO(rl_combo, KC_DOT), // Ю
-    [RU_AE] = COMBO(ft_combo, KC_QUOTE), // Э
+    [RU_AE] = COMBO_ACTION(ft_combo), // Э
     [RU_YO] = COMBO(tj_combo, KC_SLASH), // Ё
     [LTHUMB_ALT] = COMBO(ctl_int1, KC_LALT), // ALT only
     [LTHUMB_CTL_ALT] = COMBO_ACTION(ctl_int1_int2), // CTL+ALT
     // right
     [RU_SCSHE] = COMBO(hp_combo, KC_O), // Щ
     [RU_FE] = COMBO(dh_combo, KC_A), // Ф
-    [RU_TVZN] = COMBO(mcom_combo, KC_RBRC), // Ъ
+    [RU_TVZN] = COMBO_ACTION(mcom_combo), // Ъ
     [RU_DZJ] = COMBO(com7_combo, KC_SCLN), // Ж
     [RTHUMB_ALT] = COMBO(ctl_int3, KC_RALT), // ALT only
     [RTHUMB_CTL_ALT] = COMBO_ACTION(ctl_int3_int4), // CTL+ALT
@@ -776,6 +892,24 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
           SEND_STRING(SS_UP(X_RCTL) SS_UP(X_RALT));
       }
       break;
+    case RU_AE:                 // Э
+        if (cur_layer != RUSSIAN) {
+            SEND_STRING("ft"); // FIXME always the same order prevents to press "tf"
+            break;
+        }
+        if (pressed) {
+            SEND_STRING(SS_TAP(X_QUOTE));
+        }
+        break;
+    case RU_TVZN: // Ъ
+        if (cur_layer != RUSSIAN) {
+            SEND_STRING("m,"); // FIXME always the same order prevents to press ",m"
+            break;
+        }
+        if (pressed) {
+            SEND_STRING(SS_TAP(X_RBRC));
+        }
+        break;
   }
 }
 
@@ -795,7 +929,6 @@ tap_dance_action_t tap_dance_actions[] = {
     [TD_GAME_KEYMACS] = ACTION_TAP_DANCE_FN(dance_game_tokeymacs),
 };
 
-
 void switch_russian_layer(bool back) {
     static bool was_rus = false;
     if (!back && cur_layer == RUSSIAN) {
@@ -809,153 +942,3 @@ void switch_russian_layer(bool back) {
     }
 }
 
-/* const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = */
-/* { */
-/*    [KEYMACS] = */
-/*    { */
-/*    // right */
-/*    BLANK_HSV,  BLANK_HSV, BLANK_HSV, BLANK_HSV, BLANK_HSV, */
-/*    BLANK_HSV,  BLANK_HSV, BLANK_HSV, BLANK_HSV, TEAL_HSV, */
-/*    BLANK_HSV,  BLANK_HSV, BLANK_HSV, BLANK_HSV, DBLUE_HSV, */
-/*    TEAL_HSV,   BLANK_HSV, BLANK_HSV, BLANK_HSV, BLANK_HSV, */
-/*    DRED_HSV,  PURPLE_HSV, BLANK_HSV, BLANK_HSV, */
-/*    // left mirrored */
-/*    BLANK_HSV,  BLANK_HSV, BLANK_HSV, BLANK_HSV, BLANK_HSV, */
-/*    BLANK_HSV,  BLANK_HSV, BLANK_HSV, BLANK_HSV, TEAL_HSV, */
-/*    BLANK_HSV,  BLANK_HSV, BLANK_HSV, BLANK_HSV, DBLUE_HSV, */
-/*    PURPLE_HSV, BLANK_HSV, BLANK_HSV, BLANK_HSV, BLANK_HSV, */
-/*    BLANK_HSV,  BLANK_HSV, WHITE_HSV, DBLUE_HSV */
-/*    }, */
-
-/*    [RUSSIAN] = */
-/*    { */
-/*    // right */
-/*    BLANK_HSV, BLANK_HSV, BLANK_HSV, BLANK_HSV, BLANK_HSV, */
-/*    WHITE_HSV, WHITE_HSV, WHITE_HSV, WHITE_HSV, WHITE_HSV, */
-/*    BLUE_HSV,  BLUE_HSV,  BLUE_HSV,  BLUE_HSV,  BLUE_HSV, */
-/*    RED_HSV,   RED_HSV,   RED_HSV,   RED_HSV,   RED_HSV, */
-/*    BLANK_HSV, BLANK_HSV, BLANK_HSV, BLANK_HSV, */
-/*    // left mirrored */
-/*    BLANK_HSV, BLANK_HSV, BLANK_HSV, BLANK_HSV, BLANK_HSV, */
-/*    WHITE_HSV, WHITE_HSV, WHITE_HSV, WHITE_HSV, WHITE_HSV, */
-/*    BLUE_HSV,  BLUE_HSV,  BLUE_HSV,  BLUE_HSV,  BLUE_HSV, */
-/*    RED_HSV,   RED_HSV,   RED_HSV,   RED_HSV,   RED_HSV, */
-/*    BLANK_HSV, BLANK_HSV, BLANK_HSV, BLANK_HSV */
-/*    }, */
-
-/*    [NUMPAD] = */
-/*    { */
-/*    // right */
-/*    BLANK_HSV, TEAL_HSV,  TEAL_HSV,  TEAL_HSV,  BLANK_HSV, */
-/*    BLANK_HSV, TEAL_HSV,  GREEN_HSV, TEAL_HSV,  BLANK_HSV, */
-/*    BLANK_HSV, TEAL_HSV,  TEAL_HSV,  TEAL_HSV,  BLANK_HSV, */
-/*    BLANK_HSV, BLANK_HSV, TEAL_HSV,  BLANK_HSV, BLANK_HSV, */
-/*    BLANK_HSV, BLANK_HSV, BLANK_HSV, BLANK_HSV, */
-/*    // left mirrored */
-/*    BLANK_HSV, BLANK_HSV, BLANK_HSV, BLANK_HSV, BLANK_HSV, */
-/*    BLANK_HSV, BLANK_HSV, BLANK_HSV, BLANK_HSV, BLANK_HSV, */
-/*    BLANK_HSV, BLANK_HSV, BLANK_HSV, BLANK_HSV, BLANK_HSV, */
-/*    BLANK_HSV, BLANK_HSV, BLANK_HSV, BLANK_HSV, BLANK_HSV, */
-/*    BLANK_HSV, BLANK_HSV, BLANK_HSV, BLANK_HSV */
-/*    }, */
-
-/*    [SYMBOLS] = */
-/*    { */
-/*    // right */
-/*    DBLUE_HSV, DBLUE_HSV, DBLUE_HSV, DBLUE_HSV, DBLUE_HSV, */
-/*    BLANK_HSV, DBLUE_HSV, DBLUE_HSV, DBLUE_HSV, BLANK_HSV, */
-/*    BLANK_HSV, DBLUE_HSV, DBLUE_HSV, DBLUE_HSV, BLANK_HSV, */
-/*    BLANK_HSV, DBLUE_HSV, DBLUE_HSV, DBLUE_HSV, BLANK_HSV, */
-/*    BLANK_HSV, BLANK_HSV, BLANK_HSV, BLANK_HSV, */
-/*    // left mirrored */
-/*    DBLUE_HSV, DBLUE_HSV, DBLUE_HSV, DBLUE_HSV, DBLUE_HSV, */
-/*    BLANK_HSV, DBLUE_HSV, DBLUE_HSV, DBLUE_HSV, BLANK_HSV, */
-/*    BLANK_HSV, DBLUE_HSV, DBLUE_HSV, DBLUE_HSV, BLANK_HSV, */
-/*    BLANK_HSV, DBLUE_HSV, DBLUE_HSV, DBLUE_HSV, BLANK_HSV, */
-/*    BLANK_HSV, BLANK_HSV, BLANK_HSV, BLANK_HSV */
-/*    }, */
-
-/*    [FN] = */
-/*    { */
-/*    // right */
-/*    BLANK_HSV, PURPLE_HSV, PURPLE_HSV, PURPLE_HSV, BLANK_HSV, */
-/*    BLANK_HSV, PURPLE_HSV, PURPLE_HSV, PURPLE_HSV, BLANK_HSV, */
-/*    BLANK_HSV, PURPLE_HSV, PURPLE_HSV, PURPLE_HSV, BLANK_HSV, */
-/*    BLANK_HSV, PURPLE_HSV, PURPLE_HSV, PURPLE_HSV, BLANK_HSV, */
-/*    BLANK_HSV, BLANK_HSV,  BLANK_HSV,  BLANK_HSV, */
-/*    // left mirrored */
-/*    BLANK_HSV, PURPLE_HSV, PURPLE_HSV, PURPLE_HSV, BLANK_HSV, */
-/*    BLANK_HSV, PURPLE_HSV, PURPLE_HSV, PURPLE_HSV, BLANK_HSV, */
-/*    BLANK_HSV, PURPLE_HSV, PURPLE_HSV, PURPLE_HSV, BLANK_HSV, */
-/*    BLANK_HSV, PURPLE_HSV, PURPLE_HSV, PURPLE_HSV, BLANK_HSV, */
-/*    BLANK_HSV, BLANK_HSV,  BLANK_HSV,  BLANK_HSV */
-/*    }, */
-
-/*    [GAME] = */
-/*    { */
-/*    // right */
-/*    TEAL_HSV,  TEAL_HSV,   TEAL_HSV,   TEAL_HSV,   TEAL_HSV, */
-/*    BLANK_HSV, PURPLE_HSV, PURPLE_HSV, PURPLE_HSV, BLANK_HSV, */
-/*    BLANK_HSV, PURPLE_HSV, PURPLE_HSV, PURPLE_HSV, BLANK_HSV, */
-/*    BLANK_HSV, PURPLE_HSV, PURPLE_HSV, PURPLE_HSV, BLANK_HSV, */
-/*    BLANK_HSV, BLANK_HSV,  BLANK_HSV,  BLANK_HSV, */
-/*    // left mirrored */
-/*    TEAL_HSV,  TEAL_HSV,   TEAL_HSV,   TEAL_HSV,   TEAL_HSV, */
-/*    BLANK_HSV, BLANK_HSV,  BRED_HSV,   BLANK_HSV,  BLANK_HSV, */
-/*    BLANK_HSV, BRED_HSV,   BRED_HSV,   BRED_HSV,   BLANK_HSV, */
-/*    BLANK_HSV, BLANK_HSV,  BLANK_HSV,  BLANK_HSV,  BLANK_HSV, */
-/*    BLANK_HSV, TEAL_HSV,   TEAL_HSV,   TEAL_HSV */
-/*    }, */
-
-/*    [CONTROL] = */
-/*    { */
-/*    // right */
-/*    BLANK_HSV, BRED_HSV,  BRED_HSV,  BRED_HSV,  BLANK_HSV, */
-/*    DRED_HSV,  DRED_HSV,  DRED_HSV,  DRED_HSV,  BLANK_HSV, */
-/*    DRED_HSV,  BRED_HSV,  BRED_HSV,  DRED_HSV,  BLANK_HSV, */
-/*    BLANK_HSV, DRED_HSV,  DRED_HSV,  DRED_HSV,  BLANK_HSV, */
-/*    BLANK_HSV, BLANK_HSV, BLANK_HSV, BLANK_HSV, */
-/*    // left mirrored */
-/*    BLANK_HSV, BLANK_HSV, BLANK_HSV, BLANK_HSV, BLANK_HSV, */
-/*    BLANK_HSV, BLANK_HSV, BLANK_HSV, BLANK_HSV, BLANK_HSV, */
-/*    BLANK_HSV, BRED_HSV,  BRED_HSV,  BLANK_HSV, BLANK_HSV, */
-/*    BLANK_HSV, DRED_HSV,  DRED_HSV,  DRED_HSV,  BLANK_HSV, */
-/*    BLANK_HSV, BLANK_HSV, BLANK_HSV, BLANK_HSV */
-/*    }, */
-
-/*    [WM] = */
-/*    { */
-/*    // right */
-/*    BLANK_HSV, ORANGE_HSV, ORANGE_HSV, ORANGE_HSV, BLANK_HSV, */
-/*    BLANK_HSV, ORANGE_HSV, ORANGE_HSV, ORANGE_HSV, BLANK_HSV, */
-/*    BLANK_HSV, ORANGE_HSV, ORANGE_HSV, ORANGE_HSV, BLANK_HSV, */
-/*    BLANK_HSV, BLANK_HSV,  ORANGE_HSV, BLANK_HSV,  BLANK_HSV, */
-/*    BLANK_HSV, BLANK_HSV,  BLANK_HSV,  BLANK_HSV, */
-/*    // left mirrored */
-/*    BLANK_HSV, BLANK_HSV,  BLANK_HSV,  BLANK_HSV,  BLANK_HSV, */
-/*    BLANK_HSV, BLANK_HSV,  BLANK_HSV,  BLANK_HSV,  BLANK_HSV, */
-/*    BLANK_HSV, BLANK_HSV,  BLANK_HSV,  BLANK_HSV,  BLANK_HSV, */
-/*    BLANK_HSV, BLANK_HSV,  BLANK_HSV,  BLANK_HSV,  BLANK_HSV, */
-/*    BLANK_HSV, BLANK_HSV,  BLANK_HSV,  BLANK_HSV */
-/*    },    */
-/* }; */
-
-/* void set_layer_color(int layer) */
-/* { */
-/*    for(int i = 0; i < DRIVER_LED_TOTAL; i++){ */
-/*        HSV hsv = */
-/*        { */
-/*	  .h = pgm_read_byte(&ledmap[layer][i][0]), */
-/*	  .s = pgm_read_byte(&ledmap[layer][i][1]), */
-/*	  .v = pgm_read_byte(&ledmap[layer][i][2]), */
-/*        }; */
-/*        if(!hsv.h && !hsv.s && !hsv.v){ */
-/*	  rgb_matrix_set_color(i, 0, 0, 0); */
-/*	  } */
-/*        else{ */
-/*	   RGB   rgb = hsv_to_rgb(hsv); */
-/*	   float f   = (float)rgb_matrix_config.hsv.v / UINT8_MAX; */
-/*	   rgb_matrix_set_color(i, f * rgb.r, f * rgb.g, f * rgb.b); */
-/*	   } */
-/*        } */
-/* } */
