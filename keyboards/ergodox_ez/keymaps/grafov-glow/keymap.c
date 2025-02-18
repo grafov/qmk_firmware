@@ -4,9 +4,9 @@
 #include "keymap.h"
 
 enum layers {
-    KEYMACS, // default layer
-    ESPERANTO,
-    RUSSIAN,
+    KEYMACS,   // BLUE default layer
+    RUSSIAN,   // RED
+    ESPERANTO, // GREEN
     NUMPAD,
     SYMBOLS,
     FN,
@@ -37,6 +37,8 @@ enum custom_keycodes {
     RU_SLASH,
     CONTROL_LKEEP,
     CONTROL_RKEEP,
+    // synthetic codes for key replacements
+    SYNT_LSFT,
 };
 
 // Tap Dance declarations
@@ -71,10 +73,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     *   | LAT  | Redo | App  |  Alt | Ctrl |                                       | Ctrl | Alt  | App  | PrScr|  RUS |
     *   `----------------------------------'                                       `----------------------------------'
     *                                        ,1------2------.     ,1-------2-----.
-    *                                        | Ctrl | Int2  |     | Int4  | Ctrl |
+    *                                        | Tab  | Int2  |     | Int4  | Ctrl |
     *                                 ,------|------|3------|     |3------+------+------.
     *                                 |      |      | Int1  |     | Int3  |      |      |
-    *                                 | BSpc |  Tab |-------|     |-------| Enter| SPC  |
+    *                                 | BSpc |      |-------|     |-------| Enter| SPC  |
     *                                 | +nav | Shift|Del/Ctl|     |Ins/Ctl| Shift| +nav |
     *                                 `4------5------6------'     `4-------5------6-----'
     *
@@ -93,8 +95,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	       LAY_RST,                  KC_AGAIN,             KC_APP,        KC_LALT,      KC_LCTL,
 
       // left thumb
-      KC_LCTL, KC_INT2,  KC_INT1, // 1,2,3
-      LT(CONTROL, KC_BSPC), LSFT_T(KC_TAB), LCTL_T(KC_DEL), // 4,5,6
+      KC_TAB, KC_INT2,  KC_INT1, // 1,2,3
+      LT(CONTROL, KC_BSPC), SYNT_LSFT, LCTL_T(KC_DEL), // 4,5,6
 
       // right finger
       KC_EXEC,              KC_ASTR,            KC_QUES,          KC_DQUO,          KC_SCLN,          RU_NUM,                       KC_UNDO,
@@ -123,10 +125,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     *   | LAT  | Redo | App  |  Alt | Ctrl |                                       | Ctrl | Alt  | App  | PrScr|  RUS |
     *   `----------------------------------'                                       `----------------------------------'
     *                                        ,1------2------.     ,1-------2-----.
-    *                                        | Ctrl | Int2  |     | Int4  | Ctrl |
+    *                                        | Tab  | Int2  |     | Int4  | Ctrl |
     *                                 ,------|------|3------|     |3------+------+------.
     *                                 |      |      | Int1  |     | Int3  |      |      |
-    *                                 | BSpc |  Tab |-------|     |-------| Enter| SPC  |
+    *                                 | BSpc |      |-------|     |-------| Enter| SPC  |
     *                                 | +nav | Shift|Del/Ctl|     |Ins/Ctl| Shift| +nav |
     *                                 `4------5------6------'     `4-------5------6-----'
     */
@@ -140,8 +142,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	       LAY_RST,                  KC_AGAIN,             KC_APP,        KC_LALT,      KC_LCTL,
 
       // left thumb
-      KC_LCTL, KC_INT2,  KC_INT1, // 1,2,3
-      LT(CONTROL, KC_BSPC), LSFT_T(KC_TAB), LCTL_T(KC_DEL), // 4,5,6
+      KC_TAB, KC_INT2,  KC_INT1, // 1,2,3
+      LT(CONTROL, KC_BSPC), SYNT_LSFT, LCTL_T(KC_DEL), // 4,5,6
 
       // right finger
       KC_EXEC,              KC_ASTR,            KC_QUES,          KC_DQUO,          KC_SCLN,          RU_NUM,                       KC_UNDO,
@@ -188,8 +190,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	       TO(KEYMACS),                  KC_AGAIN,              KC_APP,        KC_LALT,      KC_LCTL,
 
       // left thumb
-      KC_LCTL, KC_INT2,  KC_INT1, // 1,2,3
-      LT(CONTROL, KC_BSPC), LSFT_T(KC_TAB), LCTL_T(KC_DEL), // 4,5,6
+      KC_TAB, KC_INT2,  KC_INT1, // 1,2,3
+      LT(CONTROL, KC_BSPC), SYNT_LSFT, LCTL_T(KC_DEL), // 4,5,6
 
 
       // right fingers
@@ -235,15 +237,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_LSFT,                                                          XXXX,              KC_LABK,          KC_UNDS,          KC_TILD,                KC_TAB,            ____,
       ____,                                                              ____,              ____,            ____,            ____,
       // left thumb
-      KC_LCTL, KC_INT2,  KC_INT1, // 1,2,3
-      LT(CONTROL, KC_BSPC), LSFT_T(KC_TAB), LCTL_T(KC_DEL), // 4,5,6
+      KC_TAB, KC_INT2,  KC_INT1, // 1,2,3
+      LT(CONTROL, KC_BSPC), SYNT_LSFT, LCTL_T(KC_DEL), // 4,5,6
 
 
       // right fingers
       KC_NUM,                                                        KC_KP_ASTERISK,     KC_7,             KC_8,             KC_9,                   XXXX,          KC_UNDO,
       KC_KP_PLUS,                                                    KC_PIPE,            KC_4,             KC_5,             KC_6,                   KC_QUOTE,          KC_RALT,
       ____,                                                          KC_1,               KC_2,             KC_3,             KC_KP_MINUS,            KC_RCTL,
-      KC_KP_SLASH,                                                   KC_KP_ENTER,        KC_KP_EQUAL,      KC_0,             KC_DOT,              ____,             KC_RSFT,
+      KC_KP_SLASH,                                                   KC_PIPE,        KC_KP_EQUAL,      KC_0,             KC_DOT,              ____,             KC_RSFT,
       ____,                                                              ____,              ____,            ____,            ____,
       // right thumb
       KC_INT4, KC_RCTL, KC_INT3, // 1,2,3
@@ -280,14 +282,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       ____,                                                              ____,              ____,            ____,            ____,
 
       // left thumb
-      KC_LCTL, KC_INT2,  KC_INT1, // 1,2,3
-      LT(CONTROL, KC_BSPC), LSFT_T(KC_TAB), LCTL_T(KC_DEL), // 4,5,6
+      KC_TAB, KC_INT2,  KC_INT1, // 1,2,3
+      LT(CONTROL, KC_BSPC), SYNT_LSFT, LCTL_T(KC_DEL), // 4,5,6
 
       // right fingers
       KC_EXEC,                                                           KC_ASTR,            KC_QUES,          KC_DQUO,          KC_SCLN,              ____,            ____,
       ____,                                                              KC_PIPE,            KC_CIRC,          KC_DLR,           KC_AMPR,                KC_QUOTE,          KC_RALT,
       KC_NO,                                                              KC_LCBR,            KC_RCBR,          KC_HASH,          XXXX,                  KC_RCTL,
-      ____,                                                              KC_ENTER,           KC_EQUAL,         KC_BSLS,        KC_RABK,                KC_SLASH,         KC_RSFT,
+      ____,                                                              KC_PIPE,           KC_EQUAL,         KC_BSLS,        KC_RABK,                KC_SLASH,         KC_RSFT,
       ____,                                            ____,   ____,            ____,            ____,
 
       // right thumb
@@ -325,8 +327,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       ____,                                                  ____,              ____,            ____,            ____,
 
       // left thumb
-      KC_LCTL, KC_INT2,  KC_INT1, // 1,2,3
-      LT(CONTROL, KC_BSPC), LSFT_T(KC_TAB), LCTL_T(KC_DEL), // 4,5,6
+      KC_TAB, KC_INT2,  KC_INT1, // 1,2,3
+      LT(CONTROL, KC_BSPC), SYNT_LSFT, LCTL_T(KC_DEL), // 4,5,6
 
       // right fingers
       KC_EXEC,                                                           KC_KP_ASTERISK,     KC_F7,            KC_F8,            KC_F9,                  KC_NUM,          KC_UNDO,
@@ -375,8 +377,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 					 TO(KEYMACS),        KC_AGAIN,              KC_APP,        KC_LALT,      KC_LCTL,
 
       // left thumb
-      KC_LCTL, KC_INT2,  KC_INT1, // 1,2,3
-      CONTROL_LKEEP, LSFT_T(KC_TAB), LCTL_T(KC_DEL), // 4,5,6
+      KC_TAB, KC_INT2,  KC_INT1, // 1,2,3
+      CONTROL_LKEEP, SYNT_LSFT, LCTL_T(KC_DEL), // 4,5,6
 
       // right fingers
       KC_EXEC,                    XXXX,               XXXX,             XXXX,             KC_MENU,           ____,           KC_UNDO,
@@ -402,8 +404,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       // lower row
       TO(KEYMACS),     KC_AGAIN,     KC_APP, KC_LALT,    KC_LCTL,
       // left thumb
-      KC_LCTL, KC_INT2,  KC_INT1, // 1,2,3
-      KC_BSPC,    LSFT_T(KC_TAB),     LCTL_T(KC_DEL),
+      KC_TAB, KC_INT2,  KC_INT1, // 1,2,3
+      KC_BSPC,    SYNT_LSFT,     LCTL_T(KC_DEL),
 
       // right fingers
       KC_F12,                                       KC_F20,         KC_7,      KC_8,            KC_9,            KC_CLAG,             KC_UNDO,
@@ -641,23 +643,59 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
     static bool left_game_exit = false;
     static bool right_game_exit = false;
     if (cur_layer == GAME && record->event.pressed) {
-	switch (keycode) {
-	case KC_F1:
-	    left_game_exit = true;
-	    break;
-	case KC_RIGHT:
-	    right_game_exit = true;
-	    break;
-	default:
-	    // reset when any other key pressed
-	    left_game_exit = right_game_exit = false;
-	}
-	if (left_game_exit && right_game_exit) {
-	    left_game_exit = right_game_exit = false;
-	    layer_off(GAME);
-	    layer_on(KEYMACS);
-	    return true;
-	}
+        switch (keycode) {
+            case KC_F1:
+                left_game_exit = true;
+                break;
+            case KC_RIGHT:
+                right_game_exit = true;
+                break;
+            default:
+                // reset when any other key pressed
+                left_game_exit = right_game_exit = false;
+        }
+        if (left_game_exit && right_game_exit) {
+            left_game_exit = right_game_exit = false;
+            layer_off(GAME);
+            layer_on(KEYMACS);
+            return true;
+        }
+    }
+
+    // Handle case with pressing Shift (large key on thumb) + Tab (small key
+    // above) on thumb cluster.
+    //
+    // shift -> LSHIFT
+    // tab -> TAB
+    // shift+tab -> TAB
+    static bool synt_lsft = false;
+    static bool kc_tab = false;
+    switch (keycode) {
+        case SYNT_LSFT:
+            if (kc_tab) return false; // just ignore until TAB holded
+            if (record->event.pressed) {
+                synt_lsft = true;
+                SEND_STRING(SS_DOWN(X_LSFT));
+            } else {
+                if (synt_lsft) {
+                    SEND_STRING(SS_UP(X_LSFT));
+                    synt_lsft = false;
+                }
+            }
+            return false;
+        case KC_TAB:
+            if (record->event.pressed) {
+                kc_tab = true;
+                if (synt_lsft) {
+                    SEND_STRING(SS_UP(X_LSFT));
+                    synt_lsft = false;
+                }
+                SEND_STRING(SS_DOWN(X_TAB));
+            } else {
+                SEND_STRING(SS_UP(X_TAB));
+                kc_tab = false;
+            }
+            return false;
     }
 
     // For compatibility with software that not understand how to map
