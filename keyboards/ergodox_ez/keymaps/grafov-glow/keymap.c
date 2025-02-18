@@ -39,6 +39,7 @@ enum custom_keycodes {
     CONTROL_RKEEP,
     // synthetic codes for key replacements
     SYNT_LSFT,
+    SYNT_RSFT,
 };
 
 // Tap Dance declarations
@@ -73,10 +74,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     *   | LAT  | Redo | App  |  Alt | Ctrl |                                       | Ctrl | Alt  | App  | PrScr|  RUS |
     *   `----------------------------------'                                       `----------------------------------'
     *                                        ,1------2------.     ,1-------2-----.
-    *                                        | Tab  | Int2  |     | Int4  | Ctrl |
+    *                                        | Tab  | Int2  |     | Int4  | Enter|
     *                                 ,------|------|3------|     |3------+------+------.
     *                                 |      |      | Int1  |     | Int3  |      |      |
-    *                                 | BSpc |      |-------|     |-------| Enter| SPC  |
+    *                                 | BSpc |      |-------|     |-------|      | SPC  |
     *                                 | +nav | Shift|Del/Ctl|     |Ins/Ctl| Shift| +nav |
     *                                 `4------5------6------'     `4-------5------6-----'
     *
@@ -107,8 +108,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	       KC_RCTL,            KC_RALT,            KC_APP,      KC_PSCR,             TG(RUSSIAN),
 
       // right thumb
-      KC_INT4, KC_RCTL, KC_INT3, // 1,2,3
-      RCTL_T(KC_INS), RSFT_T(KC_ENTER), LT(CONTROL, KC_SPACE) // 4,5,6
+      KC_INT4, KC_ENTER, KC_INT3, // 1,2,3
+      RCTL_T(KC_INS), SYNT_RSFT, LT(CONTROL, KC_SPACE) // 4,5,6
    ),
 
    /* Esperanto special letters layer
@@ -125,10 +126,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     *   | LAT  | Redo | App  |  Alt | Ctrl |                                       | Ctrl | Alt  | App  | PrScr|  RUS |
     *   `----------------------------------'                                       `----------------------------------'
     *                                        ,1------2------.     ,1-------2-----.
-    *                                        | Tab  | Int2  |     | Int4  | Ctrl |
+    *                                        | Tab  | Int2  |     | Int4  | Enter|
     *                                 ,------|------|3------|     |3------+------+------.
     *                                 |      |      | Int1  |     | Int3  |      |      |
-    *                                 | BSpc |      |-------|     |-------| Enter| SPC  |
+    *                                 | BSpc |      |-------|     |-------|      | SPC  |
     *                                 | +nav | Shift|Del/Ctl|     |Ins/Ctl| Shift| +nav |
     *                                 `4------5------6------'     `4-------5------6-----'
     */
@@ -154,8 +155,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	       KC_RCTL,            KC_RALT,            KC_APP,      KC_PSCR,             TG(RUSSIAN),
 
       // right thumb
-      KC_INT4, KC_RCTL, KC_INT3, // 1,2,3
-      RCTL_T(KC_INS), RSFT_T(KC_ENTER), LT(CONTROL, KC_SPACE) // 4,5,6
+      KC_INT4, KC_ENTER, KC_INT3, // 1,2,3
+      RCTL_T(KC_INS), SYNT_RSFT, LT(CONTROL, KC_SPACE) // 4,5,6
    ),
 
    /* Russian Wave (ВОЛНА0) layout slightly opimized for home square. My experiment.
@@ -204,8 +205,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	       KC_RCTL,            KC_RALT,            KC_APP,      KC_PSCR,          LAY_RUS,
 
       // right thumb
-      KC_INT4, KC_RCTL, KC_INT3, // 1,2,3
-      RCTL_T(KC_INS), RSFT_T(KC_ENTER), LT(CONTROL, KC_SPACE) // 4,5,6
+      KC_INT4, KC_ENTER, KC_INT3, // 1,2,3
+      RCTL_T(KC_INS), SYNT_RSFT, LT(CONTROL, KC_SPACE) // 4,5,6
    ),
 
    /* Numpad for the right hand (left hand the same as for Symbols layer)
@@ -248,8 +249,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_KP_SLASH,                                                   KC_PIPE,        KC_KP_EQUAL,      KC_0,             KC_DOT,              ____,             KC_RSFT,
       ____,                                                              ____,              ____,            ____,            ____,
       // right thumb
-      KC_INT4, KC_RCTL, KC_INT3, // 1,2,3
-      RCTL_T(KC_INS), RSFT_T(KC_ENTER), LT(CONTROL, KC_SPACE) // 4,5,6
+      KC_INT4, KC_ENTER, KC_INT3, // 1,2,3
+      RCTL_T(KC_INS), SYNT_RSFT, LT(CONTROL, KC_SPACE) // 4,5,6
    ),
 
    /* Symbol Layer
@@ -293,8 +294,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       ____,                                            ____,   ____,            ____,            ____,
 
       // right thumb
-      KC_INT4, KC_RCTL, KC_INT3, // 1,2,3
-      RCTL_T(KC_INS), RSFT_T(KC_ENTER), LT(CONTROL, KC_SPACE) // 4,5,6
+      KC_INT4, KC_ENTER, KC_INT3, // 1,2,3
+      RCTL_T(KC_INS), SYNT_RSFT, LT(CONTROL, KC_SPACE) // 4,5,6
    ),
 
    /* Fn keys for the right hand (left hand the same as for Symbols layer)
@@ -338,8 +339,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	  ____,              ____,               ____,            ____,            ____,
 
       // right thumb
-      KC_INT4, KC_RCTL, KC_INT3, // 1,2,3
-      RCTL_T(KC_INS), RSFT_T(KC_ENTER), LT(CONTROL, KC_SPACE) // 4,5,6
+      KC_INT4, KC_ENTER, KC_INT3, // 1,2,3
+      RCTL_T(KC_INS), SYNT_RSFT, LT(CONTROL, KC_SPACE) // 4,5,6
    ),
 
    /* Control layer for line and page navigation and common text operations
@@ -378,7 +379,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
       // left thumb
       KC_TAB, KC_INT2,  KC_INT1, // 1,2,3
-      CONTROL_LKEEP, SYNT_LSFT, LCTL_T(KC_DEL), // 4,5,6
+      CONTROL_LKEEP, LSFT_T(KC_TAB), LCTL_T(KC_DEL), // 4,5,6
 
       // right fingers
       KC_EXEC,                    XXXX,               XXXX,             XXXX,             KC_MENU,           ____,           KC_UNDO,
@@ -390,7 +391,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	       KC_RCTL,            KC_RALT,            KC_APP,      KC_PSCR,             TG(RUSSIAN),
 
       // right thumb
-      KC_INT4, KC_RCTL, KC_INT3, // 1,2,3
+      KC_INT4, KC_ENTER, KC_INT3, // 1,2,3
       RCTL_T(KC_INS), RSFT_T(KC_ENTER), CONTROL_RKEEP // 4,5,6
    ),
 
@@ -405,7 +406,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       TO(KEYMACS),     KC_AGAIN,     KC_APP, KC_LALT,    KC_LCTL,
       // left thumb
       KC_TAB, KC_INT2,  KC_INT1, // 1,2,3
-      KC_BSPC,    SYNT_LSFT,     LCTL_T(KC_DEL),
+      KC_BSPC,    LSFT_T(KC_TAB),     LCTL_T(KC_DEL),
 
       // right fingers
       KC_F12,                                       KC_F20,         KC_7,      KC_8,            KC_9,            KC_CLAG,             KC_UNDO,
@@ -416,7 +417,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
          KC_RCTL,                                      KC_RALT,             KC_APP,            TG(GAME),            TO(RUSSIAN),
 
       // right thumb
-      KC_INT4, KC_RCTL, KC_INT3, // 1,2,3
+      KC_INT4, KC_ENTER, KC_INT3, // 1,2,3
       RCTL_T(KC_INS),   RSFT_T(KC_ENTER),     KC_SPACE
    ),
 
@@ -663,7 +664,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
     }
 
     // Handle case with pressing Shift (large key on thumb) + Tab (small key
-    // above) on thumb cluster.
+    // above) on left part of thumb cluster.
     //
     // shift -> LSHIFT
     // tab -> TAB
@@ -698,6 +699,42 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
             return false;
     }
 
+    // Handle case with pressing Shift (large key on thumb) + Enter (small key
+    // above) on right part of thumb cluster.
+    //
+    // shift -> RSHIFT
+    // enter -> Enter
+    // shift+enter -> Enter
+    static bool synt_rsft = false;
+    static bool kc_enter = false;
+    switch (keycode) {
+        case SYNT_RSFT:
+            if (kc_enter) return false; // just ignore until ENTER holded
+            if (record->event.pressed) {
+                synt_rsft = true;
+                SEND_STRING(SS_DOWN(X_RSFT));
+            } else {
+                if (synt_rsft) {
+                    SEND_STRING(SS_UP(X_RSFT));
+                    synt_rsft = false;
+                }
+            }
+            return false;
+        case KC_ENTER:
+            if (record->event.pressed) {
+                kc_enter = true;
+                if (synt_rsft) {
+                    SEND_STRING(SS_UP(X_RSFT));
+                    synt_rsft = false;
+                }
+                SEND_STRING(SS_DOWN(X_ENTER));
+            } else {
+                SEND_STRING(SS_UP(X_ENTER));
+                kc_enter = false;
+            }
+            return false;
+    }
+
     // For compatibility with software that not understand how to map
     // non-English keys with modifiers. Just temporary switch to
     // Keymacs layer when modifier pressed. It works only for Russian
@@ -705,24 +742,24 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
     static bool back_to_ussr = false;
     // on modifier key press:
     if (!back_to_ussr && cur_layer == RUSSIAN && record->event.pressed) {
-	switch (keycode) {
-	case KC_LCTL:
-	case KC_RCTL:
-	case KC_LALT:
-	case KC_RALT:
-	case KC_LGUI:
-	case KC_MENU:
-    case KC_INT1:
-    case KC_INT2:
-    case KC_INT3:
-    case KC_INT4:
-	case RCTL_T(KC_INS):
-    case LCTL_T(KC_DEL):
-	case RCTL_T(KC_ENTER):
-	    back_to_ussr = true;
-	    layer_off(RUSSIAN);
-	    layer_on(KEYMACS);
-	}
+        switch (keycode) {
+            case KC_LCTL:
+            case KC_RCTL:
+            case KC_LALT:
+            case KC_RALT:
+            case KC_LGUI:
+            case KC_MENU:
+            case KC_INT1:
+            case KC_INT2:
+            case KC_INT3:
+            case KC_INT4:
+            case RCTL_T(KC_INS):
+            case LCTL_T(KC_DEL):
+            case RCTL_T(KC_ENTER):
+                back_to_ussr = true;
+                layer_off(RUSSIAN);
+                layer_on(KEYMACS);
+        }
     }
     // on modifier key release:
     if (back_to_ussr && cur_layer != RUSSIAN && !record->event.pressed) {
