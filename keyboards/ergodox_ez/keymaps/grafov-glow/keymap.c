@@ -69,7 +69,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     * |--------+------+------+------+------+------|Select|           |      |------+------+------+------+------+--------|
     * |  Find  |   r  |   a  |   e  |.  n  |   s  |------|           |------|   d  |.  o  |   t  |   i  |   h  |  A-X   |
     * |--------+------+------+------+------+------| Win  |           | Win  |------+------+------+------+------+--------|
-    * |  Menu  |   z  |   ,  |   u  |   k  |   j  | Mgmt |           | Mgmt |   v  |   c  |   x  |   .  |   /  | A-Find |
+    * |  Menu  |   j  |   ,  |   u  |   k  |   z  | Mgmt |           | Mgmt |   v  |   c  |   x  |   .  |   /  | A-Find |
     * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
     *   | LAT  | Redo | App  |  Alt | Ctrl |                                       | Ctrl | Alt  | App  | PrScr|  RUS |
     *   `----------------------------------'                                       `----------------------------------'
@@ -91,7 +91,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_ESC,                       KC_GRAVE,              KC_COLON,           KC_MINUS,         KC_EXLM,           KC_PLUS,       KC_PAUSE,
       EMACS_WIN,                    LT(NUMPAD,KC_Q),       KC_B,               KC_P,             KC_F,              KC_G,          EMACS_SELECT,
       KC_FIND,                      LT(SYMBOLS,KC_R),      KC_A,               KC_E,             KC_N,              KC_S,
-      KC_MENU,                LT(ESPERANTO,KC_Z),          KC_COMMA,           KC_U,             KC_K,              LT(FN,KC_J),     MO(WM),
+      KC_MENU,                    LT(ESPERANTO,KC_J),          KC_COMMA,           KC_U,             KC_K,          LT(FN,KC_Z),     LT(WM, KC_TAB),
 	       // lower row
 	       LAY_RST,                  KC_AGAIN,             KC_APP,        KC_LALT,      KC_LCTL,
 
@@ -101,9 +101,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
       // right finger
       KC_EXEC,              KC_ASTR,            KC_QUES,          KC_DQUO,          KC_SCLN,          RU_NUM,                       KC_UNDO,
-      KC_TAB,               KC_M,               KC_W,             KC_L,             KC_Y,             LT(NUMPAD,KC_QUOTE),  EMACS_CHBUF,
+      XXXX,          KC_M,               KC_W,             KC_L,             KC_Y,             LT(NUMPAD,KC_QUOTE),  EMACS_CHBUF,
 			    KC_D,               KC_O,             KC_T,             KC_I,             LT(SYMBOLS,KC_H),     EMACS_CMD,
-      MO(WM),                 LT(FN,KC_V),    KC_C,             KC_X,             KC_DOT,           LT(ESPERANTO,KC_SLASH),     LALT(KC_FIND),
+      LT(WM, KC_ENTER),         LT(FN,KC_V),    KC_C,             KC_X,             KC_DOT,           LT(ESPERANTO,KC_SLASH),     LALT(KC_FIND),
 	       // lower row
 	       KC_RCTL,            KC_RALT,            KC_APP,      KC_PSCR,             TG(RUSSIAN),
 
@@ -117,11 +117,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     * ,--------------------------------------------------.           ,--------------------------------------------------.
     * |   Esc  |   `  |   :  |   -  |   !  |   +  | Ctl-G|           | ASST |   *  |   ?  |   "  |   ;  |   №  |  Undo  |
     * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
-    * |Emacs <>|   q  |   b  |   p  |   f  |   ĝ  |Emacs |           | Tab  |   m  |   w  |   l  |   y  |   '  | C-X-B  |
+    * |Emacs <>|   q  |   b  |   p  |   f  |   ĝ  |Emacs |           |      |   m  |   w  |   l  |   y  |   '  | C-X-B  |
     * |--------+------+------+------+------+------|Select|           |      |------+------+------+------+------+--------|
     * |  Find  |   r  |   a  |   e  |.  n  |   ŝ  |------|           |------|   d  |.  o  |   t  |   i  |   ĥ  |  A-X   |
     * |--------+------+------+------+------+------| Win  |           | Win  |------+------+------+------+------+--------|
-    * |  Menu  |   z  |   ,  |   ŭ  |   k  |   j  | Mgmt |           | Mgmt |   v  |   ĉ  |   x  |   .  |   /  | A-Find |
+    * |  Menu  |   j  |   ,  |   ŭ  |   k  |   z  | Mgmt |           | Mgmt |   v  |   ĉ  |   x  |   .  |   /  | A-Find |
     * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
     *   | LAT  | Redo | App  |  Alt | Ctrl |                                       | Ctrl | Alt  | App  | PrScr|  RUS |
     *   `----------------------------------'                                       `----------------------------------'
@@ -138,7 +138,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_ESC,                       KC_GRAVE,              KC_COLON,           KC_MINUS,         KC_EXLM,           KC_PLUS,       KC_PAUSE,
       EMACS_WIN,                    LT(NUMPAD,KC_Q),       KC_B,               KC_P,             KC_F,              EO_GCRU,          EMACS_SELECT,
       KC_FIND,                      LT(SYMBOLS,KC_R),      KC_A,               KC_E,             KC_N,              EO_SCRU,
-      KC_MENU,                KC_Z,                  KC_COMMA,           EO_UBRU,             KC_K,              EO_JCRU,     MO(WM),
+      KC_MENU,                EO_JCRU,                  KC_COMMA,           EO_UBRU,             KC_K,              KC_Z,     LT(WM, KC_TAB),
 	       // lower row
 	       LAY_RST,                  KC_AGAIN,             KC_APP,        KC_LALT,      KC_LCTL,
 
@@ -148,9 +148,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
       // right finger
       KC_EXEC,              KC_ASTR,            KC_QUES,          KC_DQUO,          KC_SCLN,          RU_NUM,                       KC_UNDO,
-      KC_TAB,               KC_M,               KC_W,             KC_L,             KC_Y,             LT(NUMPAD,KC_QUOTE),  EMACS_CHBUF,
+      ____,              KC_M,               KC_W,             KC_L,             KC_Y,             LT(NUMPAD,KC_QUOTE),  EMACS_CHBUF,
 			    KC_D,               KC_O,             KC_T,             KC_I,             EO_HCRU,     EMACS_CMD,
-      MO(WM),                 LT(FN,KC_V),    EO_CCRU,             KC_X,             KC_DOT,           KC_SLASH,               LALT(KC_FIND),
+      LT(WM, KC_ENTER),                 LT(FN,KC_V),    EO_CCRU,             KC_X,             KC_DOT,           KC_SLASH,               LALT(KC_FIND),
 	       // lower row
 	       KC_RCTL,            KC_RALT,            KC_APP,      KC_PSCR,             TG(RUSSIAN),
 
@@ -164,7 +164,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     * ,--------------------------------------------------.           ,--------------------------------------------------.
     * |        |  « „ |   :  |   -  |   !  |   +  |Ctl+G |           |      |   *  |   ?  |   "  |   ;  |  » “ |   BSP  |
     * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
-    * |        |   у  |   ч  ц   к  ю   д  |   ы  |      |           | Tab  |   г  |   в  ф   р  щ   з  |   ш  |        |
+    * |        |   у  |   ч  ц   к  ю   д  |   ы  |      |           |      |   г  |   в  ф   р  щ   з  |   ш  |        |
     * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
     * |        |   х  |   а  э   е  ё   о  |   п  |------|           |------|   й  |   т  |   и  |   н  |   л  |        |
     * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
@@ -185,7 +185,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_ESC,               ____,                KC_5,             KC_KP_MINUS,   KC_MINUS,      KC_TILDE,        KC_PAUSE,
       EMACS_WIN,        LT(NUMPAD,KC_E),     KC_X,             KC_R,          KC_L,          KC_S,            EMACS_SELECT,
       KC_FIND,              LT(SYMBOLS,KC_LBRC), KC_F,             KC_T,          KC_J,          KC_G,
-      KC_MENU,       KC_Z,                KC_6,             KC_C,          KC_V,          MO(FN),            MO(WM),
+      KC_MENU,       KC_Z,                KC_6,             KC_C,          KC_V,          MO(FN),            LT(WM, KC_TAB),
 
 	       // lower row
 	       TO(KEYMACS),                  KC_AGAIN,              KC_APP,        KC_LALT,      KC_LCTL,
@@ -197,9 +197,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
       // right fingers
       KC_EXEC,              RU_ASTR,           KC_9,            KC_4,        KC_EQUAL,        KC_1,                 KC_UNDO,
-      KC_TAB,               KC_U,              KC_D,            KC_H,        KC_P,            KC_I,                 EMACS_CHBUF,
+      ____,               KC_U,              KC_D,            KC_H,        KC_P,            KC_I,                 EMACS_CHBUF,
 			    KC_Q,            KC_N,            KC_B,        KC_Y,            LT(SYMBOLS,KC_K),     EMACS_CMD,
-      ____,                MO(FN),        KC_M,            KC_COMMA,    KC_7,            RU_SLASH,                 LALT(KC_FIND),
+      LT(WM, KC_ENTER),        MO(FN),        KC_M,            KC_COMMA,    KC_7,            RU_SLASH,                 LALT(KC_FIND),
 
 	       // lower row
 	       KC_RCTL,            KC_RALT,            KC_APP,      KC_PSCR,          LAY_RUS,
@@ -280,7 +280,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_LALT,                                                            ____,             KC_PERC,          KC_LBRC,      KC_RBRC,            XXXX,             ____,
       KC_LCTL,                                                            ____,          KC_AT,            KC_LPRN,          KC_RPRN,                XXXX,
       KC_LSFT,                                                          XXXX,              KC_LABK,          KC_UNDS,          KC_TILD,                KC_ENTER,          ____,
-      ____,                                                              ____,              ____,            ____,            ____,
+      ____,                                                              ____,              ____,            ____,            LT(WM,KC_TAB),
 
       // left thumb
       KC_TAB, KC_INT2,  KC_INT1, // 1,2,3
@@ -290,7 +290,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_EXEC,                                                           KC_ASTR,            KC_QUES,          KC_DQUO,          KC_SCLN,              ____,            ____,
       ____,                                                              KC_PIPE,            KC_CIRC,          KC_DLR,           KC_AMPR,                KC_QUOTE,          KC_RALT,
       KC_NO,                                                              KC_LCBR,            KC_RCBR,          KC_HASH,          XXXX,                  KC_RCTL,
-      ____,                                                              KC_PIPE,           KC_EQUAL,         KC_BSLS,        KC_RABK,                KC_SLASH,         KC_RSFT,
+      LT(WM,KC_ENTER),                                                 KC_PIPE,           KC_EQUAL,         KC_BSLS,        KC_RABK,                KC_SLASH,         KC_RSFT,
       ____,                                            ____,   ____,            ____,            ____,
 
       // right thumb
@@ -398,10 +398,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    // Window manager control (currently for i3 / Sway WMs)
    [WM] = LAYOUT_ergodox(
       // left fingers
-      KC_ESC,                       KC_GRAVE,              KC_COLON,           KC_MINUS,         KC_EXLM,           KC_PLUS,       KC_CANCEL,
+      KC_ESC,                      KC_GRAVE,              KC_COLON,           KC_MINUS,         KC_EXLM,           KC_PLUS,       KC_CANCEL,
       KC_CPNL,                     LT(NUMPAD,KC_Q),       KC_B,               KC_P,             KC_F,              KC_G,          EMACS_SELECT,
-      KC_FIND,                      LT(SYMBOLS,KC_R),      KC_A,               KC_E,             KC_N,              KC_S,
-      KC_MENU,                KC_Z,                  KC_COMMA,           KC_U,             KC_K,              LT(FN,KC_J),     KC_LGUI,
+      KC_FIND,                     LT(SYMBOLS,KC_R),      KC_A,               KC_E,             KC_N,              KC_S,
+      KC_MENU,                KC_Z,                  KC_COMMA,           KC_U,             KC_K,              LT(FN,KC_J),     KC_TAB,
       // lower row
       TO(KEYMACS),     KC_AGAIN,     KC_APP, KC_LALT,    KC_LCTL,
       // left thumb
@@ -412,7 +412,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_F12,                                       KC_F20,         KC_7,      KC_8,            KC_9,            KC_CLAG,             KC_UNDO,
       KC_F11,                                       KC_M,       KC_4,      KC_5,            KC_6,            KC_UP,      KC_F13,
 		                        KC_D,              KC_1,      KC_2,            KC_3,            XXXX,   KC_F14,
-      KC_RGUI,                                       KC_V,       KC_C,            KC_0,            KC_DOT,                 KC_DOWN,    KC_F15,
+      KC_ENTER,                                       KC_V,       KC_C,            KC_0,            KC_DOT,                 KC_DOWN,    KC_F15,
          // lower row
          KC_RCTL,                                      KC_RALT,             KC_APP,            TG(GAME),            TO(RUSSIAN),
 
@@ -678,7 +678,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
                 synt_lsft = true;
                 SEND_STRING(SS_DOWN(X_LSFT));
             } else {
-                if (synt_lsft) {
+                if (synt_lsft) { // check because key already can depressed during TAB hold
                     SEND_STRING(SS_UP(X_LSFT));
                     synt_lsft = false;
                 }
@@ -714,7 +714,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
                 synt_rsft = true;
                 SEND_STRING(SS_DOWN(X_RSFT));
             } else {
-                if (synt_rsft) {
+                if (synt_rsft) { // check because key already can depressed during ENTER hold
                     SEND_STRING(SS_UP(X_RSFT));
                     synt_rsft = false;
                 }
