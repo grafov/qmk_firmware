@@ -42,6 +42,8 @@ enum custom_keycodes {
     SYNT_RSFT,
 };
 
+const int LAYER_DELAY = 1; // мс
+
 // Tap Dance declarations
 enum {
     TD_GAME_KEYMACS,
@@ -65,11 +67,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     * ,--------------------------------------------------.           ,--------------------------------------------------.
     * |   Esc  |   `  |   :  |   -  |   !  |   +  | Ctl-G|           | ASST |   *  |   ?  |   "  |   ;  |   №  |  Undo  |
     * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
-    * |Emacs <>|   q  |   b  |   p  |   f  |   g  |Emacs |           | Tab  |   m  |   w  |   l  |   y  |   '  | C-X-B  |
+    * |Emacs <>|   q  |   b  |   p  |   f  |   g  |Emacs |           | MENU |   m  |   w  |   l  |   y  |   '  | C-X-B  |
     * |--------+------+------+------+------+------|Select|           |      |------+------+------+------+------+--------|
     * |  Find  |   r  |   a  |   e  |.  n  |   s  |------|           |------|   d  |.  o  |   t  |   i  |   h  |  App   |
     * |--------+------+------+------+------+------| Win  |           | Win  |------+------+------+------+------+--------|
-    * |  Menu  |   j  |   ,  |   u  |   k  |   z  | Mgmt |           | Mgmt |   v  |   c  |   x  |   .  |   /  | A-Find |
+    * |  Ctl-x |EO  j |   ,  |   u  |   k  |   z  | Mgmt |           | Mgmt |   v  |   c  |   x  |   .  |EO  / | A-Find |
     * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
     *   | LAT  | Redo | LGui |  Alt | Ctrl |                                       | Ctrl | Alt  | RGui | PrScr|  RUS |
     *   `----------------------------------'                                       `----------------------------------'
@@ -91,7 +93,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_ESC,                       KC_GRAVE,              KC_COLON,           KC_MINUS,         KC_EXLM,           KC_PLUS,       KC_PAUSE,
       EMACS_WIN,                    LT(NUMPAD,KC_Q),       KC_B,               KC_P,             KC_F,              KC_G,          EMACS_SELECT,
       KC_FIND,                      LT(SYMBOLS,KC_R),      KC_A,               KC_E,             KC_N,              KC_S,
-      KC_MENU,                    LT(ESPERANTO,KC_J),          KC_COMMA,           KC_U,             KC_K,          LT(FN,KC_Z),     LT(WM, KC_TAB),
+      LCTL(KC_X),                    LT(ESPERANTO,KC_J),          KC_COMMA,           KC_U,             KC_K,          LT(FN,KC_Z),     LT(WM, KC_TAB),
 	       // lower row
 	       LAY_RST,                  KC_AGAIN,             KC_LGUI,        KC_LALT,      KC_LCTL,
 
@@ -101,7 +103,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
       // right finger
       KC_EXEC,              KC_ASTR,            KC_QUES,          KC_DQUO,          KC_SCLN,          RU_NUM,                       KC_UNDO,
-      XXXX,          KC_M,               KC_W,             KC_L,             KC_Y,             LT(NUMPAD,KC_QUOTE),  EMACS_CHBUF,
+      KC_MENU,          KC_M,               KC_W,             KC_L,             KC_Y,             LT(NUMPAD,KC_QUOTE),  EMACS_CHBUF,
 			    KC_D,               KC_O,             KC_T,             KC_I,             LT(SYMBOLS,KC_H),     KC_APP,
       LT(WM, KC_ENTER),         LT(FN,KC_V),    KC_C,             KC_X,             KC_DOT,           LT(ESPERANTO,KC_SLASH),     LALT(KC_FIND),
 	       // lower row
@@ -325,7 +327,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_LALT,                                                            ____,             KC_F4,            KC_F5,            KC_F6,                KC_RALT,             ____,
       KC_LCTL,                                                            KC_NO,              KC_F1,            KC_F2,            KC_F3,                KC_RCTL,
       KC_LSFT,                                                          KC_NO,              KC_F11,           KC_F10,           KC_F12,                KC_LSFT,            ____,
-      ____,                                                  ____,              ____,            ____,            ____,
+	       // lower row
+	       LAY_RST,                  KC_AGAIN,             KC_LGUI,        KC_LALT,      KC_LCTL,
 
       // left thumb
       KC_TAB, KC_INT2,  KC_INT1, // 1,2,3
@@ -336,7 +339,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       ____,                                                              KC_LALT,            KC_F4,            KC_F5,            KC_F6,                  KC_RALT,        KC_RALT,
       KC_LCTL,                                                            KC_F1,              KC_F2,            KC_F3,            KC_KP_MINUS,            KC_RCTL,
       KC_LSFT,                                                          ____,              KC_F11,           KC_F10,           KC_F12,                 KC_LSFT,          KC_LSFT,
-	  ____,              ____,               ____,            ____,            ____,
+	       // lower row
+	       KC_RCTL,            KC_RALT,            KC_RGUI,      KC_PSCR,             TG(RUSSIAN),
 
       // right thumb
       KC_INT4, KC_ENTER, KC_INT3, // 1,2,3
@@ -478,12 +482,12 @@ layer_state_t layer_state_set_user(layer_state_t state) {
         if (old_layer != KEYMACS) {
             break;
         }
-        tap_code_delay(EPO, 10);
+        tap_code_delay(EPO, LAYER_DELAY);
         break;
     case RUSSIAN:
         // Turn on RUS layout on enter to Russian layer.
         if (old_layer != RUSSIAN) {
-            tap_code_delay(RUS, 10);
+            tap_code_delay(RUS, LAYER_DELAY);
             xprintf("LAYER: %d %d ->RUS\n", old_layer, cur_layer); // left for debugging yet
         }  else {
             xprintf("LAYER: %d %d (RUS)\n", old_layer, cur_layer); // left for debugging yet
@@ -499,7 +503,7 @@ layer_state_t layer_state_set_user(layer_state_t state) {
         switch (old_layer){
             case ESPERANTO:
             case RUSSIAN:
-                tap_code_delay(LAT, 10);
+                tap_code_delay(LAT, LAYER_DELAY);
                 xprintf("LAYER: %d %d ->LAT\n", old_layer, cur_layer); // left for debugging yet
                 if (!insidewm){
                     break;
@@ -622,7 +626,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
             if (!record->event.pressed) {
                 layer_off(RUSSIAN);
                 layer_on(KEYMACS);
-                tap_code_delay(LAT, 10);
+                tap_code_delay(LAT, LAYER_DELAY);
                 switch_layouts = true;
                 return false;
             }
@@ -630,7 +634,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
             if (!record->event.pressed) {
                 layer_off(KEYMACS);
                 layer_on(RUSSIAN);
-                tap_code_delay(RUS, 10);
+                tap_code_delay(RUS, LAYER_DELAY);
                 return false;
             }
     }
