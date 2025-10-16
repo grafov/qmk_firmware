@@ -42,7 +42,10 @@ enum custom_keycodes {
     SYNT_RSFT,
 };
 
-const int LAYER_DELAY = 1; // мс
+// Очень важная константа, если она установлена в малое значение, то не успевает
+// срабатывать переключение слоев и клавиши отрабатывают с предыдущего слоя.
+// Если слишком высокое значение, то это замедляет переключние слоев.
+const int LAYER_DELAY = 27; // мс
 
 // Tap Dance declarations
 enum {
@@ -76,11 +79,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     *   | LAT  | Redo | LGui |  Alt | Ctrl |                                       | Ctrl | Alt  | RGui | PrScr|  RUS |
     *   `----------------------------------'                                       `----------------------------------'
     *                                        ,1------2------.     ,1-------2-----.
-    *                                        | Tab  | Int2  |     | Int4  | Enter|
+    *                                        | Tab  | Del   |     |  Ins  | Enter|
     *                                 ,------|------|3------|     |3------+------+------.
     *                                 |      |      | Int1  |     | Int3  |      |      |
     *                                 | BSpc |      |-------|     |-------|      | SPC  |
-    *                                 | +nav | Shift|Del/Ctl|     |Ins/Ctl| Shift| +nav |
+    *                                 | +nav | Shift|  Ctl  |     |  Ctl  | Shift| +nav |
     *                                 `4------5------6------'     `4-------5------6-----'
     *
     *  thumb combos:
@@ -98,8 +101,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	       LAY_RST,                  KC_AGAIN,             KC_LGUI,        KC_LALT,      KC_LCTL,
 
       // left thumb
-      KC_TAB, KC_INT2,  KC_INT1, // 1,2,3
-      LT(CONTROL, KC_BSPC), SYNT_LSFT, LCTL_T(KC_DEL), // 4,5,6
+      KC_TAB, KC_DEL,  KC_INT1, // 1,2,3
+      LT(CONTROL, KC_BSPC), SYNT_LSFT, KC_LCTL, // 4,5,6
 
       // right finger
       KC_EXEC,              KC_ASTR,            KC_QUES,          KC_DQUO,          KC_SCLN,          RU_NUM,                       KC_UNDO,
@@ -110,8 +113,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	       KC_RCTL,            KC_RALT,            KC_RGUI,      KC_PSCR,             TG(RUSSIAN),
 
       // right thumb
-      KC_INT4, KC_ENTER, KC_INT3, // 1,2,3
-      RCTL_T(KC_INS), SYNT_RSFT, LT(CONTROL, KC_SPACE) // 4,5,6
+      KC_INS, KC_ENTER, KC_INT3, // 1,2,3
+      KC_RCTL, SYNT_RSFT, LT(CONTROL, KC_SPACE) // 4,5,6
    ),
 
    /* Esperanto special letters layer
@@ -145,8 +148,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	       LAY_RST,                  KC_AGAIN,             KC_APP,        KC_LALT,      KC_LCTL,
 
       // left thumb
-      KC_TAB, KC_INT2,  KC_INT1, // 1,2,3
-      LT(CONTROL, KC_BSPC), SYNT_LSFT, LCTL_T(KC_DEL), // 4,5,6
+      KC_TAB, KC_DEL,  KC_INT1, // 1,2,3
+      LT(CONTROL, KC_BSPC), SYNT_LSFT, KC_LCTL, // 4,5,6
 
       // right finger
       KC_EXEC,              KC_ASTR,            KC_QUES,          KC_DQUO,          KC_SCLN,          RU_NUM,                       KC_UNDO,
@@ -157,8 +160,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	       KC_RCTL,            KC_RALT,            KC_APP,      KC_PSCR,             TG(RUSSIAN),
 
       // right thumb
-      KC_INT4, KC_ENTER, KC_INT3, // 1,2,3
-      RCTL_T(KC_INS), SYNT_RSFT, LT(CONTROL, KC_SPACE) // 4,5,6
+      KC_INS, KC_ENTER, KC_INT3, // 1,2,3
+      KC_RCTL, SYNT_RSFT, LT(CONTROL, KC_SPACE) // 4,5,6
    ),
 
    /* Russian Wave (ВОЛНА0) layout slightly opimized for home square. My experiment.
@@ -193,8 +196,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	       TO(KEYMACS),                  KC_AGAIN,              KC_LGUI,        KC_LALT,      KC_LCTL,
 
       // left thumb
-      KC_TAB, KC_INT2,  KC_INT1, // 1,2,3
-      LT(CONTROL, KC_BSPC), SYNT_LSFT, LCTL_T(KC_DEL), // 4,5,6
+      KC_TAB, KC_DEL,  KC_INT1, // 1,2,3
+      LT(CONTROL, KC_BSPC), SYNT_LSFT, KC_LCTL, // 4,5,6
 
 
       // right fingers
@@ -207,8 +210,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	       KC_RCTL,            KC_RALT,            KC_RGUI,      KC_PSCR,          LAY_RUS,
 
       // right thumb
-      KC_INT4, KC_ENTER, KC_INT3, // 1,2,3
-      RCTL_T(KC_INS), SYNT_RSFT, LT(CONTROL, KC_SPACE) // 4,5,6
+      KC_INS, KC_ENTER, KC_INT3, // 1,2,3
+      KC_RCTL, SYNT_RSFT, LT(CONTROL, KC_SPACE) // 4,5,6
    ),
 
    /* Numpad for the right hand (left hand the same as for Symbols layer)
@@ -285,8 +288,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       ____,                                                              ____,              ____,            ____,            LT(WM,KC_TAB),
 
       // left thumb
-      KC_TAB, KC_INT2,  KC_INT1, // 1,2,3
-      LT(CONTROL, KC_BSPC), SYNT_LSFT, LCTL_T(KC_DEL), // 4,5,6
+      KC_TAB, KC_DEL,  KC_INT1, // 1,2,3
+      LT(CONTROL, KC_BSPC), SYNT_LSFT, KC_LCTL, // 4,5,6
 
       // right fingers
       KC_EXEC,                                                           KC_ASTR,            KC_QUES,          KC_DQUO,          KC_SCLN,              ____,            ____,
@@ -296,8 +299,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       ____,                                            ____,   ____,            ____,            ____,
 
       // right thumb
-      KC_INT4, KC_ENTER, KC_INT3, // 1,2,3
-      RCTL_T(KC_INS), SYNT_RSFT, LT(CONTROL, KC_SPACE) // 4,5,6
+      KC_INS, KC_ENTER, KC_INT3, // 1,2,3
+      KC_RCTL, SYNT_RSFT, LT(CONTROL, KC_SPACE) // 4,5,6
    ),
 
    /* Fn keys for the right hand (left hand the same as for Symbols layer)
@@ -331,8 +334,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	       LAY_RST,                  KC_AGAIN,             KC_LGUI,        KC_LALT,      KC_LCTL,
 
       // left thumb
-      KC_TAB, KC_INT2,  KC_INT1, // 1,2,3
-      LT(CONTROL, KC_BSPC), SYNT_LSFT, LCTL_T(KC_DEL), // 4,5,6
+      KC_TAB, KC_DEL,  KC_INT1, // 1,2,3
+      LT(CONTROL, KC_BSPC), SYNT_LSFT, KC_LCTL, // 4,5,6
 
       // right fingers
       KC_EXEC,                                                           KC_KP_ASTERISK,     KC_F7,            KC_F8,            KC_F9,                  KC_NUM,          KC_UNDO,
@@ -343,8 +346,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	       KC_RCTL,            KC_RALT,            KC_RGUI,      KC_PSCR,             TG(RUSSIAN),
 
       // right thumb
-      KC_INT4, KC_ENTER, KC_INT3, // 1,2,3
-      RCTL_T(KC_INS), SYNT_RSFT, LT(CONTROL, KC_SPACE) // 4,5,6
+      KC_INS, KC_ENTER, KC_INT3, // 1,2,3
+      KC_RCTL, SYNT_RSFT, LT(CONTROL, KC_SPACE) // 4,5,6
    ),
 
    /* Control layer for line and page navigation and common text operations
@@ -382,8 +385,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 					 TO(KEYMACS),        KC_AGAIN,              KC_APP,        KC_LALT,      KC_LCTL,
 
       // left thumb
-      KC_TAB, KC_INT2,  KC_INT1, // 1,2,3
-      CONTROL_LKEEP, LSFT_T(KC_TAB), LCTL_T(KC_DEL), // 4,5,6
+      KC_TAB, KC_DEL,  KC_INT1, // 1,2,3
+      CONTROL_LKEEP, LSFT_T(KC_TAB), KC_LCTL, // 4,5,6
 
       // right fingers
       KC_EXEC,                    XXXX,               XXXX,             XXXX,             KC_MENU,           ____,           KC_UNDO,
@@ -395,8 +398,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	       KC_RCTL,            KC_RALT,            KC_APP,      KC_PSCR,             TG(RUSSIAN),
 
       // right thumb
-      KC_INT4, KC_ENTER, KC_INT3, // 1,2,3
-      RCTL_T(KC_INS), RSFT_T(KC_ENTER), CONTROL_RKEEP // 4,5,6
+      KC_INS, KC_ENTER, KC_INT3, // 1,2,3
+      KC_RCTL, RSFT_T(KC_ENTER), CONTROL_RKEEP // 4,5,6
    ),
 
    // Window manager control (currently for i3 / Sway WMs)
@@ -409,8 +412,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       // lower row
       TO(KEYMACS),     KC_AGAIN,     KC_APP, KC_LALT,    KC_LCTL,
       // left thumb
-      KC_TAB, KC_INT2,  KC_INT1, // 1,2,3
-      KC_BSPC,    LSFT_T(KC_TAB),     LCTL_T(KC_DEL),
+      KC_TAB, KC_DEL,  KC_INT1, // 1,2,3
+      KC_BSPC,    LSFT_T(KC_TAB),     KC_LCTL,
 
       // right fingers
       KC_F12,                                       KC_F20,         KC_7,      KC_8,            KC_9,            KC_CLAG,             KC_UNDO,
@@ -421,8 +424,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
          KC_RCTL,                                      KC_RALT,             KC_APP,            TG(GAME),            TO(RUSSIAN),
 
       // right thumb
-      KC_INT4, KC_ENTER, KC_INT3, // 1,2,3
-      RCTL_T(KC_INS),   RSFT_T(KC_ENTER),     KC_SPACE
+      KC_INS, KC_ENTER, KC_INT3, // 1,2,3
+      KC_RCTL,   RSFT_T(KC_ENTER),     KC_SPACE
    ),
 
    // Gaming mode mostly for action games
@@ -504,7 +507,7 @@ layer_state_t layer_state_set_user(layer_state_t state) {
             case ESPERANTO:
             case RUSSIAN:
                 tap_code_delay(LAT, LAYER_DELAY);
-                xprintf("LAYER: %d %d ->LAT\n", old_layer, cur_layer); // left for debugging yet
+                //xprintf("LAYER: %d %d ->LAT\n", old_layer, cur_layer); // left for debugging yet
                 if (!insidewm){
                     break;
                 }
@@ -926,16 +929,16 @@ const uint16_t PROGMEM xr_combo[] = {KC_X, KC_R, COMBO_END};
 const uint16_t PROGMEM rl_combo[] = {KC_R, KC_L, COMBO_END};
 const uint16_t PROGMEM ft_combo[] = {KC_F, KC_T, COMBO_END};
 const uint16_t PROGMEM tj_combo[] = {KC_T, KC_J, COMBO_END};
-const uint16_t PROGMEM ctl_int1[] = {LCTL_T(KC_DEL), KC_INT1, COMBO_END};
-const uint16_t PROGMEM ctl_int1_int2[] = {LCTL_T(KC_DEL), KC_INT1, KC_INT2, COMBO_END};
+const uint16_t PROGMEM ctl_int1[] = {KC_LCTL, KC_INT1, COMBO_END};
+const uint16_t PROGMEM ctl_int1_del[] = {KC_LCTL, KC_INT1, KC_DEL, COMBO_END};
 
 // on right hand:
 const uint16_t PROGMEM hp_combo[] = {KC_H, KC_P, COMBO_END};
 const uint16_t PROGMEM dh_combo[] = {KC_D, KC_H, COMBO_END};
 const uint16_t PROGMEM mcom_combo[] = {KC_M, KC_COMMA, COMBO_END};
 const uint16_t PROGMEM com7_combo[] = {KC_COMMA, KC_7, COMBO_END};
-const uint16_t PROGMEM ctl_int3[] = {RCTL_T(KC_INS), KC_INT3, COMBO_END};
-const uint16_t PROGMEM ctl_int3_int4[] = {RCTL_T(KC_INS), KC_INT3, KC_INT4, COMBO_END};
+const uint16_t PROGMEM ctl_int3[] = {KC_RCTL, KC_INT3, COMBO_END};
+const uint16_t PROGMEM ctl_int3_ins[] = {KC_RCTL, KC_INT3, KC_INS, COMBO_END};
 
 combo_t key_combos[] = {
     // left
@@ -944,14 +947,14 @@ combo_t key_combos[] = {
     [RU_AE] = COMBO_ACTION(ft_combo), // Э
     [RU_YO] = COMBO(tj_combo, KC_SLASH), // Ё
     [LTHUMB_ALT] = COMBO(ctl_int1, KC_LALT), // ALT only
-    [LTHUMB_CTL_ALT] = COMBO_ACTION(ctl_int1_int2), // CTL+ALT
+    [LTHUMB_CTL_ALT] = COMBO_ACTION(ctl_int1_del), // CTL+ALT
     // right
     [RU_SCSHE] = COMBO(hp_combo, KC_O), // Щ
     [RU_FE] = COMBO(dh_combo, KC_A), // Ф
     [RU_TVZN] = COMBO_ACTION(mcom_combo), // Ъ
     [RU_DZJ] = COMBO(com7_combo, KC_SCLN), // Ж
     [RTHUMB_ALT] = COMBO(ctl_int3, KC_RALT), // ALT only
-    [RTHUMB_CTL_ALT] = COMBO_ACTION(ctl_int3_int4), // CTL+ALT
+    [RTHUMB_CTL_ALT] = COMBO_ACTION(ctl_int3_ins), // CTL+ALT
 };
 
 void process_combo_event(uint16_t combo_index, bool pressed) {
