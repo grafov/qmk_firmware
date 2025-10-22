@@ -214,16 +214,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_RCTL, SYNT_RSFT, LT(CONTROL, KC_SPACE) // 4,5,6
    ),
 
-   /* Numpad for the right hand (left hand the same as for Symbols layer)
+   /* Numpad (DEC+HEX) for the right hand (left hand the same as for Symbols layer)
     *
     * ,--------------------------------------------------.           ,--------------------------------------------------.
     * |        |   `  |   :  |   -  |   !  |   +  |      |           | Numlk|   *  |   7  |   8  |   9  |  №  |   BSP  |
     * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
-    * |        |   ́   |   %  |   [  |   ]  | Alt  |      |           |   +  |   |  |   4  |   5  |   6  |   '  |        |
+    * |        |      |   B  |      |   F  | Alt  |      |           |   +  |   =  |   4  |   5  |   6  |   '  |        |
     * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
-    * |        |      |   @  |   (  |.  )  | Ctrl |------|           |------|      |.  1  |   2  |   3  |   -  |        |
+    * |        |      |   A  |   E  |.     | Ctrl |------|           |------|   D  |.  1  |   2  |   3  |   -  |        |
     * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
-    * |        |      |   ,  |   _  |   ~  | Shift|      |           |      |   |  |   =  |   0  |   .  |   /  |        |
+    * |        |      |   ,  |   _  |   ~  | Shift|      |           |      |   |  |   C  |   0  |   .  |   /  |        |
     * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
     *   |      |      |      |   _  |      |                                       |      |      |      |      |      |
     *   `----------------------------------'                                       `----------------------------------'
@@ -237,37 +237,36 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     */
    [NUMPAD] = LAYOUT_ergodox(
       // left fingers
-      KC_NUM,                                                         ____, KC_COLON,         KC_MINUS,         KC_EXLM,                KC_PLUS,           ____,
-      KC_LALT,                                                            ____,             KC_PERC,          KC_LBRC,      KC_RBRC,            XXXX,             ____,
-      KC_LCTL,                                                            XXXX,              KC_AT,            KC_LPRN,          KC_RPRN,                XXXX,
-      KC_LSFT,                                                          XXXX,              KC_LABK,          KC_UNDS,          KC_TILD,                KC_TAB,            ____,
-      ____,                                                              ____,              ____,            ____,            ____,
+      KC_NUM,   ____,   KC_COLON,   KC_MINUS,   KC_EXLM,   KC_PLUS,   ____,
+      KC_LALT,  ____,   KC_B,       XXXX,       KC_F,      XXXX,      ____,
+      KC_LCTL,  XXXX,   KC_A,       KC_E,       XXXX,      XXXX,
+      KC_LSFT,  XXXX,   KC_LABK,    KC_UNDS,    KC_TILD,   KC_TAB,    ____,
+      ____,     ____,   ____,       ____,       ____,
       // left thumb
-      KC_TAB, KC_INT2,  KC_INT1, // 1,2,3
-      LT(CONTROL, KC_BSPC), SYNT_LSFT, LCTL_T(KC_DEL), // 4,5,6
-
+      KC_TAB,   KC_INT2,   KC_INT1, // 1,2,3
+      LT(CONTROL, KC_BSPC),   SYNT_LSFT,   LCTL_T(KC_DEL), // 4,5,6
 
       // right fingers
-      KC_NUM,                                                        KC_KP_ASTERISK,     KC_7,             KC_8,             KC_9,                   XXXX,          KC_UNDO,
-      KC_KP_PLUS,                                                    KC_PIPE,            KC_4,             KC_5,             KC_6,                   KC_QUOTE,          KC_RALT,
-      ____,                                                          KC_1,               KC_2,             KC_3,             KC_KP_MINUS,            KC_RCTL,
-      KC_KP_SLASH,                                                   KC_PIPE,        KC_KP_EQUAL,      KC_0,             KC_DOT,              ____,             KC_RSFT,
-      ____,                                                              ____,              ____,            ____,            ____,
+      KC_NUM,      KC_KP_ASTERISK,  KC_7,      KC_8,      KC_9,        XXXX,        KC_UNDO,
+      KC_KP_PLUS,  KC_KP_EQUAL,     KC_4,      KC_5,      KC_6,        KC_QUOTE,    KC_RALT,
+                   KC_D,            KC_1,      KC_2,      KC_3,        KC_KP_MINUS, KC_RCTL,
+      KC_KP_SLASH, KC_PIPE,         KC_C,      KC_0,      KC_DOT,      ____,        KC_RSFT,
+                                    ____,      ____,      ____,        ____,        ____,
       // right thumb
-      KC_INT4, KC_ENTER, KC_INT3, // 1,2,3
-      RCTL_T(KC_INS), SYNT_RSFT, LT(CONTROL, KC_SPACE) // 4,5,6
-   ),
+      KC_INT4,     KC_ENTER,        KC_INT3,   // 1,2,3
+      RCTL_T(KC_INS), SYNT_RSFT,  LT(CONTROL, KC_SPACE) // 4,5,6
+    ),
 
    /* Symbol Layer
     *
     * ,--------------------------------------------------.           ,--------------------------------------------------.
     * |        |   `  |   :  |   -  |   !  |   +  |      |           |Numpad|   ×  |   ?  |   "  |   ;  |  №  |   BSP  |
     * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
-    * |        |    ́  |   %  |   [  |   ]  |      |      |           |      |   |  |   ^  |   $  |   &  |   '  |        |
+    * |        |    ́  |   %  |   [  |   ]  |      |      |           |      |  =  |   ^  |   $  |   &  |   '  |        |
     * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
     * |        |      |   @  |   (  |.  )  |      |------|           |------|      |.  {  |   }  |   #  |   °  |        |
     * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
-    * |        |      |   <  |   _  |   ~  |      |      |           |      |   |  |   =  |   \  |   >  |   /  |        |
+    * |        |      |   <  |   _  |   ~  |      |      |           |      |   |  |      |   \  |   >  |   /  |        |
     * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
     *   |      |      |      |  _   |      |                                       |      |      |      |      |      |
     *   `----------------------------------'                                       `----------------------------------'
@@ -293,9 +292,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
       // right fingers
       KC_EXEC,                                                           KC_ASTR,            KC_QUES,          KC_DQUO,          KC_SCLN,              ____,            ____,
-      ____,                                                              KC_PIPE,            KC_CIRC,          KC_DLR,           KC_AMPR,                KC_QUOTE,          KC_RALT,
+      ____,                                                              KC_KP_EQUAL,            KC_CIRC,          KC_DLR,           KC_AMPR,                KC_QUOTE,          KC_RALT,
       KC_NO,                                                              KC_LCBR,            KC_RCBR,          KC_HASH,          XXXX,                  KC_RCTL,
-      LT(WM,KC_ENTER),                                                 KC_PIPE,           KC_EQUAL,         KC_BSLS,        KC_RABK,                KC_SLASH,         KC_RSFT,
+      LT(WM,KC_ENTER),                                                 KC_PIPE,           XXXX,         KC_BSLS,        KC_RABK,                KC_SLASH,         KC_RSFT,
       ____,                                            ____,   ____,            ____,            ____,
 
       // right thumb
