@@ -248,8 +248,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
       // right fingers
       KC_NUM,      KC_KP_ASTERISK,  KC_7,      KC_8,      KC_9,        XXXX,        KC_UNDO,
-      KC_KP_PLUS,  KC_KP_EQUAL,     KC_4,      KC_5,      KC_6,        KC_QUOTE,    KC_RALT,
-                   KC_D,            KC_1,      KC_2,      KC_3,        KC_KP_MINUS, KC_RCTL,
+      KC_KP_PLUS,  XXXX,            KC_4,      KC_5,      KC_6,        KC_QUOTE,    KC_RALT,
+                   XXXX,            KC_1,      KC_2,      KC_3,        KC_KP_EQUAL, KC_RCTL,
       KC_KP_SLASH, KC_PIPE,         KC_C,      KC_0,      KC_DOT,      ____,        KC_RSFT,
                                     ____,      ____,      ____,        ____,        ____,
       // right thumb
@@ -282,7 +282,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       // left fingers
       ____,                                                              ____, KC_COLON,         KC_MINUS,         KC_EXLM,                KC_PLUS,          KC_UNDO,
       KC_LALT,                                                            ____,             KC_PERC,          KC_LBRC,      KC_RBRC,            XXXX,             ____,
-      KC_LCTL,                                                            ____,          KC_AT,            KC_LPRN,          KC_RPRN,                XXXX,
+      KC_LCTL,                                                            ____,          KC_AT,            KC_LPRN,          KC_RPRN,               XXXX,
       KC_LSFT,                                                          XXXX,              KC_LABK,          KC_UNDS,          KC_TILD,                KC_ENTER,          ____,
       ____,                                                              ____,              ____,            ____,            LT(WM,KC_TAB),
 
@@ -293,7 +293,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       // right fingers
       KC_EXEC,                                                           KC_ASTR,            KC_QUES,          KC_DQUO,          KC_SCLN,              ____,            ____,
       ____,                                                              KC_KP_EQUAL,            KC_CIRC,          KC_DLR,           KC_AMPR,                KC_QUOTE,          KC_RALT,
-      KC_NO,                                                              KC_LCBR,            KC_RCBR,          KC_HASH,          XXXX,                  KC_RCTL,
+      KC_NO,                                                              KC_LCBR,            KC_RCBR,             KC_HASH,        KC_KP_EQUAL,                KC_RCTL,
       LT(WM,KC_ENTER),                                                 KC_PIPE,           XXXX,         KC_BSLS,        KC_RABK,                KC_SLASH,         KC_RSFT,
       ____,                                            ____,   ____,            ____,            ____,
 
@@ -417,7 +417,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       // right fingers
       KC_F12,                                       KC_F20,         KC_7,      KC_8,            KC_9,            KC_CLAG,             KC_UNDO,
       KC_F11,                                       KC_M,       KC_4,      KC_5,            KC_6,            KC_UP,      KC_F13,
-		                        KC_D,              KC_1,      KC_2,            KC_3,            XXXX,   KC_F14,
+		                        KC_D,              KC_1,      KC_2,            KC_3,            KC_KP_EQUAL,   KC_F14,
       KC_ENTER,                                       KC_V,       KC_C,            KC_0,            KC_DOT,                 KC_DOWN,    KC_F15,
          // lower row
          KC_RCTL,                                      KC_RALT,             KC_APP,            TG(GAME),            TO(RUSSIAN),
