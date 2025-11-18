@@ -249,7 +249,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       // right fingers
       KC_NUM,      KC_KP_ASTERISK,  KC_7,      KC_8,      KC_9,        XXXX,        KC_UNDO,
       KC_KP_PLUS,  XXXX,            KC_4,      KC_5,      KC_6,        KC_QUOTE,    KC_RALT,
-                   XXXX,            KC_1,      KC_2,      KC_3,        KC_KP_EQUAL, KC_RCTL,
+                   KC_D,            KC_1,      KC_2,      KC_3,        KC_KP_EQUAL, KC_RCTL,
       KC_KP_SLASH, KC_PIPE,         KC_C,      KC_0,      KC_DOT,      ____,        KC_RSFT,
                                     ____,      ____,      ____,        ____,        ____,
       // right thumb
