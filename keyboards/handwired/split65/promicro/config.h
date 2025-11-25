@@ -15,10 +15,6 @@
  */
 #pragma once
 
-#define MATRIX_IO_DELAY 5
-
-#define SELECT_SOFT_SERIAL_SPEED 1
-
 // Feature diable options
 //#define NO_DEBUG
 //#define NO_PRINT

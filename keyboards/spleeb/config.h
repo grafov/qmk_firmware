@@ -7,10 +7,6 @@
 // the touch sensor to be on the master side
 #define MASTER_RIGHT
 
-// Sync later, led, and mod state for use on OLED on slave side
-#define SPLIT_LAYER_STATE_ENABLE
-#define SPLIT_LED_STATE_ENABLE
-#define SPLIT_MODS_ENABLE
 // Transport dpi and enc mode for display on oled
 #define SPLIT_TRANSACTION_IDS_KB RPC_ID_KB_CONFIG_SYNC
 
@@ -32,5 +28,4 @@
 #endif // OLED_ENABLE
 
 #define RP2040_BOOTLOADER_DOUBLE_TAP_RESET
-#define RP2040_BOOTLOADER_DOUBLE_TAP_RESET_LED GP17
 #define RP2040_BOOTLOADER_DOUBLE_TAP_RESET_TIMEOUT 1000U
