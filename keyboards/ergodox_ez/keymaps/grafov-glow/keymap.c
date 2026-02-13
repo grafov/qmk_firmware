@@ -40,6 +40,8 @@ enum custom_keycodes {
     // synthetic codes for key replacements
     SYNT_LSFT,
     SYNT_RSFT,
+    // apple globe key
+    AP_GLOB
 };
 
 // Очень важная константа, если она установлена в малое значение, то не успевает
@@ -76,7 +78,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     * |--------+------+------+------+------+------| Win  |           | Win  |------+------+------+------+------+--------|
     * |  Ctl-x |EO  j |   ,  |   u  |   k  |   z  | Mgmt |           | Mgmt |   v  |   c  |   x  |   .  |EO  / | A-Find |
     * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
-    *   | LAT  | Redo | LGui |  Alt | Ctrl |                                       | Ctrl | Alt  | RGui | PrScr|  RUS |
+    *   | LAT  | Globe| LGui |  Alt | Ctrl |                                       | Ctrl | Alt  | RGui | PrScr|  RUS |
     *   `----------------------------------'                                       `----------------------------------'
     *                                        ,1------2------.     ,1-------2-----.
     *                                        | Tab  | Del   |     |  Ins  | Enter|
@@ -98,7 +100,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_FIND,                      LT(SYMBOLS,KC_R),      KC_A,               KC_E,             KC_N,              KC_S,
       LCTL(KC_X),                    LT(ESPERANTO,KC_J),          KC_COMMA,           KC_U,             KC_K,          LT(FN,KC_Z),     LT(WM, KC_TAB),
 	       // lower row
-	       LAY_RST,                  KC_AGAIN,             KC_LGUI,        KC_LALT,      KC_LCTL,
+	       LAY_RST,                  AP_GLOB,             KC_LGUI,        KC_LALT,      KC_LCTL,
 
       // left thumb
       KC_TAB, KC_DEL,  KC_INT1, // 1,2,3
@@ -214,15 +216,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_RCTL, SYNT_RSFT, LT(CONTROL, KC_SPACE) // 4,5,6
    ),
 
-   /* Numpad (DEC+HEX) for the right hand (left hand the same as for Symbols layer)
+   /* Numpad (HEX-compatible) for the right hand (left hand the same as for Symbols layer)
     *
     * ,--------------------------------------------------.           ,--------------------------------------------------.
     * |        |   `  |   :  |   -  |   !  |   +  |      |           | Numlk|   *  |   7  |   8  |   9  |  №  |   BSP  |
     * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
     * |        |      |   B  |      |   F  | Alt  |      |           |   +  |   =  |   4  |   5  |   6  |   '  |        |
     * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
-    * |        |      |   A  |   E  |.     | Ctrl |------|           |------|   D  |.  1  |   2  |   3  |   -  |        |
-    * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
+    * |        |      |   A  |   E  |.     | Ctrl |------|           |------|   D  |.  1  |   2  |   3  |      |        |
+    * |--------+------+------+------+------+------|      |           |   -  |------+------+------+------+------+--------|
     * |        |      |   ,  |   _  |   ~  | Shift|      |           |      |   |  |   C  |   0  |   .  |   /  |        |
     * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
     *   |      |      |      |   _  |      |                                       |      |      |      |      |      |
@@ -248,9 +250,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
       // right fingers
       KC_NUM,      KC_KP_ASTERISK,  KC_7,      KC_8,      KC_9,        XXXX,        KC_UNDO,
-      KC_KP_PLUS,  XXXX,            KC_4,      KC_5,      KC_6,        KC_QUOTE,    KC_RALT,
-                   KC_D,            KC_1,      KC_2,      KC_3,        KC_KP_EQUAL, KC_RCTL,
-      KC_KP_SLASH, KC_PIPE,         KC_C,      KC_0,      KC_DOT,      ____,        KC_RSFT,
+      KC_KP_PLUS,  KC_KP_EQUAL,     KC_4,      KC_5,      KC_6,        KC_QUOTE,    KC_RALT,
+                   KC_D,            KC_1,      KC_2,      KC_3,        XXXX,        KC_RCTL,
+      KC_KP_MINUS, KC_PIPE,         KC_C,      KC_0,      KC_DOT,      ____,        KC_RSFT,
                                     ____,      ____,      ____,        ____,        ____,
       // right thumb
       KC_INT4,     KC_ENTER,        KC_INT3,   // 1,2,3
@@ -391,7 +393,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_EXEC,                    XXXX,               XXXX,             XXXX,             KC_MENU,           ____,           KC_UNDO,
       ____,                       XXXX,               XXXX,             XXXX,             XXXX,              XXXX,            ____,
 				  KC_DEL,             KC_LEFT,          KC_RIGHT,         KC_END,            KC_WWW_BACK,     KC_WWW_FORWARD,
-      KC_RGUI,                       XXXX,               KC_MS_BTN1,       KC_MS_BTN2,       KC_MS_BTN3,        KC_MS_BTN4,      KC_MS_BTN5,
+      KC_RGUI,                       XXXX,               MS_BTN1,       MS_BTN2,       MS_BTN3,        MS_BTN4,      MS_BTN5,
 
   		   // lower row
 	       KC_RCTL,            KC_RALT,            KC_APP,      KC_PSCR,             TG(RUSSIAN),
@@ -401,7 +403,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_RCTL, RSFT_T(KC_ENTER), CONTROL_RKEEP // 4,5,6
    ),
 
-   // Window manager control (currently for i3 / Sway WMs)
+   // Window manager control (currently for Hyprland)
    [WM] = LAYOUT_ergodox(
       // left fingers
       KC_ESC,                      KC_GRAVE,              KC_COLON,           KC_MINUS,         KC_EXLM,           KC_PLUS,       KC_CANCEL,
@@ -418,7 +420,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_F12,                                       KC_F20,         KC_7,      KC_8,            KC_9,            KC_CLAG,             KC_UNDO,
       KC_F11,                                       KC_M,       KC_4,      KC_5,            KC_6,            KC_UP,      KC_F13,
 		                        KC_D,              KC_1,      KC_2,            KC_3,            KC_KP_EQUAL,   KC_F14,
-      KC_ENTER,                                       KC_V,       KC_C,            KC_0,            KC_DOT,                 KC_DOWN,    KC_F15,
+      KC_KP_ENTER,                                       KC_V,       KC_C,            KC_0,            KC_DOT,                 KC_DOWN,    KC_F15,
          // lower row
          KC_RCTL,                                      KC_RALT,             KC_APP,            TG(GAME),            TO(RUSSIAN),
 
@@ -462,6 +464,22 @@ void keyboard_post_init_user(void) {
   //debug_keyboard=true;
   //debug_mouse=true;
 }
+
+/* #ifdef RGBLIGHT_ENABLE */
+/* void matrix_init_user(void) { */
+/*   // Call the keymap level matrix init. */
+
+/*   // Read the user config from EEPROM */
+/*   user_config.raw = eeconfig_read_user(); */
+
+/*   // Set default layer, if enabled */
+/*   if (user_config.rgb_layer_change) { */
+/*     rgblight_enable_noeeprom(); */
+/*     rgblight_sethsv_noeeprom(HSV_CYAN); */
+/*     rgblight_mode_noeeprom(1); */
+/*   } */
+/* } */
+/* #endif */
 
 uint8_t cur_layer = KEYMACS;
 uint8_t old_layer = 0xff;
@@ -569,14 +587,21 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
 {
     static bool switch_layouts = false;
     if (switch_layouts) {
-	switch_layouts = false;
-	if (!record->event.pressed) {
-	    switch(keycode) {
-	    case KC_RALT:
-		layer_on(GAME);
-		return true;
-	    }
-	}
+        switch_layouts = false;
+        if (!record->event.pressed) {
+            switch(keycode) {
+                case KC_RALT:
+                    layer_on(GAME);
+                    return true;
+            }
+        }
+    }
+
+    // https://skip.house/blog/qmk-globe-key
+    switch (keycode) {
+        case AP_GLOB:
+            host_consumer_send(record->event.pressed ? AC_NEXT_KEYBOARD_LAYOUT_SELECT : 0);
+            return false;
     }
 
     // SNAP TAP like in Razer keyboards :)
